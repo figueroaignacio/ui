@@ -24,7 +24,7 @@
   --input: #e2e8f0;
   --ring: #3b82f6;
   --radius: 0.5rem;
-  --grid-color: rgba(0, 0, 0, 0.03);
+  --grid-color: rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -47,7 +47,7 @@
   --border: #1f2227;
   --input: #131519;
   --ring: #2563eb;
-  --grid-color: rgba(255, 255, 255, 0.01);
+  --grid-color: rgba(255, 255, 255, 0.02);
 }
 
 @theme inline {
@@ -115,8 +115,12 @@
 
 .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    radial-gradient(var(--grid-color) 1px, transparent 1px),
+    radial-gradient(var(--grid-color) 1px, transparent 1px);
+  background-position:
+    0 0,
+    10px 10px; /* desplazamiento para romper la cuadrícula */
   background-size: 20px 20px;
+  background-repeat: repeat;
   z-index: -100;
 }

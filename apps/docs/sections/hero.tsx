@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section className="flex min-h-[60dvh] flex-col justify-center gap-y-4">
       <div className="bg-secondary text-primary w-fit rounded-xl px-4">{t('hero.badge')}</div>
-      <h1 className="text-3xl font-bold lg:max-w-xl lg:text-4xl">{t('hero.title')}</h1>
+      <h1 className="text-3xl font-extrabold lg:max-w-xl lg:text-4xl">{t('hero.title')}</h1>
       <h2 className="text-muted-foreground lg:max-w-xl">{t('hero.subtitle')}</h2>
       <ButtonGroup>
         {actions.map((action) => (
