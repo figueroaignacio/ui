@@ -1,6 +1,6 @@
-import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
+import { IBM_Plex_Mono, Manrope } from 'next/font/google';
 
-export const fontSans = IBM_Plex_Sans({
+export const fontSans = Manrope({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
