@@ -1,18 +1,10 @@
 'use client';
 
-// Hooks
-import { useState } from 'react';
-
-// Components
 import { Link } from '@/i18n/navigation';
-import { HeaderActions } from './header-actions';
-import { Logo } from './logo';
-
-// Icons
-import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
-
-// Definitions
 import { DocSection } from '@/lib/definitions';
+import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import { HeaderActions } from './header-actions';
 
 interface SiteMobileNavbarProps {
   navigation: DocSection[];
@@ -28,37 +20,30 @@ export function SiteMobileHeader({ navigation }: SiteMobileNavbarProps) {
   return (
     <div className="relative z-50 flex w-full items-center justify-between py-5 lg:hidden">
       <HamburgerMenuIcon className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />
-      <div
-        className={`fixed inset-0 z-10 h-[100vh] w-full bg-black/80 transition-opacity duration-300 ease-in-out ${
-          isMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-        }`}
-        onClick={toggleMenu}
-      ></div>
       <nav
-        className={`bg-background fixed top-0 left-0 z-20 h-screen w-64 border-r transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`bg-background fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
+          isMenuOpen
+            ? 'pointer-events-auto scale-100 opacity-100'
+            : 'pointer-events-none scale-95 opacity-0'
         }`}
       >
-        <div className="flex items-center justify-between border-b">
-          <div onClick={toggleMenu} className="flex justify-start pl-4">
-            <Logo />
-          </div>
-          <div className="flex justify-end p-3.5">
-            <Cross1Icon className="size-8 cursor-pointer" onClick={toggleMenu} />
-          </div>
+        <div className="flex items-center justify-between px-4 py-3">
+          <Cross1Icon className="size-8 cursor-pointer" onClick={toggleMenu} />
         </div>
-        <div className="space-y-6 overflow-y-scroll px-5 py-4">
+        <div className="flex-1 overflow-y-auto px-5 py-4">
           {navigation.map((section, sectionIndex) => (
             <div key={`section-${sectionIndex}`} className={sectionIndex !== 0 ? 'pt-2' : ''}>
-              <h2 className="mb-2 text-sm font-semibold tracking-tight">{section.title}</h2>
+              <h2 className="text-muted-foreground mb-2 text-sm font-semibold tracking-tight">
+                {section.title}
+              </h2>
               <ul>
                 {section.items.map((item, itemIndex) => (
                   <li
                     key={`item-${sectionIndex}-${itemIndex}`}
                     onClick={toggleMenu}
-                    className={`mr-6 text-sm`}
+                    className="mr-6"
                   >
-                    <Link href={item.href} className="block py-2 text-sm">
+                    <Link href={item.href} className="block py-2 text-lg font-bold">
                       {item.title}
                     </Link>
                   </li>
