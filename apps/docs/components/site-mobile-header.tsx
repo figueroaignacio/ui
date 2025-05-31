@@ -1,10 +1,15 @@
 'use client';
 
-import { Link } from '@/i18n/navigation';
-import { DocSection } from '@/lib/definitions';
-import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
+// Hooks
 import { useState } from 'react';
+
+// Components
+import { Link } from '@/i18n/navigation';
+import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { HeaderActions } from './header-actions';
+
+// Definitions
+import { DocSection } from '@/lib/definitions';
 
 interface SiteMobileNavbarProps {
   navigation: DocSection[];
