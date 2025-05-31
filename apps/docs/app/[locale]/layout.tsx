@@ -60,9 +60,7 @@ export default async function RootLayout({ params, children }: LocaleLayoutProps
           <div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
             <NextIntlClientProvider>
               <Navbar />
-              <main className="mx-auto w-full max-w-[1580px] px-5 md:px-10 lg:px-20">
-                {children}
-              </main>
+              <main className="mx-auto w-full max-w-[1580px] px-5 md:px-10">{children}</main>
               <Footer />
             </NextIntlClientProvider>
           </div>

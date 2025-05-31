@@ -99,7 +99,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
             <a
               href={item.url}
               className={cn(
-                'hover:text-foreground inline-block px-1 py-0.5 text-xs no-underline transition-all duration-150 hover:underline',
+                'hover:text-foreground inline-block py-0.5 text-xs no-underline transition-all duration-150 hover:underline',
                 item.url === `#${activeItem}`
                   ? 'text-foreground font-medium underline'
                   : 'text-muted-foreground',
