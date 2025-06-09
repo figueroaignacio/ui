@@ -1,8 +1,8 @@
 {
   "hero": {
     "badge": "Ecosistema React",
-    "title": "Sistema de componentes React para crear aplicaciones modernas.",
-    "subtitle": "Una herramienta indie para crear tu propio sistema de diseño, usando CSS Modules o Tailwind.",
+    "title": "Crea tu propia biblioteca de UI",
+    "subtitle": "Un proyecto indie que ofrece una colección de componentes accesibles y bien diseñados, listos para usar con tus frameworks favoritos. Código abierto. Plataforma libre para compartir y escalar.",
     "actions": {
       "getStarted": "Comenzar",
       "exploreComponents": "Explorar componentes"

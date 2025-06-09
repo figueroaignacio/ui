@@ -28,10 +28,7 @@ export function SiteHeader({ navigation }: SiteNavbarProps) {
         </li>
         {navigation.map((navItem: NavigationProps, index: number) => (
           <li key={index}>
-            <Link
-              href={navItem.url}
-              className={`text-muted-foreground hover:text-foreground mr-6 text-sm`}
-            >
+            <Link href={navItem.url} className={`mr-6 text-sm`}>
               {navItem.title}
             </Link>
           </li>

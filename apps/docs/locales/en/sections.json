@@ -1,8 +1,8 @@
 {
   "hero": {
     "badge": "React Ecosystem",
-    "title": "React component system for building modern apps.",
-    "subtitle": "An indie tool to craft your own design system, using CSS Modules or Tailwind.",
+    "title": "Craft Your UI Toolkit",
+    "subtitle": "An indie project offering a collection of accessible, beautifully designed components and a platform to share and distribute code. Works with your favorite frameworks. Open Source. Open Code.",
     "actions": {
       "getStarted": "Get Started",
       "exploreComponents": "Explore components"
