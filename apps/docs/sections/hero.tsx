@@ -22,7 +22,7 @@ export function Hero() {
   ];
 
   return (
-    <section className="flex min-h-[50dvh] flex-col items-center justify-center gap-y-8 text-center">
+    <section className="flex min-h-[50svh] flex-col items-center justify-center gap-y-8 text-center">
       {/* <div className="bg-secondary text-primary w-fit rounded-xl px-4">{t('hero.badge')}</div> */}
       <h1 className="text-3xl font-extrabold lg:max-w-2xl lg:text-5xl">{t('hero.title')}</h1>
       <h2 className="text-muted-foreground lg:max-w-2xl">{t('hero.subtitle')}</h2>

@@ -26,7 +26,7 @@ export function ComponentPreview({ children, className, title }: ComponentPrevie
 
       <div
         className={cn(
-          'relative flex h-auto min-h-[40dvh] items-center justify-center overflow-hidden p-6 md:p-10',
+          'relative flex h-auto min-h-[40svh] items-center justify-center overflow-hidden p-6 md:p-10',
           className,
         )}
       >
