@@ -70,10 +70,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         <MobileToc toc={doc.toc.content} />
       </header>
       <div className="bg-background grid grid-cols-1 gap-6 lg:grid-cols-[270px_1fr_270px]">
-        <aside className="sticky top-14 z-20 hidden h-[calc(100vh-3.5rem)] px-3 py-6 lg:block">
+        <aside className="sticky top-14 z-20 hidden h-[calc(100vh-3.5rem)] py-6 lg:block">
           <Sidebar />
         </aside>
-        <main className="relative min-w-0 py-6">
+        <main className="relative min-w-0 py-6 md:px-12">
           <div className="mx-auto md:px-4 lg:px-0">
             <div className="space-y-2">
               <h1 className="scroll-m-20 text-2xl font-bold tracking-tight">{doc.title}</h1>
@@ -89,7 +89,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </div>
         </main>
         {doc.toc?.visible && (
-          <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] py-6 pl-6 lg:block">
+          <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] py-6 lg:block">
             <Toc toc={doc.toc.content} />
           </aside>
         )}
