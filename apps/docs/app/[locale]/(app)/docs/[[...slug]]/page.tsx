@@ -73,7 +73,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         <aside className="sticky top-14 z-20 hidden h-[calc(100vh-3.5rem)] py-6 lg:block">
           <Sidebar />
         </aside>
-        <main className="relative min-w-0 py-6 md:px-12">
+        <main className="relative top-14 min-w-0 py-6">
           <div className="mx-auto md:px-4 lg:px-0">
             <div className="space-y-2">
               <h1 className="scroll-m-20 text-2xl font-bold tracking-tight">{doc.title}</h1>

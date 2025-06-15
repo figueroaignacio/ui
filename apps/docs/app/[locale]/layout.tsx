@@ -2,8 +2,6 @@
 import { Providers } from '@/components/providers';
 
 // Components
-import { Footer } from '@/components/footer';
-import { Navbar } from '@/components/header';
 import { NextIntlClientProvider } from 'next-intl';
 
 // Utils
@@ -57,11 +55,9 @@ export default async function RootLayout({ params, children }: LocaleLayoutProps
     <html lang={locale} suppressHydrationWarning>
       <body className={`relative ${fontSans.className}`}>
         <Providers>
-          <div className="grid min-h-[100svh] grid-rows-[auto_1fr_auto]">
+          <div>
             <NextIntlClientProvider>
-              <Navbar />
               <main className="mx-auto w-full max-w-[1580px] px-5 md:px-10">{children}</main>
-              <Footer />
             </NextIntlClientProvider>
           </div>
         </Providers>
