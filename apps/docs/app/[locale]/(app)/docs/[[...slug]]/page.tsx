@@ -60,5 +60,5 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
     notFound();
   }
 
-  return <MDXContentRenderer code={doc.body} />
+  return <MDXContentRenderer code={doc.body} />;
 }
