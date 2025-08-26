@@ -23,15 +23,13 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <section className="mx-auto flex min-h-lvh max-w-xl flex-col justify-center gap-y-3">
-      <h1 className="text-xl">
-        <span className="font-bold">I7A UI</span> - React UI Kit
-      </h1>
-      <p className="text-muted-foreground text-sm">{t('home.description')}</p>
+      <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
+      <p className="text-lg font-semibold">{t('home.description')}</p>
       {actions.map((action: { label: string; href: string }) => (
         <Link
           href={action.href}
           key={action.href}
-          className="text-primary flex items-center gap-x-2 text-sm underline"
+          className="text-primary flex w-fit items-center gap-x-2 text-sm underline"
         >
           {action.label}
           <ArrowRightIcon />
