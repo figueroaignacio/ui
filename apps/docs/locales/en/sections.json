@@ -1,64 +1,15 @@
 {
-  "hero": {
-    "badge": "React Ecosystem",
-    "title": "Craft Your UI Toolkit",
-    "subtitle": "An indie project offering a collection of accessible, beautifully designed components and a platform to share and distribute code. Works with your favorite frameworks. Open Source. Open Code.",
-    "actions": {
-      "getStarted": "Get Started",
-      "exploreComponents": "Explore components"
-    }
-  },
-  "features": {
-    "title": "Main Features",
-    "items": [
+  "home": {
+    "description": "Accessible and customizable UI components for professional web applications. Built with accessibility standards and designed to adapt to any design system.",
+    "actions": [
       {
-        "title": "Customizable",
-        "description": "Easily adapt UI to match your brand identity.",
-        "icon": "colorWheel"
+        "label": "Documentation",
+        "href": "/docs"
       },
       {
-        "title": "Responsive Design",
-        "description": "Seamless experiences on all devices.",
-        "icon": "mobile"
-      },
-      {
-        "title": "Developer Experience",
-        "description": "Intuitive and detailed documentation.",
-        "icon": "code"
-      },
-      {
-        "title": "Dark Mode",
-        "description": "Built-in dark mode for better low-light UX.",
-        "icon": "moon"
-      },
-      {
-        "title": "TypeScript",
-        "description": "Type-safe development with TypeScript.",
-        "icon": "typescript"
-      },
-      {
-        "title": "Tailwind CSS",
-        "description": "Tailwind CSS components supported for quick styling.",
-        "icon": "tailwind"
-      },
-      {
-        "title": "CSS Modules",
-        "description": "CSS Modules components supported for scoped styles",
-        "icon": "css"
-      },
-      {
-        "title": "Theming",
-        "description": "Consistent design with robust theming.",
-        "icon": "colorWheel"
-      },
-      {
-        "title": "Documentation",
-        "description": "Comprehensive, example-rich documentation.",
-        "icon": "reader"
+        "label": "Browse components",
+        "href": "/components"
       }
     ]
-  },
-  "footer": {
-    "sourceCode": "The source code is available on "
   }
 }
