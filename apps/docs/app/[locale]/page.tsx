@@ -5,6 +5,9 @@ import { getTranslations } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
 
 // Components
+import { GitHubLink } from '@/components/github-link';
+import { LocaleSwitcher } from '@/components/locale-switcher';
+import { ToggleTheme } from '@/components/toggle-theme';
 import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
@@ -22,20 +25,27 @@ export default async function HomePage({ params }: PageProps) {
   setRequestLocale(locale);
 
   return (
-    <section className="mx-auto flex min-h-lvh max-w-xl flex-col justify-center gap-y-3">
-      <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
-      <p className="text-lg font-semibold">{t('home.description')}</p>
-      <h2 className="text-muted-foreground text-sm">{t('home.developer')}</h2>
-      {actions.map((action: { label: string; href: string }) => (
-        <Link
-          href={action.href}
-          key={action.href}
-          className="text-primary flex w-fit items-center gap-x-2 text-sm underline transition-transform hover:scale-[1.03] active:scale-[0.98]"
-        >
-          {action.label}
-          <ArrowRightIcon />
-        </Link>
-      ))}
-    </section>
+    <>
+      <header className="mx-auto flex max-w-xl items-center justify-end gap-x-3 pt-5">
+        <ToggleTheme />
+        <GitHubLink />
+        <LocaleSwitcher />
+      </header>
+      <section className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center gap-y-3">
+        <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
+        <p className="text-lg font-semibold">{t('home.description')}</p>
+        <h2 className="text-muted-foreground text-sm">{t('home.developer')}</h2>
+        {actions.map((action: { label: string; href: string }) => (
+          <Link
+            href={action.href}
+            key={action.href}
+            className="text-primary flex w-fit items-center gap-x-2 text-sm underline transition-transform hover:scale-[1.03] active:scale-[0.98]"
+          >
+            {action.label}
+            <ArrowRightIcon />
+          </Link>
+        ))}
+      </section>
+    </>
   );
 }
