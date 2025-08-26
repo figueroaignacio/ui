@@ -1,6 +1,7 @@
 {
   "home": {
     "description": "Accessible and customizable UI components for professional web applications. Built with accessibility standards and designed to adapt to any design system.",
+    "developer": "Built by a developer for developers.",
     "actions": [
       {
         "label": "Documentation",
