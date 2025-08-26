@@ -11,6 +11,9 @@
         "label": "Browse components",
         "href": "/components"
       }
-    ]
+    ],
+    "footer": {
+      "title": "Built by Ignacio Figueroa"
+    }
   }
 }

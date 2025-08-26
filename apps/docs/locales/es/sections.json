@@ -11,6 +11,9 @@
         "label": "Explorar componentes",
         "href": "/components"
       }
-    ]
+    ],
+    "footer": {
+      "title": "Desarrollado por Ignacio Figueroa"
+    }
   }
 }

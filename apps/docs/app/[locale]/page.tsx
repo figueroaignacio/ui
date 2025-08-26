@@ -31,7 +31,7 @@ export default async function HomePage({ params }: PageProps) {
         <GitHubLink />
         <LocaleSwitcher />
       </header>
-      <section className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center gap-y-3">
+      <section className="mx-auto flex min-h-[85svh] max-w-xl flex-col justify-center gap-y-3">
         <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
         <p className="text-lg font-semibold">{t('home.description')}</p>
         <h2 className="text-muted-foreground text-sm">{t('home.developer')}</h2>
@@ -46,6 +46,9 @@ export default async function HomePage({ params }: PageProps) {
           </Link>
         ))}
       </section>
+      <footer className="mx-auto flex max-w-xl">
+        <h3 className="text-muted-foreground text-sm font-medium">{t('home.footer.title')}</h3>
+      </footer>
     </>
   );
 }
