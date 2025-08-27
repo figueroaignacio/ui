@@ -35,7 +35,7 @@ export function Toc({ toc }: TocProps) {
 
   return mounted ? (
     <div className="h-[calc(100vh-5rem)] space-y-2">
-      <p className="font-medium">On this page</p>
+      <p className="text-muted-foreground text-sm font-medium">On this page</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>
   ) : null;
@@ -99,7 +99,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
             <a
               href={item.url}
               className={cn(
-                'hover:text-foreground inline-block py-0.5 text-xs no-underline transition-all duration-150 hover:underline',
+                'hover:text-foreground animate-show-soft inline-block py-0.5 text-xs no-underline transition-all duration-150 hover:underline',
                 item.url === `#${activeItem}`
                   ? 'text-foreground font-medium underline'
                   : 'text-muted-foreground',

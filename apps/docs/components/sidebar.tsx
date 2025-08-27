@@ -19,7 +19,7 @@ export function Sidebar() {
   const docsNavigation = t.raw('docsNavigation');
 
   return (
-    <aside className="hide-scrollbar sticky top-0 hidden h-[calc(100vh-5rem)] overflow-y-scroll pb-60 lg:block">
+    <aside className="hide-scrollbar sticky top-20 hidden h-[calc(100vh-5rem)] overflow-y-scroll pb-60 lg:block">
       <nav>
         {docsNavigation.map((section: DocSection, index: number) => (
           <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>
