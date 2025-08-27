@@ -6,7 +6,7 @@
     },
     {
       "title": "Componentes",
-      "url": "/docs/concepts/overview"
+      "url": "/docs/components"
     },
     {
       "title": "Bloques",
@@ -34,10 +34,6 @@
     {
       "title": "Conceptos",
       "items": [
-        {
-          "title": "Vista General",
-          "href": "/docs/concepts/overview"
-        },
         {
           "title": "Tematizar",
           "href": "/docs/concepts/theming"

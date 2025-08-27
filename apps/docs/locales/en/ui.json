@@ -6,7 +6,7 @@
     },
     {
       "title": "Components",
-      "url": "/docs/concepts/overview"
+      "url": "/docs/components"
     },
     {
       "title": "Blocks",
@@ -34,10 +34,6 @@
     {
       "title": "Concepts",
       "items": [
-        {
-          "title": "Overview",
-          "href": "/docs/concepts/overview"
-        },
         {
           "title": "Theming",
           "href": "/docs/concepts/theming"
