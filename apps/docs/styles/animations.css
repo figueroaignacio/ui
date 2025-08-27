@@ -1,0 +1,265 @@
+@keyframes show {
+  from {
+    opacity: 0;
+    scale: 10%;
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
+}
+
+.animate-show {
+  view-timeline-name: --reveal;
+  animation-name: show;
+  animation-fill-mode: both;
+  animation-timeline: --reveal;
+  animation-range: entry 20% cover 30%;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  view-timeline-name: --slide-left;
+  animation-name: slideInLeft;
+  animation-fill-mode: both;
+  animation-timeline: --slide-left;
+  animation-range: entry 20% cover 30%;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-right {
+  view-timeline-name: --slide-right;
+  animation-name: slideInRight;
+  animation-fill-mode: both;
+  animation-timeline: --slide-right;
+  animation-range: entry 20% cover 30%;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  view-timeline-name: --slide-up;
+  animation-name: slideInUp;
+  animation-fill-mode: both;
+  animation-timeline: --slide-up;
+  animation-range: entry 15% cover 35%;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  view-timeline-name: --slide-down;
+  animation-name: slideInDown;
+  animation-fill-mode: both;
+  animation-timeline: --slide-down;
+  animation-range: entry 15% cover 35%;
+}
+
+@keyframes blurToFocus {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.animate-blur-focus {
+  view-timeline-name: --blur-reveal;
+  animation-name: blurToFocus;
+  animation-fill-mode: both;
+  animation-timeline: --blur-reveal;
+  animation-range: entry 10% cover 40%;
+}
+
+@keyframes zoomBlur {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    scale: 80%;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    scale: 100%;
+  }
+}
+
+.animate-zoom-blur {
+  view-timeline-name: --zoom-blur;
+  animation-name: zoomBlur;
+  animation-fill-mode: both;
+  animation-timeline: --zoom-blur;
+  animation-range: entry 25% cover 45%;
+}
+
+@keyframes focusToBlur {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+    scale: 100%;
+  }
+  to {
+    opacity: 0.3;
+    filter: blur(8px);
+    scale: 95%;
+  }
+}
+
+.animate-focus-blur {
+  view-timeline-name: --focus-blur;
+  animation-name: focusToBlur;
+  animation-fill-mode: both;
+  animation-timeline: --focus-blur;
+  animation-range: entry 60% cover 90%;
+}
+
+/* ============================================
+   ANIMACIONES DE ZOOM
+   ============================================ */
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-zoom-in {
+  view-timeline-name: --zoom-in;
+  animation-name: zoomIn;
+  animation-fill-mode: both;
+  animation-timeline: --zoom-in;
+  animation-range: entry 20% cover 40%;
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-zoom-out {
+  view-timeline-name: --zoom-out;
+  animation-name: zoomOut;
+  animation-fill-mode: both;
+  animation-timeline: --zoom-out;
+  animation-range: entry 60% cover 90%;
+}
+
+@keyframes showDramatic {
+  from {
+    opacity: 0;
+    scale: 5%;
+    filter: blur(10px);
+    transform: rotate(45deg);
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+    filter: blur(0px);
+    transform: rotate(0deg);
+  }
+}
+
+.animate-show-dramatic {
+  view-timeline-name: --show-dramatic;
+  animation-name: showDramatic;
+  animation-fill-mode: both;
+  animation-timeline: --show-dramatic;
+  animation-range: entry 20% cover 50%;
+}
+
+@keyframes showSoft {
+  from {
+    opacity: 0;
+    scale: 95%;
+    filter: brightness(0.5);
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+    filter: brightness(1);
+  }
+}
+
+.animate-show-soft {
+  view-timeline-name: --show-soft;
+  animation-name: showSoft;
+  animation-fill-mode: both;
+  animation-timeline: --show-soft;
+  animation-range: entry 30% cover 60%;
+}
+
+@keyframes showGlow {
+  from {
+    opacity: 0;
+    scale: 90%;
+    filter: brightness(0.3) drop-shadow(0 0 0 transparent);
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+    filter: brightness(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  }
+}
+
+.animate-show-glow {
+  view-timeline-name: --show-glow;
+  animation-name: showGlow;
+  animation-fill-mode: both;
+  animation-timeline: --show-glow;
+  animation-range: entry 25% cover 55%;
+}

@@ -19,7 +19,7 @@ export function Sidebar() {
   const docsNavigation = t.raw('docsNavigation');
 
   return (
-    <aside className="hide-scrollbar sticky top-0 hidden h-[calc(100vh-5rem)] overflow-y-scroll lg:block">
+    <aside className="hide-scrollbar sticky top-0 hidden h-[calc(100vh-5rem)] overflow-y-scroll pb-60 lg:block">
       <nav>
         {docsNavigation.map((section: DocSection, index: number) => (
           <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>
@@ -31,7 +31,7 @@ export function Sidebar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`hover:bg-accent block rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
+                    className={`hover:bg-accent animate-show-soft block rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
                       pathname === item.href ? 'bg-accent' : ''
                     }`}
                   >

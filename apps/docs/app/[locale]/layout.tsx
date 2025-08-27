@@ -11,6 +11,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Global Styles
+import '@/styles/animations.css';
 import '@/styles/code.css';
 import '@/styles/globals.css';
 

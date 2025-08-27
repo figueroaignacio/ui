@@ -37,7 +37,7 @@ export function MobileHeader({ navigation }: SiteMobileNavbarProps) {
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {navigation.map((section, sectionIndex) => (
             <div key={`section-${sectionIndex}`} className={sectionIndex !== 0 ? 'pt-2' : ''}>
-              <h2 className="text-muted-foreground mb-2 text-sm font-semibold tracking-tight">
+              <h2 className="text-muted-foreground animate-show-soft mb-2 text-sm font-semibold tracking-tight">
                 {section.title}
               </h2>
               <ul>
@@ -47,7 +47,10 @@ export function MobileHeader({ navigation }: SiteMobileNavbarProps) {
                     onClick={toggleMenu}
                     className="mr-6"
                   >
-                    <Link href={item.href} className="block py-2 text-lg font-bold">
+                    <Link
+                      href={item.href}
+                      className="animate-show-soft block py-2 text-lg font-bold"
+                    >
                       {item.title}
                     </Link>
                   </li>
