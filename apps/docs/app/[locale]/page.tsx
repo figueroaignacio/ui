@@ -5,9 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
 
 // Components
-import { GitHubLink } from '@/components/github-link';
 import { LocaleSwitcher } from '@/components/locale-switcher';
-import { ToggleTheme } from '@/components/toggle-theme';
 import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
@@ -27,8 +25,6 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <header className="mx-auto flex max-w-xl items-center justify-end gap-x-3 pt-5">
-        <ToggleTheme />
-        <GitHubLink />
         <LocaleSwitcher />
       </header>
       <section className="mx-auto flex min-h-[85svh] max-w-xl flex-col justify-center gap-y-3">
@@ -46,9 +42,6 @@ export default async function HomePage({ params }: PageProps) {
           </Link>
         ))}
       </section>
-      <footer className="mx-auto flex max-w-xl">
-        <h3 className="text-muted-foreground text-sm font-medium">{t('home.footer.title')}</h3>
-      </footer>
     </>
   );
 }
