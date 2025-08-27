@@ -10,6 +10,7 @@ import { Sidebar } from '@/components/sidebar';
 import { notFound } from 'next/navigation';
 
 // Metadata
+import { MobileToc } from '@/components/mdx/mobile-toc';
 import type { Metadata } from 'next';
 
 enum Locale {
@@ -64,10 +65,13 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
+      <div className="lg:hidden">
+        <MobileToc toc={doc.toc.content} />
+      </div>
       <div className="border-border hidden lg:block lg:border-l lg:py-5 lg:pl-5">
         <Sidebar />
       </div>
-      <article className="py-5 lg:px-12">
+      <article className="lg:px-12 lg:py-5">
         <div className="space-y-3">
           <h1 className="text-xl font-bold">{doc.title}</h1>
           <p className="text-muted-foreground">{doc.description}</p>
