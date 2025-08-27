@@ -6,7 +6,6 @@ import { useState } from 'react';
 // Components
 import { Link } from '@/i18n/navigation';
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
-import { HeaderActions } from './header-actions';
 
 // Definitions
 import { DocSection } from '@/lib/definitions';
@@ -15,7 +14,7 @@ interface SiteMobileNavbarProps {
   navigation: DocSection[];
 }
 
-export function SiteMobileHeader({ navigation }: SiteMobileNavbarProps) {
+export function MobileHeader({ navigation }: SiteMobileNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -23,7 +22,7 @@ export function SiteMobileHeader({ navigation }: SiteMobileNavbarProps) {
   };
 
   return (
-    <div className="relative z-50 flex w-full items-center justify-between py-5 lg:hidden">
+    <div className="border-border relative z-50 flex w-full items-center justify-between border-b px-5 py-5 lg:hidden">
       <HamburgerMenuIcon className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />
       <nav
         className={`bg-background fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
@@ -58,7 +57,6 @@ export function SiteMobileHeader({ navigation }: SiteMobileNavbarProps) {
           ))}
         </div>
       </nav>
-      <HeaderActions />
     </div>
   );
 }

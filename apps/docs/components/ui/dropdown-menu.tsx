@@ -59,7 +59,7 @@ function DropdownMenuTrigger({
       aria-expanded={false}
       aria-controls="dropdown-menu-content"
       variant="outline"
-      size="lg"
+      size="default"
     >
       {children}
       <svg

@@ -55,11 +55,9 @@ export default async function RootLayout({ params, children }: LocaleLayoutProps
     <html lang={locale} suppressHydrationWarning>
       <body className={`relative ${fontSans.className}`}>
         <Providers>
-          <div>
-            <NextIntlClientProvider>
-              <main className="mx-auto w-full max-w-[1580px] px-5 md:px-10">{children}</main>
-            </NextIntlClientProvider>
-          </div>
+          <NextIntlClientProvider>
+            <main>{children}</main>
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>

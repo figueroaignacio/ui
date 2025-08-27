@@ -31,8 +31,8 @@ export function Sidebar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`hover:bg-secondary block w-fit rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
-                      pathname === item.href ? 'bg-secondary' : ''
+                    className={`hover:bg-accent block rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
+                      pathname === item.href ? 'bg-accent' : ''
                     }`}
                   >
                     {item.title}
