@@ -102,11 +102,7 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent;
-}
-
-.highlighted-text {
-  @apply bg-purple-400 px-2 py-0.5 text-white;
+  @apply bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-800 bg-clip-text text-transparent;
 }
 
 .grid-main-container {
@@ -119,8 +115,17 @@
     radial-gradient(var(--grid-color) 1px, transparent 1px);
   background-position:
     0 0,
-    10px 10px; /* desplazamiento para romper la cuadrícula */
+    10px 10px;
   background-size: 20px 20px;
   background-repeat: repeat;
   z-index: -100;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
