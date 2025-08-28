@@ -12,7 +12,7 @@ import type React from 'react';
 const calloutVariants = cva('my-6 flex items-start rounded-lg p-4 gap-3', {
   variants: {
     variant: {
-      default: 'border-slate-200 bg-slate-50/50 dark:border-slate-800 dark:bg-slate-900/20',
+      default: 'border-border border bg-accent',
       info: 'border-blue-100 bg-blue-50/50 dark:border-blue-900/30 dark:bg-blue-900/10',
       warning: 'border-amber-100 bg-amber-50/50 dark:border-amber-900/30 dark:bg-amber-900/10',
       danger: 'border-rose-100 bg-rose-50/50 dark:border-rose-900/30 dark:bg-rose-900/10',

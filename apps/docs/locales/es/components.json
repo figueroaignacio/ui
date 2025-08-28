@@ -6,5 +6,11 @@
     "mobile": {
       "label": "Tabla de Contenido"
     }
+  },
+  "docs": {
+    "fallback": {
+      "title": "Información",
+      "description": "Esta sección de la documentación aún está en construcción."
+    }
   }
 }

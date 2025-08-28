@@ -7,9 +7,11 @@ import { docs } from '@content';
 // Utils
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Metadata
+import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import type { Metadata } from 'next';
 
@@ -58,15 +60,18 @@ export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
 
 export default async function DocPage({ params }: { params: Promise<DocPageProps> }) {
   const doc = await getDocFromParams({ params });
+  const t = await getTranslations('components');
 
   if (!doc || !doc.published) {
     notFound();
   }
 
+  const tocContent = Array.isArray(doc.toc?.content) ? doc.toc.content : [];
+
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
       <div className="lg:hidden">
-        <MobileToc toc={doc.toc.content} />
+        <MobileToc toc={tocContent} />
       </div>
       <div className="border-border hidden lg:block lg:border-l lg:py-5 lg:pl-5">
         <Sidebar />
@@ -76,10 +81,17 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           <h1 className="text-xl font-bold">{doc.title}</h1>
           <p className="text-muted-foreground">{doc.description}</p>
         </div>
-        <MDXContentRenderer code={doc.body} />
+        {doc.body ? (
+          <MDXContentRenderer code={doc.body} />
+        ) : (
+          <Callout variant="default">
+            <CalloutTitle>{t('docs.fallback.title')}</CalloutTitle>
+            <CalloutDescription>{t('docs.fallback.description')}</CalloutDescription>
+          </Callout>
+        )}
       </article>
       <div className="lg:border-border hidden lg:block lg:border-r lg:px-5 lg:py-5">
-        <Toc toc={doc.toc.content} />
+        <Toc toc={tocContent} />
       </div>
     </div>
   );

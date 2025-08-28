@@ -6,5 +6,11 @@
     "mobile": {
       "label": "Table of Content"
     }
+  },
+  "docs": {
+    "fallback": {
+      "title": "Info",
+      "description": "This part of the documentation is still being written."
+    }
   }
 }
