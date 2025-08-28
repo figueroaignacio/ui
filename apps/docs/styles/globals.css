@@ -30,7 +30,8 @@
 .dark {
   --background: hsl(225, 15%, 5%);
   --foreground: #f8fafc;
-  --card: hsl(225, 15%, 6%);
+  /* --card: hsl(225, 15%, 6%); */
+  --card: #131519;
   --card-foreground: #f8fafc;
   --popover: #0b0c0f;
   --popover-foreground: #f8fafc;
