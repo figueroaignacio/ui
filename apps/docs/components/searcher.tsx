@@ -130,7 +130,7 @@ export function Searcher() {
               placeholder="Type a command or search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-xl border px-9 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="bg-input ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-xl border px-9 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             />
             {searchQuery && (
               <Cross2Icon
