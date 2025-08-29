@@ -32,7 +32,7 @@ export function Sidebar() {
                   <Link
                     href={item.href}
                     className={`hover:bg-accent animate-show-soft block rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
-                      pathname === item.href ? 'bg-accent' : ''
+                      pathname === item.href ? 'bg-accent font-bold' : ''
                     }`}
                   >
                     {item.title}
