@@ -10,7 +10,7 @@ interface CardLinkProps {
 
 export function CardLink({ label, href }: CardLinkProps) {
   return (
-    <Link href={`/docs/components/${href}`}>
+    <Link href={href}>
       <Card className="hover:bg-accent flex flex-col gap-y-6 p-4 hover:scale-[1.02]">
         <div>
           <h6 className="text-lg font-semibold">{label}</h6>
