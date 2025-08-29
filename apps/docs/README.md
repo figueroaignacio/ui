@@ -1,6 +1,6 @@
-# **I7A/UI - UI Kit in Development**
+# **I7A UI - UI Kit in Development**
 
-Welcome to **I7A/UI**, the go-to library for innovative, customizable user interface components. Elevate your projects with a versatile, cutting-edge library packed with UI elements that adapt to your creative vision.
+Welcome to **I7A UI**, the go-to library for innovative, customizable user interface components. Elevate your projects with a versatile, cutting-edge library packed with UI elements that adapt to your creative vision.
 
 ## **Technologies**
 
@@ -29,4 +29,4 @@ Got questions, suggestions, or just want to connect? I’d love to hear from you
 - **GitHub**: [figueroaignacio](https://github.com/figueroaignacio/)
 - **LinkedIn**: [Ignacio Figueroa](https://www.linkedin.com/in/ignacio-figueroa-0a1ba0263)
 
-Share your projects built with **I7A/UI**—I’d love to check them out! Cheers.
+Share your projects built with **I7A UI**—I’d love to check them out! Cheers.
