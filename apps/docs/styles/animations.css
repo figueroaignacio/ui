@@ -14,7 +14,7 @@
   animation-name: show;
   animation-fill-mode: both;
   animation-timeline: --reveal;
-  animation-range: entry 20% cover 30%;
+  animation-range: entry 10% cover 10%;
 }
 
 @keyframes slideInLeft {

@@ -14,10 +14,11 @@ import { Link } from '@/i18n/navigation';
 import Image, { type ImageProps } from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Callout, CalloutDescription, CalloutTitle } from './callout';
+import { CardLink } from './card-link';
 import { CodeBlock } from './codeblock';
 import { CodeBlockWrapper } from './codeblock-wrapper';
 import { ComponentPreview } from './component-preview';
-import { LinkComponent } from './link-component';
+import { ComponentsList } from './components-list';
 import { Step, Steps } from './steps';
 
 // Icons
@@ -43,9 +44,10 @@ export const mdxComponents = {
   Callout,
   CalloutTitle,
   CalloutDescription,
-  LinkComponent,
+  CardLink,
   Steps,
   Step,
+  ComponentsList,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className={cn('font-heading mt-2 scroll-m-20 text-4xl font-bold', className)} {...props} />
   ),
