@@ -41,7 +41,7 @@ export function Toc({ toc }: TocProps) {
   }
 
   return mounted ? (
-    <div className="h-[calc(100vh-5rem)] space-y-2">
+    <div className="hide-scrollbar sticky top-20 h-[calc(100vh-5rem)] space-y-2">
       <p className="text-muted-foreground text-sm font-medium">{t('toc.desktop.label')}</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>
