@@ -1,6 +1,7 @@
 // Hooks
 import { useTranslations } from 'next-intl';
 
+// Components
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export function Features() {
