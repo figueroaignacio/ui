@@ -99,7 +99,7 @@ export const mdxComponents = {
     />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className={cn('text-sm leading-7 [&:not(:first-child)]:mt-6', className)} {...props} />
+    <p className={cn('text-[15px] leading-7 [&:not(:first-child)]:mt-6', className)} {...props} />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className={cn('my-2 ml-6 list-disc', className)} {...props} />
