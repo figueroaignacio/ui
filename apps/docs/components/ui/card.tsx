@@ -7,7 +7,7 @@ const cardVariants = cva('rounded-xl border bg-card transition-all duration-200'
     variant: {
       default: '',
       outline: 'border-2',
-      ghost: 'border-none shadow-none bg-transparent',
+      ghost: 'border-none shadow-none bg-card',
     },
     size: {
       sm: 'p-3',
@@ -47,7 +47,7 @@ const CardTitle = React.forwardRef<
 >(({ className, as: Comp = 'h3', ...props }, ref) => (
   <Comp
     ref={ref}
-    className={cn('text-2xl leading-none font-semibold tracking-tight', className)}
+    className={cn('leading-none font-semibold tracking-tight', className)}
     {...props}
   />
 ));
