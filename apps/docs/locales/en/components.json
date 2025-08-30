@@ -5,6 +5,9 @@
   "toc": {
     "mobile": {
       "label": "Table of Content"
+    },
+    "desktop": {
+      "label": "On this page"
     }
   },
   "docs": {

@@ -4,6 +4,7 @@ import * as React from 'react';
 
 // Hooks
 import { useMounted } from '@/hooks/use-mounted';
+import { useTranslations } from 'next-intl';
 
 // Utils
 import { cn } from '@/lib/utils';
@@ -19,6 +20,8 @@ interface TocProps {
 }
 
 export function Toc({ toc }: TocProps) {
+  const t = useTranslations('components');
+
   const itemIds = React.useMemo(
     () =>
       toc
@@ -33,9 +36,13 @@ export function Toc({ toc }: TocProps) {
   const activeHeading = useActiveItem(itemIds);
   const mounted = useMounted();
 
+  if (!toc || toc.length === 0) {
+    return null;
+  }
+
   return mounted ? (
     <div className="h-[calc(100vh-5rem)] space-y-2">
-      <p className="text-muted-foreground text-sm font-medium">On this page</p>
+      <p className="text-muted-foreground text-sm font-medium">{t('toc.desktop.label')}</p>
       <Tree tree={toc} activeItem={activeHeading} />
     </div>
   ) : null;

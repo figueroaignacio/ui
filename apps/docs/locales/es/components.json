@@ -5,6 +5,9 @@
   "toc": {
     "mobile": {
       "label": "Tabla de Contenido"
+    },
+    "desktop": {
+      "label": "En esta página"
     }
   },
   "docs": {
