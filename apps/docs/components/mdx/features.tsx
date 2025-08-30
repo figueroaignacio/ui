@@ -10,7 +10,7 @@ export function Features() {
   return (
     <div className="mt-5 grid gap-6 md:grid-cols-2">
       {features.map((feature: { title: string; description: string }, index: number) => (
-        <Card key={index} variant="ghost">
+        <Card key={index} variant="default">
           <CardHeader>
             <CardTitle>{feature.title}</CardTitle>
           </CardHeader>
