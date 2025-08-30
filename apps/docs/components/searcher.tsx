@@ -173,7 +173,7 @@ export function Searcher() {
                       {section.items.map((item) => (
                         <li
                           key={item.href}
-                          className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
+                          className="hover:bg-accent text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
                         >
                           <DialogClose className="h-full w-full">
                             <Link href={item.href} className="flex items-center gap-x-4">
