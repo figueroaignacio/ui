@@ -9,7 +9,7 @@ export function Features() {
   const features = t.raw('features');
 
   return (
-    <div className="mt-5 grid gap-6 md:grid-cols-2">
+    <div className="mt-5 grid gap-3 md:grid-cols-2">
       {features.map((feature: { title: string; description: string }, index: number) => (
         <Card key={index} variant="default">
           <CardHeader>
