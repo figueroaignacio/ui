@@ -58,7 +58,7 @@ interface CalloutProps
 }
 
 export const CalloutTitle = ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h5 className={cn('mb-1 leading-none font-medium tracking-tight', className)} {...props} />
+  <h5 className={cn('mb-1 font-medium leading-none tracking-tight', className)} {...props} />
 );
 
 export const CalloutDescription = ({

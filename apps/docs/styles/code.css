@@ -9,7 +9,7 @@ html.dark[data-theme='light'] {
 }
 
 [data-rehype-pretty-code-figure] {
-  @apply bg-background py-0 rounded-xl border-none;
+  @apply bg-background rounded-xl border-none py-0;
 }
 
 [data-rehype-pretty-code-figure] pre {
@@ -17,7 +17,7 @@ html.dark[data-theme='light'] {
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply grid w-full h-full break-words border-none bg-card text-sm py-2 leading-6;
+  @apply bg-card grid h-full w-full break-words border-none py-2 text-sm leading-6;
   counter-reset: line;
   box-decoration-break: clone;
 }
@@ -55,7 +55,7 @@ html.dark[data-theme='light'] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply text-sm text-zinc-300 px-3 py-2;
+  @apply px-3 py-2 text-sm text-zinc-300;
 }
 
 [data-rehype-pretty-code-title] + pre {

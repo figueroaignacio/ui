@@ -4,7 +4,7 @@ export function Footer() {
   const t = useTranslations('sections');
 
   return (
-    <footer className="text-foreground mx-auto flex w-full max-w-[1580px] border-t border-b px-5 py-4 text-sm backdrop-blur-sm md:px-10 lg:px-20">
+    <footer className="text-foreground mx-auto flex w-full max-w-[1580px] border-b border-t px-5 py-4 text-sm backdrop-blur-sm md:px-10 lg:px-20">
       <p>
         {t('footer.sourceCode')}
         <a href="https://github.com/figueroaignacio/I7A UI-ui" target="blank" className="underline">

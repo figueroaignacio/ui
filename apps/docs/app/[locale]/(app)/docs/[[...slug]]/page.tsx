@@ -5,14 +5,14 @@ import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import { docs } from '@content';
 
 // Utils
+import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
+import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Metadata
-import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
-import { MobileToc } from '@/components/mdx/mobile-toc';
 import type { Metadata } from 'next';
 
 enum Locale {

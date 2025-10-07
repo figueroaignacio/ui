@@ -1,7 +1,5 @@
 node_modules
-.next
-out
-build
 dist
+build
 coverage
-public
+.env

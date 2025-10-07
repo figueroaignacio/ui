@@ -56,7 +56,7 @@ export const TabsTrigger = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        'focus-visible:ring-ring inline-flex items-center justify-center rounded-sm px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+        'focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
         isActive ? 'border-primary text-foreground border-b-2' : 'hover:bg-background/50',
         className,
       )}
