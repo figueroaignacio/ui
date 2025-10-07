@@ -4,11 +4,13 @@ import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 // Content
 import { docs } from '@content';
 
-// Utils
+// Components
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
+
+// Utils
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
