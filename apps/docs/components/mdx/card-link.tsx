@@ -1,7 +1,7 @@
 // Components
 import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
-import { Card } from '../ui/card';
+import { Card } from '@repo/ui/components/card';
 
 interface CardLinkProps {
   label: string;
