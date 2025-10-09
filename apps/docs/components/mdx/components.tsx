@@ -1,8 +1,13 @@
 // Components
 import { ComponentSource } from '@/components/mdx/component-source';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Link } from '@/i18n/navigation';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@repo/ui/components/accordion';
+import { Button } from '@repo/ui/components/button';
 import {
   Card,
   CardContent,
@@ -11,8 +16,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/ui/components/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import Image, { type ImageProps } from 'next/image';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Callout, CalloutDescription, CalloutTitle } from './callout';
 import { CardLink } from './card-link';
 import { CodeBlock } from './codeblock';

@@ -4,9 +4,9 @@
 import { useEffect, useState } from 'react';
 
 // Components
-import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/use-theme';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { Button } from '@repo/ui/components/button';
 
 export function ToggleTheme() {
   const { theme, setTheme } = useTheme();

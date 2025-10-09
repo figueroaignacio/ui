@@ -10,7 +10,7 @@ import { ViewVerticalIcon } from '@radix-ui/react-icons';
 
 // Utils
 import { cn } from '@/lib/utils';
-import { Drawer, DrawerContent, DrawerTrigger } from '../ui/drawer';
+import { Drawer, DrawerContent, DrawerTrigger } from '@repo/ui/components/drawer';
 
 interface TocEntry {
   items?: TocEntry[];

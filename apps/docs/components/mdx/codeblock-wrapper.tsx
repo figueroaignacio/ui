@@ -3,9 +3,13 @@
 import * as React from 'react';
 
 // Components
-import { Button } from '@/components/ui/button';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
+import { Button } from '@repo/ui/components/button';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@repo/ui/components/collapsible';
 
 interface CodeBlockWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   expandButtonTitle?: string;

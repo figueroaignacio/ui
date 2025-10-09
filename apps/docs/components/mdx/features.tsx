@@ -2,7 +2,13 @@
 import { useTranslations } from 'next-intl';
 
 // Components
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@repo/ui/components/card';
 
 export function Features() {
   const t = useTranslations('sections');
@@ -11,7 +17,7 @@ export function Features() {
   return (
     <div className="mt-5 grid gap-3 md:grid-cols-2">
       {features.map((feature: { title: string; description: string }, index: number) => (
-        <Card key={index} variant="default">
+        <Card key={index}>
           <CardHeader>
             <CardTitle>{feature.title}</CardTitle>
           </CardHeader>

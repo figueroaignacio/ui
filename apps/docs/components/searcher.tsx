@@ -13,7 +13,7 @@ import {
   MagnifyingGlassIcon,
   RocketIcon,
 } from '@radix-ui/react-icons';
-import { Button } from './ui/button';
+import { Button } from '@repo/ui/components/button';
 import {
   Dialog,
   DialogClose,
@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from './ui/dialog';
+} from '@repo/ui/components/dialog';
 
 interface SearchResultItem {
   title: string;

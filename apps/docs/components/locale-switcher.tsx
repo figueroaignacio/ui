@@ -12,7 +12,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '@repo/ui/components/dropdown-menu';
 
 // Config
 import { locales } from '@/i18n/routing';

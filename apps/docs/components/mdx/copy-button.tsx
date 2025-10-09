@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 
 // Components
-import { Button } from '../ui/button';
+import { Button } from '@repo/ui/components/button';
 
 // Icons
 import { CheckIcon, ClipboardIcon } from '@radix-ui/react-icons';
