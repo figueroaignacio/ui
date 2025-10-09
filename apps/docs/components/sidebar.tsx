@@ -23,7 +23,7 @@ export function Sidebar() {
       <nav>
         {docsNavigation.map((section: DocSection, index: number) => (
           <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>
-            <h2 className="text-muted-foreground mb-2 py-2 text-xs font-semibold tracking-tight">
+            <h2 className="text-muted-foreground mb-2 py-2 text-sm tracking-tight">
               {section.title}
             </h2>
             <ul className="space-y-2">

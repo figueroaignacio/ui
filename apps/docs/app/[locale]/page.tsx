@@ -6,8 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 
 // Components
 import { LocaleSwitcher } from '@/components/locale-switcher';
-import { Link } from '@/i18n/navigation';
-import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { CardLink } from '@/components/mdx/card-link';
 
 type PageProps = {
   params: Promise<{
@@ -27,20 +26,19 @@ export default async function HomePage({ params }: PageProps) {
       <header className="mx-auto flex max-w-xl items-center justify-end gap-x-3 pt-5">
         <LocaleSwitcher />
       </header>
-      <section className="mx-auto flex min-h-[85svh] max-w-xl flex-col justify-center gap-y-3">
+      <section className="mx-auto flex min-h-[85svh] max-w-xl flex-col justify-center gap-y-3 px-3">
         <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
         <p className="text-lg font-semibold">{t('home.description')}</p>
-        <h2 className="gradient-text text-sm">{t('home.developer')}</h2>
-        {actions.map((action: { label: string; href: string }) => (
-          <Link
-            href={action.href}
-            key={action.href}
-            className="hover:text-primary text-muted-foreground flex w-fit items-center gap-x-2 text-sm underline transition-transform hover:scale-[1.03] active:scale-[0.98]"
-          >
-            {action.label}
-            <ArrowRightIcon />
-          </Link>
-        ))}
+        <div className="grid gap-3">
+          {actions.map((action: { label: string; href: string; description: string }) => (
+            <CardLink
+              label={action.label}
+              href={action.href}
+              key={action.href}
+              description={action.description}
+            />
+          ))}
+        </div>
       </section>
     </>
   );

@@ -30,7 +30,6 @@
 .dark {
   --background: hsl(225, 15%, 5%);
   --foreground: #f8fafc;
-  /* --card: hsl(225, 15%, 6%); */
   --card: #131519;
   --card-foreground: #f8fafc;
   --popover: #0b0c0f;
@@ -40,7 +39,7 @@
   --secondary: #3b83f618;
   --secondary-foreground: #3b82f6;
   --muted: #131519;
-  --muted-foreground: #94a3b8;
+  --muted-foreground: #1a1d21;
   --accent: #131519;
   --accent-foreground: #f8fafc;
   --destructive: #7f1d1d;

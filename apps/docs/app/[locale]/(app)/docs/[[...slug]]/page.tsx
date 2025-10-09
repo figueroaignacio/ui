@@ -14,13 +14,9 @@ import { Sidebar } from '@/components/sidebar';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-// Metadata
+// Types
 import type { Metadata } from 'next';
-
-enum Locale {
-  EN = 'en',
-  ES = 'es',
-}
+import type { Locale } from 'next-intl';
 
 type DocPageProps = {
   slug: string[];

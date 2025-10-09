@@ -5,11 +5,13 @@
     "actions": [
       {
         "label": "Documentación",
-        "href": "/docs"
+        "href": "/docs",
+        "description": "Guía completa de como  usar e integrar los componentes."
       },
       {
         "label": "Explorar componentes",
-        "href": "/docs/components"
+        "href": "/docs/components",
+        "description": "Descubrí todos los componentes disponibles y cómo implementarlos."
       }
     ],
     "footer": {
