@@ -4,7 +4,7 @@ import { Logo } from './logo';
 
 export function DesktopHeader() {
   return (
-    <div className="border-border relative z-50 hidden w-full items-center justify-between border-b px-5 py-3 lg:flex lg:px-16">
+    <div className="relative z-50 hidden w-full items-center justify-between px-5 py-3 lg:flex">
       <div>
         <Logo />
       </div>

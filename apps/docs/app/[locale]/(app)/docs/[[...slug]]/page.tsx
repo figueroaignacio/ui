@@ -75,10 +75,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <div className="lg:hidden">
         <MobileToc toc={tocContent} />
       </div>
-      <div className="border-border hidden lg:block lg:border-l lg:py-5 lg:pl-5">
+      <div>
         <Sidebar />
       </div>
-      <article className="lg:px-12 lg:py-5">
+      <article className="lg:px-24 lg:py-5">
         <div className="space-y-3">
           <h1 className="text-2xl font-bold">{doc.title}</h1>
           <p className="text-muted-foreground">{doc.description}</p>
@@ -92,7 +92,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </Callout>
         )}
       </article>
-      <div className="lg:border-border hidden lg:block lg:border-r lg:px-5 lg:py-5">
+      <div>
         <Toc toc={tocContent} />
       </div>
     </div>
