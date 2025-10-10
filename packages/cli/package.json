@@ -1,13 +1,14 @@
 {
   "name": "i7a-cli",
-  "version": "0.1.0",
-  "type": "commonjs",
+  "version": "0.1.2",
+  "type": "module",
   "bin": {
     "i7a": "./dist/cli.js"
   },
   "scripts": {
     "dev": "tsx src/cli.ts",
-    "build": "tsup src/cli.ts --format cjs --out-dir dist --clean"
+    "build": "tsup src/cli.ts --format esm,cjs --out-dir dist --clean",
+    "link": "pnpm build && pnpm link --global"
   },
   "dependencies": {
     "commander": "^12.0.0",
@@ -20,12 +21,5 @@
     "tsup": "^8.1.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.3"
-  },
-  "files": [
-    "dist",
-    "templates"
-  ],
-  "publishConfig": {
-    "access": "public"
   }
 }
