@@ -1,0 +1,31 @@
+{
+  "name": "@i7a/cli",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "bin": {
+    "i7a": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup src/cli.ts --format cjs --out-dir dist --clean"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "fs-extra": "^11.3.2",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
