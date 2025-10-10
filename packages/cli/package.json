@@ -6,7 +6,7 @@
     "i7a": "./dist/cli.js"
   },
   "scripts": {
-    "dev": "tsx src/cli.ts",
+    "start:dev": "tsx src/cli.ts",
     "build": "tsup",
     "link": "pnpm build && pnpm link --global"
   },

@@ -13,7 +13,7 @@ import { notFound } from 'next/navigation';
 // Global Styles
 import '@/styles/animations.css';
 import '@/styles/code.css';
-import '@/styles/globals.css';
+import '@repo/ui/globals.css';
 
 // Font
 import { fontSans } from '@/lib/font';
