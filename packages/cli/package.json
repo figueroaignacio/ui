@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "tsx src/cli.ts",
-    "build": "tsup src/cli.ts --format esm,cjs --out-dir dist --clean",
+    "build": "tsup",
     "link": "pnpm build && pnpm link --global"
   },
   "dependencies": {
