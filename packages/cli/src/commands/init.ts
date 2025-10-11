@@ -1,6 +1,5 @@
 import { Command } from 'commander';
-import fs from 'fs';
-import { copy } from 'fs-extra';
+import fs from 'fs-extra';
 import path from 'path';
 import { logger } from '../utils/logger.js';
 
@@ -12,7 +11,11 @@ export function initCommand(program: Command) {
       try {
         const projectRoot = process.cwd();
 
-        const TEMPLATE_DIR = path.join(projectRoot, 'templates');
+        const TEMPLATE_DIR = path.join(
+          path.dirname(new URL(import.meta.url).pathname),
+          '../templates',
+        );
+
         const cnSrc = path.join(TEMPLATE_DIR, 'utils/cn.ts');
         const cnDest = path.join(projectRoot, 'utils/cn.ts');
 
@@ -21,8 +24,7 @@ export function initCommand(program: Command) {
           return;
         }
 
-        await fs.promises.mkdir(path.dirname(cnDest), { recursive: true });
-        await copy(cnSrc, cnDest);
+        await fs.copy(cnSrc, cnDest);
         logger.success('utils/cn.ts creado correctamente.');
 
         const cssSrc = path.join(TEMPLATE_DIR, 'styles/globals.css');
@@ -33,8 +35,7 @@ export function initCommand(program: Command) {
           return;
         }
 
-        await fs.promises.mkdir(path.dirname(cssDest), { recursive: true });
-        await copy(cssSrc, cssDest);
+        await fs.copy(cssSrc, cssDest);
         logger.success('styles/globals.css creado correctamente.');
 
         logger.info('Proyecto inicializado correctamente. ¡Listo para usar i7a UI!');
