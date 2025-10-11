@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start:dev": "tsx src/cli.ts",
-    "build": "tsup",
+    "build": "tsup && pnpm run copy:templates",
+    "copy:templates": "cp -r src/templates dist/templates",
     "link": "pnpm build && pnpm link --global"
   },
   "dependencies": {
