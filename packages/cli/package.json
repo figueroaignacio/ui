@@ -1,14 +1,14 @@
 {
   "name": "i7a-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "bin": {
     "i7a": "./dist/cli.js"
   },
   "scripts": {
     "start:dev": "tsx src/cli.ts",
-    "build": "tsup && pnpm run copy:templates",
-    "copy:templates": "cp -r src/templates dist/templates",
+    "build": "tsup",
+    "copy:templates": "node -r src/utils/copy-templates.ts",
     "link": "pnpm build && pnpm link --global"
   },
   "dependencies": {

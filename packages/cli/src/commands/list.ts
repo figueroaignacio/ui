@@ -1,17 +1,18 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { logger } from '../utils/logger.js';
 
-export function listCommand(program: Command) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export function listCommand(program: Command): void {
   program
     .command('list')
     .description('Lista los componentes disponibles en las plantillas del CLI')
-    .action(() => {
-      const TEMPLATE_DIR = path.join(
-        path.dirname(new URL(import.meta.url).pathname),
-        '../templates/components',
-      );
+    .action((): void => {
+      const TEMPLATE_DIR = path.join(__dirname, '../templates/components');
 
       if (!fs.existsSync(TEMPLATE_DIR)) {
         logger.error('No se encontró la carpeta de plantillas en el CLI.');

@@ -1,20 +1,21 @@
 import { Command } from 'commander';
 import fs from 'fs-extra';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { logger } from '../utils/logger.js';
 
-export function initCommand(program: Command) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export function initCommand(program: Command): void {
   program
     .command('init')
     .description('Inicializa el proyecto con utils y styles')
-    .action(async () => {
+    .action(async (): Promise<void> => {
       try {
         const projectRoot = process.cwd();
 
-        const TEMPLATE_DIR = path.join(
-          path.dirname(new URL(import.meta.url).pathname),
-          '../templates',
-        );
+        const TEMPLATE_DIR = path.join(__dirname, '../templates');
 
         const cnSrc = path.join(TEMPLATE_DIR, 'utils/cn.ts');
         const cnDest = path.join(projectRoot, 'utils/cn.ts');
