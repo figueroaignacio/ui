@@ -1,6 +1,6 @@
 {
   "name": "i7a-cli",
-  "version": "0.1.8",
+  "version": "0.1.11",
   "type": "module",
   "bin": {
     "i7a": "./dist/cli.js"
@@ -12,12 +12,12 @@
   "scripts": {
     "start:dev": "tsx src/cli.ts",
     "build": "tsup",
-    "copy:templates": "node -r src/utils/copy-templates.ts",
     "link": "pnpm build && pnpm link --global",
     "version:patch": "pnpm version patch",
     "version:minor": "pnpm version minor",
     "version:major": "pnpm version major",
-    "publish:public": "pnpm build && npm publish --access public"
+    "prepublishOnly": "pnpm build",
+    "publish:public": "npm publish --access public"
   },
   "dependencies": {
     "commander": "^12.0.0",
@@ -30,11 +30,5 @@
     "tsup": "^8.1.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.3"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/cli.js",
-      "require": "./dist/cli.cjs"
-    }
   }
 }

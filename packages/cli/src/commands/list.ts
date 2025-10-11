@@ -12,7 +12,7 @@ export function listCommand(program: Command): void {
     .command('list')
     .description('Lista los componentes disponibles en las plantillas del CLI')
     .action((): void => {
-      const TEMPLATE_DIR = path.join(__dirname, '../../templates/components');
+      const TEMPLATE_DIR = path.join(__dirname, '../templates/components');
 
       if (!fs.existsSync(TEMPLATE_DIR)) {
         logger.error('No se encontró la carpeta de plantillas en el CLI.');
