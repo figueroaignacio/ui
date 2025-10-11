@@ -14,7 +14,6 @@ export function initCommand(program: Command): void {
     .action(async (): Promise<void> => {
       try {
         const projectRoot = process.cwd();
-
         const TEMPLATE_DIR = path.join(__dirname, '../../templates');
 
         const cnSrc = path.join(TEMPLATE_DIR, 'utils/cn.ts');

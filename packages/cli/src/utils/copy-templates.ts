@@ -8,23 +8,25 @@ const __dirname = path.dirname(__filename);
 
 export async function copyTemplates() {
   try {
-    const src = path.join(__dirname, '../templates');
-    const dest = path.join(__dirname, '../../dist/templates');
+    const projectRoot = path.join(__dirname, '../..');
+    const src = path.join(projectRoot, 'templates');
+    const dest = path.join(projectRoot, 'dist/templates');
 
     console.log(pc.cyan('📁 Copiando templates...'));
     console.log(pc.gray('   Desde:'), src);
     console.log(pc.gray('   Hacia:'), dest);
 
     if (!fs.existsSync(src)) {
-      console.error(pc.red('✖ No se encontró la carpeta templates en:'), src);
-      console.log(pc.yellow('💡 Asegúrate de que exista src/templates/ con tus componentes'));
+      console.error(pc.red('✖ No se encontró la carpeta templates en la raíz del proyecto'));
+      console.log(
+        pc.yellow('💡 Asegúrate de que exista templates/ en la raíz con tus componentes'),
+      );
       process.exit(1);
     }
 
-    // Verificar que tiene componentes
     const componentsPath = path.join(src, 'components');
     if (!fs.existsSync(componentsPath)) {
-      console.error(pc.red('✖ No se encontró src/templates/components/'));
+      console.error(pc.red('✖ No se encontró templates/components/'));
       process.exit(1);
     }
 

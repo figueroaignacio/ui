@@ -5,6 +5,10 @@
   "bin": {
     "i7a": "./dist/cli.js"
   },
+  "files": [
+    "dist",
+    "templates"
+  ],
   "scripts": {
     "start:dev": "tsx src/cli.ts",
     "build": "tsup",
