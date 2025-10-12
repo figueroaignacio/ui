@@ -1,6 +1,3 @@
-// Components
-import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
-
 // Content
 import { docs } from '@content';
 
@@ -8,6 +5,7 @@ import { docs } from '@content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
 import { DocsPagination } from '@/components/docs-pagination';
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
+import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
