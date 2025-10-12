@@ -15,5 +15,9 @@
       "title": "Información",
       "description": "Esta sección de la documentación aún está en construcción."
     }
+  },
+  "docsPagination": {
+    "previous": "Anterior",
+    "next": "Siguiente"
   }
 }

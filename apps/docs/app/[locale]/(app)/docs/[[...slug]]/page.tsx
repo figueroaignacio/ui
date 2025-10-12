@@ -5,6 +5,8 @@ import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import { docs } from '@content';
 
 // Components
+import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
+import { DocsPagination } from '@/components/docs-pagination';
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
@@ -66,6 +68,8 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
 
   const tocContent = Array.isArray(doc.toc?.content) ? doc.toc.content : [];
 
+  const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
+
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
       <div className="lg:hidden">
@@ -75,9 +79,12 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         <Sidebar />
       </div>
       <article className="lg:px-36 lg:py-5">
-        <div className="border-border space-y-3 border-b pb-5">
-          <h1 className="text-2xl font-bold">{doc.title}</h1>
-          <p className="text-muted-foreground">{doc.description}</p>
+        <div className="border-border flex items-start justify-between border-b pb-5">
+          <div className="space-y-3">
+            <h1 className="text-2xl font-bold">{doc.title}</h1>
+            <p className="text-muted-foreground">{doc.description}</p>
+          </div>
+          <DocsNavigationButtons currentPath={currentPath} />
         </div>
         {doc.body ? (
           <MDXContentRenderer code={doc.body} />
@@ -87,6 +94,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <CalloutDescription>{t('docs.fallback.description')}</CalloutDescription>
           </Callout>
         )}
+        <DocsPagination currentPath={currentPath} />
       </article>
       <div>
         <Toc toc={tocContent} />
