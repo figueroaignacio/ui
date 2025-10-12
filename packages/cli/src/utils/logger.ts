@@ -24,4 +24,12 @@ export const logger = {
   blank: (): void => {
     console.log('');
   },
+
+  format: {
+    info: (message: string): string => `${pc.blue('ℹ')} ${message}`,
+    success: (message: string): string => `${pc.green('✓')} ${message}`,
+    warn: (message: string): string => `${pc.yellow('⚠')} ${message}`,
+    error: (message: string): string => `${pc.red('✗')} ${message}`,
+    debug: (message: string): string => `${pc.gray('🔍')} ${message}`,
+  },
 };

@@ -1,10 +1,14 @@
 import { Command } from 'commander';
+
+// Commands
 import { addCommand } from './commands/add.js';
 import { diffCommand } from './commands/diff.js';
 import { initCommand } from './commands/init.js';
 import { listCommand } from './commands/list.js';
 import { removeCommand } from './commands/remove.js';
 import { updateCommand } from './commands/update.js';
+
+// Utils
 import { logger } from './utils/logger.js';
 
 const program = new Command();
@@ -14,7 +18,7 @@ program
   .description('Official CLI for managing i7a UI components')
   .version('0.1.0')
   .configureOutput({
-    outputError: (str, write) => write(logger.error(str)),
+    outputError: (str, write) => write(logger.format.error(str)),
   });
 
 initCommand(program);
