@@ -74,8 +74,8 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <div>
         <Sidebar />
       </div>
-      <article className="lg:px-24 lg:py-5">
-        <div className="space-y-3">
+      <article className="lg:px-36 lg:py-5">
+        <div className="border-border space-y-3 border-b pb-5">
           <h1 className="text-2xl font-bold">{doc.title}</h1>
           <p className="text-muted-foreground">{doc.description}</p>
         </div>

@@ -22,7 +22,7 @@ export function MobileHeader({ navigation }: SiteMobileNavbarProps) {
   };
 
   return (
-    <div className="border-border relative z-50 flex w-full items-center justify-between border-b px-5 py-5 lg:hidden">
+    <div className="relative z-50 flex w-full items-center justify-between px-5 py-5 lg:hidden">
       <HamburgerMenuIcon className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />
       <nav
         className={`bg-background fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
@@ -47,10 +47,7 @@ export function MobileHeader({ navigation }: SiteMobileNavbarProps) {
                     onClick={toggleMenu}
                     className="mr-6"
                   >
-                    <Link
-                      href={item.href}
-                      className="animate-show-soft block py-2 text-lg font-bold"
-                    >
+                    <Link href={item.href} className="animate-show-soft block py-2">
                       {item.title}
                     </Link>
                   </li>

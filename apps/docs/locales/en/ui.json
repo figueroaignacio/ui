@@ -28,12 +28,7 @@
         {
           "title": "Use Mode",
           "href": "/docs/use-mode"
-        }
-      ]
-    },
-    {
-      "title": "Concepts",
-      "items": [
+        },
         {
           "title": "Theming",
           "href": "/docs/concepts/theming"

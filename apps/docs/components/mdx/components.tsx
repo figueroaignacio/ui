@@ -113,7 +113,7 @@ export const mdxComponents = {
     <ol className={cn('my-2 ml-6 list-decimal', className)} {...props} />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn('mt-1', className)} {...props} />
+    <li className={cn('mt-1 text-[14px]', className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
