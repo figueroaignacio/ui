@@ -26,8 +26,12 @@
           "href": "/docs"
         },
         {
-          "title": "Modo de Uso",
-          "href": "/docs/use-mode"
+          "title": "Instalación",
+          "href": "/docs/installation"
+        },
+        {
+          "title": "CLI",
+          "href": "/docs/cli"
         },
         {
           "title": "Tematizar",

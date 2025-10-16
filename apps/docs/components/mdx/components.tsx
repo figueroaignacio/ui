@@ -24,7 +24,6 @@ import { CodeBlock } from './codeblock';
 import { CodeBlockWrapper } from './codeblock-wrapper';
 import { ComponentPreview } from './component-preview';
 import { ComponentsList } from './components-list';
-import { Features } from './features';
 import { Step, Steps } from './steps';
 
 // Icons
@@ -54,7 +53,6 @@ export const mdxComponents = {
   Steps,
   Step,
   ComponentsList,
-  Features,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className={cn('font-heading mt-2 scroll-m-20 text-4xl font-bold', className)} {...props} />
   ),
