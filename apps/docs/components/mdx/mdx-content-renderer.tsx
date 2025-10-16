@@ -1,5 +1,6 @@
 import 'katex/dist/katex.min.css';
 import * as runtime from 'react/jsx-runtime';
+import { mdxComponents } from './components';
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -14,7 +15,7 @@ interface MDXProps {
 export const MDXContentRenderer = ({ code, components }: MDXProps) => {
   try {
     const Component = useMDXComponent(code);
-    return <Component components={{ ...components }} />;
+    return <Component components={{ ...mdxComponents, ...components }} />;
   } catch (error) {
     console.error('Error rendering MDX:', error);
     return (

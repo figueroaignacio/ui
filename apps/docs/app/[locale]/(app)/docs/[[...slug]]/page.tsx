@@ -5,7 +5,6 @@ import { docs } from '@content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
 import { DocsPagination } from '@/components/docs-pagination';
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
-import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
@@ -16,6 +15,7 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Types
+import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
