@@ -1,30 +1,30 @@
 // Components
-import { ComponentSource } from '@/components/mdx/component-source';
-import { Link } from '@/i18n/navigation';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@repo/ui/components/accordion';
-import { Button } from '@repo/ui/components/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@repo/ui/components/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
-import Image, { type ImageProps } from 'next/image';
-import { Callout, CalloutDescription, CalloutTitle } from './callout';
-import { CardLink } from './card-link';
-import { CodeBlock } from './codeblock';
-import { CodeBlockWrapper } from './codeblock-wrapper';
-import { ComponentPreview } from './component-preview';
-import { ComponentsList } from './components-list';
-import { Step, Steps } from './steps';
+// import { ComponentSource } from '@/components/mdx/component-source';
+// import { Link } from '@/i18n/navigation';
+// import {
+//   Accordion,
+//   AccordionContent,
+//   AccordionItem,
+//   AccordionTrigger,
+// } from '@repo/ui/components/accordion';
+// import { Button } from '@repo/ui/components/button';
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from '@repo/ui/components/card';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
+// import Image, { type ImageProps } from 'next/image';
+// import { Callout, CalloutDescription, CalloutTitle } from './callout';
+// import { CardLink } from './card-link';
+// import { CodeBlock } from './codeblock';
+// import { CodeBlockWrapper } from './codeblock-wrapper';
+// import { ComponentPreview } from './component-preview';
+// import { ComponentsList } from './components-list';
+// import { Step, Steps } from './steps';
 
 // Icons
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
@@ -35,24 +35,6 @@ import { cn } from '@/lib/utils';
 import '@/styles/code.css';
 
 export const mdxComponents = {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  ComponentPreview,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Callout,
-  CalloutTitle,
-  CalloutDescription,
-  CardLink,
-  Steps,
-  Step,
-  ComponentsList,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className={cn('font-heading mt-2 scroll-m-20 text-4xl font-bold', className)} {...props} />
   ),
@@ -158,51 +140,7 @@ export const mdxComponents = {
       {...props}
     />
   ),
-  pre: CodeBlock,
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code className={cn(`relative px-5 py-[0.2rem] ${fontSans.className}`, className)} {...props} />
   ),
-  Image: (props: ImageProps) => <Image {...props} alt="blog image" />,
-  Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
-    <Tabs className={cn('relative mt-6 w-full', className)} {...props} />
-  ),
-  TabsList: ({ className, ...props }: React.ComponentProps<typeof TabsList>) => (
-    <TabsList
-      className={cn('w-full justify-start rounded-none border-b bg-transparent p-0', className)}
-      {...props}
-    />
-  ),
-  TabsTrigger: ({ className, ...props }: React.ComponentProps<typeof TabsTrigger>) => (
-    <TabsTrigger
-      className={cn(
-        'text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pt-2 pb-3 font-semibold shadow-none transition-none data-[state=active]:bg-transparent data-[state=active]:shadow-none',
-        className,
-      )}
-      {...props}
-    />
-  ),
-  TabsContent: ({ className, ...props }: React.ComponentProps<typeof TabsContent>) => (
-    <TabsContent
-      className={cn(
-        'relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold',
-        className,
-      )}
-      {...props}
-    />
-  ),
-  Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-    <Link className={cn('font-medium underline underline-offset-4', className)} {...props} />
-  ),
-  LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-    <Link
-      className={cn(
-        'bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10',
-        className,
-      )}
-      {...props}
-    />
-  ),
-  ComponentSource,
-  CodeBlockWrapper: ({ ...props }) => <CodeBlockWrapper {...props} />,
-  Button,
 };

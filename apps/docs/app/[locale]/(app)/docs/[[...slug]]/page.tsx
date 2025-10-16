@@ -4,7 +4,6 @@ import { docs } from '@content';
 // Components
 import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
 import { DocsPagination } from '@/components/docs-pagination';
-import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
@@ -100,14 +99,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </div>
           <DocsNavigationButtons currentPath={currentPath} />
         </div>
-        {doc.body ? (
-          <MDXContentRenderer code={doc.body} />
-        ) : (
-          <Callout variant="default">
-            <CalloutTitle>{t('docs.fallback.title')}</CalloutTitle>
-            <CalloutDescription>{t('docs.fallback.description')}</CalloutDescription>
-          </Callout>
-        )}
+        {doc.body ? <MDXContentRenderer code={doc.body} /> : <div>Error</div>}
         <DocsPagination currentPath={currentPath} />
       </article>
       <div className="hidden lg:block">
