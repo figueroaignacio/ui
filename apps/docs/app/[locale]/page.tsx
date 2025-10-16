@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
 
 // Components
-import { LocaleSwitcher } from '@/components/locale-switcher';
+import { Header } from '@/components/header';
 import { CardLink } from '@/components/mdx/card-link';
 
 type PageProps = {
@@ -23,9 +23,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      <header className="mx-auto flex max-w-xl items-center justify-end gap-x-3 pt-5">
-        <LocaleSwitcher />
-      </header>
+      <Header />
       <section className="mx-auto flex min-h-[85svh] max-w-xl flex-col justify-center gap-y-3 px-3">
         <h1 className="text-muted-foreground text-sm font-bold">I7A UI</h1>
         <p className="text-lg font-semibold">{t('home.description')}</p>
