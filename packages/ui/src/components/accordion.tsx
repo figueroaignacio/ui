@@ -126,7 +126,7 @@ function AccordionContent({ children, isOpen, className, ref }: AccordionContent
         className,
       )}
     >
-      <div className="pb-4 pt-0">{children}</div>
+      <div className="pt-0 pb-4">{children}</div>
     </div>
   );
 }

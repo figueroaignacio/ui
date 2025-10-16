@@ -11,7 +11,7 @@ export function Header() {
   const docsNavigation = t.raw('ui.docsNavigation');
 
   return (
-    <header className="sticky left-0 top-0 z-50 mx-auto flex w-full items-center justify-between backdrop-blur-xl">
+    <header className="sticky top-0 left-0 z-50 mx-auto flex w-full items-center justify-between backdrop-blur-xl">
       <MobileHeader navigation={docsNavigation} />
       <DesktopHeader />
     </header>

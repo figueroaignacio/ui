@@ -55,7 +55,7 @@ export function CardHeader({ children, className, ...props }: CardHeaderProps) {
 
 export function CardTitle({ children, className, ...props }: CardTitleProps) {
   return (
-    <h3 className={cn('text-lg font-semibold leading-none tracking-tight', className)} {...props}>
+    <h3 className={cn('text-lg leading-none font-semibold tracking-tight', className)} {...props}>
       {children}
     </h3>
   );

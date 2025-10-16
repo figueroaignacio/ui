@@ -123,18 +123,18 @@ export function Searcher() {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="relative">
-            <MagnifyingGlassIcon className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
+            <MagnifyingGlassIcon className="text-muted-foreground absolute top-2.5 left-2 h-4 w-4" />
             <input
               ref={inputRef}
               type="text"
               placeholder="Type a command or search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-input ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-xl border px-9 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              className="bg-input ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-xl border px-9 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             />
             {searchQuery && (
               <Cross2Icon
-                className="text-muted-foreground hover:text-foreground absolute right-2 top-2.5 h-4 w-4 cursor-pointer"
+                className="text-muted-foreground hover:text-foreground absolute top-2.5 right-2 h-4 w-4 cursor-pointer"
                 onClick={() => setSearchQuery('')}
               />
             )}

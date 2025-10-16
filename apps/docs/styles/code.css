@@ -17,7 +17,7 @@ html.dark[data-theme='light'] {
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply bg-card grid h-full w-full break-words border-none py-2 text-sm leading-6;
+  @apply bg-card grid h-full w-full border-none py-2 text-sm leading-6 break-words;
   counter-reset: line;
   box-decoration-break: clone;
 }

@@ -1,4 +1,4 @@
-@source "../../../../packages/ui/src/**/*.{js,ts,jsx,tsx}";
+@source '../../../../packages/ui/src/**/*.{js,ts,jsx,tsx}';
 
 @import 'tailwindcss';
 @import 'tw-animate-css';

@@ -53,7 +53,7 @@ function TreeMobile({
   return tree.length && level < 3 ? (
     <ul className={cn('list-none', { 'pl-4': level !== 1 })}>
       {tree.map((item, index) => (
-        <li key={index} className="mb-5 mt-5">
+        <li key={index} className="mt-5 mb-5">
           <a
             href={item.url}
             onClick={onLinkClick}
