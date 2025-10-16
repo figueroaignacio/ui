@@ -48,11 +48,11 @@ export function DocsPagination({ currentPath }: DocsPaginationProps) {
   }
 
   return (
-    <div className="mt-12 flex items-center justify-between gap-4 pt-8">
+    <div className="mt-12 flex items-center justify-between gap-4 py-2">
       {prev ? (
         <Link
           href={prev.href}
-          className="border-border hover:bg-accent  group flex flex-1 flex-col gap-2 rounded-lg border p-4 transition-colors"
+          className="border-border hover:bg-accent group flex flex-1 flex-col gap-2 rounded-lg border p-4 transition-colors"
         >
           <span className="text-muted-foreground flex items-center gap-2 text-sm">
             <ChevronLeftIcon className="h-4 w-4" />
@@ -66,7 +66,7 @@ export function DocsPagination({ currentPath }: DocsPaginationProps) {
       {next ? (
         <Link
           href={next.href}
-          className="border-border hover:bg-accent  group flex flex-1 flex-col gap-2 rounded-lg border p-4 text-right transition-colors"
+          className="border-border hover:bg-accent group flex flex-1 flex-col gap-2 rounded-lg border p-4 text-right transition-colors"
         >
           <span className="text-muted-foreground flex items-center justify-end gap-2 text-sm">
             {t('components.docsPagination.next')}

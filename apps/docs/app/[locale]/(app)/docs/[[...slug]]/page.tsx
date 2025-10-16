@@ -1,6 +1,3 @@
-// Components
-import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
-
 // Content
 import { docs } from '@content';
 
@@ -8,6 +5,7 @@ import { docs } from '@content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
 import { DocsPagination } from '@/components/docs-pagination';
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
+import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 import { MobileToc } from '@/components/mdx/mobile-toc';
 import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
@@ -68,7 +66,6 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   const doc = await getDocFromParams({ params });
   const t = await getTranslations('components');
 
-  console.log('===== PRODUCTION DEBUG =====');
   console.log('typeof docs:', typeof docs);
   console.log('Array.isArray(docs):', Array.isArray(docs));
   console.log('docs length:', Array.isArray(docs) ? docs.length : 'NOT AN ARRAY');
@@ -113,7 +110,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         )}
         <DocsPagination currentPath={currentPath} />
       </article>
-      <div>
+      <div className="hidden lg:block">
         <Toc toc={tocContent} />
       </div>
     </div>
