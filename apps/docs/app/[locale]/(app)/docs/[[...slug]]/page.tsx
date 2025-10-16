@@ -13,6 +13,7 @@ import { Toc } from '@/components/mdx/toc';
 import { Sidebar } from '@/components/sidebar';
 
 // Utils
+import { getDocBySlug } from '@/lib/content';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
@@ -30,9 +31,7 @@ async function getDocFromParams({ params }: { params: Promise<DocPageProps> }) {
   const slug = parameters.slug?.join('/') || '';
   const locale = parameters.locale || 'en';
 
-  const doc = docs.find((doc) => doc.slugAsParams === slug && doc.locale === locale);
-
-  return doc || null;
+  return getDocBySlug(slug, locale);
 }
 
 export async function generateMetadata({
@@ -53,23 +52,35 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
-  return docs.map((doc) => ({
-    slug: doc.slugAsParams.split('/'),
-  }));
+  if (!Array.isArray(docs)) {
+    console.error('docs is not an array!', typeof docs);
+    return [];
+  }
+
+  return docs
+    .filter((doc) => doc.slugAsParams)
+    .map((doc) => ({
+      slug: doc.slugAsParams.split('/').filter(Boolean),
+    }));
 }
 
 export default async function DocPage({ params }: { params: Promise<DocPageProps> }) {
   const doc = await getDocFromParams({ params });
   const t = await getTranslations('components');
 
-  console.log('=== DEBUG ===');
-  console.log('doc exists:', !!doc);
-  console.log('doc.toc:', doc?.toc);
-  console.log('doc.toc.content type:', typeof doc?.toc?.content);
-  console.log('is array?:', Array.isArray(doc?.toc?.content));
-  console.log('docs type:', typeof docs);
-  console.log('docs is array?:', Array.isArray(docs));
-  console.log('=============');
+  if (process.env.NODE_ENV === 'production') {
+    console.log('===== PRODUCTION DEBUG =====');
+    console.log('typeof docs:', typeof docs);
+    console.log('Array.isArray(docs):', Array.isArray(docs));
+    console.log('docs length:', Array.isArray(docs) ? docs.length : 'NOT AN ARRAY');
+    console.log('doc:', doc ? 'found' : 'NOT FOUND');
+    if (doc) {
+      console.log('doc.toc type:', typeof doc.toc);
+      console.log('doc.toc.content type:', typeof doc.toc?.content);
+      console.log('is toc.content array?:', Array.isArray(doc.toc?.content));
+    }
+    console.log('============================');
+  }
 
   if (!doc || !doc.published) {
     notFound();
