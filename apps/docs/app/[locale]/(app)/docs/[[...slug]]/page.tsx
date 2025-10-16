@@ -8,9 +8,6 @@ import { docs } from '@content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
 import { DocsPagination } from '@/components/docs-pagination';
 import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
-import { MobileToc } from '@/components/mdx/mobile-toc';
-import { Toc } from '@/components/mdx/toc';
-import { Sidebar } from '@/components/sidebar';
 
 // Utils
 import { getDocBySlug } from '@/lib/content';
@@ -87,19 +84,16 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   }
 
   const tocContent = Array.isArray(doc.toc?.content) ? doc.toc.content : [];
-
-  const validDocs = Array.isArray(docs) ? docs : [];
-
   const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
-      <div className="lg:hidden">
+      {/* <div className="lg:hidden">
         <MobileToc toc={tocContent} />
       </div>
       <div>
         <Sidebar />
-      </div>
+      </div> */}
       <article className="lg:px-36 lg:py-5">
         <div className="border-border flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
@@ -118,9 +112,9 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         )}
         <DocsPagination currentPath={currentPath} />
       </article>
-      <div>
+      {/* <div>
         <Toc toc={tocContent} />
-      </div>
+      </div> */}
     </div>
   );
 }
