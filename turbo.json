@@ -4,7 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", ".velite/**", "!.next/cache/**"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
