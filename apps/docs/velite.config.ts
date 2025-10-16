@@ -50,6 +50,7 @@ export default defineConfig({
   },
   collections: { docs },
   mdx: {
+    gfm: true,
     rehypePlugins: [
       rehypeSlug,
       rehypeKatex,
@@ -57,13 +58,17 @@ export default defineConfig({
         rehypePrettyCode,
         {
           theme: 'one-dark-pro',
+          keepBackground: false,
           onVisitLine(node: LineElement) {
             if (node.children.length === 0) {
               node.children = [{ type: 'text', value: ' ' }];
             }
           },
           onVisitHighlightedLine(node: LineElement) {
-            node.properties.className?.push('line--highlighted');
+            if (!node.properties.className) {
+              node.properties.className = [];
+            }
+            node.properties.className.push('line--highlighted');
           },
           onVisitHighlightedWord(node: LineElement) {
             node.properties.className = ['word--highlighted'];
@@ -71,7 +76,7 @@ export default defineConfig({
         },
       ],
       () => (tree) => {
-        visit(tree, (node) => {
+        visit(tree, (node: any) => {
           if (node?.type === 'element' && node?.tagName === 'div') {
             if ('data-rehype-pretty-code-title' in node.properties) {
               node.properties['data-rehype-pretty-code-title'] = 'Code';
@@ -82,12 +87,15 @@ export default defineConfig({
             }
 
             const preElement = node.children.at(-1);
-            if (preElement.tagName !== 'pre') {
+            if (!preElement || preElement.tagName !== 'pre') {
               return;
             }
 
-            preElement.properties['__withMeta__'] = node.children.at(0).tagName === 'div';
-            preElement.properties['__rawString__'] = node.__rawString__;
+            preElement.properties['__withMeta__'] = node.children.at(0)?.tagName === 'div';
+
+            if (node.__rawString__) {
+              preElement.properties['__rawString__'] = node.__rawString__;
+            }
 
             if (node.__src__) {
               preElement.properties['__src__'] = node.__src__;
