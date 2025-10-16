@@ -18,25 +18,34 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
-type DocPageProps = {
+type DocPageParams = {
+  locale: Locale;
   slug: string[];
-  locale?: Locale;
 };
 
-async function getDocFromParams({ params }: { params: Promise<DocPageProps> }) {
+type DocPageProps = {
+  params: Promise<DocPageParams>;
+};
+
+async function getDocFromParams({ params }: DocPageProps) {
   const parameters = await params;
-  const slug = parameters.slug?.join('/') || '';
+
+  const slug = parameters.slug.join('/');
   const locale = parameters.locale || 'en';
 
-  const doc = docs.find((doc) => doc.slugAsParams === slug && doc.locale === locale);
+  const doc = docs.find(
+    (doc) => doc.slugAsParams === slug && doc.locale === locale
+  );
 
   return doc || null;
 }
 
+
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<DocPageProps>;
+  params: Promise<DocPageParams>;
 }): Promise<Metadata> {
   const doc = await getDocFromParams({ params });
 
@@ -56,7 +65,7 @@ export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   }));
 }
 
-export default async function DocPage({ params }: { params: Promise<DocPageProps> }) {
+export default async function DocPage({ params }: { params: Promise<DocPageParams> }) {
   const doc = await getDocFromParams({ params });
   const t = await getTranslations('components');
 
@@ -77,7 +86,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         <Sidebar />
       </div>
       <article className="lg:px-36 lg:py-5">
-        <div className="flex items-start justify-between pb-5">
+        <div className="border-border flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
             <h1 className="text-2xl font-bold">{doc.title}</h1>
             <p className="text-muted-foreground">{doc.description}</p>
