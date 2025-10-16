@@ -1,13 +1,9 @@
 // Components
-import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer';
 
 // Content
 import { docs } from '@content';
 
 // Components
-import { DocsNavigationButtons } from '@/components/docs-navigation-buttons';
-import { DocsPagination } from '@/components/docs-pagination';
-import { Callout, CalloutDescription, CalloutTitle } from '@/components/mdx/callout';
 
 // Utils
 import { getDocBySlug } from '@/lib/content';
@@ -87,34 +83,36 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
-      {/* <div className="lg:hidden">
-        <MobileToc toc={tocContent} />
-      </div>
-      <div>
-        <Sidebar />
-      </div> */}
-      <article className="lg:px-36 lg:py-5">
-        <div className="border-border flex items-start justify-between border-b pb-5">
-          <div className="space-y-3">
-            <h1 className="text-2xl font-bold">{doc.title}</h1>
-            <p className="text-muted-foreground">{doc.description}</p>
-          </div>
-          <DocsNavigationButtons currentPath={currentPath} />
-        </div>
-        {doc.body ? (
-          <MDXContentRenderer code={doc.body} />
-        ) : (
-          <Callout variant="default">
-            <CalloutTitle>{t('docs.fallback.title')}</CalloutTitle>
-            <CalloutDescription>{t('docs.fallback.description')}</CalloutDescription>
-          </Callout>
-        )}
-        <DocsPagination currentPath={currentPath} />
-      </article>
-      {/* <div>
-        <Toc toc={tocContent} />
-      </div> */}
-    </div>
+    <div>Hola mundo</div>
+
+    // <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
+    //   <div className="lg:hidden">
+    //     <MobileToc toc={tocContent} />
+    //   </div>
+    //   <div>
+    //     <Sidebar />
+    //   </div>
+    //   <article className="lg:px-36 lg:py-5">
+    //     <div className="border-border flex items-start justify-between border-b pb-5">
+    //       <div className="space-y-3">
+    //         <h1 className="text-2xl font-bold">{doc.title}</h1>
+    //         <p className="text-muted-foreground">{doc.description}</p>
+    //       </div>
+    //       <DocsNavigationButtons currentPath={currentPath} />
+    //     </div>
+    //     {doc.body ? (
+    //       <MDXContentRenderer code={doc.body} />
+    //     ) : (
+    //       <Callout variant="default">
+    //         <CalloutTitle>{t('docs.fallback.title')}</CalloutTitle>
+    //         <CalloutDescription>{t('docs.fallback.description')}</CalloutDescription>
+    //       </Callout>
+    //     )}
+    //     <DocsPagination currentPath={currentPath} />
+    //   </article>
+    //   <div>
+    //     <Toc toc={tocContent} />
+    //   </div>
+    // </div>
   );
 }
