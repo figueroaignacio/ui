@@ -1,0 +1,84 @@
+[
+  {
+    "slug": "docs",
+    "title": "Introduction",
+    "description": "Welcome to the official I7A UI documentation.",
+    "published": true,
+    "date": "2024-03-14T00:00:00.000Z",
+    "body": "const{Fragment:n,jsx:e,jsxs:i}=arguments[0];function _createMdxContent(t){const o={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",span:\"span\",strong:\"strong\",ul:\"ul\",...t.components};return i(n,{children:[e(o.p,{children:e(o.strong,{children:\"This is not an npm library. This is how you own your component layer.\"})}),\"\\n\",e(o.p,{children:\"Traditional component libraries ask you to install dependencies and import pre-built components. This works until you need something different. Then you're stuck writing wrappers, overriding styles, or piecing together incompatible solutions.\"}),\"\\n\",e(o.p,{children:\"I7A UI takes a different approach. Instead of abstracting components behind packages, it gives you the actual code. You install, customize, and own every component in your project.\"}),\"\\n\",e(o.p,{children:\"The kit is built on these core principles:\"}),\"\\n\",i(o.ul,{children:[\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Direct Ownership\"}),\": Component code lives in your project. No black boxes.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Unified Design\"}),\": Every component follows the same patterns and works together seamlessly.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Simple Distribution\"}),\": A CLI and schema system makes adding components effortless.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Production-Ready\"}),\": Carefully crafted defaults mean you ship faster without sacrificing quality.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"AI-Native\"}),\": Open code that AI models can read, modify, and enhance.\"]}),\"\\n\"]}),\"\\n\",i(o.h2,{id:\"direct-ownership\",children:[e(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#direct-ownership\",children:e(o.span,{className:\"icon icon-link\"})}),\"Direct Ownership\"]}),\"\\n\",e(o.p,{children:\"When you add a component from I7A UI, the source code becomes part of your project. This means:\"}),\"\\n\",i(o.ul,{children:[\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Complete Visibility\"}),\": See exactly how each component works under the hood.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Freedom to Modify\"}),\": Change anything to match your requirements. No workarounds needed.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"AI Collaboration\"}),\": Your AI tools can read and improve your components directly.\"]}),\"\\n\"]}),\"\\n\",e(o.p,{children:\"Traditional libraries force you to work around their abstractions. With I7A UI, you simply edit the code you need to change.\"}),\"\\n\",i(o.h2,{id:\"unified-design\",children:[e(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#unified-design\",children:e(o.span,{className:\"icon icon-link\"})}),\"Unified Design\"]}),\"\\n\",e(o.p,{children:\"Every component in I7A UI shares consistent patterns and APIs. Whether it's a button, dialog, or data table, you'll find familiar interfaces and predictable behavior.\"}),\"\\n\",e(o.p,{children:\"This consistency extends to third-party integrations. When we bring in external functionality, we adapt it to match the I7A design language and composition patterns.\"}),\"\\n\",e(o.p,{children:\"Your team learns one way of building. AI models learn one pattern to follow. Everything works together.\"}),\"\\n\",i(o.h2,{id:\"simple-distribution\",children:[e(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#simple-distribution\",children:e(o.span,{className:\"icon icon-link\"})}),\"Simple Distribution\"]}),\"\\n\",e(o.p,{children:\"I7A UI includes a distribution system built for modern development:\"}),\"\\n\",i(o.ul,{children:[\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Component Schema\"}),\": A clear structure defining each component, its dependencies, and configuration.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"CLI Tool\"}),\": Install components with a single command. Works across different frameworks.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Extensible\"}),\": Create your own component collections using the same schema.\"]}),\"\\n\"]}),\"\\n\",e(o.p,{children:\"The system is designed for both manual use and AI-driven workflows. Generate new components that automatically integrate with your existing setup.\"}),\"\\n\",i(o.h2,{id:\"production-ready\",children:[e(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#production-ready\",children:e(o.span,{className:\"icon icon-link\"})}),\"Production-Ready\"]}),\"\\n\",e(o.p,{children:\"I7A UI components ship with thoughtful defaults:\"}),\"\\n\",i(o.ul,{children:[\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Clean Aesthetics\"}),\": Modern, minimal design that looks professional immediately.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Consistent System\"}),\": Components are designed as a cohesive family, not isolated pieces.\"]}),\"\\n\",i(o.li,{children:[e(o.strong,{children:\"Easy Customization\"}),\": Override defaults through standard CSS and component props.\"]}),\"\\n\"]}),\"\\n\",e(o.p,{children:\"You get high-quality UI without starting from scratch, but with full freedom to adapt to your brand.\"}),\"\\n\",i(o.h2,{id:\"ai-native\",children:[e(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#ai-native\",children:e(o.span,{className:\"icon icon-link\"})}),\"AI-Native\"]}),\"\\n\",e(o.p,{children:\"I7A UI is built for the age of AI-assisted development:\"}),\"\\n\",i(o.ul,{children:[\"\\n\",e(o.li,{children:\"Open source code that AI models can analyze and understand\"}),\"\\n\",e(o.li,{children:\"Consistent patterns that make code generation reliable\"}),\"\\n\",e(o.li,{children:\"Documentation structured for both humans and AI\"}),\"\\n\"]}),\"\\n\",e(o.p,{children:\"Your AI tools can suggest improvements, generate variants, or create entirely new components that fit naturally into your design system.\"})]})}return{default:function(n={}){const{wrapper:i}=n.components||{};return i?e(i,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};",
+    "locale": "en",
+    "toc": {
+      "content": [
+        {
+          "title": "Direct Ownership",
+          "url": "#direct-ownership",
+          "items": []
+        },
+        {
+          "title": "Unified Design",
+          "url": "#unified-design",
+          "items": []
+        },
+        {
+          "title": "Simple Distribution",
+          "url": "#simple-distribution",
+          "items": []
+        },
+        {
+          "title": "Production-Ready",
+          "url": "#production-ready",
+          "items": []
+        },
+        {
+          "title": "AI-Native",
+          "url": "#ai-native",
+          "items": []
+        }
+      ],
+      "visible": true
+    },
+    "slugAsParams": "",
+    "localeSlug": "en/"
+  },
+  {
+    "slug": "docs",
+    "title": "Introducción",
+    "description": "Bienvenido a la documentación oficial de I7A UI.",
+    "published": true,
+    "date": "2024-03-14T00:00:00.000Z",
+    "body": "const{Fragment:e,jsx:n,jsxs:a}=arguments[0];function _createMdxContent(i){const o={a:\"a\",h2:\"h2\",li:\"li\",p:\"p\",span:\"span\",strong:\"strong\",ul:\"ul\",...i.components};return a(e,{children:[n(o.p,{children:n(o.strong,{children:\"Esto no es una biblioteca npm. Así es como eres dueño de tu capa de componentes.\"})}),\"\\n\",n(o.p,{children:\"Las bibliotecas tradicionales te piden instalar dependencias e importar componentes prefabricados. Funciona hasta que necesitas algo diferente. Entonces terminas escribiendo wrappers, sobrescribiendo estilos o juntando soluciones incompatibles.\"}),\"\\n\",n(o.p,{children:\"I7A UI adopta un enfoque diferente. En lugar de abstraer componentes detrás de paquetes, te entrega el código real. Instalas,\\r\\npersonalizas y eres dueño de cada componente en tu proyecto.\"}),\"\\n\",n(o.p,{children:\"El kit está construido sobre estos principios fundamentales:\"}),\"\\n\",a(o.ul,{children:[\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Propiedad Directa\"}),\": El código de los componentes vive en tu proyecto. Sin cajas negras.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Diseño Unificado\"}),\": Cada componente sigue los mismos patrones y funciona en conjunto sin problemas.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Distribución Simple\"}),\": Un CLI y sistema de esquemas facilita agregar componentes.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Listo para Producción\"}),\": Valores predeterminados cuidadosamente diseñados para que entregues más rápido sin sacrificar calidad.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Nativo para IA\"}),\": Código abierto que los modelos de IA pueden leer, modificar y mejorar.\"]}),\"\\n\"]}),\"\\n\",a(o.h2,{id:\"propiedad-directa\",children:[n(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#propiedad-directa\",children:n(o.span,{className:\"icon icon-link\"})}),\"Propiedad Directa\"]}),\"\\n\",n(o.p,{children:\"Cuando agregas un componente de I7A UI, el código fuente se convierte en parte de tu proyecto. Esto significa:\"}),\"\\n\",a(o.ul,{children:[\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Visibilidad Completa\"}),\": Ve exactamente cómo funciona cada componente internamente.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Libertad para Modificar\"}),\": Cambia lo que necesites para cumplir tus requisitos. No se necesitan soluciones alternativas.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Colaboración con IA\"}),\": Tus herramientas de IA pueden leer y mejorar tus componentes directamente.\"]}),\"\\n\"]}),\"\\n\",n(o.p,{children:\"Las bibliotecas tradicionales te obligan a trabajar alrededor de sus abstracciones. Con I7A UI, simplemente editas el código que necesitas cambiar.\"}),\"\\n\",a(o.h2,{id:\"diseño-unificado\",children:[n(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#diseño-unificado\",children:n(o.span,{className:\"icon icon-link\"})}),\"Diseño Unificado\"]}),\"\\n\",n(o.p,{children:\"Cada componente en I7A UI comparte patrones y APIs consistentes. Ya sea un botón, diálogo o tabla de datos, encontrarás interfaces familiares y comportamiento predecible.\"}),\"\\n\",n(o.p,{children:\"Esta consistencia se extiende a integraciones de terceros. Cuando incorporamos funcionalidad externa, la adaptamos para que coincida con el lenguaje de diseño y los patrones de composición de I7A.\"}),\"\\n\",n(o.p,{children:\"Tu equipo aprende una forma de construir. Los modelos de IA aprenden un patrón a seguir. Todo funciona en conjunto.\"}),\"\\n\",a(o.h2,{id:\"distribución-simple\",children:[n(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#distribución-simple\",children:n(o.span,{className:\"icon icon-link\"})}),\"Distribución Simple\"]}),\"\\n\",n(o.p,{children:\"I7A UI incluye un sistema de distribución diseñado para el desarrollo moderno:\"}),\"\\n\",a(o.ul,{children:[\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Esquema de Componentes\"}),\": Una estructura clara que define cada componente, sus dependencias y configuración.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Herramienta CLI\"}),\": Instala componentes con un solo comando. Funciona en diferentes frameworks.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Extensible\"}),\": Crea tus propias colecciones de componentes usando el mismo esquema.\"]}),\"\\n\"]}),\"\\n\",n(o.p,{children:\"El sistema está diseñado tanto para uso manual como para flujos de trabajo impulsados por IA. Genera nuevos componentes que se integran automáticamente con tu configuración existente.\"}),\"\\n\",a(o.h2,{id:\"listo-para-producción\",children:[n(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#listo-para-producción\",children:n(o.span,{className:\"icon icon-link\"})}),\"Listo para Producción\"]}),\"\\n\",n(o.p,{children:\"Los componentes de I7A UI vienen con valores predeterminados bien pensados:\"}),\"\\n\",a(o.ul,{children:[\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Estética Limpia\"}),\": Diseño moderno y minimalista que se ve profesional de inmediato.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Sistema Consistente\"}),\": Los componentes están diseñados como una familia cohesiva, no como piezas aisladas.\"]}),\"\\n\",a(o.li,{children:[n(o.strong,{children:\"Fácil Personalización\"}),\": Sobrescribe los valores predeterminados mediante CSS estándar y props de componentes.\"]}),\"\\n\"]}),\"\\n\",n(o.p,{children:\"Obtienes una UI de alta calidad sin empezar desde cero, pero con total libertad para adaptarla a tu marca.\"}),\"\\n\",a(o.h2,{id:\"nativo-para-ia\",children:[n(o.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#nativo-para-ia\",children:n(o.span,{className:\"icon icon-link\"})}),\"Nativo para IA\"]}),\"\\n\",n(o.p,{children:\"I7A UI está construido para la era del desarrollo asistido por IA:\"}),\"\\n\",a(o.ul,{children:[\"\\n\",n(o.li,{children:\"Código fuente abierto que los modelos de IA pueden analizar y comprender\"}),\"\\n\",n(o.li,{children:\"Patrones consistentes que hacen que la generación de código sea confiable\"}),\"\\n\",n(o.li,{children:\"Documentación estructurada tanto para humanos como para IA\"}),\"\\n\"]}),\"\\n\",n(o.p,{children:\"Tus herramientas de IA pueden sugerir mejoras, generar variantes o crear componentes completamente nuevos que encajan naturalmente en tu sistema de diseño.\"})]})}return{default:function(e={}){const{wrapper:a}=e.components||{};return a?n(a,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "locale": "es",
+    "toc": {
+      "content": [
+        {
+          "title": "Propiedad Directa",
+          "url": "#propiedad-directa",
+          "items": []
+        },
+        {
+          "title": "Diseño Unificado",
+          "url": "#diseño-unificado",
+          "items": []
+        },
+        {
+          "title": "Distribución Simple",
+          "url": "#distribución-simple",
+          "items": []
+        },
+        {
+          "title": "Listo para Producción",
+          "url": "#listo-para-producción",
+          "items": []
+        },
+        {
+          "title": "Nativo para IA",
+          "url": "#nativo-para-ia",
+          "items": []
+        }
+      ],
+      "visible": true
+    },
+    "slugAsParams": "",
+    "localeSlug": "es/"
+  }
+]
