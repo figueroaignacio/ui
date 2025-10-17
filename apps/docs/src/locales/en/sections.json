@@ -1,0 +1,17 @@
+{
+  "home": {
+    "description": "Accessible and customizable UI components for professional web applications. Built with accessibility standards and designed to adapt to any design system.",
+    "actions": [
+      {
+        "label": "Documentation",
+        "href": "/docs",
+        "description": "Complete guide on how to use and integrate the components."
+      },
+      {
+        "label": "Browse components",
+        "href": "/docs/components",
+        "description": "Explore all available components and learn how to implement them."
+      }
+    ]
+  }
+}
