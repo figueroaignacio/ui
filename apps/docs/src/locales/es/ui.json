@@ -9,12 +9,8 @@
       "url": "/docs/components"
     },
     {
-      "title": "Bloques",
-      "url": "/blocks"
-    },
-    {
-      "title": "Templates",
-      "url": "/templates"
+      "title": "Showcase",
+      "url": "/showcase"
     }
   ],
   "docsNavigation": [
