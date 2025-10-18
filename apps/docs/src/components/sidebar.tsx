@@ -15,11 +15,11 @@ import { DocItem, DocSection } from '@/lib/definitions';
 
 export function Sidebar() {
   const pathname = usePathname();
-  const t = useTranslations('ui');
-  const docsNavigation = t.raw('docsNavigation');
+  const t = useTranslations('docs');
+  const docsNavigation = t.raw('navigation');
 
   return (
-    <aside className="hide-scrollbar sticky top-16 hidden h-[calc(100vh-5rem)] overflow-y-scroll pb-60 lg:block">
+    <aside className="hide-scrollbar sticky top-16 hidden h-[calc(100vh-5rem)] overflow-y-scroll lg:block">
       <nav>
         {docsNavigation.map((section: DocSection, index: number) => (
           <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>

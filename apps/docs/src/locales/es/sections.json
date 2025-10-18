@@ -1,6 +1,7 @@
 {
   "home": {
-    "description": "Componentes UI accesibles y personalizables para aplicaciones web profesionales. Construidos con estándares de accesibilidad y diseñados para adaptarse a cualquier sistema de diseño.",
+    "subheading": "Componentes UI accesibles y personalizables para aplicaciones web profesionales. ",
+    "description": "Construidos con estándares de accesibilidad y diseñados para adaptarse a cualquier sistema de diseño.",
     "actions": [
       {
         "label": "Documentación",
