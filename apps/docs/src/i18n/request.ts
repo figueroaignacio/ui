@@ -6,10 +6,12 @@ const messagesCache = {
   en: async () => ({
     ui: (await import('../locales/en/ui.json')).default,
     sections: (await import('../locales/en/sections.json')).default,
+    components: (await import('../locales/en/components.json')).default,
   }),
   es: async () => ({
     ui: (await import('../locales/es/ui.json')).default,
     sections: (await import('../locales/es/sections.json')).default,
+    components: (await import('../locales/es/components.json')).default,
   }),
 } as const;
 
