@@ -2,12 +2,14 @@
 import { docs } from '@/velite-content';
 
 // Utils
+import { DocsNavigationButtons } from '@/components/docs-navigation-button';
+import { DocsPagination } from '@/components/docs-pagination';
 import { getDocBySlug } from '@/lib/utils';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Types
-import { MDXContent } from '@/components/mdx-content';
+import { MDXContent } from '@/components/mdx/mdx-content';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -66,8 +68,23 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
 
   return (
-    // <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
-    <>{doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}</>
-    // </div>
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
+      {/* <div className="lg:hidden">
+        <MobileToc toc={tocContent} />
+      </div> */}
+      <div>{/* <Sidebar /> */}</div>
+      <article className="lg:px-36 lg:py-5">
+        <div className="border-border flex items-start justify-between border-b pb-5">
+          <div className="space-y-3">
+            <h1 className="text-2xl font-bold">{doc.title}</h1>
+            <p className="text-muted-foreground">{doc.description}</p>
+          </div>
+          <DocsNavigationButtons currentPath={currentPath} />
+        </div>
+        {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
+        <DocsPagination currentPath={currentPath} />
+      </article>
+      <div className="hidden lg:block">{/* <Toc toc={tocContent} /> */}</div>
+    </div>
   );
 }
