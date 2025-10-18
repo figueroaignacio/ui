@@ -1,12 +1,5 @@
-'use client';
-
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
-import { CardLink } from '@/components/card-link';
-
-const demoKeys = ['button', 'card', 'tabs'];
+import { Showcase } from '@/components/showcase';
+import { setRequestLocale } from 'next-intl/server';
 
 type PageProps = {
   params: Promise<{
@@ -14,32 +7,13 @@ type PageProps = {
   }>;
 };
 
-export default async function ShowcasePage() {
-  const t = useTranslations('showcase');
-
-  const demos = demoKeys.map((key) => ({
-    name: t(`demos.${key}.name`),
-    description: t(`demos.${key}.description`),
-    path: `/showcase/${key}`,
-  }));
+export default async function ShowcasePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-12">
-      <header className="mb-12 text-center">
-        <h1 className="mb-2 text-4xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground text-lg">{t('subtitle')}</p>
-      </header>
-
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {demos.map((demo) => (
-          <CardLink
-            key={demo.path}
-            label={demo.name}
-            href={demo.path}
-            description={demo.description}
-          />
-        ))}
-      </div>
-    </main>
+    <>
+      <Showcase />
+    </>
   );
 }
