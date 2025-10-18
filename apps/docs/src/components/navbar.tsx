@@ -19,7 +19,7 @@ export function Navbar() {
         <nav className="space-x-3">
           {navigation.map((item) => (
             <Link
-              className="text-muted-foreground hover:text-primary text-xs hover:underline"
+              className="hover:text-primary text-sm hover:underline"
               href={item.url}
               key={item.url}
             >

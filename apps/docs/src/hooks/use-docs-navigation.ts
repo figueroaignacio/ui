@@ -11,8 +11,8 @@ type NavSection = {
 };
 
 export function useDocsNavigation(currentPath: string) {
-  const t = useTranslations('ui');
-  const docsNavigation = t.raw('docsNavigation') as NavSection[];
+  const t = useTranslations('docs');
+  const docsNavigation = t.raw('navigation') as NavSection[];
 
   const allItems = docsNavigation.flatMap((section) => section.items);
   const currentIndex = allItems.findIndex((item) => item.href === currentPath);
