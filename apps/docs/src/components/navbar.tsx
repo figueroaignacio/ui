@@ -1,3 +1,5 @@
+// Components
+import { HeaderActions } from './header-actions';
 import { Logo } from './logo';
 
 export function Navbar() {
@@ -6,6 +8,7 @@ export function Navbar() {
       <div>
         <Logo />
       </div>
+      <HeaderActions />
     </div>
   );
 }

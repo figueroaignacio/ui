@@ -1,10 +1,10 @@
 // Components
 import { Header } from '@/components/header';
-import { NextIntlClientProvider } from 'next-intl';
+import { Providers } from '@/providers/providers';
 
 // Utils
 import { routing } from '@/i18n/routing';
-import { hasLocale } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
@@ -35,8 +35,10 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
     <html lang={locale} suppressHydrationWarning>
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
-          <Header />
-          <main>{children}</main>
+          <Providers>
+            <Header />
+            <main>{children}</main>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

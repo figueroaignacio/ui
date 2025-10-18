@@ -10,6 +10,7 @@ import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 
 // Definitions
 import { DocSection } from '@/lib/definitions';
+import { HeaderActions } from './header-actions';
 
 export function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +57,7 @@ export function MobileMenu() {
           ))}
         </div>
       </nav>
+      <HeaderActions />
     </div>
   );
 }
