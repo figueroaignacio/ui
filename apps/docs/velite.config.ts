@@ -40,7 +40,7 @@ export const docs = defineCollection({
 });
 
 export default defineConfig({
-  root: './content',
+  root: './src/content',
   output: {
     data: '.velite',
     assets: 'public/static',
