@@ -1,6 +1,7 @@
 {
   "searcher": {
-    "label": "Search"
+    "label": "Search",
+    "placeholder": "Search..."
   },
   "docsPagination": {
     "previous": "Previous",
