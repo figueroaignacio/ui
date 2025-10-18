@@ -1,4 +1,7 @@
 {
+  "searcher": {
+    "label": "Search"
+  },
   "docsPagination": {
     "previous": "Previous",
     "next": "Next"

@@ -1,4 +1,7 @@
 {
+  "searcher": {
+    "label": "Buscar"
+  },
   "docsPagination": {
     "previous": "Anterior",
     "next": "Siguiente"
