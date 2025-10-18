@@ -8,9 +8,9 @@ export function Header() {
   const t = useTranslations('ui');
 
   return (
-    <>
+    <header className="sticky top-0 backdrop-blur-lg">
       <Navbar />
       <MobileMenu />
-    </>
+    </header>
   );
 }

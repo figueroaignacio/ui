@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 
 // Types
 import { MDXContent } from '@/components/mdx/mdx-content';
+import { Sidebar } from '@/components/sidebar';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -72,7 +73,9 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       {/* <div className="lg:hidden">
         <MobileToc toc={tocContent} />
       </div> */}
-      <div>{/* <Sidebar /> */}</div>
+      <div>
+        <Sidebar />
+      </div>
       <article className="lg:px-36 lg:py-5">
         <div className="border-border flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
