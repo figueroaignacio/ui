@@ -4,13 +4,13 @@ import { docs } from '@/velite-content';
 // Utils
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
+import { MDXContent } from '@/components/mdx/mdx-content';
+import { Sidebar } from '@/components/sidebar';
 import { getDocBySlug } from '@/lib/utils';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Types
-import { MDXContent } from '@/components/mdx/mdx-content';
-import { Sidebar } from '@/components/sidebar';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
