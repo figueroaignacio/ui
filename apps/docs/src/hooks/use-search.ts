@@ -10,8 +10,8 @@ import type { NavigationSection } from '@/lib/definitions';
 
 export function useSearch() {
   const [query, setQuery] = useState('');
-  const t = useTranslations('ui');
-  const navigation = t.raw('docsNavigation') as NavigationSection[];
+  const t = useTranslations('docs');
+  const navigation = t.raw('navigation') as NavigationSection[];
 
   const allItems = useMemo(() => flattenNavigationItems(navigation), [navigation]);
 

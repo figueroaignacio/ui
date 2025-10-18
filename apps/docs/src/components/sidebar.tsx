@@ -15,8 +15,8 @@ import { DocItem, DocSection } from '@/lib/definitions';
 
 export function Sidebar() {
   const pathname = usePathname();
-  const t = useTranslations('ui');
-  const docsNavigation = t.raw('docsNavigation');
+  const t = useTranslations('docs');
+  const docsNavigation = t.raw('navigation');
 
   return (
     <aside className="hide-scrollbar sticky top-16 hidden h-[calc(100vh-5rem)] overflow-y-scroll lg:block">

@@ -21,6 +21,7 @@ export function Navbar() {
             <Link
               className="text-muted-foreground hover:text-primary text-xs hover:underline"
               href={item.url}
+              key={item.url}
             >
               {item.title}
             </Link>

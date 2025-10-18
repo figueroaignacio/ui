@@ -15,7 +15,7 @@ import { HeaderActions } from './header-actions';
 export function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations();
-  const navigation = t.raw('ui.docsNavigation') as DocSection[];
+  const navigation = t.raw('docs.navigation') as DocSection[];
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
