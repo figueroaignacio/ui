@@ -1,9 +1,13 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 
-type ShowcaseParams = {
-  params: { component: string };
-};
+interface ShowcasePageProps {
+  params: {
+    component: string;
+  };
+}
 
 const demos: Record<string, React.ComponentType> = {
   button: dynamic(() => import('@repo/ui/components/button')),
@@ -11,8 +15,8 @@ const demos: Record<string, React.ComponentType> = {
   tabs: dynamic(() => import('@repo/ui/components/tabs')),
 };
 
-export default function ShowcasePage({ params }: ShowcaseParams) {
-  const Demo = demos[params.component];
+export default function ShowcasePage({ params }: ShowcasePageProps) {
+  const Demo = demos[params.component.toLowerCase()];
 
   if (!Demo) return notFound();
 
