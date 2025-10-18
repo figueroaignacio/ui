@@ -1,12 +1,21 @@
 'use client';
 
 import { CardLink } from '@/components/card-link';
-import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 const demoKeys = ['button', 'card', 'tabs'];
 
-export default function ShowcasePage() {
-  const t = useTranslations('showcase');
+type PageProps = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function ShowcasePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('showcase');
 
   const demos = demoKeys.map((key) => ({
     name: t(`demos.${key}.name`),
