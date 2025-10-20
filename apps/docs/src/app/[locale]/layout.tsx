@@ -1,5 +1,4 @@
 // Components
-import { Header } from '@/components/header';
 import { Providers } from '@/providers/providers';
 
 // Utils
@@ -36,7 +35,6 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
           <Providers>
-            <Header />
             <main>{children}</main>
           </Providers>
         </NextIntlClientProvider>

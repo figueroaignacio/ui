@@ -17,7 +17,7 @@ export function Navbar() {
         <nav className="space-x-3">
           {navigation.map((item) => (
             <Link
-              className="hover:text-primary text-sm hover:underline"
+              className="hover:text-primary text-muted-foreground text-sm hover:underline"
               href={item.url}
               key={item.url}
             >
