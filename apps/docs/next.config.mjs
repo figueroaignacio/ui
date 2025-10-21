@@ -15,6 +15,9 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typedRoutes: true,
+  experimental: {
+    viewTransition: true,
+  },
 };
 
 export default withNextIntl(nextConfig);
