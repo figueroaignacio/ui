@@ -7,10 +7,11 @@ import { useState } from 'react';
 // Components
 import { Link } from '@/i18n/navigation';
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { HeaderActions } from './header-actions';
+import { Logo } from './logo';
 
 // Definitions
 import { DocSection } from '@/lib/definitions';
-import { HeaderActions } from './header-actions';
 
 export function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ export function MobileMenu() {
     <div className="relative z-50 flex w-full items-center justify-between px-5 py-5 lg:hidden">
       <HamburgerMenuIcon className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />
       <nav
-        className={`bg-background fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
+        className={`bg-bacl bg-card fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
           isMenuOpen
             ? 'pointer-events-auto scale-100 opacity-100'
             : 'pointer-events-none scale-95 opacity-0'
@@ -33,6 +34,7 @@ export function MobileMenu() {
       >
         <div className="flex items-center justify-between px-4 py-3">
           <Cross1Icon className="size-8 cursor-pointer" onClick={toggleMenu} />
+          <Logo />
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {navigation.map((section, sectionIndex) => (

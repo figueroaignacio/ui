@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 
 // Components
+import { Header } from '@/components/header';
 import { ThemeProvider } from '@/providers/theme-provider';
 
 // Utils
@@ -41,6 +42,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
           <ThemeProvider enableCookieStorage>
+            <Header />
             <main>{children}</main>
           </ThemeProvider>
         </NextIntlClientProvider>
