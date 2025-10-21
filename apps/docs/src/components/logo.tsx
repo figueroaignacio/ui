@@ -15,7 +15,7 @@ export function Logo() {
         width="32"
         height="32"
         viewBox="0 0 1024 1024"
-        enable-background="new 0 0 1024 1024"
+        enableBackground="new 0 0 1024 1024"
       >
         <path
           fill="currentColor"
