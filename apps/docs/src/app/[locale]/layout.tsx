@@ -1,5 +1,7 @@
+import { cookies } from 'next/headers';
+
 // Components
-import { Providers } from '@/providers/providers';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 // Utils
 import { routing } from '@/i18n/routing';
@@ -30,13 +32,17 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
 
   setRequestLocale(locale);
 
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get('theme');
+  const theme = themeCookie?.value === 'light' ? 'light' : 'dark';
+
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className={theme}>
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
-          <Providers>
+          <ThemeProvider enableCookieStorage>
             <main>{children}</main>
-          </Providers>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
