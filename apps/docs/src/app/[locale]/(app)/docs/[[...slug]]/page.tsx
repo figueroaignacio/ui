@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 // Content
 import { docs } from '@/velite-content';
 
@@ -46,16 +48,17 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
+export async function generateStaticParams(): Promise<{ slug: string[]; locale: string }[]> {
   if (!Array.isArray(docs)) {
     console.error('docs is not an array!', typeof docs);
     return [];
   }
 
   return docs
-    .filter((doc) => doc.slugAsParams)
+    .filter((doc) => doc.slugAsParams && doc.published)
     .map((doc) => ({
       slug: doc.slugAsParams.split('/').filter(Boolean),
+      locale: doc.locale || 'en',
     }));
 }
 
