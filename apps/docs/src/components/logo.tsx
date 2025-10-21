@@ -2,7 +2,10 @@ import { Link } from '@/i18n/navigation';
 
 export function Logo() {
   return (
-    <Link href="/" className="border-border flex w-fit items-center rounded-md border px-3 py-1">
+    <Link
+      href="/"
+      className="border-border flex w-fit items-center rounded-md border px-3 py-1 pr-6"
+    >
       <svg
         version="1.1"
         id="Layer_1"
