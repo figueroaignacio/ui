@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 // Components
 import { CardLink } from '@/components/card-link';
 
-const demoKeys = ['button', 'card', 'tabs'];
+const demoKeys = ['button', 'card', 'tabs', 'collapsible'];
 
 export function Showcase() {
   const t = useTranslations('showcase');
