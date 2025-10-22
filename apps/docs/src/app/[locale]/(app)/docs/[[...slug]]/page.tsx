@@ -7,7 +7,9 @@ import { docs } from '@/velite-content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
 import { MDXContent } from '@/components/mdx/mdx-content';
+import { MobileToc } from '@/components/mobile-toc';
 import { Sidebar } from '@/components/sidebar';
+import { Toc } from '@/components/toc';
 
 // Utils
 import { getDocBySlug } from '@/lib/utils';
@@ -74,10 +76,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[210px_1fr_210px]">
-      {/* <div className="lg:hidden">
+    <div className="grid grid-cols-1 gap-3 lg:grid-cols-[210px_1fr_210px]">
+      <div className="lg:hidden">
         <MobileToc toc={tocContent} />
-      </div> */}
+      </div>
       <div>
         <Sidebar />
       </div>
@@ -92,7 +94,9 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
         <DocsPagination currentPath={currentPath} />
       </article>
-      <div className="hidden lg:block">{/* <Toc toc={tocContent} /> */}</div>
+      <div className="hidden lg:block">
+        <Toc toc={tocContent} />
+      </div>
     </div>
   );
 }

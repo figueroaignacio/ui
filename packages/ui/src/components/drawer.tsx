@@ -47,7 +47,7 @@ export function DrawerOverlay({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'animate-in fade-in fixed inset-0 z-50 bg-black/50 backdrop-blur-sm duration-300',
+        'animate-in fade-in fixed inset-0 z-50 bg-black/50 backdrop-blur-xs duration-300',
         className,
       )}
       onClick={() => setOpen(false)}
@@ -111,11 +111,8 @@ export function DrawerContent({ children, className, side, size, ...props }: Dra
         {...props}
       >
         <div className="flex justify-end p-2">
-          <button
-            onClick={() => setOpen(false)}
-            className="text-muted-foreground text-sm hover:underline"
-          >
-            <Cross1Icon />
+          <button onClick={() => setOpen(false)} className="hover:underline">
+            <Cross1Icon className="size-6" />
           </button>
         </div>
         <div className="p-4">{children}</div>

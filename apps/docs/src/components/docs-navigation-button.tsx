@@ -1,8 +1,12 @@
 'use client';
 
+// Hooks
 import { useDocsNavigation } from '@/hooks/use-docs-navigation';
+
+// Components
 import { Link } from '@/i18n/navigation';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import { Button } from '@repo/ui/components/button';
 
 type DocsNavigationButtonsProps = {
   currentPath: string;
@@ -16,24 +20,19 @@ type NavIconButtonProps = {
 };
 
 function NavIconButton({ href, label, icon: Icon, disabled }: NavIconButtonProps) {
-  const baseClasses =
-    'flex h-9 w-9 items-center justify-center rounded-md border transition-colors';
-
   if (disabled || !href) {
     return (
-      <button
-        disabled
-        className={`${baseClasses} border-border cursor-not-allowed opacity-50`}
-        aria-label={label}
-      >
+      <Button disabled size="icon" variant="outline" aria-label={label}>
         <Icon className="h-4 w-4" />
-      </button>
+      </Button>
     );
   }
 
   return (
-    <Link href={href} className={`${baseClasses} border-border hover:bg-accent`} aria-label={label}>
-      <Icon className="h-4 w-4" />
+    <Link href={href} aria-label={label}>
+      <Button size="icon" variant="outline">
+        <Icon className="h-4 w-4" />
+      </Button>
     </Link>
   );
 }
