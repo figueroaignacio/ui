@@ -30,12 +30,10 @@ interface SearchResultsProps {
 export function SearchResults({ query, results, navigation }: SearchResultsProps) {
   const t = useTranslations('components.searcher');
 
-  // No results state
   if (query && results.length === 0) {
     return <div className="text-muted-foreground py-8 text-center">{t('noResults')}</div>;
   }
 
-  // Search results
   if (results.length > 0) {
     return (
       <div className="my-4 max-h-64 overflow-hidden">
@@ -43,7 +41,7 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
           {results.map((item) => (
             <li
               key={item.href}
-              className="hover:bg-primary text-foreground ring-primary ring-offset-background rounded-sm px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
+              className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-sm px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
             >
               <DialogClose className="h-full w-full">
                 <Link href={item.href} className="flex items-center gap-x-4">
@@ -72,7 +70,7 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
               {section.items.map((item) => (
                 <li
                   key={item.href}
-                  className="hover:bg-accent text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
+                  className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
                 >
                   <DialogClose className="h-full w-full">
                     <Link href={item.href} className="flex items-center gap-x-4">

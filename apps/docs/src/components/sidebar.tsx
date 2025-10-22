@@ -29,8 +29,8 @@ export function Sidebar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`hover:bg-accent animate-show-soft block w-fit rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
-                      pathname === item.href ? 'bg-accent font-bold' : ''
+                    className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-4 py-2 text-xs transition-all duration-150 ${
+                      pathname === item.href ? 'bg-secondary font-bold' : ''
                     }`}
                   >
                     {item.title}

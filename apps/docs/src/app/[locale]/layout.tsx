@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 // Components
 import { Header } from '@/components/header';
-import { ThemeProvider } from '@/providers/theme-provider';
+import { Providers } from '@/components/providers';
 
 // Utils
 import { routing } from '@/i18n/routing';
@@ -41,10 +41,10 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
     <html lang={locale} suppressHydrationWarning className={theme}>
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
-          <ThemeProvider enableCookieStorage>
+          <Providers>
             <Header />
             <main>{children}</main>
-          </ThemeProvider>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

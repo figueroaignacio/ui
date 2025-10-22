@@ -2,7 +2,7 @@
 
 // Hooks
 import { useMounted } from '@/hooks/use-mounted';
-import { useTheme } from '@/providers/theme-provider';
+import { useTheme } from 'i7a-themes';
 
 // Components
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
