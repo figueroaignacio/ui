@@ -26,17 +26,15 @@ export function Searcher() {
   return (
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="" aria-label={t('label')}>
+        <Button variant="outline" size="sm" className="w-24" aria-label={t('label')}>
           <MagnifyingGlassIcon />
           <span className="font-light">{t('label')}</span>
         </Button>
       </DialogTrigger>
-
       <DialogContent className="max-w-sm rounded-xl sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>I7A UI docs</DialogTitle>
         </DialogHeader>
-
         <div className="grid gap-4 py-4">
           <SearchInput
             value={query}

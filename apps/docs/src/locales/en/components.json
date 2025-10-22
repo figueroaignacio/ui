@@ -6,5 +6,8 @@
   "docsPagination": {
     "previous": "Previous",
     "next": "Next"
+  },
+  "toc": {
+    "label": "On this page"
   }
 }
