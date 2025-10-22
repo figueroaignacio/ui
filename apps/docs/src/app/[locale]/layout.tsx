@@ -21,6 +21,12 @@ interface LocaleLayoutProps {
   }>;
 }
 
+export const metadata = {
+  title: {
+    template: `%s - I7A UI`,
+  },
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
