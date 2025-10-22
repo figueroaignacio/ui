@@ -3,12 +3,12 @@ import { cn } from '@repo/ui/lib/cn';
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 const headingStyles = {
-  h1: 'font-heading mt-2 scroll-m-20 text-4xl font-bold',
-  h2: 'font-heading mt-12 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight first:mt-0',
-  h3: 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
-  h4: 'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
-  h5: 'mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
-  h6: 'mt-8 scroll-m-20 text-base font-semibold tracking-tight',
+  h1: 'font-heading mt-2 scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl',
+  h2: 'font-heading mt-12 scroll-m-20 border-b border-border pb-3 text-xl font-semibold tracking-tight transition-colors first:mt-0',
+  h3: 'font-heading mt-10 scroll-m-20 text-2xl font-semibold tracking-tight',
+  h4: 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
+  h5: 'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
+  h6: 'font-heading mt-8 scroll-m-20 text-base font-semibold tracking-tight',
 } as const;
 
 function createHeading(Tag: keyof typeof headingStyles) {
