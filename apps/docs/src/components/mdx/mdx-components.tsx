@@ -1,13 +1,13 @@
-// Styles
-import '@/css/code.css';
-
 // Components
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { Blockquote } from './blockquote';
+import { CodeBlockWrapper } from './code-block-wrapper';
+import { CodeBlock } from './codeblock';
+import { ComponentPreview } from './component-preview';
 import { H1, H2, H3, H4, H5, H6 } from './heading';
 import { Image } from './image';
 import { Table, TableCell, TableHeader, TableRow } from './table';
 import {
-  Code,
   HorizontalRule,
   Link,
   ListItem,
@@ -28,7 +28,7 @@ export const mdxComponents = {
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
-  code: Code,
+  code: CodeBlock,
   hr: HorizontalRule,
   blockquote: Blockquote,
   img: Image,
@@ -36,4 +36,10 @@ export const mdxComponents = {
   tr: TableRow,
   th: TableHeader,
   td: TableCell,
+  CodeBlockWrapper,
+  Tabs,
+  TabsContent,
+  TabsTrigger,
+  TabsList,
+  ComponentPreview,
 };

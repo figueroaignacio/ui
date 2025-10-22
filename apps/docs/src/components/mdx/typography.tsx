@@ -1,4 +1,3 @@
-import { fontSans } from '@/lib/font';
 import { cn } from '@repo/ui/lib/cn';
 
 type TypographyProps<T = HTMLElement> = React.HTMLAttributes<T>;
@@ -59,20 +58,6 @@ export function OrderedList({ className, ...props }: TypographyProps<HTMLOListEl
 export function ListItem({ className, ...props }: TypographyProps<HTMLLIElement>) {
   return (
     <li className={cn('text-foreground/90 text-[15px] leading-[1.75]', className)} {...props} />
-  );
-}
-
-export function Code({ className, ...props }: TypographyProps<HTMLElement>) {
-  return (
-    <code
-      className={cn(
-        `bg-muted relative rounded-md px-[0.4rem] py-[0.2rem] ${fontSans.className}`,
-        'text-foreground text-[14px] font-semibold',
-        'border-border/50 border',
-        className,
-      )}
-      {...props}
-    />
   );
 }
 

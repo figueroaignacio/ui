@@ -12,6 +12,7 @@
     "i7a-themes": "^2.0.1",
     "next": "15.5.5",
     "next-intl": "^4.3.12",
+    "prism-react-renderer": "^2.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-autolink-headings": "^7.1.0",

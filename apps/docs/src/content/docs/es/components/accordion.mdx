@@ -1,0 +1,32 @@
+---
+title: Accordion
+description: Un componente de acordión versátil con múltiples variantes y tamaños.
+published: true
+date: 2025-10-22
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<Tabs defaultValue="preview" size="sm">
+  <TabsList>
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <ComponentPreview>
+      <Button>Button</Button>
+    </ComponentPreview>
+  </TabsContent>
+  <TabsContent value="code">
+    ```tsx
+    import { Button } from "@/components/ui/button";
+
+    export function ButtonDemo() {
+      return <Button variant="secondary">Button</Button>;
+    }
+    ```
+
+  </TabsContent>
+</Tabs>

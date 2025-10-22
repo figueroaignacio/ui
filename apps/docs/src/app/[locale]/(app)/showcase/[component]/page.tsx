@@ -15,6 +15,7 @@ const demos: Record<string, React.ComponentType> = {
   button: dynamic(() => import('@repo/ui/components/button')),
   card: dynamic(() => import('@repo/ui/components/card')),
   tabs: dynamic(() => import('@repo/ui/components/tabs')),
+  collapsible: dynamic(() => import('@repo/ui/components/collapsible')),
 };
 
 export default async function ComponentShowcasePage({ params }: ShowcasePageProps) {
