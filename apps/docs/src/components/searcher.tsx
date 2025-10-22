@@ -26,14 +26,9 @@ export function Searcher() {
   return (
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="default"
-          className="w-40 justify-start gap-6"
-          aria-label={t('label')}
-        >
-          <MagnifyingGlassIcon className="h-4 w-4" />
-          <span className="font-light">{t('label')}...</span>
+        <Button variant="outline" size="sm" className="" aria-label={t('label')}>
+          <MagnifyingGlassIcon />
+          <span className="font-light">{t('label')}</span>
         </Button>
       </DialogTrigger>
 

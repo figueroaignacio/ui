@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 // Components
 import { Header } from '@/components/header';
-import { ThemeProvider } from '@/providers/theme-provider';
+import { Providers } from '@/components/providers';
 
 // Utils
 import { routing } from '@/i18n/routing';
@@ -20,6 +20,12 @@ interface LocaleLayoutProps {
     locale: string;
   }>;
 }
+
+export const metadata = {
+  title: {
+    template: `%s - I7A UI`,
+  },
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -41,10 +47,10 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
     <html lang={locale} suppressHydrationWarning className={theme}>
       <body className={`relative ${fontSans.className}`}>
         <NextIntlClientProvider>
-          <ThemeProvider enableCookieStorage>
+          <Providers>
             <Header />
             <main>{children}</main>
-          </ThemeProvider>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

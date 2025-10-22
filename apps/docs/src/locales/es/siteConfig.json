@@ -1,0 +1,20 @@
+{
+  "title": "Componentes UI accesibles y personalizables para aplicaciones web profesionales. ",
+  "description": "Construidos con estándares de accesibilidad y diseñados para adaptarse a cualquier sistema de diseño.",
+  "openGraph": {
+    "type": "website",
+    "siteName": "I7A UI",
+    "images": [
+      {
+        "url": "/opengraph-image",
+        "width": 1200,
+        "height": 630,
+        "alt": "Componentes UI accesibles y personalizables para aplicaciones web profesionales. "
+      }
+    ]
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "images": ["/opengraph-image"]
+  }
+}
