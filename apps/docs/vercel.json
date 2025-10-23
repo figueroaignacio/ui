@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "app/**": {
-      "includeFiles": "src/samples/**"
-    }
-  }
-}

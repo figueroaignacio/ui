@@ -17,6 +17,9 @@ const nextConfig = {
   typedRoutes: true,
   experimental: {
     viewTransition: true,
+    outputFileTracingIncludes: {
+      '/': ['./src/samples/**'],
+    },
   },
 };
 
