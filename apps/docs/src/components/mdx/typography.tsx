@@ -20,11 +20,12 @@ export const Pre: React.FC<PreProps> = ({ children }) => {
     if (!node) return '';
     if (typeof node === 'string') return node;
     if (Array.isArray(node)) return node.map(extractCode).join('');
-    if (isValidElement(node)) return extractCode(node.props?.children);
+    if (isValidElement(node)) {
+      return extractCode((node.props as { children?: React.ReactNode }).children);
+    }
     if (typeof node === 'object' && 'value' in node) return String(node.value);
     return '';
   };
-
   const code = extractCode(child.children).trim();
 
   return <CodeBlock code={code} language={language} />;

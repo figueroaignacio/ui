@@ -10,17 +10,18 @@ interface InlineCodeProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export function InlineCode({ className, children, language = 'tsx', ...props }: InlineCodeProps) {
-  // 🧠 Función robusta para extraer texto de cualquier estructura ReactNode
   const extractText = (node: React.ReactNode): string => {
     if (typeof node === 'string') return node;
     if (Array.isArray(node)) return node.map(extractText).join('');
-    if (React.isValidElement(node)) return extractText(node.props?.children);
+    if (React.isValidElement(node)) {
+      const props = node.props as { children?: React.ReactNode };
+      return extractText(props.children);
+    }
     return '';
   };
 
   const content = extractText(children).trim();
 
-  // Si por algún motivo no hay texto, renderizamos un fallback
   if (!content) {
     return (
       <code
@@ -29,9 +30,7 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
           className,
         )}
         {...props}
-      >
-        {/* Evita bloque vacío */}{' '}
-      </code>
+      ></code>
     );
   }
 
