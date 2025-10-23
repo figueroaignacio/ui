@@ -1,4 +1,4 @@
-import { Index } from '@/samples/__index__';
+import { Index } from '@repo/ui/samples';
 import fs from 'fs';
 import path from 'path';
 import { ComponentPreviewClient } from './component-preview-client';
@@ -29,10 +29,10 @@ export async function ComponentPreview({
   let code: string | null = null;
 
   if (item.file) {
-    const filePath = path.join(process.cwd(), item.file);
+    const filePath = path.join(process.cwd(), '../../', item.file);
     try {
       code = await fs.promises.readFile(filePath, 'utf-8');
-      code = code.replaceAll('@/samples/', '@/components/');
+      code = code.replaceAll('../../components/', '@repo/ui/components/');
     } catch (error) {
       console.error('Error reading file:', error);
       code = null;
