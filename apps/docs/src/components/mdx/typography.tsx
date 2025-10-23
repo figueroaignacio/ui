@@ -2,6 +2,34 @@ import { cn } from '@repo/ui/lib/cn';
 
 type TypographyProps<T = HTMLElement> = React.HTMLAttributes<T>;
 
+import { isValidElement } from 'react';
+import { CodeBlock } from './codeblock';
+
+interface PreProps {
+  children: React.ReactNode;
+}
+
+export const Pre: React.FC<PreProps> = ({ children }) => {
+  const child = (children as any)?.props;
+
+  if (!child) return <pre>{children}</pre>;
+
+  const language = child.className?.replace('language-', '') || 'tsx';
+
+  const extractCode = (node: any): string => {
+    if (!node) return '';
+    if (typeof node === 'string') return node;
+    if (Array.isArray(node)) return node.map(extractCode).join('');
+    if (isValidElement(node)) return extractCode(node.props?.children);
+    if (typeof node === 'object' && 'value' in node) return String(node.value);
+    return '';
+  };
+
+  const code = extractCode(child.children).trim();
+
+  return <CodeBlock code={code} language={language} />;
+};
+
 export function Link({ className, ...props }: TypographyProps<HTMLAnchorElement>) {
   return (
     <a
