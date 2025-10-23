@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/ta
 import { Blockquote } from './blockquote';
 import { CodeBlockWrapper } from './code-block-wrapper';
 import { ComponentPreview } from './component-preview';
+import { ComponentsList } from './components-list';
 import { H1, H2, H3, H4, H5, H6 } from './heading';
 import { Image } from './image';
 import { InlineCode } from './inline-code';
@@ -29,8 +30,8 @@ export const mdxComponents = {
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
-  code: InlineCode, // ✅ solo para inline code
-  pre: Pre, // ✅ bloque de código completo
+  code: InlineCode,
+  pre: Pre,
   hr: HorizontalRule,
   blockquote: Blockquote,
   img: Image,
@@ -44,4 +45,5 @@ export const mdxComponents = {
   TabsTrigger,
   TabsList,
   ComponentPreview,
+  ComponentsList,
 };

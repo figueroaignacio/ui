@@ -388,8 +388,8 @@ function DropdownMenuItem({
       className={cn(
         'relative flex cursor-pointer items-center rounded-md px-3 py-2 text-sm outline-none select-none',
         'transition-colors duration-150',
-        'hover:bg-accent hover:text-accent-foreground',
-        'focus:bg-accent focus:text-accent-foreground',
+        'hover:bg-secondary',
+        'focus:bg-secondary',
         disabled && 'pointer-events-none opacity-50',
         className,
       )}
@@ -399,7 +399,26 @@ function DropdownMenuItem({
   );
 }
 
-export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger };
+function DropdownLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="text-muted-foreground px-3 py-2 text-xs font-semibold uppercase">
+      {children}
+    </div>
+  );
+}
+
+function DropdownSeparator() {
+  return <div className="bg-border my-1 h-px" />;
+}
+
+export {
+  DropdownLabel,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownSeparator,
+};
 export type {
   DropdownMenuContentProps,
   DropdownMenuItemProps,

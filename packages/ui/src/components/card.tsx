@@ -4,31 +4,34 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { forwardRef, JSX, useState } from 'react';
 import { cn } from '../lib/cn';
 
-const cardVariants = cva('rounded-lg transition-all duration-200', {
-  variants: {
-    variant: {
-      default: 'bg-card text-card-foreground border border-border shadow-sm',
-      elevated: 'bg-card text-card-foreground border-0 shadow-lg',
-      outline: 'bg-card text-card-foreground border-2 border-border shadow-none',
-      ghost: 'bg-transparent text-card-foreground border-0 shadow-none',
+const cardVariants = cva(
+  'rounded-lg transition-all duration-200 h-full flex flex-col justify-between',
+  {
+    variants: {
+      variant: {
+        default: 'bg-card text-card-foreground border border-border shadow-sm',
+        elevated: 'bg-card text-card-foreground border-0 shadow-lg',
+        outline: 'bg-card text-card-foreground border-2 border-border shadow-none',
+        ghost: 'bg-transparent text-card-foreground border-0 shadow-none',
+      },
+      hoverable: {
+        true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
+      },
+      clickable: {
+        true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
+      },
+      gradient: {
+        true: 'bg-gradient-to-br from-card to-card/80',
+      },
     },
-    hoverable: {
-      true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
-    },
-    clickable: {
-      true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
-    },
-    gradient: {
-      true: 'bg-gradient-to-br from-card to-card/80',
+    defaultVariants: {
+      variant: 'default',
+      hoverable: false,
+      clickable: false,
+      gradient: false,
     },
   },
-  defaultVariants: {
-    variant: 'default',
-    hoverable: false,
-    clickable: false,
-    gradient: false,
-  },
-});
+);
 
 const cardHeaderVariants = cva('flex flex-col space-y-1.5', {
   variants: {
@@ -46,7 +49,7 @@ const cardTitleVariants = cva('text-lg font-semibold leading-none tracking-tight
 
 const cardDescriptionVariants = cva('text-sm text-muted-foreground leading-relaxed');
 
-const cardContentVariants = cva('', {
+const cardContentVariants = cva('flex-1', {
   variants: {
     compact: {
       true: 'p-4 pt-0',

@@ -23,13 +23,13 @@ export function Sidebar() {
       <nav>
         {docsNavigation.map((section: DocSection, index: number) => (
           <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>
-            <h2 className="text-muted-foreground py-2 text-sm tracking-tight">{section.title}</h2>
+            <h2 className="text-muted-foreground py-2 text-xs tracking-tight">{section.title}</h2>
             <ul className="space-y-1">
               {section.items.map((item: DocItem) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-4 py-2 text-xs transition-all duration-150 ${
+                    className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
                       pathname === item.href ? 'bg-secondary font-bold' : ''
                     }`}
                   >

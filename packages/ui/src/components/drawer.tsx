@@ -47,7 +47,7 @@ export function DrawerOverlay({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'animate-in fade-in fixed inset-0 z-50 bg-black/50 backdrop-blur-xs duration-300',
+        'animate-in fade-in fixed inset-0 z-50 backdrop-blur-xs duration-300',
         className,
       )}
       onClick={() => setOpen(false)}
@@ -104,7 +104,7 @@ export function DrawerContent({ children, className, side, size, ...props }: Dra
       <DrawerOverlay />
       <div
         className={cn(
-          'animate-in duration-300 ease-out',
+          'animate-in duration-200 ease-out',
           drawerVariants({ side, size }),
           className,
         )}
