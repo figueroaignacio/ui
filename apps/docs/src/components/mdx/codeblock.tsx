@@ -19,26 +19,28 @@ export function CodeBlock({ code, language = 'tsx', className }: CodeBlockProps)
       </div>
 
       <Highlight code={code.trim()} language={language} theme={themes.oneDark}>
-        {({ style, tokens, getLineProps, getTokenProps }) => (
-          <pre
-            className={cn(
-              `border-border !bg-card overflow-x-auto rounded-xl border p-5 text-sm leading-6 ${fontSans.className}`,
-              className,
-            )}
-            style={{
-              ...style,
-              backgroundColor: 'transparent',
-            }}
-          >
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
+        {({ style, tokens, getLineProps, getTokenProps }) => {
+          return (
+            <pre
+              className={cn(
+                `border-border !bg-card overflow-auto rounded-xl border p-5 text-sm leading-6 ${fontSans.className} max-h-[400px] min-h-[200px]`,
+                className,
+              )}
+              style={{
+                ...style,
+                backgroundColor: 'transparent',
+              }}
+            >
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          );
+        }}
       </Highlight>
     </div>
   );

@@ -25,8 +25,10 @@ export function TabsDemo() {
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             <div className="flex gap-3">
-              <Button onClick={() => alert('Viewing AI trends')}>View Trends</Button>
-              <Button variant="outline" onClick={() => alert('Explore applications')}>
+              <Button onClick={() => alert('Viewing AI trends')} variant="secondary">
+                View Trends
+              </Button>
+              <Button variant="ghost" onClick={() => alert('Explore applications')}>
                 Explore Applications
               </Button>
             </div>
@@ -44,7 +46,9 @@ export function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => alert('Opening model library')}>View Models</Button>
+            <Button onClick={() => alert('Opening model library')} variant="secondary">
+              View Models
+            </Button>
           </CardContent>
         </Card>
       </TabsContent>
@@ -59,7 +63,9 @@ export function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => alert('Browsing research papers')}>Browse Research</Button>
+            <Button onClick={() => alert('Browsing research papers')} variant="secondary">
+              Browse Research
+            </Button>
           </CardContent>
         </Card>
       </TabsContent>
@@ -74,8 +80,10 @@ export function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex gap-3">
-            <Button onClick={() => alert('View guidelines')}>View Guidelines</Button>
-            <Button variant="outline" onClick={() => alert('Report concerns')}>
+            <Button onClick={() => alert('View guidelines')} variant="secondary">
+              View Guidelines
+            </Button>
+            <Button variant="ghost" onClick={() => alert('Report concerns')}>
               Report Concerns
             </Button>
           </CardContent>

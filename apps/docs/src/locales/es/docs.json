@@ -54,7 +54,7 @@
         {
           "title": "Card",
           "href": "/docs/components/card",
-          "description": "Contenedores con borde y sombra para agrupar contenido."
+          "description": "Tarjetas minimalistas para agrupar contenido"
         },
         {
           "title": "Collapsible",
