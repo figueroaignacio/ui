@@ -1,5 +1,7 @@
 {
-  "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
-  "includeFiles": ["src/samples/**"]
+  "functions": {
+    "app/**": {
+      "includeFiles": "src/samples/**"
+    }
+  }
 }
