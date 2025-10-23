@@ -32,7 +32,10 @@ export async function ComponentPreview({
     const filePath = path.join(process.cwd(), '../../', item.file);
     try {
       code = await fs.promises.readFile(filePath, 'utf-8');
-      code = code.replaceAll('../../components/', '@repo/ui/components/');
+      // Cambia estas líneas:
+      code = code
+        .replaceAll("from '../../components/", "from '@/components/ui/")
+        .replaceAll('from "../../components/', 'from "@/components/ui/');
     } catch (error) {
       console.error('Error reading file:', error);
       code = null;

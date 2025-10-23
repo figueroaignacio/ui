@@ -18,7 +18,7 @@ const nextConfig = {
   experimental: {
     viewTransition: true,
     outputFileTracingIncludes: {
-      '/': ['./src/samples/**'],
+      '/': ['../../packages/ui/src/samples/**'],
     },
   },
 };
