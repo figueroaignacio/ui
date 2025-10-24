@@ -6,6 +6,7 @@ import { DialogDemo } from './components/dialog-demo';
 import { DrawerDemo } from './components/drawer-demo';
 import { DropdownMenuDemo } from './components/dropdown-menu-demo';
 import { TabsDemo } from './components/tabs-demo';
+import { TimelineDemo } from './components/timeline-demo';
 
 export const Index = {
   'button-demo': {
@@ -47,5 +48,10 @@ export const Index = {
     name: 'tabs-demo',
     component: TabsDemo,
     file: 'packages/ui/src/samples/components/tabs-demo.tsx',
+  },
+  'timeline-demo': {
+    name: 'timeline-demo',
+    component: TimelineDemo,
+    file: 'packages/ui/src/samples/components/timeline-demo.tsx',
   },
 };
