@@ -63,14 +63,14 @@
           "description": "Modal windows for user notifications and interactions."
         },
         {
-          "title": "Drawer",
-          "href": "/docs/components/drawer",
-          "description": "Slide-in panels for navigation or content."
-        },
-        {
           "title": "Dropdown Menu",
           "href": "/docs/components/dropdown-menu",
           "description": "Menu that expands to reveal additional options."
+        },
+        {
+          "title": "Sheet",
+          "href": "/docs/components/sheet",
+          "description": "Sheet component to show additional content."
         },
         {
           "title": "Tabs",

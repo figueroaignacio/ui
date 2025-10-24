@@ -3,8 +3,8 @@ import { ButtonDemo } from './components/button-demo';
 import { CardDemo } from './components/card-demo';
 import { CollapsibleDemo } from './components/collapsible-demo';
 import { DialogDemo } from './components/dialog-demo';
-import { DrawerDemo } from './components/drawer-demo';
 import { DropdownMenuDemo } from './components/dropdown-menu-demo';
+import { SheetDemo } from './components/sheet-demo';
 import { TabsDemo } from './components/tabs-demo';
 import { TimelineDemo } from './components/timeline-demo';
 
@@ -34,10 +34,10 @@ export const Index = {
     component: DialogDemo,
     file: 'packages/ui/src/samples/components/dialog-demo.tsx',
   },
-  'drawer-demo': {
-    name: 'drawer-demo',
-    component: DrawerDemo,
-    file: 'packages/ui/src/samples/components/drawer-demo.tsx',
+  'sheet-demo': {
+    name: 'sheet-demo',
+    component: SheetDemo,
+    file: 'packages/ui/src/samples/components/sheet-demo.tsx',
   },
   'dropdown-menu-demo': {
     name: 'dropdown-menu-demo',

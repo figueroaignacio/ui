@@ -1,16 +1,16 @@
 'use client';
 
 import { Button } from '../../components/button';
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '../../components/drawer';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '../../components/sheet';
 
-export function DrawerDemo() {
+export function SheetDemo() {
   return (
-    <Drawer>
-      <DrawerTrigger>
+    <Sheet>
+      <SheetTrigger>
         <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger>
+      </SheetTrigger>
 
-      <DrawerContent side="right" size="sm">
+      <SheetContent side="right" size="sm">
         <div className="flex flex-col gap-4">
           <h2 className="text-lg font-semibold">Notifications</h2>
           <p className="text-muted-foreground text-sm">
@@ -30,13 +30,13 @@ export function DrawerDemo() {
           </div>
 
           <div className="mt-4 flex justify-end gap-2">
-            <DrawerClose>
+            <SheetClose>
               <Button variant="outline">Dismiss All</Button>
-            </DrawerClose>
+            </SheetClose>
             <Button>View Details</Button>
           </div>
         </div>
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 }

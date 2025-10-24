@@ -6,34 +6,34 @@ import * as React from 'react';
 import { cn } from '../lib/cn';
 
 // Context
-type DrawerContextProps = {
+type SheetContextProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const DrawerContext = React.createContext<DrawerContextProps | undefined>(undefined);
+const SheetContext = React.createContext<SheetContextProps | undefined>(undefined);
 
-function useDrawerContext() {
-  const context = React.useContext(DrawerContext);
-  if (!context) throw new Error('Drawer components must be used within <Drawer>');
+function useSheetContext() {
+  const context = React.useContext(SheetContext);
+  if (!context) throw new Error('Sheet components must be used within <Sheet>');
   return context;
 }
 
 // Root
-export function Drawer({ children }: { children: React.ReactNode }) {
+export function Sheet({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
-  return <DrawerContext.Provider value={{ open, setOpen }}>{children}</DrawerContext.Provider>;
+  return <SheetContext.Provider value={{ open, setOpen }}>{children}</SheetContext.Provider>;
 }
 
 // Trigger
-export function DrawerTrigger({
+export function SheetTrigger({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
-  const { setOpen } = useDrawerContext();
+  const { setOpen } = useSheetContext();
   return (
     <button onClick={() => setOpen(true)} className={cn(className)}>
       {children}
@@ -42,8 +42,8 @@ export function DrawerTrigger({
 }
 
 // Overlay
-export function DrawerOverlay({ className }: { className?: string }) {
-  const { setOpen } = useDrawerContext();
+export function SheetOverlay({ className }: { className?: string }) {
+  const { setOpen } = useSheetContext();
   return (
     <div
       className={cn(
@@ -56,7 +56,7 @@ export function DrawerOverlay({ className }: { className?: string }) {
 }
 
 // Variants
-const drawerVariants = cva(
+const sheetVariants = cva(
   'fixed z-50 bg-background border shadow-xl transition-transform overflow-auto',
   {
     variants: {
@@ -87,27 +87,23 @@ const drawerVariants = cva(
 );
 
 // Content
-interface DrawerContentProps
+interface SheetContentProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof drawerVariants> {
+    VariantProps<typeof sheetVariants> {
   children: React.ReactNode;
 }
 
 // Content
-export function DrawerContent({ children, className, side, size, ...props }: DrawerContentProps) {
-  const { open, setOpen } = useDrawerContext();
+export function SheetContent({ children, className, side, size, ...props }: SheetContentProps) {
+  const { open, setOpen } = useSheetContext();
 
   if (!open) return null;
 
   return (
     <>
-      <DrawerOverlay />
+      <SheetOverlay />
       <div
-        className={cn(
-          'animate-in duration-200 ease-out',
-          drawerVariants({ side, size }),
-          className,
-        )}
+        className={cn('animate-in duration-200 ease-out', sheetVariants({ side, size }), className)}
         {...props}
       >
         <div className="flex justify-end p-2">
@@ -121,8 +117,8 @@ export function DrawerContent({ children, className, side, size, ...props }: Dra
   );
 }
 
-export function DrawerClose({ children }: { children: React.ReactNode }) {
-  const { setOpen } = useDrawerContext();
+export function SheetClose({ children }: { children: React.ReactNode }) {
+  const { setOpen } = useSheetContext();
   return (
     <div className="w-full" onClick={() => setOpen(false)}>
       {children}
