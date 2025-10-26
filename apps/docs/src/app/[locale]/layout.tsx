@@ -9,6 +9,7 @@ import { locales, routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { ViewTransition } from 'react';
 
 // Global Styles
 import { fontSans } from '@/lib/font';
@@ -45,12 +46,14 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
   return (
     <html lang={locale} suppressHydrationWarning className={theme}>
       <body className={`relative ${fontSans.className}`}>
-        <NextIntlClientProvider>
-          <Providers>
-            <Header />
-            <main>{children}</main>
-          </Providers>
-        </NextIntlClientProvider>
+        <ViewTransition>
+          <NextIntlClientProvider>
+            <Providers>
+              <Header />
+              <main>{children}</main>
+            </Providers>
+          </NextIntlClientProvider>
+        </ViewTransition>
       </body>
     </html>
   );
