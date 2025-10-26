@@ -83,7 +83,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <div>
         <Sidebar />
       </div>
-      <article className="flex flex-col lg:px-36 lg:py-5">
+      <article className="flex flex-col lg:px-36">
         <div className="border-border mb-5 flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
             <h1 className="text-2xl font-bold">{doc.title}</h1>

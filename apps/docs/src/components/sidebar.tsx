@@ -3,41 +3,66 @@
 // Hooks
 import { usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 // Components
 import { Link } from '@/i18n/navigation';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';
 
-// Definitions
-import { DocItem, DocSection } from '@/lib/definitions';
+// Types
+import type { DocItem, DocSection } from '@/lib/definitions';
 
 export function Sidebar() {
   const pathname = usePathname();
   const t = useTranslations('docs');
-  const docsNavigation = t.raw('navigation');
+  const docsNavigation = t.raw('navigation') as DocSection[];
+
+  const [openSections, setOpenSections] = useState<string[]>(
+    docsNavigation.map((section: DocSection) => section.title),
+  );
+
+  const toggleSection = (title: string) => {
+    setOpenSections((prev) =>
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
+    );
+  };
 
   return (
-    <aside className="hide-scrollbar sticky top-16 hidden h-[calc(100vh-5rem)] overflow-y-scroll lg:block">
-      <nav>
-        {docsNavigation.map((section: DocSection, index: number) => (
-          <div key={section.title} className={cn('pb-4', index !== 0 && 'pt-4')}>
-            <h2 className="text-muted-foreground py-2 text-xs tracking-tight">{section.title}</h2>
-            <ul className="space-y-1">
-              {section.items.map((item: DocItem) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-2 py-2 text-xs transition-all duration-150 ${
-                      pathname === item.href ? 'bg-secondary font-bold' : ''
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    <aside className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 overflow-y-scroll lg:block">
+      <nav className="space-y-6">
+        {docsNavigation.map((section: DocSection) => (
+          <div key={section.title} className="space-y-2">
+            <button
+              onClick={() => toggleSection(section.title)}
+              className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-xs font-semibold transition-colors"
+            >
+              {section.title}
+              <ChevronDownIcon
+                className={cn(
+                  'h-4 w-4 transition-transform',
+                  openSections.includes(section.title) && 'rotate-180',
+                )}
+              />
+            </button>
+            {openSections.includes(section.title) && (
+              <ul className="space-y-1 border-l pl-4">
+                {section.items.map((item: DocItem) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-2.5 py-2 text-xs transition-all duration-150 ${
+                        pathname === item.href ? 'bg-secondary font-bold' : ''
+                      }`}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </nav>

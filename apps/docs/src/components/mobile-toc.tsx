@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 // Components
 import { ViewVerticalIcon } from '@radix-ui/react-icons';
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@repo/ui/components/drawer';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@repo/ui/components/sheet';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';
@@ -27,16 +27,16 @@ export function MobileToc({ toc }: MobileTocProps) {
 
   return (
     <div>
-      <Drawer>
-        <DrawerTrigger className="mt-5 flex space-x-3">
+      <Sheet>
+        <SheetTrigger className="mt-5 flex space-x-3">
           <ViewVerticalIcon />
           <span className="text-xs">{t('toc.label')}</span>
-        </DrawerTrigger>
-        <DrawerContent side="right" size="lg">
+        </SheetTrigger>
+        <SheetContent side="right" size="lg">
           <p className="text-xs font-medium">{t('toc.label')}</p>
           <TreeMobile tree={toc} onLinkClick={() => setOpen(false)} />
-        </DrawerContent>
-      </Drawer>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function TreeMobile({
     <ul className={cn('list-none', { 'pl-4': level !== 1 })}>
       {tree.map((item, index) => (
         <li key={index} className="mt-5 mb-5">
-          <DrawerClose>
+          <SheetClose>
             <a
               href={item.url}
               onClick={onLinkClick}
@@ -62,7 +62,7 @@ function TreeMobile({
             >
               {item.title}
             </a>
-          </DrawerClose>
+          </SheetClose>
           {item.items?.length ? (
             <TreeMobile tree={item.items} level={level + 1} onLinkClick={onLinkClick} />
           ) : null}
