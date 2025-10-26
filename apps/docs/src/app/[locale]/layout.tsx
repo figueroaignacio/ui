@@ -5,19 +5,18 @@ import { Header } from '@/components/header';
 import { Providers } from '@/components/providers';
 
 // Utils
-import { routing } from '@/i18n/routing';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { locales, routing } from '@/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Global Styles
 import { fontSans } from '@/lib/font';
-import '@repo/ui/globals.css';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{
-    locale: string;
+    locale: 'es' | 'en';
   }>;
 }
 
@@ -33,7 +32,7 @@ export function generateStaticParams() {
 
 export default async function RootLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
+  if (!locales.includes(locale)) {
     notFound();
   }
 

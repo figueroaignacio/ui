@@ -1,3 +1,4 @@
+// app/[locale]/(app)/docs/[[...slug]]/page.tsx
 export const dynamic = 'force-dynamic';
 
 // Content
@@ -8,7 +9,6 @@ import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
 import { MDXContent } from '@/components/mdx/mdx-content';
 import { MobileToc } from '@/components/mobile-toc';
-import { Sidebar } from '@/components/sidebar';
 import { Toc } from '@/components/toc';
 
 // Utils
@@ -76,14 +76,15 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   const currentPath = `/docs${doc.slugAsParams ? `/${doc.slugAsParams}` : ''}`;
 
   return (
-    <div className="grid grid-cols-1 gap-3 lg:grid-cols-[210px_1fr_210px]">
-      <div className="lg:hidden">
-        <MobileToc toc={tocContent} />
-      </div>
-      <div>
-        <Sidebar />
-      </div>
+    <>
+      {/* Contenido principal (columna central) */}
       <article className="flex flex-col lg:px-36">
+        {/* Mobile TOC */}
+        <div className="lg:hidden">
+          <MobileToc toc={tocContent} />
+        </div>
+
+        {/* Header */}
         <div className="border-border mb-5 flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
             <h1 className="text-2xl font-bold">{doc.title}</h1>
@@ -91,14 +92,20 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </div>
           <DocsNavigationButtons currentPath={currentPath} />
         </div>
+
+        {/* MDX Content */}
         <div className="flex-1">{doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}</div>
+
+        {/* Pagination */}
         <div>
           <DocsPagination currentPath={currentPath} />
         </div>
       </article>
+
+      {/* Desktop TOC (tercera columna) */}
       <div className="hidden lg:block">
         <Toc toc={tocContent} />
       </div>
-    </div>
+    </>
   );
 }

@@ -1,4 +1,10 @@
 {
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, la página que estás buscando no existe o ha sido movida a otra ubicación.",
+    "goHome": "Volver al inicio",
+    "goDocs": "Ver documentación"
+  },
   "navigation": [
     {
       "title": "Secciones",

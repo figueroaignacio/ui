@@ -1,4 +1,10 @@
 {
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved to another location.",
+    "goHome": "Go home",
+    "goDocs": "View documentation"
+  },
   "navigation": [
     {
       "title": "Sections",
