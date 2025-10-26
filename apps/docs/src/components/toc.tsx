@@ -42,9 +42,7 @@ export function Toc({ toc }: TocProps) {
 
   return mounted ? (
     <div className="hide-scrollbar sticky top-24 h-[calc(100vh-5rem)] space-y-3">
-      <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
-        {t('toc.label')}
-      </p>
+      <p className="text-xs font-semibold tracking-wider">{t('toc.label')}</p>
       <div className="border-border/40 border-l pl-4">
         <Tree tree={toc} activeItem={activeHeading} />
       </div>
