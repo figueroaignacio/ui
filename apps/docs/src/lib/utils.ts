@@ -1,5 +1,5 @@
+import { docs as rawDocs } from '@/content';
 import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
-import { docs as rawDocs } from '@/velite-content';
 
 export const docs = Array.isArray(rawDocs) ? rawDocs : [];
 

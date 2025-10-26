@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 // Content
-import { docs } from '@/velite-content';
+import { docs } from '@/content';
 
 // Components
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
