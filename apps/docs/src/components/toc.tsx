@@ -41,9 +41,13 @@ export function Toc({ toc }: TocProps) {
   }
 
   return mounted ? (
-    <div className="hide-scrollbar sticky top-24 h-[calc(100vh-5rem)] space-y-2">
-      <p className="text-xs font-medium">{t('toc.label')}</p>
-      <Tree tree={toc} activeItem={activeHeading} />
+    <div className="hide-scrollbar sticky top-24 h-[calc(100vh-5rem)] space-y-3">
+      <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+        {t('toc.label')}
+      </p>
+      <div className="border-border/40 border-l pl-4">
+        <Tree tree={toc} activeItem={activeHeading} />
+      </div>
     </div>
   ) : null;
 }
@@ -99,19 +103,22 @@ interface TreeProps {
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
   return tree.length && level < 3 ? (
-    <ul className={cn('m-0 list-none text-sm', { 'pl-4': level !== 1 })}>
+    <ul className={cn('m-0 list-none space-y-1.5 text-sm', { 'pl-3': level !== 1 })}>
       {tree.map((item, index) => {
+        const isActive = item.url === `#${activeItem}`;
+
         return (
-          <li key={index} className={cn('mt-0 pt-2')}>
+          <li key={index} className="relative">
             <a
               href={item.url}
               className={cn(
-                'hover:text-foreground animate-show-soft inline-block py-0.5 text-xs no-underline transition-all duration-150 hover:underline',
-                item.url === `#${activeItem}`
-                  ? 'text-foreground font-medium underline'
-                  : 'text-muted-foreground',
+                'group relative inline-block py-1 text-xs leading-relaxed no-underline transition-all duration-200',
+                isActive ? 'font-semibold' : 'text-muted-foreground hover:text-foreground',
               )}
             >
+              {isActive && (
+                <span className="bg-foreground absolute top-1/2 -left-4.5 h-4 w-0.5 -translate-y-1/2 rounded-full transition-all" />
+              )}
               {item.title}
             </a>
             {item.items?.length ? (
