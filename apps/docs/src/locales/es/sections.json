@@ -12,6 +12,11 @@
         "label": "Componentes",
         "href": "/docs/components",
         "description": "Descubrí todos los componentes disponibles y cómo implementarlos."
+      },
+      {
+        "label": "Utilidades",
+        "href": "https://i7a-libs.vercel.app",
+        "description": "Colección de utilidades en TypeScript y React pensadas para simplificar patrones comunes de desarrollo y aumentar la productividad."
       }
     ]
   }

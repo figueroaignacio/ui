@@ -59,11 +59,11 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="flex min-h-[85svh] items-center justify-center">
+    <div className="flex min-h-svh items-center justify-center">
       <div>
         <section className="mx-auto max-w-6xl px-4">
           <div className="mx-auto max-w-3xl space-y-8">
-            <div className="space-y-6">
+            <div className="space-y-6 text-center">
               <div className="space-y-3">
                 <h1 className="text-2xl leading-tight font-semibold tracking-tight text-balance md:text-4xl">
                   {t('home.subheading')}
@@ -73,7 +73,7 @@ export default async function HomePage({ params }: PageProps) {
                 {t('home.description')}
               </p>
             </div>
-            <div className="grid gap-4 pt-4 sm:grid-cols-2">
+            <div className="grid gap-4 pt-4 sm:grid-cols-2 [&>*:last-child]:col-span-full">
               {actions.map((action) => (
                 <CardLink
                   key={action.href}

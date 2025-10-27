@@ -111,7 +111,10 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-800 bg-clip-text text-transparent;
+  background: linear-gradient(to right, var(--primary), var(--accent-foreground), var(--primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .grid-main-container {
