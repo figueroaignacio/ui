@@ -59,7 +59,8 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="flex min-h-svh items-center justify-center">
+    <div className="relative flex min-h-svh items-center justify-center">
+      <div className="bg-grid-pattern absolute inset-0 -z-10"></div>
       <div>
         <section className="mx-auto max-w-6xl px-4">
           <div className="mx-auto max-w-3xl space-y-8">

@@ -110,27 +110,24 @@
   }
 }
 
-.gradient-text {
-  background: linear-gradient(to right, var(--primary), var(--accent-foreground), var(--primary));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .grid-main-container {
   @apply grid grid-rows-[auto_1fr_auto];
 }
 
 .bg-grid-pattern {
   background-image:
-    radial-gradient(var(--grid-color) 1px, transparent 1px),
-    radial-gradient(var(--grid-color) 1px, transparent 1px);
+    radial-gradient(circle at center, transparent 0%, var(--background) 70%),
+    linear-gradient(var(--grid-color) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, var(--grid-color) 1.5px, transparent 1.5px);
   background-position:
+    center,
     0 0,
-    10px 10px;
-  background-size: 20px 20px;
-  background-repeat: repeat;
-  z-index: -100;
+    0 0;
+  background-size:
+    100% 100%,
+    50px 50px,
+    50px 50px;
+  background-repeat: no-repeat, repeat, repeat;
 }
 
 .hide-scrollbar {
