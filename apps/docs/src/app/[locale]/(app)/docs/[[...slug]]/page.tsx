@@ -1,4 +1,3 @@
-// app/[locale]/(app)/docs/[[...slug]]/page.tsx
 export const dynamic = 'force-dynamic';
 
 // Content
