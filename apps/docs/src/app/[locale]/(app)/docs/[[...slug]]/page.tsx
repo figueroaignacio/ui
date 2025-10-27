@@ -77,14 +77,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
 
   return (
     <>
-      {/* Contenido principal (columna central) */}
-      <article className="flex flex-col lg:px-36">
-        {/* Mobile TOC */}
+      <article className="flex w-full min-w-0 flex-col lg:px-36">
         <div className="lg:hidden">
           <MobileToc toc={tocContent} />
         </div>
-
-        {/* Header */}
         <div className="border-border mb-5 flex items-start justify-between border-b pb-5">
           <div className="space-y-3">
             <h1 className="text-2xl font-bold">{doc.title}</h1>
@@ -92,17 +88,13 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </div>
           <DocsNavigationButtons currentPath={currentPath} />
         </div>
-
-        {/* MDX Content */}
-        <div className="flex-1">{doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}</div>
-
-        {/* Pagination */}
+        <div className="min-w-0 flex-1">
+          {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
+        </div>
         <div>
           <DocsPagination currentPath={currentPath} />
         </div>
       </article>
-
-      {/* Desktop TOC (tercera columna) */}
       <div className="hidden lg:block">
         <Toc toc={tocContent} />
       </div>
