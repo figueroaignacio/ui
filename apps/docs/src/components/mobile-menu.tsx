@@ -26,15 +26,19 @@ export function MobileMenu() {
     <div className="relative z-50 flex w-full items-center justify-between px-5 py-5 lg:hidden">
       <HamburgerMenuIcon className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />
       <nav
-        className={`bg-bacl bg-card fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
+        className={`bg-background fixed inset-0 z-50 flex h-screen w-full flex-col transition-all duration-300 ease-in-out ${
           isMenuOpen
             ? 'pointer-events-auto scale-100 opacity-100'
             : 'pointer-events-none scale-95 opacity-0'
         }`}
       >
         <div className="flex items-center justify-between px-4 py-3">
-          <Cross1Icon className="size-8 cursor-pointer" onClick={toggleMenu} />
-          <Logo />
+          <button onClick={toggleMenu}>
+            <Cross1Icon className="size-8 cursor-pointer" />
+          </button>
+          <button onClick={toggleMenu}>
+            <Logo />
+          </button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {navigation.map((section, sectionIndex) => (
@@ -49,7 +53,10 @@ export function MobileMenu() {
                     onClick={toggleMenu}
                     className="mr-6"
                   >
-                    <Link href={item.href} className="animate-show-soft block py-2">
+                    <Link
+                      href={item.href}
+                      className="animate-show-soft block py-2 text-2xl font-bold"
+                    >
                       {item.title}
                     </Link>
                   </li>

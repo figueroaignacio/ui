@@ -7,7 +7,6 @@ import { docs } from '@/content';
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { MobileToc } from '@/components/mobile-toc';
 import { Toc } from '@/components/toc';
 
 // Utils
@@ -77,15 +76,14 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   return (
     <>
       <article className="flex w-full min-w-0 flex-col lg:px-36">
-        <div className="lg:hidden">
-          <MobileToc toc={tocContent} />
-        </div>
-        <div className="border-border mb-5 flex items-start justify-between border-b pb-5">
+        <div className="mb-5 flex items-start justify-between pb-5">
           <div className="space-y-3">
-            <h1 className="text-2xl font-bold">{doc.title}</h1>
+            <h1 className="text-3xl font-bold">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>
-          <DocsNavigationButtons currentPath={currentPath} />
+          <div className="hidden lg:block">
+            <DocsNavigationButtons currentPath={currentPath} />
+          </div>
         </div>
         <div className="min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}

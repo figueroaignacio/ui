@@ -11,7 +11,7 @@ export function Navbar() {
   const navigation: { title: string; url: string }[] = t.raw('navigation');
 
   return (
-    <div className="relative z-50 hidden w-full items-center justify-between px-5 py-3 lg:flex">
+    <div className="relative z-50 hidden w-full items-center justify-between px-6 py-3 lg:flex">
       <div className="flex items-center gap-x-3">
         <Logo />
         <nav className="space-x-3">

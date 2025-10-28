@@ -30,6 +30,7 @@ export const docs = defineCollection({
       date: s.coerce.date().default(new Date()),
       label: s.enum(['New', 'Updated']).optional(),
       body: s.mdx(),
+      raw: s.markdown(),
       locale: s.enum(['en', 'es']).default('en'),
       toc: s.object({
         content: s.toc(),

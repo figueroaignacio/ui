@@ -4,7 +4,6 @@ import * as React from 'react';
 
 // Hooks
 import { useMounted } from '@/hooks/use-mounted';
-import { useTranslations } from 'next-intl';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';
@@ -20,8 +19,6 @@ interface TocProps {
 }
 
 export function Toc({ toc }: TocProps) {
-  const t = useTranslations('components');
-
   const itemIds = React.useMemo(
     () =>
       toc
@@ -40,14 +37,35 @@ export function Toc({ toc }: TocProps) {
     return null;
   }
 
-  return mounted ? (
+  if (!mounted) {
+    return (
+      <div className="sticky top-24 h-[calc(100vh-5rem)] space-y-3">
+        <p className="text-xs font-semibold tracking-wider">on this page</p>
+        <div className="bg-secondary h-3 w-24 animate-pulse rounded" />
+        <div className="border-border/40 space-y-3 border-l pl-4">
+          <div className="bg-secondary h-3 w-32 animate-pulse rounded" />
+          <div className="space-y-2.5 pl-3">
+            <div className="bg-secondary h-3 w-28 animate-pulse rounded" />
+            <div className="bg-secondary h-3 w-24 animate-pulse rounded" />
+          </div>
+          <div className="bg-secondary h-3 w-36 animate-pulse rounded" />
+          <div className="space-y-2.5 pl-3">
+            <div className="bg-secondary h-3 w-28 animate-pulse rounded" />
+          </div>
+          <div className="bg-secondary h-3 w-28 animate-pulse rounded" />
+        </div>
+      </div>
+    );
+  }
+
+  return (
     <div className="hide-scrollbar sticky top-24 h-[calc(100vh-5rem)] space-y-3">
-      <p className="text-xs font-semibold tracking-wider">{t('toc.label')}</p>
+      <p className="text-xs font-semibold tracking-wider">on this page</p>
       <div className="border-border/40 border-l pl-4">
         <Tree tree={toc} activeItem={activeHeading} />
       </div>
     </div>
-  ) : null;
+  );
 }
 
 function useActiveItem(itemIds: (string | undefined)[]) {
@@ -101,7 +119,11 @@ interface TreeProps {
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
   return tree.length && level < 3 ? (
-    <ul className={cn('m-0 list-none space-y-1.5 text-sm', { 'pl-3': level !== 1 })}>
+    <ul
+      className={cn('m-0 list-none space-y-1.5 text-sm', {
+        'pl-3': level !== 1,
+      })}
+    >
       {tree.map((item, index) => {
         const isActive = item.url === `#${activeItem}`;
 
@@ -111,11 +133,13 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               href={item.url}
               className={cn(
                 'group relative inline-block py-1 text-xs leading-relaxed no-underline transition-all duration-200',
-                isActive ? 'font-semibold' : 'text-muted-foreground hover:text-foreground',
+                isActive
+                  ? 'text-primary font-semibold'
+                  : 'text-muted-foreground hover:text-foreground',
               )}
             >
               {isActive && (
-                <span className="bg-foreground absolute top-1/2 -left-4.5 h-4 w-0.5 -translate-y-1/2 rounded-full transition-all" />
+                <span className="bg-primary absolute top-1/2 -left-4.5 h-4 w-0.5 -translate-y-1/2 rounded-full transition-all" />
               )}
               {item.title}
             </a>
