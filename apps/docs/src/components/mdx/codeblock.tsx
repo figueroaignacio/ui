@@ -47,7 +47,7 @@ export function CodeBlock({
               }}
             >
               {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line, key: i })} className="table-row">
+                <div key={i} {...getLineProps({ line })} className="table-row">
                   {showLineNumbers && (
                     <span className="text-muted-foreground/50 table-cell pr-4 text-right tabular-nums select-none">
                       {i + 1}
@@ -55,7 +55,7 @@ export function CodeBlock({
                   )}
                   <span className="table-cell">
                     {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
+                      <span key={key} {...getTokenProps({ token })} />
                     ))}
                   </span>
                 </div>
