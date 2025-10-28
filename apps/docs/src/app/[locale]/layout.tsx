@@ -12,6 +12,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Global Styles
+import { Footer } from '@/components/footer';
 import { fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
 
@@ -50,8 +51,11 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
         <ViewTransition>
           <NextIntlClientProvider>
             <Providers>
-              <Header />
-              <main>{children}</main>
+              <div className="pb-18 lg:pb-0">
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </div>
             </Providers>
           </NextIntlClientProvider>
         </ViewTransition>

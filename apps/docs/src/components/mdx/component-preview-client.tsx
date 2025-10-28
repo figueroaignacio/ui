@@ -46,7 +46,6 @@ export function ComponentPreviewClient({
             Code
           </TabsTrigger>
         </TabsList>
-
         <TabsContent value="preview" className="my-6">
           <div className="border-border rounded-xl border">
             <div
@@ -61,7 +60,6 @@ export function ComponentPreviewClient({
             )}
           </div>
         </TabsContent>
-
         <TabsContent value="code" className="mt-0">
           <div className="overflow-hidden">
             {code ? (
