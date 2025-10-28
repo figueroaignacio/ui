@@ -4,6 +4,7 @@ import { CardDemo } from './components/card-demo';
 import { CollapsibleDemo } from './components/collapsible-demo';
 import { DialogDemo } from './components/dialog-demo';
 import { DropdownMenuDemo } from './components/dropdown-menu-demo';
+import { FilesDemo } from './components/files-demo';
 import { SheetDemo } from './components/sheet-demo';
 import { TabsDemo } from './components/tabs-demo';
 import { TimelineDemo } from './components/timeline-demo';
@@ -53,5 +54,10 @@ export const Index = {
     name: 'timeline-demo',
     component: TimelineDemo,
     file: 'packages/ui/src/samples/components/timeline-demo.tsx',
+  },
+  'files-demo': {
+    name: 'files-demo',
+    component: FilesDemo,
+    file: 'packages/ui/src/samples/components/files-demo.tsx',
   },
 };

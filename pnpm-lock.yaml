@@ -26,6 +26,9 @@ importers:
       i7a-themes:
         specifier: ^2.0.1
         version: 2.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      lucide-react:
+        specifier: ^0.544.0
+        version: 0.544.0(react@19.2.0)
       next:
         specifier: 16.0.0
         version: 16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -5677,6 +5680,10 @@ snapshots:
   lucide-react@0.544.0(react@19.1.1):
     dependencies:
       react: 19.1.1
+
+  lucide-react@0.544.0(react@19.2.0):
+    dependencies:
+      react: 19.2.0
 
   magic-string@0.30.18:
     dependencies:

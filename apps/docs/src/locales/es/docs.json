@@ -74,6 +74,11 @@
           "description": "Menús desplegables para acciones o navegación."
         },
         {
+          "title": "Files",
+          "href": "/docs/components/files",
+          "description": "Un componente de árbol de archivos interactivo para mostrar estructuras jerárquicas de carpetas y archivos."
+        },
+        {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Componente de hoja para mostrar contenido adicional."

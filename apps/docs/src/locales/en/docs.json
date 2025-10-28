@@ -74,6 +74,12 @@
           "description": "Menu that expands to reveal additional options."
         },
         {
+          "title": "Files",
+          "href": "/docs/components/files",
+          "description": ""
+        },
+
+        {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Sheet component to show additional content."
