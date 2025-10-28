@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 import { docs } from '@/content';
 
 // Components
+import { MobileDocsPagination } from '@/components/docs-mobile-pagination';
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
 import { MDXContent } from '@/components/mdx/mdx-content';
@@ -85,16 +86,17 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <DocsNavigationButtons currentPath={currentPath} />
           </div>
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 pb-18 lg:pb-0">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
         </div>
-        <div>
+        <div className="hidden lg:block">
           <DocsPagination currentPath={currentPath} />
         </div>
       </article>
       <div className="hidden lg:block">
         <Toc toc={tocContent} />
       </div>
+      <MobileDocsPagination currentPath={currentPath} />
     </>
   );
 }
