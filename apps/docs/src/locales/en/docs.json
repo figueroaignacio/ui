@@ -49,6 +49,11 @@
           "description": "Expandable and collapsible content panels."
         },
         {
+          "title": "Breadcrumb",
+          "href": "/docs/components/breadcrumb",
+          "description": "Indicates the location within the site through a sequence of links."
+        },
+        {
           "title": "Button",
           "href": "/docs/components/button",
           "description": "Interactive buttons for user actions."

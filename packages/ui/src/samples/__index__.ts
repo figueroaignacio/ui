@@ -1,4 +1,5 @@
 import { AccordionDemo } from './components/accordion-demo';
+import { BreadcrumbDemo } from './components/breadcrumb-demo';
 import { ButtonDemo } from './components/button-demo';
 import { CardDemo } from './components/card-demo';
 import { CollapsibleDemo } from './components/collapsible-demo';
@@ -59,5 +60,10 @@ export const Index = {
     name: 'files-demo',
     component: FilesDemo,
     file: 'packages/ui/src/samples/components/files-demo.tsx',
+  },
+  'breadcrumb-demo': {
+    name: 'breadcrumb-demo',
+    component: BreadcrumbDemo,
+    file: 'packages/ui/src/samples/components/breadcrumb-demo.tsx',
   },
 };

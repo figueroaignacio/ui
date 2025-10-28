@@ -49,6 +49,11 @@
           "description": "Muestra y oculta contenido expandible."
         },
         {
+          "title": "Breadcrumb",
+          "href": "/docs/components/breadcrumb",
+          "description": "Indica la ubicación actual dentro del sitio a través de una secuencia de enlaces."
+        },
+        {
           "title": "Button",
           "href": "/docs/components/button",
           "description": "Botones interactivos con distintos estilos y tamaños."

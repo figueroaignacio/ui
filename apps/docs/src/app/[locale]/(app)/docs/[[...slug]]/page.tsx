@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 import { docs } from '@/content';
 
 // Components
+import { DocsBreadcrumb } from '@/components/docs-breadcrumb';
 import { MobileDocsPagination } from '@/components/docs-mobile-pagination';
 import { DocsNavigationButtons } from '@/components/docs-navigation-button';
 import { DocsPagination } from '@/components/docs-pagination';
@@ -79,6 +80,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <article className="flex w-full min-w-0 flex-col lg:px-36">
         <div className="mb-5 flex items-start justify-between pb-5">
           <div className="space-y-3">
+            <DocsBreadcrumb slugAsParams={doc.slugAsParams} />
             <h1 className="text-3xl font-bold">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>
