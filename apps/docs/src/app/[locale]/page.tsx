@@ -1,5 +1,6 @@
 // Components
-import { CardLink } from '@/components/card-link';
+import { Link } from '@/i18n/navigation';
+import { Button } from '@repo/ui/components/button';
 
 // Utils
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -17,6 +18,7 @@ interface HomePageActions {
   href: string;
   label: string;
   description: string;
+  variant?: 'default' | 'secondary';
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -59,13 +61,19 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="relative flex min-h-svh items-center justify-center">
+    <div className="relative flex min-h-[60svh] items-center justify-center">
       <div className="bg-grid-pattern absolute inset-0 -z-10"></div>
       <div>
         <section className="mx-auto max-w-6xl px-4">
           <div className="mx-auto max-w-3xl space-y-8">
             <div className="space-y-6 text-center">
               <div className="space-y-3">
+                <div className="inline-block">
+                  <span className="bg-primary/20 border-accent/50 text-primary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
+                    <span className="bg-primary h-2 w-2 rounded-full"></span>
+                    Componentes UI Profesionales
+                  </span>
+                </div>
                 <h1 className="text-2xl leading-tight font-semibold tracking-tight text-balance md:text-4xl">
                   {t('home.subheading')}
                 </h1>
@@ -74,14 +82,11 @@ export default async function HomePage({ params }: PageProps) {
                 {t('home.description')}
               </p>
             </div>
-            <div className="grid gap-4 pt-4 sm:grid-cols-2 [&>*:last-child]:col-span-full">
+            <div className="flex w-full justify-center gap-3">
               {actions.map((action) => (
-                <CardLink
-                  key={action.href}
-                  label={action.label}
-                  href={action.href}
-                  description={action.description}
-                />
+                <Button key={action.href} variant={action.variant} size="sm">
+                  <Link href={action.href}>{action.label}</Link>
+                </Button>
               ))}
             </div>
           </div>

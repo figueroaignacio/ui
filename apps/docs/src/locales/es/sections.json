@@ -4,19 +4,16 @@
     "description": "Construidos con estándares de accesibilidad y diseñados para adaptarse a cualquier sistema de diseño.",
     "actions": [
       {
-        "label": "Documentación",
+        "label": "Comenzar",
         "href": "/docs",
-        "description": "Guía completa de como  usar e integrar los componentes."
+        "description": "Guía completa de como  usar e integrar los componentes.",
+        "variant": "default"
       },
       {
         "label": "Componentes",
         "href": "/docs/components",
-        "description": "Descubrí todos los componentes disponibles y cómo implementarlos."
-      },
-      {
-        "label": "Utilidades",
-        "href": "https://i7a-libs.vercel.app",
-        "description": "Colección de utilidades en TypeScript y React pensadas para simplificar patrones comunes de desarrollo y aumentar la productividad."
+        "description": "Descubrí todos los componentes disponibles y cómo implementarlos.",
+        "variant": "secondary"
       }
     ]
   }
