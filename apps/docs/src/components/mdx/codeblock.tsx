@@ -19,8 +19,7 @@ export function CodeBlock({
   showLineNumbers = false,
 }: CodeBlockProps) {
   return (
-    <div className="group border-border bg-card relative my-6 overflow-hidden rounded-xl border shadow-lg">
-      {/* Header */}
+    <div className="group border-border bg-card relative my-6 overflow-hidden rounded-xl border">
       <div className="border-border bg-muted/50 flex items-center justify-between border-b px-4 py-3 backdrop-blur-sm">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">

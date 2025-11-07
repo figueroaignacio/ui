@@ -1,4 +1,6 @@
 // Components
+import { BgBlur } from '@/components/bg-blur';
+import { ComponentsPanel } from '@/components/components-panel';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 
@@ -9,9 +11,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 type PageProps = {
-  params: Promise<{
-    locale: string;
-  }>;
+  params: Promise<{ locale: string }>;
 };
 
 interface HomePageActions {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: t('title'),
       description: t('description'),
       type: 'website',
-      locale: locale,
+      locale,
       url: `https://i7a-ui.vercel.app/${locale}`,
       siteName: 'I7A UI',
       images: [
@@ -61,37 +61,37 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="relative flex min-h-[60svh] items-center justify-center">
-      <div className="bg-grid-pattern absolute inset-0 -z-10"></div>
-      <div>
-        <section className="mx-auto max-w-6xl px-4">
-          <div className="mx-auto max-w-3xl space-y-8">
-            <div className="space-y-6 text-center">
-              <div className="space-y-3">
-                <div className="inline-block">
-                  <span className="bg-primary/20 border-accent/50 text-primary inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
-                    <span className="bg-primary h-2 w-2 rounded-full"></span>
-                    Componentes UI Profesionales
-                  </span>
-                </div>
-                <h1 className="text-2xl leading-tight font-semibold tracking-tight text-balance md:text-4xl">
-                  {t('home.subheading')}
-                </h1>
-              </div>
-              <p className="text-muted-foreground text-sm leading-relaxed text-pretty md:text-lg">
-                {t('home.description')}
-              </p>
-            </div>
-            <div className="flex w-full justify-center gap-3">
-              {actions.map((action) => (
-                <Button key={action.href} variant={action.variant} size="sm">
-                  <Link href={action.href}>{action.label}</Link>
-                </Button>
-              ))}
-            </div>
+    <main className="relative min-h-[70svh] overflow-hidden overflow-x-hidden px-4">
+      <BgBlur />
+      <div className="mx-auto grid items-start gap-12 px-3 md:grid-cols-2">
+        <section className="flex min-h-[85svh] flex-col justify-center space-y-3 py-3 text-left">
+          <div className="border-primary/20 bg-primary/10 text-primary inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
+            <span className="bg-primary h-2 w-2 rounded-full" />
+            {t('home.badge')}
+          </div>
+          <h1 className="max-w-3xl text-3xl leading-tight font-semibold tracking-tight text-balance md:text-5xl">
+            {t('home.subheading')}
+          </h1>
+          <p className="text-muted-foreground text-sm leading-relaxed text-pretty md:text-lg">
+            {t('home.description')}
+          </p>
+          <div className="z-50 flex flex-wrap gap-3 pt-4">
+            {actions.map((action) => (
+              <Button
+                key={action.href}
+                variant={action.variant}
+                size="sm"
+                className="transition-transform hover:scale-[1.03]"
+              >
+                <Link href={action.href}>{action.label}</Link>
+              </Button>
+            ))}
           </div>
         </section>
+        <div className="hidden w-[70vw] px-6 lg:block">
+          <ComponentsPanel />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

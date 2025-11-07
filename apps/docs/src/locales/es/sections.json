@@ -1,18 +1,19 @@
 {
   "home": {
-    "subheading": "Componentes UI accesibles y personalizables para aplicaciones web profesionales. ",
-    "description": "Construidos con estándares de accesibilidad y diseñados para adaptarse a cualquier sistema de diseño.",
+    "badge": "Kit UI Open Source",
+    "subheading": "Componentes modernos, accesibles y personalizables para crear interfaces web profesionales.",
+    "description": "Pensado para ofrecer una base sólida y flexible, este kit se adapta a cualquier diseño o flujo de trabajo.",
     "actions": [
       {
-        "label": "Comenzar",
+        "label": "Empezar",
         "href": "/docs",
-        "description": "Guía completa de como  usar e integrar los componentes.",
+        "description": "Guía completa para instalar, usar e integrar el kit en tus proyectos.",
         "variant": "default"
       },
       {
-        "label": "Componentes",
+        "label": "Ver Componentes",
         "href": "/docs/components",
-        "description": "Descubrí todos los componentes disponibles y cómo implementarlos.",
+        "description": "Explorá todos los componentes disponibles y aprendé cómo aplicarlos.",
         "variant": "secondary"
       }
     ]

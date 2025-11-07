@@ -51,7 +51,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
         <ViewTransition>
           <NextIntlClientProvider>
             <Providers>
-              <div className="flex min-h-screen flex-col pb-18 lg:pb-0">
+              <div className="flex min-h-screen flex-col lg:pb-0">
                 <Header />
                 <main className="flex-1">{children}</main>
                 <Footer />
