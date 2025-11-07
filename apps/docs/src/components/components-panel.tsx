@@ -1,5 +1,4 @@
-'use client';
-
+// Components
 import { Button } from '@repo/ui/components/button';
 import {
   Card,
@@ -23,7 +22,6 @@ export function ComponentsPanel() {
 
   return (
     <div className="grid grid-cols-2 gap-3">
-      {/* Your team panel */}
       <Card className="bg-card/50 border-border border backdrop-blur-sm">
         <CardHeader className="pb-4">
           <CardTitle className="text-base">Your team</CardTitle>
@@ -177,7 +175,6 @@ export function ComponentsPanel() {
                 </Button>
               </div>
             </div>
-
             <div>
               <div className="mb-2 text-sm font-medium">New documents</div>
               <p className="text-muted-foreground mb-3 text-xs">
