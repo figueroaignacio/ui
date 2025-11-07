@@ -28,11 +28,12 @@ export function ComponentPreviewClient({
   };
 
   return (
-    <div className={` ${className}`}>
+    <div className={`${className}`}>
       <Tabs defaultValue="preview" className="w-full">
-        <TabsList className="border-0">
+        <TabsList className="border-0" size="sm">
           <TabsTrigger
             value="preview"
+            size="sm"
             className="data-[state=active]:bg-card gap-2 data-[state=active]:shadow-sm"
           >
             <EyeOpenIcon className="h-4 w-4" />
@@ -40,6 +41,7 @@ export function ComponentPreviewClient({
           </TabsTrigger>
           <TabsTrigger
             value="code"
+            size="sm"
             className="data-[state=active]:bg-card gap-2 data-[state=active]:shadow-sm"
           >
             <CodeIcon className="h-4 w-4" />
@@ -47,9 +49,9 @@ export function ComponentPreviewClient({
           </TabsTrigger>
         </TabsList>
         <TabsContent value="preview" className="my-6">
-          <div className="border-border rounded-xl border">
+          <div className="border-border rouneded-3xl rounded-xl border">
             <div
-              className={`flex min-h-[400px] items-center ${alignmentClasses[align]} p-8 sm:p-12`}
+              className={`flex min-h-[500px] items-center ${alignmentClasses[align]} p-8 sm:p-12`}
             >
               {componentPreview}
             </div>

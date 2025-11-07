@@ -1,7 +1,10 @@
-import { Index } from '@repo/ui/samples';
-import fs from 'fs';
-import path from 'path';
+'use server';
+
+// Components
 import { ComponentPreviewClient } from './component-preview-client';
+
+// Utils
+import { getComponentCode } from '@/lib/get-component-code';
 
 interface ComponentPreviewProps {
   name: string;
@@ -16,30 +19,14 @@ export async function ComponentPreview({
   className = '',
   align = 'center',
 }: ComponentPreviewProps) {
-  const item = Index[name as keyof typeof Index];
+  const { item, code, error } = await getComponentCode(name);
 
-  if (!item) {
+  if (error || !item) {
     return (
       <div className="rounded border border-red-300 p-4 text-red-500">
-        Error: Componente "{name}" no encontrado en el index
+        {error ?? `Error: Componente "${name}" no encontrado.`}
       </div>
     );
-  }
-
-  let code: string | null = null;
-
-  if (item.file) {
-    const filePath = path.join(process.cwd(), '../../', item.file);
-    try {
-      code = await fs.promises.readFile(filePath, 'utf-8');
-      // Cambia estas líneas:
-      code = code
-        .replaceAll("from '../../components/", "from '@/components/ui/")
-        .replaceAll('from "../../components/', 'from "@/components/ui/');
-    } catch (error) {
-      console.error('Error reading file:', error);
-      code = null;
-    }
   }
 
   const Component = item.component;

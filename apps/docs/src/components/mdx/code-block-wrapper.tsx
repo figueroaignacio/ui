@@ -1,53 +1,48 @@
 'use client';
 
-import * as React from 'react';
+// Hooks
+import { cloneElement, useState } from 'react';
 
+// Components
 import { Button } from '@repo/ui/components/button';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@repo/ui/components/collapsible';
-import { cn } from '@repo/ui/lib/cn';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
-interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CodeBlockProps {
+  expandButton?: React.ReactNode;
+  isExpanded?: boolean;
+}
+
+interface CodeBlockWrapperProps {
+  children: React.ReactElement<CodeBlockProps>;
   expandButtonTitle?: string;
 }
 
 export function CodeBlockWrapper({
-  expandButtonTitle = 'View Code',
-  className,
   children,
-  ...props
-}: CodeBlockProps) {
-  const [isOpened, setIsOpened] = React.useState(false);
+  expandButtonTitle = 'Expandir',
+}: CodeBlockWrapperProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  return (
-    <Collapsible open={isOpened} onOpenChange={setIsOpened}>
-      <div className={cn('relative overflow-hidden', className)} {...props}>
-        <CollapsibleContent forceMount className={cn('overflow-hidden', !isOpened && 'max-h-32')}>
-          <div
-            className={cn(
-              '[&_[data-rehype-pretty-code-figure]]:my-0 [&_pre]:max-h-[650px] [&_pre]:pb-[100px]',
-              !isOpened ? '[&_pre]:overflow-hidden' : '[&_pre]:overflow-auto]',
-            )}
-          >
-            {children}
-          </div>
-        </CollapsibleContent>
-        <div
-          className={cn(
-            'absolute flex items-center justify-center bg-gradient-to-b from-zinc-700/30 to-[hsl(0,0%,7%)] p-2',
-            isOpened ? 'inset-x-0 bottom-0 mx-[2px] h-12 from-[#17191E]' : 'inset-0',
-          )}
-        >
-          <CollapsibleTrigger asChild>
-            <Button variant="secondary" className="h-8 text-xs">
-              {isOpened ? 'Collapse' : expandButtonTitle}
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-      </div>
-    </Collapsible>
+  const expandButton = (
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={() => setIsExpanded((prev) => !prev)}
+      className="h-8 gap-1 text-xs"
+    >
+      {isExpanded ? (
+        <>
+          <ChevronUp className="h-3 w-3" />
+          Contraer
+        </>
+      ) : (
+        <>
+          <ChevronDown className="h-3 w-3" />
+          {expandButtonTitle}
+        </>
+      )}
+    </Button>
   );
+
+  return cloneElement(children, { expandButton, isExpanded });
 }

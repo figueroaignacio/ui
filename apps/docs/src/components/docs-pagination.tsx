@@ -34,7 +34,7 @@ function PaginationLink({
   return (
     <Link
       href={item.href}
-      className={`border-border hover:bg-secondary group flex flex-1 flex-col gap-2 rounded-xl border p-4 transition-colors ${isNext ? 'text-right' : ''}`}
+      className={`border-border hover:bg-secondary group bg-card flex flex-1 flex-col gap-2 rounded-xl border p-4 transition-colors ${isNext ? 'text-right' : ''}`}
     >
       <span
         className={`text-muted-foreground flex items-center gap-2 text-sm ${isNext ? 'justify-end' : ''}`}

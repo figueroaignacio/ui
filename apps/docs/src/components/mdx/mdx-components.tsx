@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/ta
 import { Blockquote } from './blockquote';
 import { CodeBlockWrapper } from './code-block-wrapper';
 import { ComponentPreview } from './component-preview';
+import { ComponentSource } from './component-source';
 import { ComponentsList } from './components-list';
 import { H1, H2, H3, H4, H5, H6 } from './heading';
 import { Image } from './image';
@@ -46,4 +47,5 @@ export const mdxComponents = {
   TabsList,
   ComponentPreview,
   ComponentsList,
+  ComponentSource,
 };

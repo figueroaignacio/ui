@@ -1,6 +1,13 @@
 import { AccordionDemo } from './components/accordion-demo';
 import { BreadcrumbDemo } from './components/breadcrumb-demo';
-import { ButtonDemo } from './components/button-demo';
+import { ButtonDemo } from './components/button/button-demo';
+import { ButtonDestructiveDemo } from './components/button/button-destructive-demo';
+import { ButtonGhostDemo } from './components/button/button-ghost-demo';
+import { ButtonLinkDemo } from './components/button/button-link-demo';
+import { ButtonOutlineDemo } from './components/button/button-outline-demo';
+import { ButtonSecondaryDemo } from './components/button/button-secondary-demo';
+import { ButtonSizesDemo } from './components/button/button-sizes-demo';
+import { Button } from './components/button/button-source';
 import { CardDemo } from './components/card-demo';
 import { CollapsibleDemo } from './components/collapsible-demo';
 import { DialogDemo } from './components/dialog-demo';
@@ -11,10 +18,45 @@ import { TabsDemo } from './components/tabs-demo';
 import { TimelineDemo } from './components/timeline-demo';
 
 export const Index = {
+  'button-source': {
+    name: 'button-source',
+    component: Button,
+    file: 'packages/ui/src/samples/components/button/button-source.tsx',
+  },
   'button-demo': {
     name: 'button-demo',
     component: ButtonDemo,
-    file: 'packages/ui/src/samples/components/button-demo.tsx',
+    file: 'packages/ui/src/samples/components/button/button-demo.tsx',
+  },
+  'button-secondary-demo': {
+    name: 'button-secondary-demo',
+    component: ButtonSecondaryDemo,
+    file: 'packages/ui/src/samples/components/button/button-secondary-demo.tsx',
+  },
+  'button-destructive-demo': {
+    name: 'button-destructive-demo',
+    component: ButtonDestructiveDemo,
+    file: 'packages/ui/src/samples/components/button/button-destructive-demo.tsx',
+  },
+  'button-outline-demo': {
+    name: 'button-outline-demo',
+    component: ButtonOutlineDemo,
+    file: 'packages/ui/src/samples/components/button/button-outline-demo.tsx',
+  },
+  'button-ghost-demo': {
+    name: 'button-ghost-demo',
+    component: ButtonGhostDemo,
+    file: 'packages/ui/src/samples/components/button/button-ghost-demo.tsx',
+  },
+  'button-link-demo': {
+    name: 'button-link-demo',
+    component: ButtonLinkDemo,
+    file: 'packages/ui/src/samples/components/button/button-link-demo.tsx',
+  },
+  'button-sizes-demo': {
+    name: 'button-sizes-demo',
+    component: ButtonSizesDemo,
+    file: 'packages/ui/src/samples/components/button/button-sizes-demo.tsx',
   },
   'accordion-demo': {
     name: 'accordion-demo',
