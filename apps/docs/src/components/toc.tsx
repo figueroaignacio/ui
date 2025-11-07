@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
-
 // Hooks
 import { useMounted } from '@/hooks/use-mounted';
+import { useTranslations } from 'next-intl';
+import { useEffect, useMemo, useState } from 'react';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';
@@ -19,7 +19,7 @@ interface TocProps {
 }
 
 export function Toc({ toc }: TocProps) {
-  const itemIds = React.useMemo(
+  const itemIds = useMemo(
     () =>
       toc
         ? toc
@@ -32,6 +32,7 @@ export function Toc({ toc }: TocProps) {
   );
   const activeHeading = useActiveItem(itemIds);
   const mounted = useMounted();
+  const t = useTranslations('components.toc');
 
   if (!toc || toc.length === 0) {
     return null;
@@ -40,7 +41,7 @@ export function Toc({ toc }: TocProps) {
   if (!mounted) {
     return (
       <div className="sticky top-24 h-[calc(100vh-5rem)] space-y-3">
-        <p className="text-xs font-semibold tracking-wider">on this page</p>
+        <p className="text-xs font-semibold tracking-wider">{t('label')}</p>
         <div className="bg-secondary h-3 w-24 animate-pulse rounded" />
         <div className="border-border/40 space-y-3 border-l pl-4">
           <div className="bg-secondary h-3 w-32 animate-pulse rounded" />
@@ -60,7 +61,7 @@ export function Toc({ toc }: TocProps) {
 
   return (
     <div className="hide-scrollbar sticky top-24 h-[calc(100vh-5rem)] space-y-3">
-      <p className="text-xs font-semibold tracking-wider">on this page</p>
+      <p className="text-xs font-semibold tracking-wider">{t('label')}</p>
       <div className="border-border/40 border-l pl-4">
         <Tree tree={toc} activeItem={activeHeading} />
       </div>
@@ -69,9 +70,9 @@ export function Toc({ toc }: TocProps) {
 }
 
 function useActiveItem(itemIds: (string | undefined)[]) {
-  const [activeId, setActiveId] = React.useState<string>('');
+  const [activeId, setActiveId] = useState<string>('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

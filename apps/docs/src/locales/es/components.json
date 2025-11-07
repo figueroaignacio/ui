@@ -13,5 +13,9 @@
   "footer": {
     "copyright": "Todos los derechos reservados",
     "headline": "Desarrollador Fullstack  & Estudiante de Programación"
+  },
+  "codeblockWrapper": {
+    "expand": "Expandir",
+    "collapse": "Colapsar"
   }
 }

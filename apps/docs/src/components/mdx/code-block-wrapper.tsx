@@ -1,6 +1,7 @@
 'use client';
 
 // Hooks
+import { useTranslations } from 'next-intl';
 import { cloneElement, useState } from 'react';
 
 // Components
@@ -22,6 +23,7 @@ export function CodeBlockWrapper({
   expandButtonTitle = 'Expandir',
 }: CodeBlockWrapperProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const t = useTranslations('components.codeblockWrapper');
 
   const expandButton = (
     <Button
@@ -33,12 +35,12 @@ export function CodeBlockWrapper({
       {isExpanded ? (
         <>
           <ChevronUp className="h-3 w-3" />
-          Contraer
+          {t('collapse')}
         </>
       ) : (
         <>
           <ChevronDown className="h-3 w-3" />
-          {expandButtonTitle}
+          {t('expand')}
         </>
       )}
     </Button>

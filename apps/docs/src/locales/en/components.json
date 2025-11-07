@@ -13,5 +13,9 @@
   "footer": {
     "copyright": "All rights reserved",
     "headline": "Fullstack Developer & Pogramming Student"
+  },
+  "codeblockWrapper": {
+    "expand": "Expand",
+    "collapse": "Collapse"
   }
 }
