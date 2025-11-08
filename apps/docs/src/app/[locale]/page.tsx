@@ -60,14 +60,14 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="relative px-4">
+    <div className="flex min-h-[80svh] items-center justify-center px-4">
       <BgBlur />
-      <section className="flex min-h-[50svh] flex-col justify-center space-y-3 px-0 py-3 text-left md:px-3">
-        <div className="border-primary/20 bg-primary/10 text-primary inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
+      <section className="max-w-2xl flex-col space-y-3 px-0 py-3 text-left md:px-3">
+        <div className="border-primary/20 bg-primary/10 text-primary inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
           <span className="bg-primary h-2 w-2 rounded-full" />
           {t('home.badge')}
         </div>
-        <h1 className="max-w-3xl text-3xl leading-tight font-semibold tracking-tight text-balance md:text-4xl">
+        <h1 className="text-3xl leading-tight font-semibold tracking-tight text-balance">
           {t('home.subheading')}
         </h1>
         <p className="text-muted-foreground text-sm leading-relaxed text-pretty md:text-lg">
