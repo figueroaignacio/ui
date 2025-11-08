@@ -9,9 +9,9 @@ interface CodeBlockSourceProps {
   className?: string;
 }
 
-export function CodeBlockSource({ code, expandButtonTitle, className }: CodeBlockSourceProps) {
+export function CodeBlockSource({ code, expandButtonTitle }: CodeBlockSourceProps) {
   return (
-    <CodeBlockWrapper expandButtonTitle={expandButtonTitle} className={className}>
+    <CodeBlockWrapper expandButtonTitle={expandButtonTitle}>
       <CodeBlock code={code} language="tsx" showLineNumbers />
     </CodeBlockWrapper>
   );
