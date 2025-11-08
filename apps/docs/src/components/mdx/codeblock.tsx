@@ -28,11 +28,11 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group border-border bg-card relative my-6 overflow-hidden rounded-xl border transition-all duration-300 ease-in-out',
+        'group border-border relative my-6 overflow-hidden rounded-xl bg-[#090b0f] transition-all duration-300 ease-in-out',
         className,
       )}
     >
-      <div className="border-border flex items-center justify-between border-b px-4 py-3 backdrop-blur-sm">
+      <div className="flex items-center justify-between border-b border-[#181b1f] px-4 py-3">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
             <div className="h-3 w-3 rounded-full bg-red-500/80" />
@@ -46,7 +46,7 @@ export function CodeBlock({
         </div>
       </div>
 
-      <Highlight code={code.trim()} language={language} theme={themes.oneDark}>
+      <Highlight code={code.trim()} language={language} theme={themes.vsDark}>
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
@@ -76,11 +76,9 @@ export function CodeBlock({
           </pre>
         )}
       </Highlight>
-
-      {/* 🔥 Efecto fade cuando está colapsado */}
-      {!isExpanded && (
+      {/* {!isExpanded && (
         <div className="from-card pointer-events-none absolute bottom-0 left-0 h-16 w-full bg-linear-to-t to-transparent" />
-      )}
+      )} */}
     </div>
   );
 }

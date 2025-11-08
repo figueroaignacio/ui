@@ -1,10 +1,11 @@
 // Components
+import { BgBlur } from '@/components/bg-blur';
 import { Sidebar } from '@/components/sidebar';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative grid grid-cols-1 gap-3 lg:grid-cols-[210px_1fr_210px]">
-      {/* <BgBlur /> */}
+      <BgBlur />
       <div>
         <Sidebar />
       </div>

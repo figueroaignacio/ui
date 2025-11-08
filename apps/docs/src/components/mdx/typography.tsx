@@ -48,11 +48,7 @@ export function Link({ className, ...props }: TypographyProps<HTMLAnchorElement>
 export function Paragraph({ className, ...props }: TypographyProps<HTMLParagraphElement>) {
   return (
     <p
-      className={cn(
-        'text-foreground/90 text-[15px] leading-[1.75]',
-        '[&:not(:first-child)]:mt-6',
-        className,
-      )}
+      className={cn('text-foreground/90 text-[15px] leading-[1.75]', 'not-first:mt-6', className)}
       {...props}
     />
   );
@@ -100,7 +96,7 @@ export function Blockquote({ className, ...props }: TypographyProps<HTMLQuoteEle
       className={cn(
         'border-primary/40 mt-6 border-l-4 pl-6 italic',
         'text-muted-foreground',
-        '[&>*]:text-muted-foreground',
+        '*:text-muted-foreground',
         className,
       )}
       {...props}

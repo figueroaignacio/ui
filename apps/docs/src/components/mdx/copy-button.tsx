@@ -18,7 +18,7 @@ export function CopyButton({ value, className }: CopyButtonProps) {
     <button
       onClick={() => copyToClipboard(value)}
       disabled={isCopied}
-      className={`text-muted-foreground hover:text-foreground transition-all ${className || ''}`}
+      className={`text-[#fdfdfd] transition-all ${className || ''}`}
       title={isCopied ? 'Copied!' : 'Copy code'}
     >
       {isCopied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
