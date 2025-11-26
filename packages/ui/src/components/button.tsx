@@ -1,16 +1,18 @@
-'use client';
-
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
-import React, { forwardRef, useCallback } from 'react';
-import { cn } from '../lib/cn';
+import React, { forwardRef } from 'react';
+
+const cn = (...inputs: any[]) => {
+  return inputs.filter(Boolean).join(' ');
+};
 
 const buttonVariants = cva(
   [
     // Base styles
     'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium',
-    'transition-all duration-200 ease-in-out',
+    'transition-all duration-300 ease-out',
     'outline-none select-none',
+    'relative overflow-hidden',
     // Focus styles
     'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     // Disabled styles
@@ -18,38 +20,48 @@ const buttonVariants = cva(
     // SVG styles
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     '[&_svg:not([class*="size-"])]:size-4',
+    '[&_svg]:transition-transform [&_svg]:duration-300',
     // Invalid state
     'aria-invalid:ring-2 aria-invalid:ring-destructive/50 aria-invalid:border-destructive',
-    // Active state
-    'active:scale-[0.95]',
+    // Active state with bounce
+    'active:scale-95',
+    // Hover lift effect
+    'hover:-translate-y-0.5',
+    // Shine effect
+    'before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent',
+    'before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700',
   ].join(' '),
   {
     variants: {
       variant: {
         default: [
-          'bg-secondary text-secondary-foreground shadow-sm',
-          'hover:bg-secondary/80 hover:shadow-md',
+          'bg-secondary text-secondary-foreground shadow-md',
+          'hover:bg-secondary/90 hover:shadow-xl hover:shadow-secondary/20',
           'active:shadow-sm',
         ].join(' '),
         destructive: [
-          'bg-destructive text-destructive-foreground shadow-sm',
-          'hover:bg-destructive/90 hover:shadow-md',
+          'bg-destructive text-destructive-foreground shadow-md',
+          'hover:bg-destructive/90 hover:shadow-xl hover:shadow-destructive/20',
           'active:shadow-sm',
           'focus-visible:ring-destructive/50',
         ].join(' '),
         outline: [
-          'border border-input bg-transparent',
-          'hover:bg-secondary hover:border-secondary',
+          'border-2 border-input bg-transparent',
+          'hover:bg-secondary hover:border-secondary hover:shadow-lg',
+          'hover:scale-[1.02]',
         ].join(' '),
         secondary: [
-          'bg-primary text-white shadow-sm',
-          'hover:bg-primary/90 hover:shadow-md',
+          'bg-primary text-white shadow-md',
+          'hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20',
           'active:shadow-sm',
         ].join(' '),
-        ghost: ['hover:bg-secondary'].join(' '),
-        link: ['text-primary underline-offset-4', 'hover:underline', 'active:text-primary/80'].join(
-          ' ',
-        ),
+        ghost: ['hover:bg-secondary hover:shadow-md', 'hover:scale-105'].join(' '),
+        link: [
+          'text-primary underline-offset-4',
+          'hover:underline hover:text-primary/80',
+          'active:text-primary/60',
+          'hover:scale-105',
+        ].join(' '),
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -77,7 +89,6 @@ interface ButtonProps
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
-  onClickAsync?: (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
 
 interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -99,34 +110,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       disabled,
       children,
-      onClick,
-      onClickAsync,
       type = 'button',
       ...props
     },
     ref,
   ) => {
-    const [isAsyncLoading, setIsAsyncLoading] = React.useState(false);
-    const isLoading = loading || isAsyncLoading;
-    const isDisabled = disabled || isLoading;
-
-    const handleClick = useCallback(
-      async (event: React.MouseEvent<HTMLButtonElement>) => {
-        if (onClickAsync) {
-          setIsAsyncLoading(true);
-          try {
-            await onClickAsync(event);
-          } catch (error) {
-            console.error('Button async click error:', error);
-          } finally {
-            setIsAsyncLoading(false);
-          }
-        } else {
-          onClick?.(event);
-        }
-      },
-      [onClick, onClickAsync],
-    );
+    const isDisabled = disabled || loading;
 
     const LoaderComponent = loader ?? (
       <Loader2 className="size-4 animate-spin" aria-hidden="true" />
@@ -137,19 +126,28 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         disabled={isDisabled}
-        onClick={handleClick}
-        className={cn(
-          buttonVariants({ variant, size, loading: isLoading }),
-          fullWidth && 'w-full',
-          className,
-        )}
-        aria-busy={isLoading}
+        className={cn(buttonVariants({ variant, size, loading }), fullWidth && 'w-full', className)}
+        aria-busy={loading}
         {...props}
       >
-        {isLoading && LoaderComponent}
-        {!isLoading && leftIcon && <span aria-hidden="true">{leftIcon}</span>}
-        {children}
-        {!isLoading && rightIcon && <span aria-hidden="true">{rightIcon}</span>}
+        {loading && LoaderComponent}
+        {!loading && leftIcon && (
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:rotate-12"
+          >
+            {leftIcon}
+          </span>
+        )}
+        <span className="relative z-10">{children}</span>
+        {!loading && rightIcon && (
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:-rotate-12"
+          >
+            {rightIcon}
+          </span>
+        )}
       </button>
     );
   },
@@ -161,6 +159,7 @@ const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   ({ className, children, orientation = 'horizontal', attached = false, ...props }, ref) => {
     const groupClassName = cn(
       'inline-flex',
+      'transition-all duration-300',
       orientation === 'horizontal' ? 'flex-row' : 'flex-col',
       attached
         ? orientation === 'horizontal'
