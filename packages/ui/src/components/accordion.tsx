@@ -1,7 +1,7 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
-
 import { cn } from '../lib/cn';
 
 interface AccordionProps {
@@ -9,10 +9,9 @@ interface AccordionProps {
   defaultValue?: string;
   children?: React.ReactNode;
   className?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
-function Accordion({ type = 'single', defaultValue, children, className, ref }: AccordionProps) {
+function Accordion({ type = 'single', defaultValue, children, className }: AccordionProps) {
   const [openItems, setOpenItems] = React.useState<string[]>(defaultValue ? [defaultValue] : []);
 
   const handleToggle = (value: string) => {
@@ -28,7 +27,7 @@ function Accordion({ type = 'single', defaultValue, children, className, ref }: 
   };
 
   return (
-    <div ref={ref} className={cn('w-full', className)}>
+    <div className={cn('w-full', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, {
@@ -50,12 +49,11 @@ interface AccordionItemProps {
   isOpen?: boolean;
   onToggle?: () => void;
   className?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
-function AccordionItem({ children, isOpen, onToggle, className, ref }: AccordionItemProps) {
+function AccordionItem({ children, isOpen, onToggle, className }: AccordionItemProps) {
   return (
-    <div ref={ref} className={cn('border-b', className)}>
+    <div className={cn('border-b', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
@@ -73,22 +71,22 @@ interface AccordionTriggerProps {
   isOpen?: boolean;
   onToggle?: () => void;
   className?: string;
-  ref?: React.RefObject<HTMLButtonElement>;
 }
 
-function AccordionTrigger({ children, isOpen, onToggle, className, ref }: AccordionTriggerProps) {
+function AccordionTrigger({ children, isOpen, onToggle, className }: AccordionTriggerProps) {
   return (
-    <button
-      ref={ref}
+    <motion.button
       onClick={onToggle}
       type="button"
+      whileHover={{ x: 2 }}
+      whileTap={{ scale: 0.98 }}
       className={cn(
         'flex w-full items-center justify-between py-4 text-sm font-medium transition-all hover:underline',
         className,
       )}
     >
       {children}
-      <svg
+      <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -98,14 +96,18 @@ function AccordionTrigger({ children, isOpen, onToggle, className, ref }: Accord
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={cn(
-          'text-muted-foreground h-4 w-4 shrink-0 transition-transform duration-200',
-          isOpen && 'rotate-180',
-        )}
+        className="text-muted-foreground h-4 w-4 shrink-0"
+        animate={{ rotate: isOpen ? 180 : 0 }}
+        transition={{
+          duration: 0.3,
+          type: 'spring',
+          stiffness: 200,
+          damping: 15,
+        }}
       >
         <path d="m6 9 6 6 6-6" />
-      </svg>
-    </button>
+      </motion.svg>
+    </motion.button>
   );
 }
 
@@ -113,22 +115,46 @@ interface AccordionContentProps {
   children?: React.ReactNode;
   isOpen?: boolean;
   className?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
-function AccordionContent({ children, isOpen, className, ref }: AccordionContentProps) {
+function AccordionContent({ children, isOpen, className }: AccordionContentProps) {
   return (
-    <div
-      ref={ref}
-      className={cn(
-        'overflow-hidden text-sm transition-[max-height] duration-300 ease-in-out',
-        isOpen ? 'max-h-96' : 'max-h-0',
-        className,
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{
+            height: 'auto',
+            opacity: 1,
+          }}
+          exit={{
+            height: 0,
+            opacity: 0,
+          }}
+          transition={{
+            height: {
+              duration: 0.3,
+              ease: [0.04, 0.62, 0.23, 0.98],
+            },
+            opacity: {
+              duration: 0.2,
+              ease: 'easeInOut',
+            },
+          }}
+          className={cn('overflow-hidden text-sm', className)}
+        >
+          <motion.div
+            initial={{ y: -10 }}
+            animate={{ y: 0 }}
+            exit={{ y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="pt-0 pb-4"
+          >
+            {children}
+          </motion.div>
+        </motion.div>
       )}
-    >
-      <div className="pt-0 pb-4">{children}</div>
-    </div>
+    </AnimatePresence>
   );
 }
-
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

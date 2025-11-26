@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import React, {
   createContext,
@@ -270,13 +271,15 @@ function DropdownMenuTrigger({
   }
 
   return (
-    <button
+    <motion.button
       type="button"
       onClick={handleClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium',
         'bg-card text-card-foreground border-border border',
-        'hover:bg-secondary transition-all duration-200',
+        'hover:bg-secondary transition-colors duration-200',
         'focus:ring-ring focus:ring-offset-background focus:ring-2 focus:ring-offset-2 focus:outline-none',
         'disabled:pointer-events-none disabled:opacity-50',
         className,
@@ -287,11 +290,13 @@ function DropdownMenuTrigger({
       id={triggerId}
     >
       {children}
-      <ChevronDown
-        className={cn('h-4 w-4 transition-transform duration-200', isOpen && 'rotate-180')}
-        aria-hidden="true"
-      />
-    </button>
+      <motion.div
+        animate={{ rotate: isOpen ? 180 : 0 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}
+      >
+        <ChevronDown className="h-4 w-4" aria-hidden="true" />
+      </motion.div>
+    </motion.button>
   );
 }
 
@@ -315,8 +320,6 @@ function DropdownMenuContent({
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   const alignmentClasses: Record<'start' | 'center' | 'end', string> = {
     start: 'left-0',
     center: 'left-1/2 -translate-x-1/2',
@@ -324,22 +327,29 @@ function DropdownMenuContent({
   };
 
   return (
-    <div
-      ref={contentRef}
-      id={contentId}
-      role="menu"
-      aria-labelledby={triggerId}
-      className={cn(
-        'border-border absolute z-50 min-w-[12rem] rounded-lg border',
-        'bg-popover text-popover-foreground shadow-lg',
-        'animate-in fade-in-0 zoom-in-95 duration-200',
-        alignmentClasses[align],
-        className,
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          ref={contentRef}
+          id={contentId}
+          role="menu"
+          aria-labelledby={triggerId}
+          initial={{ opacity: 0, scale: 0.95, y: -10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: -10 }}
+          transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className={cn(
+            'border-border absolute z-50 min-w-[12rem] rounded-lg border',
+            'bg-popover text-popover-foreground shadow-lg',
+            alignmentClasses[align],
+            className,
+          )}
+          style={{ marginTop: `${sideOffset}px` }}
+        >
+          <div className="p-1">{children}</div>
+        </motion.div>
       )}
-      style={{ marginTop: `${sideOffset}px` }}
-    >
-      <div className="p-1">{children}</div>
-    </div>
+    </AnimatePresence>
   );
 }
 
@@ -379,23 +389,24 @@ function DropdownMenuItem({
   );
 
   return (
-    <div
+    <motion.div
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       aria-disabled={disabled}
+      whileHover={!disabled ? { x: 2, backgroundColor: 'rgba(0, 0, 0, 0.05)' } : {}}
+      whileTap={!disabled ? { scale: 0.98 } : {}}
+      transition={{ duration: 0.15 }}
       className={cn(
         'relative flex cursor-pointer items-center rounded-md px-3 py-2 text-sm outline-none select-none',
         'transition-colors duration-150',
-        'hover:bg-secondary',
-        'focus:bg-secondary',
         disabled && 'pointer-events-none opacity-50',
         className,
       )}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 

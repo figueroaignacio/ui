@@ -1,10 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
 import React, { forwardRef } from 'react';
-
-const cn = (...inputs: any[]) => {
-  return inputs.filter(Boolean).join(' ');
-};
+import { cn } from '../lib/cn';
 
 const buttonVariants = cva(
   [

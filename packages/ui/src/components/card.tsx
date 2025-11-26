@@ -104,10 +104,6 @@ interface CardFooterProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof cardFooterVariants> {}
 
-// ============================================================================
-// CARD COMPONENT
-// ============================================================================
-
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {

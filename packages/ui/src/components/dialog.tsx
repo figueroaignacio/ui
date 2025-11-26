@@ -1,6 +1,7 @@
 'use client';
 
-import { Cross1Icon } from '@radix-ui/react-icons';
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import { X } from 'lucide-react';
 import * as React from 'react';
 import { cloneElement } from 'react';
 import { createPortal } from 'react-dom';
@@ -87,10 +88,6 @@ interface DialogPortalProps {
 }
 
 const DialogPortal = ({ children }: DialogPortalProps) => {
-  const { open } = useDialogContext();
-
-  if (!open) return null;
-
   return createPortal(children, document.body);
 };
 
@@ -118,21 +115,26 @@ const DialogClose = React.forwardRef<HTMLButtonElement, DialogCloseProps>(
 );
 DialogClose.displayName = 'DialogClose';
 
-interface DialogOverlayProps extends React.HTMLAttributes<HTMLDivElement> {}
+type DialogOverlayProps = HTMLMotionProps<'div'> & {
+  className?: string;
+};
 
 const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
   ({ className, ...props }, ref) => {
     const { setOpen } = useDialogContext();
 
     return (
-      <div
+      <motion.div
         ref={ref}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}
         className={cn(
-          'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-white/10 backdrop-blur-xs dark:bg-black/20',
+          'fixed inset-0 z-50 bg-white/10 backdrop-blur-xs dark:bg-black/20',
           className,
         )}
         onClick={() => setOpen(false)}
-        data-state="open"
         {...props}
       />
     );
@@ -140,36 +142,61 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
 );
 DialogOverlay.displayName = 'DialogOverlay';
 
-interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+type DialogContentProps = Omit<HTMLMotionProps<'div'>, 'children'> & {
+  className?: string;
+  children?: React.ReactNode;
+};
 
 const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
   ({ className, children, ...props }, ref) => {
-    const { id } = useDialogContext();
+    const { id, open } = useDialogContext();
 
     return (
-      <DialogPortal>
-        <DialogOverlay />
-        <div
-          ref={ref}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={`${id}-title`}
-          aria-describedby={`${id}-description`}
-          onClick={(e) => e.stopPropagation()}
-          className={cn(
-            'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg duration-200 data-[state=closed]:origin-center data-[state=open]:origin-center',
-            className,
-          )}
-          data-state="open"
-          {...props}
-        >
-          {children}
-          <DialogClose className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none">
-            <Cross1Icon className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </DialogClose>
-        </div>
-      </DialogPortal>
+      <AnimatePresence mode="wait">
+        {open && (
+          <DialogPortal>
+            <DialogOverlay />
+            <motion.div
+              ref={ref}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`${id}-title`}
+              aria-describedby={`${id}-description`}
+              onClick={(e) => e.stopPropagation()}
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+                y: -20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.95,
+                y: 20,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={cn(
+                'bg-background fixed top-[50%] left-[50%] z-50 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg',
+                className,
+              )}
+              {...props}
+            >
+              {children}
+              <DialogClose className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none">
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </DialogClose>
+            </motion.div>
+          </DialogPortal>
+        )}
+      </AnimatePresence>
     );
   },
 );
