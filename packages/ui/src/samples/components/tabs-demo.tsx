@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/tabs'
 
 export function TabsDemo() {
   return (
-    <Tabs defaultValue="overview" variant="default">
+    <Tabs defaultValue="overview" variant="outline" size="sm">
       <TabsList>
         <TabsTrigger value="overview">Overview</TabsTrigger>
         <TabsTrigger value="models">Models</TabsTrigger>

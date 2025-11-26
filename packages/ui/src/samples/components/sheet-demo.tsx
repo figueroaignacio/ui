@@ -6,10 +6,7 @@ import { Sheet, SheetClose, SheetContent, SheetTrigger } from '../../components/
 export function SheetDemo() {
   return (
     <Sheet>
-      <SheetTrigger>
-        <Button variant="outline">Open Drawer</Button>
-      </SheetTrigger>
-
+      <SheetTrigger>Open Sheet</SheetTrigger>
       <SheetContent side="right" size="sm">
         <div className="flex flex-col gap-4">
           <h2 className="text-lg font-semibold">Notifications</h2>

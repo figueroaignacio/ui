@@ -1,10 +1,14 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
+import { HTMLMotionProps, motion } from 'framer-motion';
 import * as React from 'react';
-import { cn } from '../lib/cn';
 
-const tabsListVariants = cva('inline-flex  items-center justify-center p-1 transition-colors', {
+const cn = (...inputs: any[]) => {
+  return inputs.filter(Boolean).join(' ');
+};
+
+const tabsListVariants = cva('inline-flex items-center justify-center p-1 transition-colors', {
   variants: {
     variant: {
       default: 'bg-muted text-muted-foreground rounded-lg',
@@ -42,7 +46,7 @@ const tabsTriggerVariants = cva(
         outline: [
           'rounded-md px-3 py-1.5 border border-transparent',
           'data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-primary/5',
-          ' data-[state=inactive]:hover:text-primary',
+          'data-[state=inactive]:hover:text-primary',
         ].join(' '),
         underline: [
           'rounded-none px-4 py-2 border-b-2 border-transparent',
@@ -52,7 +56,7 @@ const tabsTriggerVariants = cva(
         pills: [
           'rounded-full px-4 py-1.5',
           'data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm',
-          'data-[state=inactive]:hover:bg-primary data-[state=inactive]:hover:text-primary-foreground',
+          'data-[state=inactive]:hover:bg-primary/90 data-[state=inactive]:hover:text-primary-foreground',
         ].join(' '),
       },
       size: {
@@ -64,21 +68,6 @@ const tabsTriggerVariants = cva(
     defaultVariants: {
       variant: 'default',
       size: 'default',
-    },
-  },
-);
-
-const tabsContentVariants = cva(
-  'mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-  {
-    variants: {
-      animated: {
-        true: 'animate-in fade-in-0 slide-in-from-bottom-1 duration-200',
-        false: '',
-      },
-    },
-    defaultVariants: {
-      animated: true,
     },
   },
 );
@@ -104,18 +93,18 @@ interface TabsListProps
     VariantProps<typeof tabsListVariants> {}
 
 interface TabsTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<HTMLMotionProps<'button'>, 'children'>,
     VariantProps<typeof tabsTriggerVariants> {
   value: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-interface TabsContentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tabsContentVariants> {
+interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   value: string;
   forceMount?: boolean;
+  children: React.ReactNode;
 }
 
 const TabsContext = React.createContext<TabsContextValue | null>(null);
@@ -208,7 +197,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
     const isActive = context.activeTab === value;
 
     return (
-      <button
+      <motion.button
         ref={ref}
         type="button"
         role="tab"
@@ -218,13 +207,15 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         id={`tab-${value}`}
         tabIndex={isActive ? 0 : -1}
         onClick={() => context.setActiveTab(value)}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
         className={cn(tabsTriggerVariants({ variant: finalVariant, size: finalSize }), className)}
         {...props}
       >
         {leftIcon && <span className="mr-2 [&_svg]:size-4">{leftIcon}</span>}
         {children}
         {rightIcon && <span className="ml-2 [&_svg]:size-4">{rightIcon}</span>}
-      </button>
+      </motion.button>
     );
   },
 );
@@ -232,7 +223,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
 TabsTrigger.displayName = 'TabsTrigger';
 
 const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ className, value, animated, forceMount = false, children, ...props }, ref) => {
+  ({ className, value, forceMount = false, children, ...props }, ref) => {
     const context = useTabsContext();
     const isActive = context.activeTab === value;
 
@@ -241,32 +232,30 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
     }
 
     return (
-      <div
+      <motion.div
         ref={ref}
         role="tabpanel"
         id={`tabpanel-${value}`}
         aria-labelledby={`tab-${value}`}
         tabIndex={0}
+        initial={false}
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
+        transition={{ duration: 0.2 }}
         hidden={!isActive}
-        className={cn(tabsContentVariants({ animated: isActive ? animated : false }), className)}
+        className={cn(
+          'focus-visible:ring-ring mt-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+          className,
+        )}
         {...props}
       >
         {children}
-      </div>
+      </motion.div>
     );
   },
 );
 
 TabsContent.displayName = 'TabsContent';
 
-export {
-  Tabs,
-  TabsContent,
-  tabsContentVariants,
-  TabsList,
-  tabsListVariants,
-  TabsTrigger,
-  tabsTriggerVariants,
-};
+export { Tabs, TabsContent, TabsList, tabsListVariants, TabsTrigger, tabsTriggerVariants };
 
 export type { TabsContentProps, TabsListProps, TabsProps, TabsTriggerProps };

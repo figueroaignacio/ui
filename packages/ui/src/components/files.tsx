@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@repo/ui/lib/cn';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, FileIcon, FolderIcon, FolderOpenIcon } from 'lucide-react';
 import React from 'react';
+import { cn } from '../lib/cn';
 
-// Context para manejar el estado de folders abiertos
 interface FilesContextValue {
   openFolders: Set<string>;
   toggleFolder: (path: string) => void;
@@ -20,7 +20,6 @@ const useFiles = () => {
   return context;
 };
 
-// Componente File
 export type FileProps = {
   name: string;
   className?: string;
@@ -28,24 +27,30 @@ export type FileProps = {
 };
 
 export const File: React.FC<FileProps> = ({ name, className, onClick }) => (
-  <div
+  <motion.div
     onClick={onClick}
+    whileHover={{ x: 4, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
+    whileTap={{ scale: 0.98 }}
+    transition={{ duration: 0.15 }}
     className={cn(
-      'hover:bg-muted flex cursor-pointer items-center space-x-2 rounded px-2 py-1 text-sm',
+      'flex cursor-pointer items-center space-x-2 rounded px-2 py-1 text-sm',
       className,
     )}
   >
-    <FileIcon className="text-muted-foreground h-4 w-4" />
+    <span className="text-muted-foreground">
+      <FileIcon className="size-4" />
+    </span>
     <span>{name}</span>
-  </div>
+  </motion.div>
 );
 
-// Componente Folder
+const FolderPathContext = React.createContext<string>('');
+
 export type FolderProps = {
   name: string;
   children?: React.ReactNode;
   className?: string;
-  path?: string; // Path interno para identificar el folder
+  path?: string;
 };
 
 export const Folder: React.FC<FolderProps> = ({
@@ -68,49 +73,54 @@ export const Folder: React.FC<FolderProps> = ({
 
   return (
     <div className={className}>
-      <div
+      <motion.div
         onClick={handleToggle}
+        whileHover={hasChildren ? { x: 2 } : {}}
+        whileTap={hasChildren ? { scale: 0.98 } : {}}
         className={cn(
-          'hover:bg-muted flex items-center rounded px-2 py-1 text-sm font-medium transition-all',
+          'hover:bg-muted flex items-center rounded px-2 py-1 text-sm font-medium transition-colors',
           hasChildren && 'cursor-pointer',
         )}
       >
         {hasChildren && (
-          <ChevronRight
-            className={cn(
-              'text-muted-foreground mr-1 h-4 w-4 shrink-0 transition-transform duration-200',
-              isOpen && 'rotate-90',
-            )}
-          />
+          <motion.div
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+          >
+            <ChevronRight className="text-muted-foreground mr-1 size-4 shrink-0" />
+          </motion.div>
         )}
-        {isOpen ? (
-          <FolderOpenIcon className="text-muted-foreground h-4 w-4" />
-        ) : (
-          <FolderIcon className="text-muted-foreground h-4 w-4" />
-        )}
-        <span className="ml-2">{name}</span>
-      </div>
-
-      {hasChildren && (
-        <div
-          className={cn(
-            'overflow-hidden transition-all duration-300 ease-in-out',
-            isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0',
-          )}
+        <motion.div
+          animate={{ scale: isOpen ? 1.1 : 1 }}
+          transition={{ duration: 0.2 }}
+          className="text-muted-foreground"
         >
-          <div className="border-border mt-1 ml-2 border-l pl-4">
-            <FolderPathContext.Provider value={currentPath}>{children}</FolderPathContext.Provider>
-          </div>
-        </div>
-      )}
+          {isOpen ? <FolderOpenIcon className="size-4" /> : <FolderIcon className="size-4" />}
+        </motion.div>
+        <span className="ml-2">{name}</span>
+      </motion.div>
+
+      <AnimatePresence initial={false}>
+        {hasChildren && isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="border-border mt-1 ml-2 border-l pl-4">
+              <FolderPathContext.Provider value={currentPath}>
+                {children}
+              </FolderPathContext.Provider>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-// Context para el path del folder padre
-const FolderPathContext = React.createContext<string>('');
-
-// Componente Files (container principal)
 type FilesProps = {
   defaultValue?: string;
   children: React.ReactNode;
@@ -121,7 +131,6 @@ export const Files: React.FC<FilesProps> = ({ children, defaultValue, className 
   const [openFolders, setOpenFolders] = React.useState<Set<string>>(() => {
     if (!defaultValue) return new Set();
 
-    // Convertir "src/components" en ["src", "src/components"]
     const paths = defaultValue.split('/');
     const fullPaths = new Set<string>();
     let currentPath = '';
