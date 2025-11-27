@@ -1,5 +1,4 @@
 // Components
-import { BgBlur } from '@/components/common/bg-blur';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 
@@ -64,25 +63,20 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <div className="flex min-h-[80svh] items-center justify-center px-4">
-      <BgBlur />
       <section className="max-w-2xl flex-col space-y-3 px-0 py-3 text-left md:px-3">
         <div className="border-primary/20 bg-primary/10 text-primary inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
           <span className="bg-primary h-2 w-2 rounded-full" />
           {t('home.badge')}
         </div>
-
         <h1 className="text-3xl leading-tight font-semibold tracking-tight text-balance">
           {t('home.subheading')}
         </h1>
-
         <p className="text-muted-foreground text-sm leading-relaxed text-pretty md:text-lg">
           {t('home.description')}
         </p>
-
         <div className="z-50 flex flex-wrap gap-3 pt-4">
           {actions.map((action, index) => {
             const Icon = index === 0 ? ArrowRight : index === 1 ? Component : null;
-
             return (
               <Button
                 key={action.href}

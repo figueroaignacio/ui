@@ -11,9 +11,11 @@ export function Navbar() {
   const navigation: { title: string; url: string }[] = t.raw('navigation');
 
   return (
-    <div className="relative z-50 hidden w-full items-center justify-between px-6 py-3 lg:flex">
-      <div className="flex items-center gap-x-3">
-        <Logo />
+    <div className="relative z-50 hidden w-full items-center justify-between px-6 lg:flex">
+      <div className="flex items-center justify-between gap-x-3">
+        <div className="border-border border-r py-3 pr-34">
+          <Logo />
+        </div>
         <nav className="space-x-3">
           {navigation.map((item) => (
             <Link

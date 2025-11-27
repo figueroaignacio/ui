@@ -12,7 +12,6 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Global Styles
-import { Footer } from '@/components/layout/footer';
 import { fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
 
@@ -54,7 +53,6 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
               <div className="flex min-h-screen flex-col lg:pb-0">
                 <Header />
                 <main className="flex-1">{children}</main>
-                <Footer />
               </div>
             </Providers>
           </NextIntlClientProvider>
