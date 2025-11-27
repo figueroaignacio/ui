@@ -131,7 +131,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
         className={cn(
-          'fixed inset-0 z-50 bg-white/10 backdrop-blur-xs dark:bg-black/20',
+          'fixed inset-0 z-200 bg-white/10 backdrop-blur-xs dark:bg-black/20',
           className,
         )}
         onClick={() => setOpen(false)}
@@ -183,7 +183,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
                 ease: [0.16, 1, 0.3, 1],
               }}
               className={cn(
-                'bg-background fixed top-[50%] left-[50%] z-50 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg',
+                'bg-background fixed top-[50%] left-[50%] z-500 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg',
                 className,
               )}
               {...props}
