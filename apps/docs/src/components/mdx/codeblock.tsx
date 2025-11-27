@@ -28,23 +28,15 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group border-border relative my-6 overflow-hidden rounded-xl bg-[#090b0f] transition-all duration-300 ease-in-out',
+        'group border-border relative mt-5 overflow-hidden rounded-xl border bg-[#090b0f]',
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-red-500/80" />
-            <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-            <div className="h-3 w-3 rounded-full bg-green-500/80" />
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          {expandButton}
-          <CopyButton value={code} />
-        </div>
+      <div className="absolute top-5 right-5 z-10 flex items-center gap-2">
+        {expandButton}
+        <CopyButton value={code} />
       </div>
+
       <Highlight code={code.trim()} language={language} theme={themes.vsDark}>
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
