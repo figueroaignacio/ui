@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
 // Components
-import { Header } from '@/components/header';
+import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
 import { ViewTransition } from 'react';
 
@@ -12,7 +12,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Global Styles
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/layout/footer';
 import { fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
 

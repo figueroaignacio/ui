@@ -4,12 +4,12 @@ export const dynamic = 'force-dynamic';
 import { docs } from '@/content';
 
 // Components
-import { DocsBreadcrumb } from '@/components/docs-breadcrumb';
-import { MobileDocsPagination } from '@/components/docs-mobile-pagination';
-import { DocsNavigationButtons } from '@/components/docs-navigation-button';
-import { DocsPagination } from '@/components/docs-pagination';
+import { DocsBreadcrumb } from '@/components/docs/docs-breadcrumb';
+import { MobileDocsPagination } from '@/components/docs/docs-mobile-pagination';
+import { DocsNavigationButtons } from '@/components/docs/docs-navigation-button';
+import { DocsPagination } from '@/components/docs/docs-pagination';
+import { Toc } from '@/components/docs/toc';
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { Toc } from '@/components/toc';
 
 // Utils
 import { getDocBySlug } from '@/lib/utils';

@@ -7,8 +7,8 @@ import { useState } from 'react';
 // Components
 import { Link } from '@/i18n/navigation';
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
-import { Logo } from './logo';
 
 // Definitions
 import { DocSection } from '@/lib/definitions';

@@ -1,5 +1,5 @@
 // Components
-import { BgBlur } from '@/components/bg-blur';
+import { BgBlur } from '@/components/common/bg-blur';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 

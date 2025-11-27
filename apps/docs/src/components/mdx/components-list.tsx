@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { CardLink } from '../card-link';
+import { CardLink } from '../common/card-link';
 
 type DocsNavigationItem = {
   href: string;

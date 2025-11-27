@@ -1,5 +1,5 @@
 // Components
-import { Sidebar } from '@/components/sidebar';
+import { Sidebar } from '@/components/docs/sidebar';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (

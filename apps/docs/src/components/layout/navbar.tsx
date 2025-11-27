@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 
 // Components
 import { Link } from '@/i18n/navigation';
+import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
-import { Logo } from './logo';
 
 export function Navbar() {
   const t = useTranslations('ui');
