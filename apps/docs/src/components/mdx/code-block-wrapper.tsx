@@ -6,7 +6,6 @@ import { cloneElement, useState } from 'react';
 
 // Components
 import { Button } from '@repo/ui/components/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface CodeBlockProps {
   expandButton?: React.ReactNode;
@@ -27,22 +26,12 @@ export function CodeBlockWrapper({
 
   const expandButton = (
     <Button
-      variant="ghost"
+      variant="link"
       size="sm"
       onClick={() => setIsExpanded((prev) => !prev)}
-      className="h-8 gap-1 text-xs"
+      className="text-white"
     >
-      {isExpanded ? (
-        <>
-          <ChevronUp className="h-3 w-3" />
-          {t('collapse')}
-        </>
-      ) : (
-        <>
-          <ChevronDown className="h-3 w-3" />
-          {t('expand')}
-        </>
-      )}
+      {isExpanded ? <>{t('collapse')}</> : <>{t('expand')}</>}
     </Button>
   );
 

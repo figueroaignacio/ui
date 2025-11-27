@@ -1,7 +1,7 @@
 'use client';
 
 // Utils
-import { fontSans } from '@/lib/font';
+import { fontCode } from '@/lib/font';
 import { cn } from '@repo/ui/lib/cn';
 import { Highlight, themes } from 'prism-react-renderer';
 
@@ -32,7 +32,7 @@ export function CodeBlock({
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-[#181b1f] px-4 py-3">
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
             <div className="h-3 w-3 rounded-full bg-red-500/80" />
@@ -45,14 +45,13 @@ export function CodeBlock({
           <CopyButton value={code} />
         </div>
       </div>
-
       <Highlight code={code.trim()} language={language} theme={themes.vsDark}>
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
               'overflow-auto p-4 text-sm leading-relaxed transition-all duration-300 ease-in-out',
-              fontSans.className,
-              !isExpanded ? 'max-h-[400px] overflow-hidden' : 'max-h-[1000px]',
+              fontCode.className,
+              !isExpanded ? 'max-h-[500px]' : 'max-h-[1000px]',
             )}
             style={{
               ...style,
@@ -76,9 +75,6 @@ export function CodeBlock({
           </pre>
         )}
       </Highlight>
-      {/* {!isExpanded && (
-        <div className="from-card pointer-events-none absolute bottom-0 left-0 h-16 w-full bg-linear-to-t to-transparent" />
-      )} */}
     </div>
   );
 }

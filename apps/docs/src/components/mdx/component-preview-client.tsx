@@ -51,7 +51,7 @@ export function ComponentPreviewClient({
         <TabsContent value="preview" className="my-6">
           <div className="border-border rouneded-3xl rounded-xl border">
             <div
-              className={`flex min-h-[500px] items-center ${alignmentClasses[align]} p-8 sm:p-12`}
+              className={`flex min-h-[400px] items-center ${alignmentClasses[align]} p-8 sm:p-12`}
             >
               {componentPreview}
             </div>
