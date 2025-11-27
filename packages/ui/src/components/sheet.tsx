@@ -55,13 +55,13 @@ export function SheetOverlay({ className }: { className?: string }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className={cn('fixed inset-0 z-40 bg-black/50 backdrop-blur-sm', className)}
+      className={cn('fixed inset-0 z-300 bg-black/50 backdrop-blur-sm', className)}
       onClick={() => setOpen(false)}
     />
   );
 }
 
-const sheetVariants = cva('fixed z-50 bg-background border shadow-xl overflow-auto', {
+const sheetVariants = cva('fixed z-300 bg-background border shadow-xl overflow-auto', {
   variants: {
     side: {
       bottom: 'bottom-0 left-0 right-0 rounded-t-2xl',
