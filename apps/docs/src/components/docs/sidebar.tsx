@@ -53,7 +53,7 @@ export function Sidebar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`hover:bg-secondary animate-show-soft block w-fit rounded-xl px-2.5 py-2 text-xs transition-all duration-150 ${
+                      className={`hover:bg-secondary animate-show-soft block rounded-xl px-2.5 py-2 text-xs transition-all duration-150 ${
                         pathname === item.href ? 'bg-secondary font-bold' : ''
                       }`}
                     >
