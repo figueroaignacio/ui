@@ -15,21 +15,23 @@ interface ChatWindowProps {
   message: string;
   onMessageChange: (value: string) => void;
   onSubmit: (e?: React.FormEvent) => void;
-  onKeyPress: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClose: () => void;
 }
 
-export function ChatWindow({
-  isOpen,
-  messages,
-  isLoading,
-  messagesEndRef,
-  message,
-  onMessageChange,
-  onSubmit,
-  onKeyPress,
-  onClose,
-}: ChatWindowProps) {
+export function ChatWindow(props: ChatWindowProps) {
+  const {
+    isOpen,
+    messages,
+    isLoading,
+    messagesEndRef,
+    message,
+    onMessageChange,
+    onSubmit,
+    onKeyPress,
+    onClose,
+  } = props;
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -38,22 +40,26 @@ export function ChatWindow({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-1000 backdrop-blur-sm"
+            className="chat-backdrop fixed inset-0 z-9998 bg-black/20 backdrop-blur-sm"
             onClick={onClose}
           />
+
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className="fixed inset-0 z-1000 flex flex-col overflow-hidden md:top-1/2 md:left-1/2 md:h-[680px] md:w-[580px] md:-translate-x-1/2 md:-translate-y-1/2"
+            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col md:top-1/2 md:left-1/2 md:h-[680px] md:w-[580px] md:-translate-x-1/2 md:-translate-y-1/2"
           >
-            <ChatHeader />
-            <ChatMessages
-              messages={messages}
-              isLoading={isLoading}
-              messagesEndRef={messagesEndRef}
-            />
+            <ChatHeader onClose={onClose} />
+
+            <div className="flex-1 overflow-y-auto">
+              <ChatMessages
+                messages={messages}
+                isLoading={isLoading}
+                messagesEndRef={messagesEndRef}
+              />
+            </div>
             <ChatInput
               message={message}
               isLoading={isLoading}

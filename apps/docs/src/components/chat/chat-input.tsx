@@ -10,35 +10,31 @@ interface ChatInputProps {
   isLoading: boolean;
   onMessageChange: (value: string) => void;
   onSubmit: (e?: React.FormEvent) => void;
-  onKeyPress: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-export function ChatInput({
-  message,
-  isLoading,
-  onMessageChange,
-  onSubmit,
-  onKeyPress,
-}: ChatInputProps) {
+export function ChatInput(props: ChatInputProps) {
+  const { message, isLoading, onMessageChange, onSubmit, onKeyPress } = props;
   const t = useTranslations('components.chat.input');
+
+  const disabled = isLoading || !message.trim();
 
   return (
     <form onSubmit={onSubmit}>
       <div className="mx-3 mb-2 flex gap-2 md:mx-0 md:mb-0">
-        <textarea
+        <input
           value={message}
+          disabled={isLoading}
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyPress={onKeyPress}
-          disabled={isLoading}
-          rows={1}
-          className="bg-card border-border focus:ring-foreground/20 placeholder:text-muted-foreground flex-1 resize-none rounded-xl border px-4 pt-4 pb-24 text-sm transition focus:ring-1 focus:outline-none disabled:opacity-50"
           placeholder={t('placeholder')}
+          className="bg-card border-border focus:ring-foreground/20 placeholder:text-muted-foreground flex-1 resize-none rounded-xl border px-4 text-sm transition focus:ring-1 focus:outline-none disabled:opacity-50"
         />
         <motion.button
           type="submit"
+          disabled={disabled}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          disabled={isLoading || !message.trim()}
           className="bg-foreground text-background flex h-10 w-10 items-center justify-center rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}

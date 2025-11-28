@@ -3,6 +3,7 @@
 // Hooks
 import { useChat } from '@//hooks/use-chat';
 import { useChatInput } from '@//hooks/use-chat-input';
+import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { useState, type RefObject } from 'react';
 
 // Components
@@ -15,9 +16,10 @@ export function AiChat() {
   const { message, setMessage, handleSubmit, handleKeyPress } = useChatInput(sendMessage);
 
   const handleClose = () => setOpen(false);
+  useLockBodyScroll(open);
 
   return (
-    <div className="fixed right-8 bottom-8 z-100000">
+    <div className="fixed right-3 bottom-20 z-100000 lg:right-8 lg:bottom-8">
       <ChatToggleButton isOpen={open} onClick={() => setOpen(!open)} />
       <ChatWindow
         isOpen={open}

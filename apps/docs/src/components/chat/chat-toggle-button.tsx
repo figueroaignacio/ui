@@ -1,5 +1,5 @@
 // Components
-import { AnimatePresence, motion } from 'framer-motion';
+import { Button } from '@repo/ui/components/button';
 import { BotMessageSquare } from 'lucide-react';
 
 interface ChatToggleButtonProps {
@@ -9,13 +9,12 @@ interface ChatToggleButtonProps {
 
 export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
   return (
-    <motion.button onClick={onClick} className="border-border rounded-xl border">
-      <AnimatePresence mode="wait">
-        <motion.div className="flex items-center gap-3 px-3 py-2">
-          <BotMessageSquare className="size-4" />
-          Ask AI
-        </motion.div>
-      </AnimatePresence>
-    </motion.button>
+    <Button
+      onClick={onClick}
+      variant="secondary"
+      leftIcon={<BotMessageSquare className="size-4" />}
+    >
+      Ask AI
+    </Button>
   );
 }

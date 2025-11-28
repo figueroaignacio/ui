@@ -15,25 +15,17 @@ export function ChatMessages({ messages, isLoading, messagesEndRef }: ChatMessag
   return (
     <div className="flex-1 space-y-4 overflow-y-auto p-4">
       {messages.map((msg, idx) => (
-        <div key={idx} className="flex flex-col items-start space-x-3">
-          <div className="">
-            {msg.role === 'assistant' ? (
-              <span className="text-muted-foreground text-sm">I7A Bot</span>
-            ) : (
-              <div className="" />
-            )}
-            {msg.role === 'user' ? (
-              <span className="text-muted-foreground text-sm">You</span>
-            ) : (
-              <div className="" />
-            )}
-          </div>
-          <div className="flex-1">
-            <ChatMessage message={msg} />
-          </div>
+        <div key={idx} className="flex flex-col items-start">
+          <span className="text-muted-foreground text-sm">
+            {msg.role === 'assistant' ? 'I7A Bot' : 'You'}
+          </span>
+
+          <ChatMessage message={msg} />
         </div>
       ))}
+
       {isLoading && <ChatLoading />}
+
       <div ref={messagesEndRef} />
     </div>
   );

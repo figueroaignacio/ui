@@ -1,6 +1,7 @@
 'use client';
 
 // Hooks
+import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -21,6 +22,8 @@ export function MobileMenu() {
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+
+  useLockBodyScroll(isMenuOpen);
 
   return (
     <div className="relative flex w-full items-center justify-between px-5 py-5 lg:hidden">
