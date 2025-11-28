@@ -38,7 +38,7 @@ export function ChatWindow({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-1000 backdrop-blur-sm"
+            className="fixed inset-0 z-1000 bg-red-600 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
@@ -46,7 +46,7 @@ export function ChatWindow({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className="md:rounded-2x fixed inset-0 z-1000 flex h-full w-full flex-col overflow-hidden rounded-none border-0 md:inset-auto md:top-1/2 md:left-1/2 md:h-[680px] md:w-[580px] md:-translate-x-1/2 md:-translate-y-1/2 md:transform"
+            className="fixed inset-0 z-1000 flex flex-col overflow-hidden md:top-1/2 md:left-1/2 md:h-[680px] md:w-[580px] md:-translate-x-1/2 md:-translate-y-1/2"
           >
             <ChatHeader />
             <ChatMessages
