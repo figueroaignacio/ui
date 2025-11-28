@@ -1,10 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["GROQ_API_KEY"],
   "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", ".velite/**", "!.next/cache/**"]
+      "outputs": [".next/**", ".velite/**", "!.next/cache/**"],
+      "env": ["GROQ_API_KEY"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
