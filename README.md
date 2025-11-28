@@ -14,7 +14,9 @@ I7A UI is a curated set of UI components built with:
 - TypeScript
 - Tailwind CSS
 - Framer Motion (for subtle and elegant animations)
-- The goal is simple:
+
+The goal is simple:
+
 - Give developers fast, beautiful UI components without adding new dependencies or installing anything.
 - Each component is handcrafted with a focus on:
 - Simplicity
