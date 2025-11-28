@@ -43,16 +43,14 @@ export function ChatWindow(props: ChatWindowProps) {
             className="chat-backdrop fixed inset-0 z-9998 bg-black/20 backdrop-blur-sm"
             onClick={onClose}
           />
-
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col md:top-1/2 md:left-1/2 md:h-[680px] md:w-[580px] md:-translate-x-1/2 md:-translate-y-1/2"
+            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col md:top-1/2 md:left-1/2 md:h-[85dvh] md:w-2xl md:-translate-x-1/2 md:-translate-y-1/2"
           >
             <ChatHeader onClose={onClose} />
-
             <div className="flex-1 overflow-y-auto">
               <ChatMessages
                 messages={messages}

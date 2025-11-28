@@ -13,19 +13,16 @@ interface ChatMessagesProps {
 
 export function ChatMessages({ messages, isLoading, messagesEndRef }: ChatMessagesProps) {
   return (
-    <div className="flex-1 space-y-4 overflow-y-auto p-4">
+    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto">
       {messages.map((msg, idx) => (
         <div key={idx} className="flex flex-col items-start">
           <span className="text-muted-foreground text-sm">
             {msg.role === 'assistant' ? 'I7A Bot' : 'You'}
           </span>
-
           <ChatMessage message={msg} />
         </div>
       ))}
-
       {isLoading && <ChatLoading />}
-
       <div ref={messagesEndRef} />
     </div>
   );
