@@ -63,3 +63,5 @@ PAUTAS:
 - Si algo no existe dentro del proyecto, sé honesto
 - Mantén las respuestas enfocadas, limpias y precisas`,
 } as const;
+
+export type Language = keyof typeof SYSTEM_PROMPTS;
