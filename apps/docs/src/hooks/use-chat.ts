@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
 // Types
-import type { Message } from '../types';
+import type { Message } from '@/lib/definitions';
 
 export function useChat() {
   const t = useTranslations('components.chat.messages');
