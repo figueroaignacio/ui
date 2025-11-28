@@ -1,17 +1,10 @@
 'use client';
 
 import { cva } from 'class-variance-authority';
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
-
-// ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
-
-// ============================================================================
-// CVA VARIANTS
-// ============================================================================
 
 const collapsibleVariants = cva('', {
   variants: {
@@ -32,14 +25,13 @@ const collapsibleTriggerVariants = cva(
     'transition-all duration-200',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',
-    '[&[data-state=open]>svg]:rotate-180',
   ].join(' '),
   {
     variants: {
       variant: {
         default: 'hover:opacity-80',
-        bordered: 'p-4 hover:bg-accent/50',
-        card: 'p-4 hover:bg-accent/50',
+        bordered: 'p-4',
+        card: 'p-4',
       },
     },
     defaultVariants: {
@@ -48,7 +40,7 @@ const collapsibleTriggerVariants = cva(
   },
 );
 
-const collapsibleContentVariants = cva('overflow-hidden transition-all duration-300', {
+const collapsibleContentVariants = cva('overflow-hidden', {
   variants: {
     variant: {
       default: '',
@@ -61,10 +53,6 @@ const collapsibleContentVariants = cva('overflow-hidden transition-all duration-
   },
 });
 
-// ============================================================================
-// TYPES
-// ============================================================================
-
 interface CollapsibleContextValue {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
@@ -73,57 +61,25 @@ interface CollapsibleContextValue {
 }
 
 interface CollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * The default open state (uncontrolled)
-   */
   defaultOpen?: boolean;
-  /**
-   * The controlled open state
-   */
   open?: boolean;
-  /**
-   * Callback when open state changes
-   */
   onOpenChange?: (open: boolean) => void;
-  /**
-   * If true, the collapsible cannot be toggled
-   */
   disabled?: boolean;
-  /**
-   * Visual variant
-   */
   variant?: 'default' | 'bordered' | 'card';
 }
 
-interface CollapsibleTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * If true, shows a chevron icon
-   */
+interface CollapsibleTriggerProps extends Omit<HTMLMotionProps<'button'>, 'children'> {
   showChevron?: boolean;
-  /**
-   * Custom chevron icon
-   */
   chevronIcon?: React.ReactNode;
-  /**
-   * Position of the chevron
-   */
   chevronPosition?: 'left' | 'right';
-  /**
-   * Use as child to compose with custom trigger
-   */
   asChild?: boolean;
+  children?: React.ReactNode;
 }
 
-interface CollapsibleContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * If true, content will be force mounted even when closed
-   */
+interface CollapsibleContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
   forceMount?: boolean;
+  children?: React.ReactNode;
 }
-
-// ============================================================================
-// CONTEXT
-// ============================================================================
 
 const CollapsibleContext = React.createContext<CollapsibleContextValue | null>(null);
 
@@ -134,10 +90,6 @@ const useCollapsibleContext = (): CollapsibleContextValue => {
   }
   return context;
 };
-
-// ============================================================================
-// COLLAPSIBLE COMPONENT
-// ============================================================================
 
 const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
   (
@@ -197,10 +149,6 @@ const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
 
 Collapsible.displayName = 'Collapsible';
 
-// ============================================================================
-// COLLAPSIBLE TRIGGER COMPONENT
-// ============================================================================
-
 const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTriggerProps>(
   (
     {
@@ -227,9 +175,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
       [disabled, isOpen, setIsOpen, onClick],
     );
 
-    const chevron = chevronIcon ?? (
-      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
-    );
+    const chevron = chevronIcon ?? <ChevronDown className="h-4 w-4 shrink-0" />;
 
     if (asChild && React.isValidElement(children)) {
       return React.cloneElement(children, {
@@ -241,92 +187,77 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
     }
 
     return (
-      <button
+      <motion.button
         ref={ref}
         type="button"
         onClick={handleClick}
         disabled={disabled}
         data-state={isOpen ? 'open' : 'closed'}
         aria-expanded={isOpen}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
         className={cn(collapsibleTriggerVariants({ variant }), className)}
         {...props}
       >
-        {showChevron && chevronPosition === 'left' && <span aria-hidden="true">{chevron}</span>}
+        {showChevron && chevronPosition === 'left' && (
+          <motion.span
+            aria-hidden="true"
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {chevron}
+          </motion.span>
+        )}
         <span className="flex-1 text-left">{children}</span>
-        {showChevron && chevronPosition === 'right' && <span aria-hidden="true">{chevron}</span>}
-      </button>
+        {showChevron && chevronPosition === 'right' && (
+          <motion.span
+            aria-hidden="true"
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {chevron}
+          </motion.span>
+        )}
+      </motion.button>
     );
   },
 );
 
 CollapsibleTrigger.displayName = 'CollapsibleTrigger';
 
-// ============================================================================
-// COLLAPSIBLE CONTENT COMPONENT
-// ============================================================================
-
 const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentProps>(
-  ({ className, forceMount = false, children, style, ...props }, ref) => {
+  ({ className, forceMount = false, children, ...props }, ref) => {
     const { isOpen, variant } = useCollapsibleContext();
-    const contentRef = React.useRef<HTMLDivElement>(null);
-    const [height, setHeight] = React.useState<number | undefined>(isOpen ? undefined : 0);
-
-    React.useImperativeHandle(ref, () => contentRef.current as HTMLDivElement);
-
-    React.useEffect(() => {
-      const element = contentRef.current;
-      if (!element) return;
-
-      const resizeObserver = new ResizeObserver(() => {
-        if (isOpen) {
-          setHeight(element.scrollHeight);
-        }
-      });
-
-      resizeObserver.observe(element);
-
-      return () => resizeObserver.disconnect();
-    }, [isOpen]);
-
-    React.useEffect(() => {
-      const element = contentRef.current;
-      if (!element) return;
-
-      if (isOpen) {
-        setHeight(element.scrollHeight);
-      } else {
-        // Force reflow
-        element.scrollHeight;
-        setHeight(0);
-      }
-    }, [isOpen]);
-
-    if (!isOpen && !forceMount) {
-      return null;
-    }
 
     return (
-      <div
-        ref={contentRef}
-        data-state={isOpen ? 'open' : 'closed'}
-        className={cn(collapsibleContentVariants({ variant }), className)}
-        style={{
-          height: height === undefined ? 'auto' : `${height}px`,
-          ...style,
-        }}
-        {...props}
-      >
-        <div>{children}</div>
-      </div>
+      <AnimatePresence initial={false}>
+        {(isOpen || forceMount) && (
+          <motion.div
+            ref={ref}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            data-state={isOpen ? 'open' : 'closed'}
+            className={cn(collapsibleContentVariants({ variant }), className)}
+            {...props}
+          >
+            <motion.div
+              initial={{ y: -10 }}
+              animate={{ y: 0 }}
+              exit={{ y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {children}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   },
 );
 
 CollapsibleContent.displayName = 'CollapsibleContent';
-
-// ============================================================================
-// EXPORTS
-// ============================================================================
 
 export {
   Collapsible,
