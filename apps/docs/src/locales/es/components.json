@@ -17,5 +17,14 @@
   "codeblockWrapper": {
     "expand": "Expandir",
     "collapse": "Colapsar"
+  },
+  "chat": {
+    "input": {
+      "placeholder": "Escribe un mensaje..."
+    },
+    "messages": {
+      "initial": "Hola, soy I7A Bot. ¿En qué puedo ayudarte?",
+      "error": "Lo siento, ocurrió un error. Por favor, intenta de nuevo."
+    }
   }
 }
