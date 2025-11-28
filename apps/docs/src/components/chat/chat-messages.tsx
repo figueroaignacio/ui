@@ -13,7 +13,7 @@ interface ChatMessagesProps {
 
 export function ChatMessages({ messages, isLoading, messagesEndRef }: ChatMessagesProps) {
   return (
-    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto">
+    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto px-5">
       {messages.map((msg, idx) => (
         <div key={idx} className="flex flex-col items-start">
           <span className="text-muted-foreground text-sm">
