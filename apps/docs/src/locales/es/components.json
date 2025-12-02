@@ -24,7 +24,8 @@
     },
     "messages": {
       "initial": "Hola, soy I7A Bot. ¿En qué puedo ayudarte?",
-      "error": "Lo siento, ocurrió un error. Por favor, intenta de nuevo."
+      "error": "Lo siento, ocurrió un error. Por favor, intenta de nuevo.",
+      "helperText": "Presione Enter para enviar, Shift + Enter para nueva línea"
     }
   }
 }

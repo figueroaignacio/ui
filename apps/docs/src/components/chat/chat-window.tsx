@@ -33,25 +33,32 @@ export function ChatWindow(props: ChatWindowProps) {
   } = props;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <>
           <motion.div
+            key="backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="chat-backdrop fixed inset-0 z-9998 bg-white/20 backdrop-blur-sm dark:bg-black/20"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-9998 bg-black/40 backdrop-blur-md dark:bg-black/60"
             onClick={onClose}
           />
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            key="chat-window"
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: 'spring', duration: 0.4 }}
-            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col px-3 md:top-1/2 md:left-1/2 md:h-[95dvh] md:w-2xl md:-translate-x-1/2 md:-translate-y-1/2 md:px-0"
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
+            transition={{
+              type: 'spring',
+              stiffness: 400,
+              damping: 30,
+            }}
+            className="fixed inset-4 z-9999 flex flex-col overflow-hidden md:inset-auto md:top-1/2 md:left-1/2 md:h-[85vh] md:max-h-[700px] md:w-full md:max-w-2xl md:-translate-x-1/2 md:-translate-y-1/2"
           >
             <ChatHeader onClose={onClose} />
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto py-6">
               <ChatMessages
                 messages={messages}
                 isLoading={isLoading}
