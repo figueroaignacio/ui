@@ -48,7 +48,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: 'spring', duration: 0.4 }}
-            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col md:top-1/2 md:left-1/2 md:h-[85dvh] md:w-2xl md:-translate-x-1/2 md:-translate-y-1/2"
+            className="pointer-events-auto fixed inset-0 z-9999 flex flex-col px-3 md:top-1/2 md:left-1/2 md:h-[95dvh] md:w-2xl md:-translate-x-1/2 md:-translate-y-1/2 md:px-0"
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">

@@ -2,38 +2,54 @@ import { groq, GROQ_CONFIG } from '@/lib/groq-client';
 import { getSystemPrompt } from '@/lib/system';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Utilities
+interface Message {
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+}
+
+function normalizeMessages(messages: unknown[]): Message[] {
+  return messages.map((m: any) => ({
+    role: m.role,
+    content: Array.isArray(m.content)
+      ? m.content.map((c: { text: string }) => c.text || '').join('\n')
+      : String(m.content),
+  }));
+}
+
+function validateMessages(messages: unknown): messages is Message[] {
+  return (
+    Array.isArray(messages) &&
+    messages.every(
+      (m: any) =>
+        m &&
+        typeof m === 'object' &&
+        ['user', 'assistant', 'system'].includes(m.role) &&
+        (typeof m.content === 'string' || Array.isArray(m.content)),
+    )
+  );
+}
 
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
 
-    if (!Array.isArray(messages) || messages.some((m) => !m.role || !m.content)) {
+    if (!validateMessages(messages)) {
       return NextResponse.json({ error: 'Invalid messages format' }, { status: 400 });
     }
-    const sanitizedMessages = messages.slice(-5);
 
-    const normalizedMessages = sanitizedMessages.map((m) => ({
-      role: m.role,
-      content: Array.isArray(m.content)
-        ? m.content.map((c: { text: string }) => c.text || '').join('\n')
-        : String(m.content),
-    }));
+    const sanitizedMessages = messages.slice(-5);
+    const normalizedMessages = normalizeMessages(sanitizedMessages);
 
     const systemPrompt = await getSystemPrompt(normalizedMessages);
 
-    const estimatedTokens = Math.ceil(
-      (systemPrompt.length + normalizedMessages.reduce((acc, m) => acc + m.content.length, 0)) / 4,
-    );
-
-    console.log(`📊 Estimated tokens: ${estimatedTokens}`);
+    const totalContent = systemPrompt + normalizedMessages.map((m) => m.content).join('\n');
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'system', content: systemPrompt }, ...normalizedMessages],
       model: GROQ_CONFIG.model,
-      temperature: GROQ_CONFIG.temperature,
-      max_tokens: 800,
-      top_p: GROQ_CONFIG.topP,
+      temperature: 0.5,
+      max_tokens: 2048,
+      top_p: 0.9,
       stream: false,
     });
 
