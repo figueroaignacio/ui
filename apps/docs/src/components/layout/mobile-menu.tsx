@@ -12,12 +12,13 @@ import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
 
 // Definitions
-import { DocSection } from '@/lib/definitions';
+import type { DocSection, Navigation } from '@/lib/definitions';
 
 export function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations();
-  const navigation = t.raw('docs.navigation') as DocSection[];
+  const docsNavigation = t.raw('docs.navigation') as DocSection[];
+  const navigation = t.raw('ui.navigation') as Navigation[];
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -46,8 +47,20 @@ export function MobileMenu() {
             <Logo />
           </button>
         </div>
-        <div className="mb-16 flex-1 overflow-y-auto px-5 py-4">
-          {navigation.map((section, sectionIndex) => (
+        <div className="mb-16 flex-1 space-y-6 overflow-y-auto px-5 py-4">
+          <h2 className="text-muted-foreground animate-show-soft mb-2 text-sm font-semibold tracking-tight">
+            Menu
+          </h2>
+          <ul>
+            {navigation.map((item) => (
+              <li>
+                <Link href={item.href} className="animate-show-soft block py-2 text-2xl font-bold">
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {docsNavigation.map((section, sectionIndex) => (
             <div key={`section-${sectionIndex}`} className={sectionIndex !== 0 ? 'pt-2' : ''}>
               <h2 className="text-muted-foreground animate-show-soft mb-2 text-sm font-semibold tracking-tight">
                 {section.title}
