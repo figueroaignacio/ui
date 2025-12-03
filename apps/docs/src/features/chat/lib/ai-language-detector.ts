@@ -1,4 +1,4 @@
-import type { Message } from './definitions';
+import type { Message } from '@/lib/definitions';
 import type { Language } from './prompts';
 
 const SPANISH_INDICATORS = [

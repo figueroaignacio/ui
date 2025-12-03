@@ -16,10 +16,10 @@ export function Navbar() {
         <div className="border-border border-r py-3 pr-34">
           <Logo />
         </div>
-        <nav className="space-x-3">
+        <nav className="space-x-5">
           {navigation.map((item) => (
             <Link
-              className="hover:text-primary text-muted-foreground text-sm hover:underline"
+              className="hover:text-primary text-muted-foreground text-sm"
               href={item.url}
               key={item.url}
             >
