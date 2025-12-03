@@ -77,8 +77,8 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
 
   return (
     <>
-      <article className="flex w-full min-w-0 flex-col lg:px-36">
-        <div className="mb-5 flex items-start justify-between pb-5 lg:mt-6">
+      <article className="flex w-full min-w-0 flex-col lg:px-26">
+        <div className="my-6 flex items-start justify-between">
           <div className="space-y-3">
             <DocsBreadcrumb slugAsParams={doc.slugAsParams} />
             <h1 className="text-3xl font-bold">{doc.title}</h1>
@@ -88,7 +88,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <DocsNavigationButtons currentPath={currentPath} />
           </div>
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="mb-24 min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
         </div>
         <div className="hidden lg:block">
