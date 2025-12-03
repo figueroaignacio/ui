@@ -43,7 +43,7 @@ const buttonVariants = cva(
           'focus-visible:ring-destructive/50',
         ].join(' '),
         outline: [
-          'border-2 border-input bg-transparent',
+          'border-2 border-input bg-background',
           'hover:bg-secondary hover:border-secondary hover:shadow-lg',
           'hover:scale-[1.02]',
         ].join(' '),

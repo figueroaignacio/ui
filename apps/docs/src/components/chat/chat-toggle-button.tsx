@@ -9,11 +9,7 @@ interface ChatToggleButtonProps {
 
 export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
   return (
-    <Button
-      onClick={onClick}
-      variant="secondary"
-      leftIcon={<BotMessageSquare className="size-4" />}
-    >
+    <Button onClick={onClick} variant="outline" leftIcon={<BotMessageSquare className="size-4" />}>
       Ask AI
     </Button>
   );
