@@ -40,6 +40,28 @@ export const docs = defineCollection({
     .transform(computedFields),
 });
 
+export const posts = defineCollection({
+  name: 'Posts',
+  pattern: 'blog/**/*.mdx',
+  schema: s
+    .object({
+      slug: s.path(),
+      title: s.string(),
+      description: s.string(),
+      published: s.boolean().default(false),
+      date: s.coerce.date().default(new Date()),
+      label: s.enum(['New', 'Updated']).optional(),
+      body: s.mdx(),
+      raw: s.markdown(),
+      locale: s.enum(['en', 'es']).default('en'),
+      toc: s.object({
+        content: s.toc(),
+        visible: s.boolean().default(true),
+      }),
+    })
+    .transform(computedFields),
+});
+
 export default defineConfig({
   root: './src/content',
   output: {
@@ -49,7 +71,7 @@ export default defineConfig({
     name: '[name]-[hash:6].[ext]',
     clean: true,
   },
-  collections: { docs },
+  collections: { docs, posts },
   mdx: {
     gfm: true,
     rehypePlugins: [

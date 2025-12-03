@@ -17,5 +17,8 @@
         "variant": "secondary"
       }
     ]
+  },
+  "blog": {
+    "subtitle": "Las ultimas noticias de I7A UI"
   }
 }
