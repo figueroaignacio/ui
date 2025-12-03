@@ -81,14 +81,12 @@ const cardFooterVariants = cva('flex items-center', {
 });
 
 interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
   as?: React.ElementType;
 }
 
 interface CardHeaderProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardHeaderVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardHeaderVariants> {}
 
 interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -97,12 +95,10 @@ interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
 interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 interface CardContentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardContentVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardContentVariants> {}
 
 interface CardFooterProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardFooterVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardFooterVariants> {}
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (

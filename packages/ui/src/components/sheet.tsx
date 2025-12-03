@@ -106,8 +106,7 @@ const slideVariants = {
 };
 
 interface SheetContentProps
-  extends Omit<HTMLMotionProps<'div'>, 'children'>,
-    VariantProps<typeof sheetVariants> {
+  extends Omit<HTMLMotionProps<'div'>, 'children'>, VariantProps<typeof sheetVariants> {
   children: React.ReactNode;
   showDragHandle?: boolean;
 }

@@ -89,12 +89,10 @@ interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 interface TabsListProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tabsListVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tabsListVariants> {}
 
 interface TabsTriggerProps
-  extends Omit<HTMLMotionProps<'button'>, 'children'>,
-    VariantProps<typeof tabsTriggerVariants> {
+  extends Omit<HTMLMotionProps<'button'>, 'children'>, VariantProps<typeof tabsTriggerVariants> {
   value: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
