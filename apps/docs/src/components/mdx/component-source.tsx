@@ -2,7 +2,7 @@
 import { ComponentSourceClient } from './component-source-client';
 
 // Utils
-import { getComponentCode } from '@/lib/get-component-code';
+import { getComponentCode } from '@/features/docs/lib/get-component-code';
 
 interface ComponentSourceProps {
   name: string;

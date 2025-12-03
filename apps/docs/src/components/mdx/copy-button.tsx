@@ -1,7 +1,7 @@
 'use client';
 
 // Hooks
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
 
 // Components
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';

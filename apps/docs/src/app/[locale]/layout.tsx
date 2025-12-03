@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 // Components
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
-import { ViewTransition } from 'react';
 
 // Utils
 import { routing } from '@/i18n/routing';
@@ -47,16 +46,14 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
   return (
     <html lang={locale} suppressHydrationWarning className={theme}>
       <body className={`relative ${fontSans.className}`}>
-        <ViewTransition>
-          <NextIntlClientProvider>
-            <Providers>
-              <div className="flex min-h-screen flex-col lg:pb-0">
-                <Header />
-                <main className="flex-1">{children}</main>
-              </div>
-            </Providers>
-          </NextIntlClientProvider>
-        </ViewTransition>
+        <NextIntlClientProvider>
+          <Providers>
+            <div className="flex min-h-screen flex-col lg:pb-0">
+              <Header />
+              <main className="flex-1">{children}</main>
+            </div>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

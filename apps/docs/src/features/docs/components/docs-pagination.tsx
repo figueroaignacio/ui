@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl';
 
 // Components
-import { useDocsNavigation } from '@/hooks/use-docs-navigation';
+import { useDocsNavigation } from '@/features/docs/hooks/use-docs-navigation';
 import { Link } from '@/i18n/navigation';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 

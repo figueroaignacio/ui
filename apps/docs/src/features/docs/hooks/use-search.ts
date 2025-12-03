@@ -1,9 +1,10 @@
-// Components
+// Hooks
+import { useTranslations } from 'next-intl';
 import { useCallback, useMemo, useState } from 'react';
 
 // Utils
-import { flattenNavigationItems, searchItems } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
+import { flattenNavigationItems } from '../lib/flatten-navigation-items';
+import { searchItems } from '../lib/search-items';
 
 // Definitions
 import type { NavigationSection } from '@/lib/definitions';

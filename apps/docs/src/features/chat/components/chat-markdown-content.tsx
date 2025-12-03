@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { CodeBlock } from '../mdx/codeblock';
+import { CodeBlock } from '../../../components/mdx/codeblock';
 
 interface MarkdownContentProps {
   content: string;

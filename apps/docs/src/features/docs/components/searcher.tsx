@@ -1,8 +1,8 @@
 'use client';
 
 // Hooks
+import { useSearch } from '@/features/docs/hooks/use-search';
 import { useDialogFocus } from '@/hooks/use-dialog-focus';
-import { useSearch } from '@/hooks/use-search';
 import { useTranslations } from 'next-intl';
 
 // Components

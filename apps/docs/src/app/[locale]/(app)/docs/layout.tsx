@@ -1,6 +1,6 @@
 // Components
-import { AiChat } from '@/components/chat/ai-chat';
-import { Sidebar } from '@/components/docs/sidebar';
+import { AiChat } from '@/features/chat/components/ai-chat';
+import { Sidebar } from '@/features/docs/components/sidebar';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,7 +1,7 @@
+import type { Message } from '../../../lib/definitions';
 import { detectLanguage } from './ai-language-detector';
 import { getCachedContext } from './cache-manager';
 import { buildEnrichedContext, findRelevantComponents, findRelevantDocs } from './context-loader';
-import type { Message } from './definitions';
 import { SYSTEM_PROMPTS } from './prompts';
 
 type Language = 'en' | 'es';

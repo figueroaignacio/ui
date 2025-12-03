@@ -1,8 +1,8 @@
 'use client';
 
 // Hooks
-import { useChat } from '@//hooks/use-chat';
-import { useChatInput } from '@//hooks/use-chat-input';
+import { useChat } from '@/features/chat/hooks/use-chat';
+import { useChatInput } from '@/features/chat/hooks/use-chat-input';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { useState, type RefObject } from 'react';
 

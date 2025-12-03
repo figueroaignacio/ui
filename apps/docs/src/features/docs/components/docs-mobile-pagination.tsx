@@ -1,7 +1,7 @@
 'use client';
 
 // Hooks
-import { useDocsNavigation } from '@/hooks/use-docs-navigation';
+import { useDocsNavigation } from '@/features/docs/hooks/use-docs-navigation';
 
 // Components
 import { Link } from '@/i18n/navigation';

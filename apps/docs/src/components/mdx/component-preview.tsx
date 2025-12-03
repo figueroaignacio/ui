@@ -4,7 +4,7 @@
 import { ComponentPreviewClient } from './component-preview-client';
 
 // Utils
-import { getComponentCode } from '@/lib/get-component-code';
+import { getComponentCode } from '@/features/docs/lib/get-component-code';
 
 interface ComponentPreviewProps {
   name: string;

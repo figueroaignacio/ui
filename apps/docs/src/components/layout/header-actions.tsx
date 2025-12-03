@@ -1,7 +1,7 @@
 // Components
+import { Searcher } from '../../features/docs/components/searcher';
 import { LocaleSwitcher } from '../common/locale-switcher';
 import { ThemeToggle } from '../common/theme-toggle';
-import { Searcher } from '../docs/searcher';
 
 export function HeaderActions() {
   return (
