@@ -71,7 +71,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePro
   }
 
   return (
-    <article className="mx-auto max-w-4xl space-y-8 py-10">
+    <article className="mx-auto max-w-2xl space-y-8 py-10">
       <BackButton />
       <p>{formatDateOnly(post.date, locale)}</p>
       <div className="space-y-1">

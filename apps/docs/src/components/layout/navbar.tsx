@@ -15,7 +15,7 @@ export function Navbar() {
 
   return (
     <div className="relative z-50 hidden w-full items-center justify-between px-6 lg:flex">
-      <div className="flex items-center justify-between gap-x-16">
+      <div className="flex items-center justify-between gap-x-28">
         <div className="border-border flex items-center justify-between space-x-1 border-r py-3 pr-34">
           <Logo />
           <span className="border-primary bg-primary/20 rounded-lg border px-2 text-xs">Beta</span>
