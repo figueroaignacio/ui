@@ -78,15 +78,16 @@ export default async function HomePage({ params }: PageProps) {
           {actions.map((action, index) => {
             const Icon = index === 0 ? ArrowRight : index === 1 ? Component : null;
             return (
-              <Button
-                key={action.href}
-                variant={action.variant}
-                size="sm"
-                className="items-center gap-2 transition-transform hover:scale-[1.03]"
-                rightIcon={Icon ? <Icon className="h-4 w-4" /> : undefined}
-              >
-                <Link href={action.href}>{action.label}</Link>
-              </Button>
+              <Link href={action.href} key={action.href}>
+                <Button
+                  variant={action.variant}
+                  size="sm"
+                  className="items-center gap-2 transition-transform hover:scale-[1.03]"
+                  rightIcon={Icon ? <Icon className="h-4 w-4" /> : undefined}
+                >
+                  {action.label}
+                </Button>
+              </Link>
             );
           })}
         </div>
