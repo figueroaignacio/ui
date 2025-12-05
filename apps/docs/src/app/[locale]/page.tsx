@@ -1,8 +1,6 @@
 // Components
 import { Link } from '@/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
-
-// Icons
 import { ArrowRight, Component } from 'lucide-react';
 
 // Utils
