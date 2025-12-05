@@ -53,7 +53,7 @@ export function MobileMenu() {
           </h2>
           <ul>
             {navigation.map((item) => (
-              <li>
+              <li onClick={toggleMenu} key={item.href}>
                 <Link href={item.href} className="animate-show-soft block py-2 text-2xl font-bold">
                   {item.title}
                 </Link>
@@ -67,11 +67,7 @@ export function MobileMenu() {
               </h2>
               <ul>
                 {section.items.map((item, itemIndex) => (
-                  <li
-                    key={`item-${sectionIndex}-${itemIndex}`}
-                    onClick={toggleMenu}
-                    className="mr-6"
-                  >
+                  <li key={`item-${sectionIndex}-${itemIndex}`} className="mr-6">
                     <Link
                       href={item.href}
                       className="animate-show-soft block py-2 text-2xl font-bold"

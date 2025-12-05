@@ -2,15 +2,15 @@
   "navigation": [
     {
       "title": "Documentación",
-      "url": "/docs"
+      "href": "/docs"
     },
     {
       "title": "Componentes",
-      "url": "/docs/components"
+      "href": "/docs/components"
     },
     {
       "title": "Blog",
-      "url": "/blog"
+      "href": "/blog"
     }
   ]
 }
