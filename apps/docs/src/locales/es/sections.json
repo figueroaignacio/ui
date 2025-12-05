@@ -19,6 +19,7 @@
     ]
   },
   "blog": {
-    "subtitle": "Las ultimas noticias de I7A UI"
+    "subtitle": "Las ultimas noticias de I7A UI",
+    "postedBy": "Publicado por:"
   }
 }

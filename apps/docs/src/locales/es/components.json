@@ -27,5 +27,8 @@
       "error": "Lo siento, ocurrió un error. Por favor, intenta de nuevo.",
       "helperText": "Presione Enter para enviar, Shift + Enter para nueva línea"
     }
+  },
+  "backButton": {
+    "label": "Volver"
   }
 }

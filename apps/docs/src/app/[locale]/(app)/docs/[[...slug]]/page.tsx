@@ -13,7 +13,6 @@ import { Toc } from '@/features/docs/components/toc';
 
 // Utils
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
-import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Types
@@ -66,7 +65,6 @@ export async function generateStaticParams(): Promise<{ slug: string[]; locale: 
 
 export default async function DocPage({ params }: { params: Promise<DocPageProps> }) {
   const doc = await getDocFromParams({ params });
-  const t = await getTranslations('components');
 
   if (!doc || !doc.published) {
     notFound();
