@@ -6,9 +6,12 @@ import { Link } from '@/i18n/navigation';
 import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
 
+// Types
+import type { Navigation } from '@/lib/definitions';
+
 export function Navbar() {
   const t = useTranslations('ui');
-  const navigation: { title: string; url: string }[] = t.raw('navigation');
+  const navigation: Navigation[] = t.raw('navigation');
 
   return (
     <div className="relative z-50 hidden w-full items-center justify-between px-6 lg:flex">
@@ -21,8 +24,8 @@ export function Navbar() {
           {navigation.map((item) => (
             <Link
               className="hover:text-primary text-muted-foreground text-sm"
-              href={item.url}
-              key={item.url}
+              href={item.href}
+              key={item.href}
             >
               {item.title}
             </Link>
