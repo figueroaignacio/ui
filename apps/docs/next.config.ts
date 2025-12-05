@@ -6,9 +6,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
-  experimental: {
-    viewTransition: true,
-  },
   outputFileTracingIncludes: {
     '/': ['../../packages/ui/src/samples/**'],
   },
