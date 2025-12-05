@@ -1,25 +1,25 @@
 {
   "home": {
-    "badge": "Kit UI Open Source",
-    "subheading": "Componentes modernos, accesibles y personalizables para crear interfaces web profesionales.",
-    "description": "Pensado para ofrecer una base sólida y flexible, este kit se adapta a cualquier diseño o flujo de trabajo.",
+    "badge": "Design System Open Source",
+    "subheading": "Un sistema de diseño moderno, accesible y escalable para crear interfaces web consistentes y profesionales.",
+    "description": "Construido sobre una base de design tokens y componentes reutilizables, este Design System se adapta a cualquier proyecto y flujo de trabajo.",
     "actions": [
       {
         "label": "Empezar",
         "href": "/docs",
-        "description": "Guía completa para instalar, usar e integrar el kit en tus proyectos.",
+        "description": "Guía completa para instalar, integrar y sacar el máximo provecho del Design System.",
         "variant": "default"
       },
       {
         "label": "Ver Componentes",
         "href": "/docs/components",
-        "description": "Explorá todos los componentes disponibles y aprendé cómo aplicarlos.",
+        "description": "Explorá todos los componentes disponibles y aprendé cómo utilizarlos eficazmente.",
         "variant": "secondary"
       }
     ]
   },
   "blog": {
-    "subtitle": "Las ultimas noticias de I7A UI",
+    "subtitle": "Las últimas novedades de I7A UI",
     "postedBy": "Publicado por:"
   }
 }
