@@ -62,8 +62,8 @@ export default async function HomePage({ params }: PageProps) {
   const actions: HomePageActions[] = t.raw('home.actions');
 
   return (
-    <div className="flex min-h-[80svh] items-center justify-center px-4">
-      <section className="max-w-2xl flex-col space-y-3 px-0 py-3 text-left md:px-3">
+    <div className="flex min-h-[80svh] items-center justify-center">
+      <section className="max-w-2xl flex-col space-y-3 px-0 py-3 text-left">
         <div className="border-primary/20 bg-primary/10 text-primary inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
           <span className="bg-primary h-2 w-2 rounded-full" />
           {t('home.badge')}
