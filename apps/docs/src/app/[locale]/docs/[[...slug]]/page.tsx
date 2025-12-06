@@ -38,14 +38,62 @@ export async function generateMetadata({
   params: Promise<DocPageProps>;
 }): Promise<Metadata> {
   const doc = await getDocFromParams({ params });
+  const parameters = await params;
+  const locale = parameters.locale || 'en';
+  const slugPath = parameters.slug?.join('/') || '';
 
   if (!doc) {
-    return {};
+    return {
+      title: 'Documentation not found',
+    };
   }
 
+  const metaTitle = doc.title;
+  const metaDescription = doc.description;
+  const url = `https://i7a-ui.vercel.app/${locale}/docs/${slugPath}`;
+
   return {
-    title: doc.title,
-    description: doc.description,
+    title: metaTitle,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      type: 'article',
+      locale: locale,
+      url: url,
+      siteName: 'i7a-ui',
+      images: [
+        {
+          url: `/${locale}/docs/${slugPath}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: metaTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
+      images: [`/${locale}/docs/${slugPath}/opengraph-image`],
+    },
+    alternates: {
+      canonical: url,
+      languages: {
+        es: `https://i7a-ui.vercel.app/es/docs/${slugPath}`,
+        en: `https://i7a-ui.vercel.app/en/docs/${slugPath}`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 

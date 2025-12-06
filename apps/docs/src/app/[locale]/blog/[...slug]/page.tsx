@@ -35,15 +35,38 @@ export async function generateMetadata({
 }: {
   params: Promise<PostPageProps>;
 }): Promise<Metadata> {
-  const doc = await getPostFromParams({ params });
+  const parameters = await params;
 
-  if (!doc) {
+  const post = await getPostFromParams({ params });
+  const locale = parameters.locale || 'en';
+  const slugPath = parameters.slug?.join('/') || '';
+
+  if (!post) {
     return {};
   }
 
+  const url = `https://i7a-ui.vercel.app/${locale}/posts/${slugPath}`;
+
   return {
-    title: doc.title,
-    description: doc.description,
+    title: post.title,
+    description: post.description,
+    alternates: {
+      canonical: url,
+      languages: {
+        es: `https://i7a-ui.vercel.app/es/blog/${slugPath}`,
+        en: `https://i7a-ui.vercel.app/en/blog/${slugPath}`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 

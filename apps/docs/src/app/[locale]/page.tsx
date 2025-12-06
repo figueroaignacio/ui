@@ -49,6 +49,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: t('description'),
       images: [`/${locale}/opengraph-image`],
     },
+    alternates: {
+      canonical: `https://i7a-ui.vercel.app`,
+      languages: {
+        es: `https://i7a-ui.vercel.app/es`,
+        en: `https://i7a-ui.vercel.app/en`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 
