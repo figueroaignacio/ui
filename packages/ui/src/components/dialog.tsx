@@ -1,7 +1,7 @@
 'use client';
 
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { cloneElement } from 'react';
 import { createPortal } from 'react-dom';

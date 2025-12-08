@@ -1,7 +1,7 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, FileIcon, FolderIcon, FolderOpenIcon } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { cn } from '../lib/cn';
 

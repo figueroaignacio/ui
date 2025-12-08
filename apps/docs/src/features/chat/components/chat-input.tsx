@@ -2,8 +2,8 @@
 import { useTranslations } from 'next-intl';
 
 // Components
-import { motion } from 'framer-motion';
 import { Loader2, Send } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface ChatInputProps {
   message: string;

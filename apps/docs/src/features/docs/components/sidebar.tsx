@@ -8,7 +8,7 @@ import { useState } from 'react';
 // Components
 import { Link } from '@/i18n/navigation';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';

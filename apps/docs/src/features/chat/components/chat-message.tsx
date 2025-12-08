@@ -1,5 +1,5 @@
 // Components
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ChatMarkdownContent } from './chat-markdown-content';
 
 // Types

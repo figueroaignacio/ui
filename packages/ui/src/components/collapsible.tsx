@@ -1,8 +1,8 @@
 'use client';
 
 import { cva } from 'class-variance-authority';
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
