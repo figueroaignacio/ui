@@ -19,7 +19,7 @@ export function CopyButton({ value, className }: CopyButtonProps) {
       onClick={() => copyToClipboard(value)}
       disabled={isCopied}
       title={isCopied ? 'Copied!' : 'Copy code'}
-      className="transition-transform duration-100 hover:scale-[1.05] hover:cursor-pointer active:scale-[0.90]"
+      className="text-white transition-transform duration-100 hover:scale-[1.05] hover:cursor-pointer active:scale-[0.90]"
     >
       {isCopied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
     </button>
