@@ -7,6 +7,13 @@ import { ArrowRight, Component } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 // Types
+import {
+  MotionIcon,
+  NextJSIcon,
+  ReactIcon,
+  TailwindIcon,
+  TypescriptIcon,
+} from '@/components/common/tech-icons';
 import type { Metadata } from 'next';
 
 type PageProps = {
@@ -76,6 +83,14 @@ export default async function HomePage({ params }: PageProps) {
   const t = await getTranslations('sections');
   const actions: HomePageActions[] = t.raw('home.actions');
 
+  const technologies = [
+    { name: 'TypeScript', icon: TypescriptIcon },
+    { name: 'Next.js', icon: NextJSIcon },
+    { name: 'React', icon: ReactIcon },
+    { name: 'Tailwind CSS', icon: TailwindIcon },
+    { name: 'Motion', icon: MotionIcon },
+  ];
+
   return (
     <div className="flex min-h-[80svh] items-center justify-center">
       <section className="max-w-2xl flex-col space-y-3 px-0 py-3 text-left">
@@ -103,6 +118,17 @@ export default async function HomePage({ params }: PageProps) {
                   {action.label}
                 </Button>
               </Link>
+            );
+          })}
+        </div>
+        <div className="flex max-w-md flex-wrap gap-4 pt-6">
+          {technologies.map((tech) => {
+            const Icon = tech.icon;
+            return (
+              <div key={tech.name} className="flex items-center gap-2 text-xs">
+                <Icon />
+                {tech.name}
+              </div>
             );
           })}
         </div>
