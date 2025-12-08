@@ -58,7 +58,7 @@ export function LandingTechSection() {
   return (
     <section className="bg-background relative w-full overflow-hidden py-16 md:py-24 lg:py-32">
       <div className="bg-grid-pattern absolute inset-0"></div>
-      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl md:px-6 lg:px-8">
         <div className="mb-12 text-center md:mb-16">
           <h2 className="from-foreground to-foreground/70 mb-4 bg-linear-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl lg:text-5xl">
             {t('title')}
