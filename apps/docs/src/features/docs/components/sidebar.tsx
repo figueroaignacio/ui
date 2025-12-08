@@ -65,7 +65,7 @@ export function Sidebar() {
                       <Link
                         href={item.href}
                         className={cn(
-                          'hover:bg-secondary animate-show-soft block rounded-xl px-2.5 py-2 text-xs transition-all duration-150',
+                          'hover:bg-secondary block rounded-xl px-2.5 py-2 text-xs',
                           pathname === item.href && 'bg-secondary font-bold',
                         )}
                       >
