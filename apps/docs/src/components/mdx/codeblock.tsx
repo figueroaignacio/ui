@@ -36,7 +36,7 @@ export function CodeBlock({
         {expandButton}
         <CopyButton value={code} />
       </div>
-      <Highlight code={code.trim()} language={language} theme={themes.vsDark}>
+      <Highlight code={code.trim()} language={language} theme={themes.oneDark}>
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
