@@ -36,12 +36,11 @@ export function CodeBlock({
         {expandButton}
         <CopyButton value={code} />
       </div>
-
       <Highlight code={code.trim()} language={language} theme={themes.vsDark}>
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
-              'overflow-auto p-4 text-sm leading-relaxed transition-all duration-300 ease-in-out',
+              'overflow-auto p-4 text-xs leading-relaxed transition-all duration-300 ease-in-out',
               fontCode.className,
               !isExpanded ? 'max-h-[500px]' : 'max-h-[1000px]',
             )}

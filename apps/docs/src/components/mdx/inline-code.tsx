@@ -26,7 +26,7 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
     return (
       <code
         className={cn(
-          'border-border bg-muted/60 inline-flex items-center rounded-md border px-[0.35rem] py-[0.15rem] font-mono text-[0.9rem] shadow-sm',
+          'border-border bg-muted/60 text-foreground inline-flex items-center rounded-md border px-[.35rem] py-[.15rem] font-mono text-xs',
           className,
         )}
         {...props}
@@ -39,8 +39,7 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
       {({ style, tokens, getTokenProps }) => (
         <code
           className={cn(
-            'border-border bg-muted/60 inline-flex items-center rounded-md border px-[0.35rem] py-[0.15rem] font-mono text-[0.9rem] shadow-sm',
-            'hover:bg-muted/80 transition-colors duration-200',
+            'border-border bg-muted/60 text-foreground inline-flex items-center rounded-md border px-[.35rem] py-[.15rem] font-mono text-xs',
             className,
           )}
           style={{ ...style, backgroundColor: 'transparent' }}

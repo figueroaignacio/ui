@@ -1,0 +1,419 @@
+---
+title: Theming
+description: Customize colors, border radius, and more to adapt components to your project.
+published: true
+toc:
+  visible: true
+date: 2024-03-14
+locale: en
+---
+
+Components are built using CSS variables and Tailwind, allowing you to easily customize the colors and styles of your entire application.
+
+## How it works
+
+We use a simple convention: each color has a `--background` variable for the background and a `--foreground` variable for the text that goes on that background.
+
+For example:
+
+- `--primary` defines the main background color
+- `--primary-foreground` defines the text color on that background
+
+This automatically ensures good contrast between the background and text.
+
+```tsx
+<button className="bg-primary text-primary-foreground p-4">My button</button>
+```
+
+## Available colors
+
+```css
+:root {
+  --background: oklch(99.405% 0.00011 271.152);
+  --foreground: oklch(0% 0 0);
+  --primary: oklch(53.934% 0.2714 286.753);
+  --primary-foreground: oklch(100% 0.00011 271.152);
+  --secondary: oklch(95.4% 0.00637 255.746);
+  --secondary-foreground: oklch(13.441% 0.00002 271.152);
+  --muted: oklch(97.015% 0.00011 271.152);
+  --muted-foreground: oklch(43.861% 0.00005 271.152);
+  --accent: oklch(93.929% 0.02887 266.393);
+  --accent-foreground: oklch(54.456% 0.19041 259.501);
+  --destructive: oklch(62.902% 0.19024 23.052);
+  --destructive-foreground: oklch(100% 0.00011 271.152);
+  --border: oklch(88.09% 0.00941 258.48);
+  --input: oklch(93.1% 0.00011 271.152);
+  --ring: oklch(0% 0 0);
+}
+```
+
+### What is OKLCH?
+
+OKLCH is a modern color format that offers better control over brightness and saturation than HSL or RGB. The syntax is:
+
+```css
+oklch(lightness chroma hue)
+```
+
+- **Lightness**: 0% = black, 100% = white
+- **Chroma**: 0 = gray, ~0.4 = highly saturated
+- **Hue**: 0-360 degrees of color
+
+You can use tools like [oklch.com](https://oklch.com/) to choose colors visually.
+
+## Customizing colors
+
+### Changing existing colors
+
+Modify the variables directly in your CSS file:
+
+```css
+:root {
+  --primary: oklch(65% 0.25 150); /* Green */
+  --primary-foreground: oklch(100% 0 0); /* White */
+}
+```
+
+### Adding new colors
+
+**1. Define the variables:**
+
+```css
+:root {
+  --success: oklch(75% 0.15 145);
+  --success-foreground: oklch(15% 0.01 145);
+}
+
+.dark {
+  --success: oklch(55% 0.12 145);
+  --success-foreground: oklch(95% 0.005 145);
+}
+```
+
+**2. Extend the `@theme`**
+
+```css
+@theme inline {
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+}
+```
+
+**3. Use them in your components:**
+
+```tsx
+<Alert className="bg-success text-success-foreground">Operation successful!</Alert>
+```
+
+## Border radius
+
+Control how rounded the corners of all components are:
+
+```css
+:root {
+  --radius: 0.625rem; /* 10px by default */
+}
+```
+
+Available variants:
+
+- `rounded-sm` → 6px
+- `rounded-md` → 8px
+- `rounded-lg` → 10px (base value)
+- `rounded-xl` → 14px
+- `rounded-2xl` → 18px
+
+For more rounded corners throughout your app:
+
+```css
+:root {
+  --radius: 1rem; /* 16px */
+}
+```
+
+## Custom themes
+
+You can create multiple themes beyond light and dark. Here are some predefined themes you can use:
+
+### Ocean
+
+A calm blue theme inspired by the sea:
+
+```css
+:root {
+  --background: oklch(98% 0.008 230);
+  --foreground: oklch(20% 0.01 230);
+  --card: oklch(99% 0.005 230);
+  --card-foreground: oklch(20% 0.01 230);
+  --primary: oklch(55% 0.18 230);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(87% 0.06 220);
+  --secondary-foreground: oklch(25% 0.01 220);
+  --muted: oklch(92% 0.025 230);
+  --muted-foreground: oklch(45% 0.02 230);
+  --accent: oklch(88% 0.09 210);
+  --accent-foreground: oklch(25% 0.01 210);
+  --destructive: oklch(62% 0.17 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.03 230);
+  --input: oklch(91% 0.025 230);
+  --ring: oklch(55% 0.18 230);
+}
+
+.dark {
+  --background: oklch(20% 0.02 230);
+  --foreground: oklch(96% 0.008 230);
+  --card: oklch(23% 0.018 230);
+  --card-foreground: oklch(96% 0.008 230);
+  --primary: oklch(70% 0.18 230);
+  --primary-foreground: oklch(15% 0.01 230);
+  --secondary: oklch(32% 0.04 230);
+  --secondary-foreground: oklch(95% 0.008 230);
+  --muted: oklch(28% 0.02 230);
+  --muted-foreground: oklch(75% 0.015 230);
+  --accent: oklch(40% 0.06 210);
+  --accent-foreground: oklch(95% 0.01 210);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(30% 0.02 230);
+  --input: oklch(25% 0.018 230);
+  --ring: oklch(70% 0.18 230);
+}
+```
+
+### Forest
+
+A natural green theme:
+
+```css
+:root {
+  --background: oklch(98% 0.008 140);
+  --foreground: oklch(18% 0.01 140);
+  --card: oklch(99% 0.005 140);
+  --card-foreground: oklch(18% 0.01 140);
+  --primary: oklch(48% 0.16 145);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(88% 0.07 130);
+  --secondary-foreground: oklch(25% 0.01 130);
+  --muted: oklch(92% 0.025 140);
+  --muted-foreground: oklch(45% 0.02 140);
+  --accent: oklch(88% 0.085 150);
+  --accent-foreground: oklch(25% 0.01 150);
+  --destructive: oklch(62% 0.16 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.03 140);
+  --input: oklch(91% 0.025 140);
+  --ring: oklch(48% 0.16 145);
+}
+
+.dark {
+  --background: oklch(18% 0.02 140);
+  --foreground: oklch(95% 0.01 140);
+  --card: oklch(22% 0.02 140);
+  --card-foreground: oklch(95% 0.01 140);
+  --primary: oklch(70% 0.16 145);
+  --primary-foreground: oklch(15% 0.01 145);
+  --secondary: oklch(30% 0.04 130);
+  --secondary-foreground: oklch(95% 0.01 130);
+  --muted: oklch(27% 0.02 140);
+  --muted-foreground: oklch(75% 0.015 140);
+  --accent: oklch(38% 0.06 150);
+  --accent-foreground: oklch(95% 0.01 150);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(30% 0.02 140);
+  --input: oklch(25% 0.018 140);
+  --ring: oklch(70% 0.16 145);
+}
+```
+
+### Sunset
+
+A warm orange and pink theme:
+
+```css
+:root {
+  --background: oklch(98% 0.015 40);
+  --foreground: oklch(20% 0.01 40);
+  --card: oklch(99% 0.01 40);
+  --card-foreground: oklch(20% 0.01 40);
+  --primary: oklch(60% 0.2 30);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(88% 0.09 50);
+  --secondary-foreground: oklch(22% 0.01 50);
+  --muted: oklch(92% 0.03 40);
+  --muted-foreground: oklch(45% 0.02 40);
+  --accent: oklch(88% 0.11 20);
+  --accent-foreground: oklch(22% 0.01 20);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.04 40);
+  --input: oklch(91% 0.03 40);
+  --ring: oklch(60% 0.2 30);
+}
+
+.dark {
+  --background: oklch(20% 0.02 40);
+  --foreground: oklch(96% 0.015 40);
+  --card: oklch(23% 0.02 40);
+  --card-foreground: oklch(96% 0.015 40);
+  --primary: oklch(70% 0.2 30);
+  --primary-foreground: oklch(20% 0.01 30);
+  --secondary: oklch(32% 0.05 50);
+  --secondary-foreground: oklch(95% 0.01 50);
+  --muted: oklch(28% 0.02 40);
+  --muted-foreground: oklch(75% 0.015 40);
+  --accent: oklch(40% 0.07 20);
+  --accent-foreground: oklch(95% 0.01 20);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(30% 0.02 40);
+  --input: oklch(25% 0.018 40);
+  --ring: oklch(70% 0.2 30);
+}
+```
+
+### Midnight
+
+A deep purple theme perfect for creative apps:
+
+```css
+:root {
+  --background: oklch(97% 0.015 280);
+  --foreground: oklch(20% 0.01 280);
+  --card: oklch(98% 0.01 280);
+  --card-foreground: oklch(20% 0.01 280);
+  --primary: oklch(60% 0.22 290);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(88% 0.06 280);
+  --secondary-foreground: oklch(22% 0.01 280);
+  --muted: oklch(92% 0.025 280);
+  --muted-foreground: oklch(45% 0.02 280);
+  --accent: oklch(88% 0.09 270);
+  --accent-foreground: oklch(22% 0.01 270);
+  --destructive: oklch(62% 0.17 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.03 280);
+  --input: oklch(91% 0.025 280);
+  --ring: oklch(60% 0.22 290);
+}
+
+.dark {
+  --background: oklch(15% 0.02 280);
+  --foreground: oklch(96% 0.01 280);
+  --card: oklch(18% 0.02 280);
+  --card-foreground: oklch(96% 0.01 280);
+  --primary: oklch(70% 0.22 290);
+  --primary-foreground: oklch(20% 0.01 290);
+  --secondary: oklch(30% 0.05 280);
+  --secondary-foreground: oklch(95% 0.01 280);
+  --muted: oklch(25% 0.017 280);
+  --muted-foreground: oklch(70% 0.015 280);
+  --accent: oklch(35% 0.06 270);
+  --accent-foreground: oklch(96% 0.01 270);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(25% 0.018 280);
+  --input: oklch(20% 0.015 280);
+  --ring: oklch(70% 0.22 290);
+}
+```
+
+### Rose
+
+A soft pink theme:
+
+```css
+:root {
+  --background: oklch(98% 0.02 350);
+  --foreground: oklch(20% 0.01 350);
+  --card: oklch(99% 0.015 350);
+  --card-foreground: oklch(20% 0.01 350);
+  --primary: oklch(58% 0.18 340);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(88% 0.07 355);
+  --secondary-foreground: oklch(22% 0.01 355);
+  --muted: oklch(92% 0.03 350);
+  --muted-foreground: oklch(45% 0.02 350);
+  --accent: oklch(88% 0.1 345);
+  --accent-foreground: oklch(22% 0.01 345);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.04 350);
+  --input: oklch(91% 0.03 350);
+  --ring: oklch(58% 0.18 340);
+}
+
+.dark {
+  --background: oklch(20% 0.02 350);
+  --foreground: oklch(96% 0.015 350);
+  --card: oklch(23% 0.02 350);
+  --card-foreground: oklch(96% 0.015 350);
+  --primary: oklch(70% 0.18 340);
+  --primary-foreground: oklch(20% 0.01 340);
+  --secondary: oklch(32% 0.05 355);
+  --secondary-foreground: oklch(95% 0.01 355);
+  --muted: oklch(28% 0.02 350);
+  --muted-foreground: oklch(75% 0.015 350);
+  --accent: oklch(40% 0.07 345);
+  --accent-foreground: oklch(95% 0.01 345);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(30% 0.02 350);
+  --input: oklch(25% 0.018 350);
+  --ring: oklch(70% 0.18 340);
+}
+```
+
+### Cyber
+
+A vibrant cyan theme for tech products:
+
+```css
+:root {
+  --background: oklch(97% 0.015 200);
+  --foreground: oklch(18% 0.01 200);
+  --card: oklch(98% 0.01 200);
+  --card-foreground: oklch(18% 0.01 200);
+  --primary: oklch(70% 0.23 195);
+  --primary-foreground: oklch(10% 0.01 195);
+  --secondary: oklch(88% 0.06 200);
+  --secondary-foreground: oklch(22% 0.01 200);
+  --muted: oklch(92% 0.025 200);
+  --muted-foreground: oklch(45% 0.02 200);
+  --accent: oklch(60% 0.18 180);
+  --accent-foreground: oklch(10% 0.01 180);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(87% 0.03 200);
+  --input: oklch(91% 0.025 200);
+  --ring: oklch(70% 0.23 195);
+}
+
+.dark {
+  --background: oklch(10% 0.02 200);
+  --foreground: oklch(96% 0.01 200);
+  --card: oklch(13% 0.02 200);
+  --card-foreground: oklch(96% 0.01 200);
+  --primary: oklch(70% 0.23 195);
+  --primary-foreground: oklch(15% 0.01 195);
+  --secondary: oklch(25% 0.04 200);
+  --secondary-foreground: oklch(95% 0.01 200);
+  --muted: oklch(20% 0.02 200);
+  --muted-foreground: oklch(70% 0.015 200);
+  --accent: oklch(55% 0.18 180);
+  --accent-foreground: oklch(15% 0.01 180);
+  --destructive: oklch(60% 0.18 25);
+  --destructive-foreground: oklch(20% 0.01 25);
+  --border: oklch(20% 0.018 200);
+  --input: oklch(15% 0.015 200);
+  --ring: oklch(70% 0.23 195);
+}
+```
+
+## Tips
+
+- Always maintain the `background` and `foreground` pair for good contrast
+- Use [oklch.com](https://oklch.com/) to choose colors visually
+- Test your colors in both light and dark mode
+- Check accessibility contrast (minimum 4.5:1 for normal text)
