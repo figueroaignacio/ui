@@ -150,32 +150,6 @@ const { theme, resolvedTheme } = useTheme();
 
 ## Uso Avanzado
 
-### Configuración Personalizada del Provider
-
-El `ThemeProvider` acepta varias props opcionales para personalización:
-
-```tsx
-<ThemeProvider
-  defaultTheme="system"
-  storageKey="app-theme"
-  attribute="class"
-  enableSystem={true}
-  disableTransitionOnChange={false}
-  enableViewTransitions={true}
->
-  {children}
-</ThemeProvider>
-```
-
-#### Props
-
-- **defaultTheme** (`'light' | 'dark' | 'system'`): Tema por defecto en la primera carga. Por defecto: `'system'`
-- **storageKey** (`string`): Clave de localStorage para persistencia del tema. Por defecto: `'theme-preference'`
-- **attribute** (`string`): Atributo HTML para establecer el tema. Por defecto: `'class'`
-- **enableSystem** (`boolean`): Habilitar detección de tema del sistema. Por defecto: `true`
-- **disableTransitionOnChange** (`boolean`): Deshabilitar transiciones CSS durante el cambio de tema. Por defecto: `false`
-- **enableViewTransitions** (`boolean`): Habilitar animaciones de View Transitions API. Por defecto: `true`
-
 ### Toggle de Tema con Estado de Carga
 
 Maneja el estado de hidratación para prevenir cambios en el layout:
@@ -314,16 +288,6 @@ export function ContenidoDinamico() {
 }
 ```
 
-## Soporte de Navegadores
-
-La View Transitions API está soportada en navegadores modernos:
-
-- Chrome/Edge 111+
-- Safari 18+
-- Firefox 129+
-
-Para navegadores sin soporte, la librería recurre elegantemente a cambios instantáneos de tema o transiciones CSS (dependiendo de tu configuración).
-
 ## Soporte de TypeScript
 
 La librería está completamente tipada. Todos los hooks y componentes tienen definiciones completas de TypeScript:
@@ -333,11 +297,3 @@ import { Theme } from 'i7a-themes';
 
 const miTema: Theme = 'dark';
 ```
-
-## Consejos
-
-- Siempre usa `suppressHydrationWarning` en tu etiqueta `<html>` para prevenir desajustes de hidratación
-- Pasa eventos de clic a `setTheme` para animaciones circulares de revelación suaves
-- Usa el hook `useMounted` para prevenir errores de hidratación con los toggles de tema
-- Prueba tus esquemas de color en modo claro y oscuro para accesibilidad
-- Considera usar `resolvedTheme` al integrar con librerías de terceros que necesitan conocer el tema aplicado real

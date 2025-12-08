@@ -150,32 +150,6 @@ const { theme, resolvedTheme } = useTheme();
 
 ## Advanced Usage
 
-### Custom Provider Configuration
-
-The `ThemeProvider` accepts several optional props for customization:
-
-```tsx
-<ThemeProvider
-  defaultTheme="system"
-  storageKey="app-theme"
-  attribute="class"
-  enableSystem={true}
-  disableTransitionOnChange={false}
-  enableViewTransitions={true}
->
-  {children}
-</ThemeProvider>
-```
-
-#### Props
-
-- **defaultTheme** (`'light' | 'dark' | 'system'`): Default theme on first load. Default: `'system'`
-- **storageKey** (`string`): localStorage key for theme persistence. Default: `'theme-preference'`
-- **attribute** (`string`): HTML attribute to set the theme. Default: `'class'`
-- **enableSystem** (`boolean`): Enable system theme detection. Default: `true`
-- **disableTransitionOnChange** (`boolean`): Disable CSS transitions during theme change. Default: `false`
-- **enableViewTransitions** (`boolean`): Enable View Transitions API animations. Default: `true`
-
 ### Theme Toggle with Loading State
 
 Handle the hydration state to prevent layout shifts:
@@ -314,16 +288,6 @@ export function DynamicContent() {
 }
 ```
 
-## Browser Support
-
-The View Transitions API is supported in modern browsers:
-
-- Chrome/Edge 111+
-- Safari 18+
-- Firefox 129+
-
-For browsers without support, the library gracefully falls back to instant theme changes or CSS transitions (depending on your configuration).
-
 ## TypeScript Support
 
 The library is fully typed. All hooks and components have complete TypeScript definitions:
@@ -333,11 +297,3 @@ import { Theme } from 'i7a-themes';
 
 const myTheme: Theme = 'dark';
 ```
-
-## Tips
-
-- Always use `suppressHydrationWarning` on your `<html>` tag to prevent hydration mismatches
-- Pass click events to `setTheme` for smooth circular reveal animations
-- Use the `useMounted` hook to prevent hydration errors with theme toggles
-- Test your color schemes in both light and dark modes for accessibility
-- Consider using the `resolvedTheme` when integrating with third-party libraries that need to know the actual applied theme
