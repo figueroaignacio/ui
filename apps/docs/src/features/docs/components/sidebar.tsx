@@ -1,13 +1,14 @@
 'use client';
 
+// hOOKS
 import { usePathname } from '@/i18n/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 // Components
 import { Link } from '@/i18n/navigation';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Utils
 import { cn } from '@repo/ui/lib/cn';
@@ -35,7 +36,6 @@ export function Sidebar() {
       <nav className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 space-y-6 overflow-y-scroll lg:block">
         {docsNavigation.map((section: DocSection) => (
           <div key={section.title} className="space-y-2">
-            {/* Header de sección */}
             <button
               onClick={() => toggleSection(section.title)}
               className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-xs font-semibold transition-colors"
@@ -48,8 +48,6 @@ export function Sidebar() {
                 )}
               />
             </button>
-
-            {/* Contenido animado */}
             <AnimatePresence initial={false}>
               {openSections.includes(section.title) && (
                 <motion.ul
