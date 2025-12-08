@@ -114,7 +114,7 @@
 .bg-grid-pattern {
   background-image:
     radial-gradient(circle at center, transparent 0%, var(--background) 70%),
-    linear-gradient(var(--grid-color) 1.5px, transparent 1.5px),
+    linear-gradient(var(--grid-color) 1.5px, transparent 2.5px),
     linear-gradient(90deg, var(--grid-color) 1.5px, transparent 1.5px);
   background-position:
     center,

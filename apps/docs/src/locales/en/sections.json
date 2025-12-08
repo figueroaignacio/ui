@@ -1,8 +1,8 @@
 {
   "home": {
     "badge": "Open Source Design System",
-    "subheading": "A modern, accessible, and scalable design system for building consistent and professional web interfaces.",
-    "description": "Built on a foundation of design tokens and reusable components, this Design System adapts to any project or workflow.",
+    "subheading": "Open source. Clean UI. Crafted with intention.",
+    "description": "A modern, accessible, and scalable design system for building consistent and professional web interfaces.",
     "actions": [
       {
         "label": "Get Started",
@@ -16,7 +16,33 @@
         "description": "Explore all available components and learn how to apply them effectively.",
         "variant": "secondary"
       }
-    ]
+    ],
+    "tech": {
+      "title": "Built with Modern Technologies",
+      "subtitle": "We use the tools developers love. Reliable stack that gives you confidence when developing.",
+      "technologies": [
+        {
+          "name": "TypeScript",
+          "description": "Type-safe JavaScript to develop with confidence and fewer errors"
+        },
+        {
+          "name": "React",
+          "description": "Modern library for building interactive and dynamic user interfaces"
+        },
+        {
+          "name": "Next.js",
+          "description": "Full-stack framework for high-performance web applications"
+        },
+        {
+          "name": "Tailwind CSS",
+          "description": "CSS utilities to quickly design responsive interfaces"
+        },
+        {
+          "name": "Motion",
+          "description": "Fluid animations that enhance the user experience"
+        }
+      ]
+    }
   },
   "blog": {
     "subtitle": "The latest updates from I7A UI",
