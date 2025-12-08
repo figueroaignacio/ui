@@ -47,5 +47,36 @@
   "blog": {
     "subtitle": "Las últimas actualizaciones de I7A UI",
     "postedBy": "Publicado por:"
+  },
+  "footer": {
+    "product": {
+      "title": "Producto",
+      "docs": "Documentación",
+      "components": "Componentes",
+      "installation": "Instalación",
+      "blog": "Blog"
+    },
+    "resources": {
+      "title": "Recursos",
+      "theming": "Tematización",
+      "darkMode": "Modo Oscuro",
+      "cli": "CLI",
+      "examples": "Ejemplos"
+    },
+    "community": {
+      "title": "Comunidad",
+      "github": "GitHub",
+      "discord": "Discord",
+      "twitter": "Twitter",
+      "contributing": "Contribuir"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio",
+      "license": "Licencia"
+    },
+    "copyright": "Todos los derechos reservados.",
+    "sitemap": "Mapa del sitio"
   }
 }

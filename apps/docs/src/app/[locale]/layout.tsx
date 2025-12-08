@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 
 // Components
+import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
 
@@ -51,6 +52,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
             <div className="flex min-h-screen flex-col lg:pb-0">
               <Header />
               <main className="px-6">{children}</main>
+              <Footer />
             </div>
           </Providers>
         </NextIntlClientProvider>
