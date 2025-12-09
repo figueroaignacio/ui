@@ -32,13 +32,11 @@ function BreadcrumbLink({ className, children, ...props }: BreadcrumbLinkProps) 
     (typeof children.type === 'function' || typeof children.type === 'object');
 
   if (isLinkComponent) {
-    return (
-      <span className={cn('hover:text-foreground transition-colors', className)}>{children}</span>
-    );
+    return <span className={cn('hover:text-foreground', className)}>{children}</span>;
   }
 
   return (
-    <a className={cn('hover:text-foreground transition-colors', className)} {...props}>
+    <a className={cn('hover:text-foreground', className)} {...props}>
       {children}
     </a>
   );
