@@ -10,3 +10,77 @@ toc:
 ---
 
 <ComponentPreview name="card-demo" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource name="card-source" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Modo de uso
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+```
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Título de la tarjeta</CardTitle>
+    <CardDescription>Descripción de la tarjeta</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Contenido de la tarjeta</p>
+  </CardContent>
+  <CardFooter>
+    <p>Pie de la tarjeta</p>
+  </CardFooter>
+</Card>
+```
+
+## Variantes
+
+### Elevada
+
+Tarjetas con sombra elevada para dar énfasis.
+
+<ComponentPreview name="card-elevated-demo" />
+
+### Outline
+
+Tarjetas con un borde prominente y sin sombra.
+
+<ComponentPreview name="card-outline-demo" />
+
+### Ghost
+
+Tarjetas transparentes sin borde ni sombra.
+
+<ComponentPreview name="card-ghost-demo" />
+
+### Hoverable
+
+Tarjetas interactivas con efectos hover.
+
+<ComponentPreview name="card-hoverable-demo" />
+
+### Clickable
+
+Tarjetas clicables con soporte para teclado.
+
+<ComponentPreview name="card-clickable-demo" />
+
+### Compacta
+
+Tarjetas con padding reducido para diseños densos.
+
+<ComponentPreview name="card-compact-demo" />

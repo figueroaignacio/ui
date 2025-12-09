@@ -11,7 +11,14 @@ import { ButtonOutlineDemo } from './components/button/button-outline-demo';
 import { ButtonSecondaryDemo } from './components/button/button-secondary-demo';
 import { ButtonSizesDemo } from './components/button/button-sizes-demo';
 import { Button } from './components/button/button-source';
-import { CardDemo } from './components/card-demo';
+import { CardClickableDemo } from './components/card/card-clickable-demo';
+import { CardCompactDemo } from './components/card/card-compact-demo';
+import { CardDemo } from './components/card/card-demo';
+import { CardElevatedDemo } from './components/card/card-elevated-demo';
+import { CardGhostDemo } from './components/card/card-ghost-demo';
+import { CardHoverableDemo } from './components/card/card-hoverable-demo';
+import { CardOutlineDemo } from './components/card/card-outline-demo';
+import { Card } from './components/card/card-source';
 import { CollapsibleDemo } from './components/collapsible-demo';
 import { DialogDemo } from './components/dialog-demo';
 import { DropdownMenuDemo } from './components/dropdown-menu-demo';
@@ -84,7 +91,43 @@ export const Index = {
   'card-demo': {
     name: 'card-demo',
     component: CardDemo,
-    file: 'packages/ui/src/samples/components/card-demo.tsx',
+    file: 'packages/ui/src/samples/components/card/card-demo.tsx',
+  },
+  'card-source': {
+    name: 'card-source',
+    component: Card,
+    file: 'packages/ui/src/samples/components/card/card-source.tsx',
+  },
+
+  'card-elevated-demo': {
+    name: 'card-elevated-demo',
+    component: CardElevatedDemo,
+    file: 'packages/ui/src/samples/components/card/card-elevated-demo.tsx',
+  },
+  'card-outline-demo': {
+    name: 'card-outline-demo',
+    component: CardOutlineDemo,
+    file: 'packages/ui/src/samples/components/card/card-outline-demo.tsx',
+  },
+  'card-ghost-demo': {
+    name: 'card-ghost-demo',
+    component: CardGhostDemo,
+    file: 'packages/ui/src/samples/components/card/card-ghost-demo.tsx',
+  },
+  'card-hoverable-demo': {
+    name: 'card-hoverable-demo',
+    component: CardHoverableDemo,
+    file: 'packages/ui/src/samples/components/card/card-hoverable-demo.tsx',
+  },
+  'card-clickable-demo': {
+    name: 'card-clickable-demo',
+    component: CardClickableDemo,
+    file: 'packages/ui/src/samples/components/card/card-clickable-demo.tsx',
+  },
+  'card-compact-demo': {
+    name: 'card-compact-demo',
+    component: CardCompactDemo,
+    file: 'packages/ui/src/samples/components/card/card-compact-demo.tsx',
   },
   'collapsible-demo': {
     name: 'card-demo',
