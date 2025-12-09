@@ -1,4 +1,7 @@
-import { AccordionDemo } from './components/accordion-demo';
+import { AccordionCollapsedDemo } from './components/accordion/accordion-collapsed-demo';
+import { AccordionDemo } from './components/accordion/accordion-demo';
+import { AccordionMultipleDemo } from './components/accordion/accordion-multiple-demo';
+import { Accordion } from './components/accordion/accordion-source';
 import { BreadcrumbDemo } from './components/breadcrumb-demo';
 import { ButtonDemo } from './components/button/button-demo';
 import { ButtonDestructiveDemo } from './components/button/button-destructive-demo';
@@ -61,7 +64,22 @@ export const Index = {
   'accordion-demo': {
     name: 'accordion-demo',
     component: AccordionDemo,
-    file: 'packages/ui/src/samples/components/accordion-demo.tsx',
+    file: 'packages/ui/src/samples/components/accordion/accordion-demo.tsx',
+  },
+  'accordion-source': {
+    name: 'accordion-source',
+    component: Accordion,
+    file: 'packages/ui/src/samples/components/accordion/accordion-source.tsx',
+  },
+  'accordion-collapsed-demo': {
+    name: 'accordion-collapsed-demo',
+    component: AccordionCollapsedDemo,
+    file: 'packages/ui/src/samples/components/accordion/accordion-collapsed-demo.tsx',
+  },
+  'accordion-multiple-demo': {
+    name: 'accordion-multiple-demo',
+    component: AccordionMultipleDemo,
+    file: 'packages/ui/src/samples/components/accordion/accordion-multiple-demo.tsx',
   },
   'card-demo': {
     name: 'card-demo',

@@ -10,3 +10,51 @@ toc:
 ---
 
 <ComponentPreview name="accordion-demo" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource name="accordion-source" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Modo de uso
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+```
+
+```tsx
+<Accordion type="single" defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>¿Es accesible?</AccordionTrigger>
+    <AccordionContent>Sí. Se adhiere al estándar de diseño WAI-ARIA.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Ejemplos
+
+### Single
+
+El tipo `single` permite que solo un ítem esté abierto a la vez.
+
+<ComponentPreview name="accordion-demo" />
+
+### Multiple
+
+El tipo `multiple` permite que múltiples ítems estén abiertos simultáneamente.
+
+<ComponentPreview name="accordion-multiple-demo" />
+
+### Sin valor por defecto
+
+Puedes omitir `defaultValue` para que el acordeón inicie completamente cerrado.
+
+<ComponentPreview name="accordion-collapsed-demo" />

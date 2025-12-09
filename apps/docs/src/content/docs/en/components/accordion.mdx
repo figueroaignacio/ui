@@ -1,6 +1,6 @@
 ---
 title: Accordion
-description: Display and expandable hidden content.
+description: Display and hide expandable content.
 published: true
 date: 2025-10-22
 label: New
@@ -10,3 +10,57 @@ toc:
 ---
 
 <ComponentPreview name="accordion-demo" />
+
+## Installation
+
+Copy and paste the following code into your project.
+
+<ComponentSource name="accordion-source" />
+
+Make sure to update the import paths to match your project structure.
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+```
+
+```tsx
+<Accordion type="single" defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Examples
+
+### Single
+
+The `single` type allows only one item to be open at a time.
+
+<ComponentPreview name="accordion-demo" />
+
+### Multiple
+
+The `multiple` type allows multiple items to be open simultaneously.
+
+<ComponentPreview name="accordion-multiple-demo" />
+
+### Without default value
+
+You can omit `defaultValue` to have the accordion start completely collapsed.
+
+<ComponentPreview name="accordion-collapsed-demo" />
+
+### Custom styling
+
+Customize the accordion appearance with Tailwind CSS classes.
+
+<ComponentPreview name="accordion-styled-demo" />

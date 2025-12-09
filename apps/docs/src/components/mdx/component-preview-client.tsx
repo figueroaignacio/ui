@@ -27,7 +27,7 @@ export function ComponentPreviewClient({
 
   return (
     <div className={className}>
-      <div className="border-border rounded-xl border">
+      <div className="border-border mt-5 rounded-xl border">
         <div className={`flex min-h-[400px] items-center ${alignmentClasses[align]} p-8 sm:p-12`}>
           {componentPreview}
         </div>
