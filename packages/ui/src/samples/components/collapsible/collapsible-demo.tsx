@@ -1,4 +1,8 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../components/collapsible';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '../../../components/collapsible';
 
 export function CollapsibleDemo() {
   return (

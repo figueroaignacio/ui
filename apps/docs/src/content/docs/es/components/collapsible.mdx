@@ -1,6 +1,6 @@
 ---
 title: Collapsible
-description: Secciones plegables con animaciones suaves.
+description: Componente interactivo para mostrar y ocultar contenido.
 published: true
 date: 2025-10-22
 label: New
@@ -10,3 +10,56 @@ toc:
 ---
 
 <ComponentPreview name="collapsible-demo" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource name="collapsible-source" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Modo de uso
+
+```tsx
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+```
+
+```tsx
+<Collapsible>
+  <CollapsibleTrigger>¿Puedo usarlo en mi proyecto?</CollapsibleTrigger>
+  <CollapsibleContent>Sí. Es gratuito y de código abierto.</CollapsibleContent>
+</Collapsible>
+```
+
+## Variantes
+
+### Bordered
+
+Collapsible con borde y esquinas redondeadas.
+
+<ComponentPreview name="collapsible-bordered-demo" />
+
+### Card
+
+Collapsible con estilo de tarjeta incluyendo borde, fondo y sombra.
+
+<ComponentPreview name="collapsible-card-demo" />
+
+### Deshabilitado
+
+Collapsible en estado deshabilitado.
+
+<ComponentPreview name="collapsible-disabled-demo" />
+
+### Sin chevron
+
+Collapsible sin icono indicador.
+
+<ComponentPreview name="collapsible-no-chevron-demo" />
+
+### Con icono personalizado
+
+Usa un icono personalizado en lugar del chevron predeterminado.
+
+<ComponentPreview name="collapsible-custom-icon-demo" />

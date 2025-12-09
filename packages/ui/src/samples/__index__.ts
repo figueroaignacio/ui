@@ -19,7 +19,13 @@ import { CardGhostDemo } from './components/card/card-ghost-demo';
 import { CardHoverableDemo } from './components/card/card-hoverable-demo';
 import { CardOutlineDemo } from './components/card/card-outline-demo';
 import { Card } from './components/card/card-source';
-import { CollapsibleDemo } from './components/collapsible-demo';
+import { CollapsibleBorderedDemo } from './components/collapsible/collapsible-bordered-demo';
+import { CollapsibleCardDemo } from './components/collapsible/collapsible-card-demo';
+import { CollapsibleCustomIconDemo } from './components/collapsible/collapsible-custom-icon-demo';
+import { CollapsibleDemo } from './components/collapsible/collapsible-demo';
+import { CollapsibleDisabledDemo } from './components/collapsible/collapsible-disabled-demo';
+import { CollapsibleNoChevronDemo } from './components/collapsible/collapsible-no-chevron-demo';
+import { Collapsible } from './components/collapsible/collapsible-source';
 import { DialogDemo } from './components/dialog-demo';
 import { DropdownMenuDemo } from './components/dropdown-menu-demo';
 import { FilesDemo } from './components/files-demo';
@@ -98,7 +104,6 @@ export const Index = {
     component: Card,
     file: 'packages/ui/src/samples/components/card/card-source.tsx',
   },
-
   'card-elevated-demo': {
     name: 'card-elevated-demo',
     component: CardElevatedDemo,
@@ -130,9 +135,39 @@ export const Index = {
     file: 'packages/ui/src/samples/components/card/card-compact-demo.tsx',
   },
   'collapsible-demo': {
-    name: 'card-demo',
+    name: 'collapsible-demo',
     component: CollapsibleDemo,
-    file: 'packages/ui/src/samples/components/collapsible-demo.tsx',
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-demo.tsx',
+  },
+  'collapsible-bordered-demo': {
+    name: 'collapsible-bordered-demo',
+    component: CollapsibleBorderedDemo,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-bordered-demo.tsx',
+  },
+  'collapsible-card-demo': {
+    name: 'collapsible-card-demo',
+    component: CollapsibleCardDemo,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-card-demo.tsx',
+  },
+  'collapsible-custom-icon-demo': {
+    name: 'collapsible-custom-icon-demo',
+    component: CollapsibleCustomIconDemo,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-custom-icon-demo.tsx',
+  },
+  'collapsible-disabled-demo': {
+    name: 'collapsible-disabled-demo',
+    component: CollapsibleDisabledDemo,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-disabled-demo.tsx',
+  },
+  'collapsible-no-chevron-demo': {
+    name: 'collapsible-no-chevron-demo',
+    component: CollapsibleNoChevronDemo,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-no-chevron-demo.tsx',
+  },
+  'collapsible-source': {
+    name: 'collapsible-source',
+    component: Collapsible,
+    file: 'packages/ui/src/samples/components/collapsible/collapsible-source.tsx',
   },
   'dialog-demo': {
     name: 'dialog-demo',
