@@ -1,11 +1,11 @@
 // Components
 import { LandingHero } from '@/features/landing/components/landing-hero';
+import { LandingTechSection } from '@/features/landing/components/landing-tech-section';
 
 // Utils
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 // Types
-import { LandingTechSection } from '@/features/landing/components/landing-tech-section';
 import type { Metadata } from 'next';
 
 type PageProps = {
