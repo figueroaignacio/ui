@@ -25,7 +25,7 @@ export function LandingHero() {
           <span className="bg-primary h-2 w-2 rounded-full motion-safe:animate-pulse" />
           {t('badge')}
         </div>
-        <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-balance md:text-5xl">
+        <h1 className="text-4xl leading-tight font-extrabold tracking-tight text-balance md:text-5xl">
           {t('subheading')}
         </h1>
         <p className="text-muted-foreground mx-auto max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
