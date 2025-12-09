@@ -20,17 +20,8 @@ interface ChatWindowProps {
 }
 
 export function ChatWindow(props: ChatWindowProps) {
-  const {
-    isOpen,
-    messages,
-    isLoading,
-    messagesEndRef,
-    message,
-    onMessageChange,
-    onSubmit,
-    onKeyPress,
-    onClose,
-  } = props;
+  const { isOpen, messages, isLoading, message, onMessageChange, onSubmit, onKeyPress, onClose } =
+    props;
 
   return (
     <AnimatePresence mode="wait">
@@ -59,11 +50,7 @@ export function ChatWindow(props: ChatWindowProps) {
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">
-              <ChatMessages
-                messages={messages}
-                isLoading={isLoading}
-                messagesEndRef={messagesEndRef}
-              />
+              <ChatMessages messages={messages} isLoading={isLoading} />
             </div>
             <ChatInput
               message={message}

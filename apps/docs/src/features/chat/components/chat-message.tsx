@@ -18,7 +18,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
       animate={{ opacity: 1, y: 0 }}
       className="flex gap-3"
     >
-      <div className="max-w-[75%] rounded-2xl py-2.5">
+      <div className="rounded-2xl py-2.5">
         {isUser ? (
           <p className="text-sm">{message.content}</p>
         ) : (
