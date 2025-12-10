@@ -19,7 +19,7 @@ export function AiChat() {
   useLockBodyScroll(open);
 
   return (
-    <div className="fixed right-3 bottom-20 z-100000 lg:right-8 lg:bottom-8">
+    <div className="fixed right-6 bottom-6 z-100000 lg:right-8 lg:bottom-8">
       <ChatToggleButton isOpen={open} onClick={() => setOpen(!open)} />
       <ChatWindow
         isOpen={open}
