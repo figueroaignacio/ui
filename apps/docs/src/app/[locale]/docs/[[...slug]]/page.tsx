@@ -6,7 +6,6 @@ import { docs } from '@/content';
 // Components
 import { MDXContent } from '@/components/mdx/mdx-content';
 import { DocsBreadcrumb } from '@/features/docs/components/docs-breadcrumb';
-import { MobileDocsPagination } from '@/features/docs/components/docs-mobile-pagination';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
 import { Toc } from '@/features/docs/components/toc';
@@ -130,21 +129,16 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <h1 className="text-3xl font-black">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>
-          <div className="hidden lg:block">
-            <DocsNavigationButtons currentPath={currentPath} />
-          </div>
+          <DocsNavigationButtons currentPath={currentPath} />
         </div>
-        <div className="mb-36 min-w-0 flex-1">
+        <div className="min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
         </div>
-        <div className="hidden lg:block">
-          <DocsPagination currentPath={currentPath} />
-        </div>
+        <DocsPagination currentPath={currentPath} />
       </article>
       <div className="hidden lg:block">
         <Toc toc={tocContent} />
       </div>
-      <MobileDocsPagination currentPath={currentPath} />
     </>
   );
 }
