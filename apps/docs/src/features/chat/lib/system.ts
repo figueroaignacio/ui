@@ -17,7 +17,7 @@ export async function getSystemPrompt(messages: Message[]): Promise<string> {
   try {
     lang = detectLanguage(messages) as Language;
   } catch (error) {
-    console.warn('⚠️  Language detection failed, defaulting to "en":', error);
+    console.warn('Language detection failed, defaulting to "en"');
   }
 
   const basePrompt = SYSTEM_PROMPTS[lang];
@@ -31,6 +31,10 @@ export async function getSystemPrompt(messages: Message[]): Promise<string> {
     const { components, docsEn, docsEs } = await getCachedContext();
     const docs = lang === 'en' ? docsEn : docsEs;
 
+    if (components.length === 0 && docs.length === 0) {
+      return basePrompt;
+    }
+
     const relevantComponents = findRelevantComponents(components, lastMessage);
     const relevantDocs = findRelevantDocs(docs, lastMessage);
 
@@ -38,11 +42,11 @@ export async function getSystemPrompt(messages: Message[]): Promise<string> {
       return basePrompt;
     }
 
-    const enrichedContext = buildEnrichedContext(relevantComponents, relevantDocs);
+    const enrichedContext = buildEnrichedContext(relevantComponents, relevantDocs, lastMessage);
 
     return `${basePrompt}\n\n${enrichedContext}`;
   } catch (error) {
-    console.warn('⚠️  Could not load context, using base prompt:', error);
+    console.error('Error loading context:', error);
     return basePrompt;
   }
 }
@@ -53,6 +57,7 @@ function requiresTechnicalContext(message: string): boolean {
     'componente',
     'button',
     'botón',
+    'boton',
     'input',
     'card',
     'modal',
@@ -60,16 +65,24 @@ function requiresTechnicalContext(message: string): boolean {
     'accordion',
     'tabs',
     'code',
+    'codigo',
     'example',
     'ejemplo',
     'uso',
     'use',
+    'usar',
     'how',
     'cómo',
+    'como',
     'install',
     'instalar',
     'copy',
     'copiar',
+    'props',
+    'api',
+    'documentation',
+    'documentacion',
+    'docs',
   ];
 
   const normalized = message.toLowerCase();

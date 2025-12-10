@@ -5,6 +5,7 @@ export interface ComponentContext {
   name: string;
   code: string;
   language: 'en' | 'es';
+  filePath: string;
 }
 
 export interface DocumentationContext {
@@ -14,9 +15,10 @@ export interface DocumentationContext {
   path: string;
 }
 
-const COMPONENTS_PATH = path.join(process.cwd(), '../../packages/ui/src/components');
-const DOCS_EN_PATH = path.join(process.cwd(), 'src/content/en');
-const DOCS_ES_PATH = path.join(process.cwd(), 'src/content/es');
+const WORKSPACE_ROOT = path.resolve(process.cwd(), '../..');
+const COMPONENTS_PATH = path.join(WORKSPACE_ROOT, 'packages/ui/src/components');
+const DOCS_EN_PATH = path.join(process.cwd(), 'src/content/docs/en');
+const DOCS_ES_PATH = path.join(process.cwd(), 'src/content/docs/es');
 
 async function readFilesRecursively(
   dir: string,
@@ -39,37 +41,49 @@ async function readFilesRecursively(
       }
     }
   } catch (error) {
-    console.warn(`⚠️  Could not read directory ${dir}:`, error);
+    console.error(`Could not read directory ${dir}:`, error);
   }
 
   return results;
 }
 
 export async function loadComponents(): Promise<ComponentContext[]> {
-  const files = await readFilesRecursively(COMPONENTS_PATH, '.tsx');
+  try {
+    const files = await readFilesRecursively(COMPONENTS_PATH, '.tsx');
 
-  return files.map((file) => ({
-    name: path.basename(file.path, '.tsx'),
-    code: file.content,
-    language: 'en',
-  }));
+    return files.map((file) => ({
+      name: path.basename(file.path, '.tsx'),
+      code: file.content,
+      language: 'en' as const,
+      filePath: file.path,
+    }));
+  } catch (error) {
+    console.error('Error loading components:', error);
+    return [];
+  }
 }
 
 export async function loadDocumentation(language: 'en' | 'es'): Promise<DocumentationContext[]> {
   const docsPath = language === 'en' ? DOCS_EN_PATH : DOCS_ES_PATH;
-  const files = await readFilesRecursively(docsPath, '.mdx');
 
-  return files.map((file) => {
-    const relativePath = path.relative(docsPath, file.path);
-    const title = relativePath.replace(/\.mdx$/, '').replace(/\//g, ' > ');
+  try {
+    const files = await readFilesRecursively(docsPath, '.mdx');
 
-    return {
-      title,
-      content: file.content,
-      language,
-      path: relativePath,
-    };
-  });
+    return files.map((file) => {
+      const relativePath = path.relative(docsPath, file.path);
+      const title = relativePath.replace(/\.mdx$/, '').replace(/\//g, ' > ');
+
+      return {
+        title,
+        content: file.content,
+        language,
+        path: relativePath,
+      };
+    });
+  } catch (error) {
+    console.error('Error loading documentation:', error);
+    return [];
+  }
 }
 
 export function findRelevantComponents(
@@ -82,13 +96,18 @@ export function findRelevantComponents(
   return components
     .filter((comp) => {
       const normalizedName = comp.name.toLowerCase();
+      const codeContent = comp.code.toLowerCase();
 
-      return queryWords.some(
+      const matchesName = queryWords.some(
         (word) =>
           normalizedName.includes(word) || word.includes(normalizedName) || normalizedName === word,
       );
+
+      const matchesCode = queryWords.some((word) => codeContent.includes(word));
+
+      return matchesName || matchesCode;
     })
-    .slice(0, 2);
+    .slice(0, 3);
 }
 
 export function findRelevantDocs(
@@ -100,33 +119,59 @@ export function findRelevantDocs(
   return docs
     .filter((doc) => {
       const normalizedTitle = doc.title.toLowerCase();
-      const normalizedContent = doc.content.toLowerCase().slice(0, 500);
+      const normalizedContent = doc.content.toLowerCase();
 
       return (
         normalizedTitle.includes(normalizedQuery) || normalizedContent.includes(normalizedQuery)
       );
     })
-    .slice(0, 1);
+    .slice(0, 2);
 }
 
 export function buildEnrichedContext(
   components: ComponentContext[],
   docs: DocumentationContext[],
+  query: string = '',
 ): string {
   let context = '';
 
+  context += '\n\n' + '='.repeat(60) + '\n';
+  context += 'CONTEXTO DEL PROYECTO - USA ESTE CÓDIGO EXACTAMENTE\n';
+  context += '='.repeat(60) + '\n\n';
+
   if (components.length > 0) {
-    context += '\n\n## AVAILABLE COMPONENTS (use exactly as shown):\n\n';
-    components.forEach((comp) => {
-      context += `### ${comp.name}\n\`\`\`tsx\n${comp.code}\n\`\`\`\n\n`;
+    context += '## COMPONENTES DISPONIBLES\n\n';
+    context += '**IMPORTANTE**: Usa estos componentes EXACTAMENTE como están definidos.\n';
+    context += 'NO inventes props que no existan. NO asumas APIs diferentes.\n\n';
+
+    components.forEach((comp, idx) => {
+      context += `### ${comp.name}\n\n`;
+      context += '```tsx\n' + comp.code + '\n```\n\n';
+
+      const propsMatch = comp.code.match(/interface\s+\w+Props\s*{([^}]+)}/);
+      if (propsMatch) {
+        context += '**Props:**\n```typescript\n' + propsMatch[0] + '\n```\n\n';
+      }
+
+      context += '---\n\n';
     });
   }
 
   if (docs.length > 0) {
-    context += '\n\n## RELEVANT DOCUMENTATION:\n\n';
+    context += '\n## DOCUMENTACIÓN RELEVANTE\n\n';
     docs.forEach((doc) => {
-      context += `### ${doc.title}\n${doc.content.slice(0, 1200)}\n\n`;
+      context += `### ${doc.title}\n\n`;
+      context += doc.content.slice(0, 2000);
+      if (doc.content.length > 2000) {
+        context += '\n\n_(truncado)_\n';
+      }
+      context += '\n\n---\n\n';
     });
+  }
+
+  if (components.length === 0 && docs.length === 0) {
+    context += '\nNo se encontró contexto específico del proyecto para: "' + query + '"\n';
+    context += 'Responde con conocimiento general.\n\n';
   }
 
   return context;

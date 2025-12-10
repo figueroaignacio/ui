@@ -39,15 +39,12 @@ export async function POST(req: NextRequest) {
 
     const sanitizedMessages = messages.slice(-5);
     const normalizedMessages = normalizeMessages(sanitizedMessages);
-
     const systemPrompt = await getSystemPrompt(normalizedMessages);
-
-    const totalContent = systemPrompt + normalizedMessages.map((m) => m.content).join('\n');
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'system', content: systemPrompt }, ...normalizedMessages],
       model: GROQ_CONFIG.model,
-      temperature: 0.5,
+      temperature: 0.3,
       max_tokens: 2048,
       top_p: 0.9,
       stream: false,
@@ -58,7 +55,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: reply });
   } catch (error) {
-    console.error('❌ Groq API Error:', error);
+    console.error('Groq API Error:', error);
 
     const err = error as { status?: number; message?: unknown } | undefined;
 
