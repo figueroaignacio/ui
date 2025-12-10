@@ -22,27 +22,21 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
 
   const content = extractText(children).trim();
 
-  if (!content) {
-    return (
-      <code
-        className={cn(
-          'border-border bg-muted/60 text-foreground inline-flex items-center rounded-md border px-[.35rem] py-[.15rem] font-mono text-xs',
-          className,
-        )}
-        {...props}
-      ></code>
-    );
-  }
-
   return (
     <Highlight code={content} language={language} theme={themes.oneDark}>
       {({ style, tokens, getTokenProps }) => (
         <code
           className={cn(
-            'border-border bg-muted/60 text-foreground inline-flex items-center rounded-md border px-[.35rem] py-[.15rem] font-mono text-xs',
+            'bg-muted/60 text-foreground border-border inline rounded-md border px-[.35rem] py-[.15rem] font-mono text-xs',
             className,
           )}
-          style={{ ...style, backgroundColor: 'transparent' }}
+          style={{
+            ...style,
+            backgroundColor: 'transparent',
+            whiteSpace: 'normal',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+          }}
           {...props}
         >
           {tokens[0].map((token, i) => {

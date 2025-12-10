@@ -1,1 +1,41 @@
 @import '@repo/ui/globals.css';
+
+@layer base {
+  .prose code {
+    @apply break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .prose pre {
+    @apply overflow-x-auto;
+    max-width: 100%;
+  }
+
+  .prose pre code {
+    @apply break-normal;
+    white-space: pre;
+  }
+
+  .prose {
+    @apply overflow-hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .prose a {
+    @apply break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@layer utilities {
+  .break-words-safe {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
