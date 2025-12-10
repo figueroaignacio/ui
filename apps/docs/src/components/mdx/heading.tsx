@@ -4,7 +4,7 @@ type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 const headingStyles = {
   h1: 'font-heading mt-2 scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl',
-  h2: 'font-heading mt-12 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 border-border border-b pb-2',
+  h2: 'font-heading mt-12 scroll-m-20 text-xl font-bold tracking-tight first:mt-0 border-border border-b pb-2',
   h3: 'font-heading mt-12 mb-5 scroll-m-20 text-lg font-semibold tracking-tight',
   h4: 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
   h5: 'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',

@@ -127,7 +127,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
         <div className="my-6 flex items-start justify-between">
           <div className="space-y-3">
             <DocsBreadcrumb slugAsParams={doc.slugAsParams} />
-            <h1 className="text-3xl font-bold">{doc.title}</h1>
+            <h1 className="text-3xl font-black">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>
           <div className="hidden lg:block">

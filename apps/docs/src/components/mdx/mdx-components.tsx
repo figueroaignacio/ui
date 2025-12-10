@@ -8,6 +8,7 @@ import { ComponentsList } from './components-list';
 import { H1, H2, H3, H4, H5, H6 } from './heading';
 import { Image } from './image';
 import { InlineCode } from './inline-code';
+import { PackageManagerTabs } from './package-manager-tabs';
 import { Table, TableCell, TableHeader, TableRow } from './table';
 import {
   HorizontalRule,
@@ -48,4 +49,5 @@ export const mdxComponents = {
   ComponentPreview,
   ComponentsList,
   ComponentSource,
+  PackageManagerTabs,
 };
