@@ -134,7 +134,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <DocsNavigationButtons currentPath={currentPath} />
           </div>
         </div>
-        <div className="mb-24 min-w-0 flex-1">
+        <div className="mb-36 min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
         </div>
         <div className="hidden lg:block">

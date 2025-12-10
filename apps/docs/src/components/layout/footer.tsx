@@ -47,7 +47,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background border-border border-t">
+    <footer className="bg-background border-border border-t pb-30 lg:pb-16">
       <div className="mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-4 lg:grid-cols-6 lg:gap-12">
           <div className="col-span-2 lg:col-span-2">
@@ -81,10 +81,10 @@ export function Footer() {
         </div>
         <div className="py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-muted-foreground text-center text-sm md:text-left">
+            <p className="text-muted-foreground text-sm">
               © {currentYear} I7A UI. {t('footer.copyright')}
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex gap-6">
               <Link
                 href="/sitemap.xml"
                 className="text-muted-foreground hover:text-foreground text-sm transition-colors"
