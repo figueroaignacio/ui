@@ -12,7 +12,7 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
       <ReactMarkdown
         components={{
           h1: ({ children }) => (
-            <h1 className="text-foreground mt-6 mb-4 text-2xl font-bold tracking-tight wrap-break-word">
+            <h1 className="text-foreground wrap-break-words mt-6 mb-4 text-2xl font-bold tracking-tight">
               {children}
             </h1>
           ),
@@ -84,12 +84,12 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
             <tr className="hover:bg-muted/30 border-b transition-colors">{children}</tr>
           ),
           th: ({ children }) => (
-            <th className="text-foreground px-4 py-2 text-left font-semibold wrap-break-word">
+            <th className="text-foreground wrap-break-words px-4 py-2 text-left font-semibold">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="text-foreground px-4 py-2 wrap-break-word">{children}</td>
+            <td className="text-foreground wrap-break-words px-4 py-2">{children}</td>
           ),
           pre: ({ children }) => (
             <div className="my-4 overflow-x-auto rounded-lg">
