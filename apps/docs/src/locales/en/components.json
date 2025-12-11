@@ -38,5 +38,8 @@
   },
   "backButton": {
     "label": "Back"
+  },
+  "postCard": {
+    "action": "Read More"
   }
 }

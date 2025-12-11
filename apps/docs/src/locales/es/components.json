@@ -38,5 +38,8 @@
   },
   "backButton": {
     "label": "Atrás"
+  },
+  "postCard": {
+    "action": "Leer Más"
   }
 }

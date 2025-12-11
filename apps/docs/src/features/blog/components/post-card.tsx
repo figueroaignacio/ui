@@ -13,13 +13,14 @@ import { ArrowRight } from 'lucide-react';
 
 // Utils
 import { formatDateOnly } from '@/lib/format-date';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 // Types
 import type { Posts } from '@/content';
 
 export async function PostCard({ title, description, slug, date }: Partial<Posts>) {
   const locale = await getLocale();
+  const t = await getTranslations('components.postCard');
 
   return (
     <Card variant="ghost" className="border-border border shadow-[7px_7px_0px_var(--secondary)]">
@@ -33,7 +34,7 @@ export async function PostCard({ title, description, slug, date }: Partial<Posts
       <CardFooter className="">
         <Link href={`${slug}`} className="w-full">
           <Button variant="outline" className="w-full" rightIcon={<ArrowRight size={12} />}>
-            Read More
+            {t('action')}
           </Button>
         </Link>
       </CardFooter>
