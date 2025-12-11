@@ -81,7 +81,7 @@ function AccordionTrigger({ children, isOpen, onToggle, className }: AccordionTr
       whileHover={{ x: 2 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        'flex w-full items-center justify-between py-4 text-sm font-medium transition-all hover:underline',
+        'flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all hover:underline',
         className,
       )}
     >
