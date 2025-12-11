@@ -40,8 +40,9 @@ export function ChatInput(props: ChatInputProps) {
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
         </motion.button>
       </div>
-
-      <p className="text-muted-foreground mt-2 px-1 text-xs">{t('messages.helperText')}</p>
+      <p className="text-muted-foreground mt-2 hidden px-1 text-xs lg:block">
+        {t('messages.helperText')}
+      </p>
     </form>
   );
 }

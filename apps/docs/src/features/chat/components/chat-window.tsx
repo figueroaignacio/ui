@@ -46,7 +46,7 @@ export function ChatWindow(props: ChatWindowProps) {
               stiffness: 400,
               damping: 30,
             }}
-            className="fixed inset-4 z-9999 flex flex-col overflow-hidden md:inset-auto md:top-1/2 md:left-1/2 md:h-screen md:max-h-[800px] md:w-full md:max-w-4xl md:-translate-x-1/2 md:-translate-y-1/2"
+            className="fixed inset-4 z-9999 flex flex-col md:inset-auto md:top-1/2 md:left-1/2 md:h-screen md:max-h-[800px] md:w-full md:max-w-2xl md:-translate-x-1/2 md:-translate-y-1/2"
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">

@@ -12,7 +12,7 @@ interface PreProps {
 export const Pre: React.FC<PreProps> = ({ children }) => {
   const child = (children as any)?.props;
 
-  if (!child) return <pre>{children}</pre>;
+  if (!child) return <pre className="overflow-x-auto">{children}</pre>;
 
   const language = child.className?.replace('language-', '') || 'tsx';
 
@@ -28,7 +28,11 @@ export const Pre: React.FC<PreProps> = ({ children }) => {
   };
   const code = extractCode(child.children).trim();
 
-  return <CodeBlock code={code} language={language} className="overflow-x-auto" />;
+  return (
+    <div className="w-full overflow-x-auto">
+      <CodeBlock code={code} language={language} className="min-w-0" />
+    </div>
+  );
 };
 
 export function Link({ className, ...props }: TypographyProps<HTMLAnchorElement>) {
