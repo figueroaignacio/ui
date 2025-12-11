@@ -26,6 +26,14 @@
       "initial": "I'm I7A Bot. How can I assist you today?",
       "error": "I'm sorry, I encountered an error. Please try again.",
       "helperText": "Press Enter to send, Shift + Enter for new line"
+    },
+    "suggestions": {
+      "title": "Try asking:",
+      "subtitle": "Click on any suggestion to get started",
+      "howWorks": "How does I7A UI work?",
+      "technologies": "What technologies does it support?",
+      "features": "What are the main features?",
+      "getStarted": "How do I get started?"
     }
   },
   "backButton": {

@@ -66,10 +66,15 @@ export function useChat() {
     }
   };
 
+  const handleSuggestionClick = (text: string) => {
+    sendMessage(text);
+  };
+
   return {
     messages,
     isLoading,
     messagesEndRef,
     sendMessage,
+    handleSuggestionClick,
   };
 }

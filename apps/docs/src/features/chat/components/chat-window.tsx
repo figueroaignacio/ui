@@ -17,11 +17,21 @@ interface ChatWindowProps {
   onSubmit: (e?: React.FormEvent) => void;
   onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClose: () => void;
+  onSuggestionClick: (text: string) => void;
 }
 
 export function ChatWindow(props: ChatWindowProps) {
-  const { isOpen, messages, isLoading, message, onMessageChange, onSubmit, onKeyPress, onClose } =
-    props;
+  const {
+    isOpen,
+    messages,
+    isLoading,
+    message,
+    onMessageChange,
+    onSubmit,
+    onKeyPress,
+    onClose,
+    onSuggestionClick,
+  } = props;
 
   return (
     <AnimatePresence mode="wait">
@@ -50,7 +60,11 @@ export function ChatWindow(props: ChatWindowProps) {
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">
-              <ChatMessages messages={messages} isLoading={isLoading} />
+              <ChatMessages
+                messages={messages}
+                isLoading={isLoading}
+                onSuggestionClick={onSuggestionClick}
+              />
             </div>
             <ChatInput
               message={message}

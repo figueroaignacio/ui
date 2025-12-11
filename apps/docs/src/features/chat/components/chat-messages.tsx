@@ -1,7 +1,10 @@
-// ChatMessages.tsx
+// Hooks
 import { useEffect, useRef } from 'react';
+
+// Components
 import { ChatLoading } from './chat-loading';
 import { ChatMessage } from './chat-message';
+import { ChatSuggestions } from './chat-suggestions';
 
 // Types
 import type { Message } from '@/lib/definitions';
@@ -9,9 +12,10 @@ import type { Message } from '@/lib/definitions';
 interface ChatMessagesProps {
   messages: Message[];
   isLoading: boolean;
+  onSuggestionClick: (text: string) => void;
 }
 
-export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
+export function ChatMessages({ messages, isLoading, onSuggestionClick }: ChatMessagesProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,8 +27,10 @@ export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
     }
   }, [messages]);
 
+  const showSuggestions = messages.length === 1 && messages[0].role === 'assistant';
+
   return (
-    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto">
+    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto p-4">
       {messages.map((msg, idx) => (
         <div key={idx} className="flex flex-col items-start">
           <span className="text-muted-foreground text-sm">
@@ -33,6 +39,9 @@ export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
           <ChatMessage message={msg} />
         </div>
       ))}
+
+      {showSuggestions && !isLoading && <ChatSuggestions onSuggestionClick={onSuggestionClick} />}
+
       {isLoading && <ChatLoading />}
       <div ref={messagesEndRef} />
     </div>

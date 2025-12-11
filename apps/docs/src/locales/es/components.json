@@ -12,7 +12,7 @@
   },
   "footer": {
     "copyright": "Todos los derechos reservados",
-    "headline": "Desarrollador Fullstack  & Estudiante de Programación"
+    "headline": "Desarrollador Fullstack & Estudiante de Programación"
   },
   "codeblockWrapper": {
     "expand": "Expandir",
@@ -23,12 +23,20 @@
       "placeholder": "Escribe un mensaje..."
     },
     "messages": {
-      "initial": "Hola, soy I7A Bot. ¿En qué puedo ayudarte?",
-      "error": "Lo siento, ocurrió un error. Por favor, intenta de nuevo.",
-      "helperText": "Presione Enter para enviar, Shift + Enter para nueva línea"
+      "initial": "Soy I7A Bot. ¿Cómo puedo ayudarte hoy?",
+      "error": "Lo siento, encontré un error. Por favor, intenta de nuevo.",
+      "helperText": "Presiona Enter para enviar, Shift + Enter para nueva línea"
+    },
+    "suggestions": {
+      "title": "Prueba con:",
+      "subtitle": "Haz clic en cualquier sugerencia para comenzar",
+      "howWorks": "¿Cómo funciona I7A UI?",
+      "technologies": "¿Qué tecnologías soporta?",
+      "features": "¿Cuáles son las características principales?",
+      "getStarted": "¿Cómo empiezo?"
     }
   },
   "backButton": {
-    "label": "Volver"
+    "label": "Atrás"
   }
 }
