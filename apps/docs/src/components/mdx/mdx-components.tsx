@@ -1,4 +1,10 @@
 // Components
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@repo/ui/components/accordion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { Blockquote } from './blockquote';
 import { CodeBlockWrapper } from './code-block-wrapper';
@@ -50,4 +56,8 @@ export const mdxComponents = {
   ComponentsList,
   ComponentSource,
   PackageManagerTabs,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 };
