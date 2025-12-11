@@ -5,7 +5,6 @@ import { docs } from '@/content';
 
 // Components
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { DocsBreadcrumb } from '@/features/docs/components/docs-breadcrumb';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
 import { Toc } from '@/features/docs/components/toc';
@@ -125,7 +124,6 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <article className="flex w-full min-w-0 flex-col lg:px-26">
         <div className="my-6 flex items-start justify-between">
           <div className="space-y-3">
-            <DocsBreadcrumb slugAsParams={doc.slugAsParams} />
             <h1 className="text-3xl font-black">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>

@@ -28,7 +28,7 @@ export const Pre: React.FC<PreProps> = ({ children }) => {
   };
   const code = extractCode(child.children).trim();
 
-  return <CodeBlock code={code} language={language} />;
+  return <CodeBlock code={code} language={language} className="overflow-x-auto" />;
 };
 
 export function Link({ className, ...props }: TypographyProps<HTMLAnchorElement>) {
