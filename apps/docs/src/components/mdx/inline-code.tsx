@@ -27,15 +27,13 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
       {({ style, tokens, getTokenProps }) => (
         <code
           className={cn(
-            'bg-muted/60 text-foreground border-border inline rounded-md border px-[.35rem] py-[.15rem] font-mono',
+            'bg-muted/60 text-foreground border-border rounded-lg border px-[.35rem] py-[.15rem] font-mono text-xs',
             className,
           )}
           style={{
             ...style,
             backgroundColor: 'transparent',
             whiteSpace: 'normal',
-            wordBreak: 'break-word',
-            overflowWrap: 'break-word',
           }}
           {...props}
         >

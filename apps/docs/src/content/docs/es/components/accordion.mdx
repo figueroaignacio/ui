@@ -58,3 +58,47 @@ El tipo `multiple` permite que múltiples ítems estén abiertos simultáneament
 Puedes omitir `defaultValue` para que el acordeón inicie completamente cerrado.
 
 <ComponentPreview name="accordion-collapsed-demo" />
+
+## Referencia de API
+
+### Accordion
+
+| Prop           | Tipo                       | Default     | Descripción                                                       |
+| -------------- | -------------------------- | ----------- | ----------------------------------------------------------------- |
+| `type`         | `"single"` \| `"multiple"` | `"single"`  | Controla si se puede abrir un solo ítem o varios simultáneamente. |
+| `defaultValue` | `string`                   | `undefined` | Ítem inicial abierto.                                             |
+| `children`     | `React.ReactNode`          | —           | Deben ser `AccordionItem`.                                        |
+| `className`    | `string`                   | —           | Clases adicionales para el contenedor.                            |
+
+---
+
+### AccordionItem
+
+| Prop        | Tipo              | Default            | Descripción                                           |
+| ----------- | ----------------- | ------------------ | ----------------------------------------------------- |
+| `value`     | `string`          | —                  | ID único del ítem. **Obligatorio.**                   |
+| `children`  | `React.ReactNode` | —                  | Debe incluir `AccordionTrigger` y `AccordionContent`. |
+| `isOpen`    | `boolean`         | Controlado interno | Indica si el ítem está abierto.                       |
+| `onToggle`  | `() => void`      | Controlado interno | Función para abrir/cerrar.                            |
+| `className` | `string`          | —                  | Clases adicionales para el wrapper.                   |
+
+---
+
+### AccordionTrigger
+
+| Prop        | Tipo              | Default            | Descripción                             |
+| ----------- | ----------------- | ------------------ | --------------------------------------- |
+| `children`  | `React.ReactNode` | —                  | Título o contenido del botón.           |
+| `isOpen`    | `boolean`         | Controlado interno | Estado abierto/cerrado (rota el ícono). |
+| `onToggle`  | `() => void`      | Controlado interno | Acción al hacer click.                  |
+| `className` | `string`          | —                  | Clases adicionales del botón.           |
+
+---
+
+### AccordionContent
+
+| Prop        | Tipo              | Default            | Descripción                                    |
+| ----------- | ----------------- | ------------------ | ---------------------------------------------- |
+| `children`  | `React.ReactNode` | —                  | Contenido colapsable.                          |
+| `isOpen`    | `boolean`         | Controlado interno | Controla apertura y animación.                 |
+| `className` | `string`          | —                  | Clases adicionales para el contenedor animado. |

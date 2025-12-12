@@ -84,3 +84,57 @@ Clickable cards with keyboard support.
 Cards with reduced padding for dense layouts.
 
 <ComponentPreview name="card-compact-demo" />
+
+## API Reference
+
+### Card
+
+| Prop        | Type                                                    | Default     | Description                                                  |
+| ----------- | ------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `variant`   | `"default"` \| `"elevated"` \| `"outline"` \| `"ghost"` | `"default"` | Visual variant of the card.                                  |
+| `hoverable` | `boolean`                                               | `false`     | Adds a hover effect (shadow + slight movement).              |
+| `clickable` | `boolean`                                               | `false`     | Makes the entire card clickable (includes keyboard support). |
+| `gradient`  | `boolean`                                               | `false`     | Applies a subtle gradient background.                        |
+| `as`        | `React.ElementType`                                     | `'div'`     | Changes the root element of the card.                        |
+| `className` | `string`                                                | —           | Additional classes.                                          |
+| `children`  | `React.ReactNode`                                       | —           | Card content.                                                |
+
+### CardHeader
+
+| Prop        | Type              | Default | Description                                   |
+| ----------- | ----------------- | ------- | --------------------------------------------- |
+| `compact`   | `boolean`         | `false` | Reduces top and bottom padding of the header. |
+| `className` | `string`          | —       | Additional classes.                           |
+| `children`  | `React.ReactNode` | —       | Header content.                               |
+
+### CardTitle
+
+| Prop        | Type                                                     | Default | Description                  |
+| ----------- | -------------------------------------------------------- | ------- | ---------------------------- |
+| `as`        | `'h1'` \| `'h2'` \| `'h3'` \| `'h4'` \| `'h5'` \| `'h6'` | `'h3'`  | HTML tag for the card title. |
+| `className` | `string`                                                 | —       | Additional classes.          |
+| `children`  | `React.ReactNode`                                        | —       | Title content.               |
+
+### CardDescription
+
+| Prop        | Type              | Default | Description         |
+| ----------- | ----------------- | ------- | ------------------- |
+| `className` | `string`          | —       | Additional classes. |
+| `children`  | `React.ReactNode` | —       | Description text.   |
+
+### CardContent
+
+| Prop        | Type              | Default | Description               |
+| ----------- | ----------------- | ------- | ------------------------- |
+| `compact`   | `boolean`         | `false` | Reduces content padding.  |
+| `className` | `string`          | —       | Additional classes.       |
+| `children`  | `React.ReactNode` | —       | Main content of the card. |
+
+### CardFooter
+
+| Prop        | Type                                              | Default   | Description                                  |
+| ----------- | ------------------------------------------------- | --------- | -------------------------------------------- |
+| `align`     | `'start'` \| `'center'` \| `'end'` \| `'between'` | `'start'` | Controls horizontal alignment of the footer. |
+| `compact`   | `boolean`                                         | `false`   | Reduces footer padding.                      |
+| `className` | `string`                                          | —         | Additional classes.                          |
+| `children`  | `React.ReactNode`                                 | —         | Footer content.                              |

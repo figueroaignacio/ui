@@ -63,3 +63,37 @@ Collapsible without indicator icon.
 Use a custom icon instead of the default chevron.
 
 <ComponentPreview name="collapsible-custom-icon-demo" />
+
+## API Reference
+
+### Collapsible
+
+| Prop           | Type                                    | Default     | Description                                 |
+| -------------- | --------------------------------------- | ----------- | ------------------------------------------- |
+| `defaultOpen`  | `boolean`                               | `false`     | Initial open state (uncontrolled mode).     |
+| `open`         | `boolean`                               | —           | Controlled open state.                      |
+| `onOpenChange` | `(open: boolean) => void`               | —           | Callback fired when the open state changes. |
+| `disabled`     | `boolean`                               | `false`     | Disables interaction.                       |
+| `variant`      | `'default'` \| `'bordered'` \| `'card'` | `'default'` | Visual style of the collapsible container.  |
+| `className`    | `string`                                | —           | Additional classes.                         |
+| `children`     | `React.ReactNode`                       | —           | Content inside the collapsible.             |
+
+### CollapsibleTrigger
+
+| Prop              | Type                                | Default   | Description                                           |
+| ----------------- | ----------------------------------- | --------- | ----------------------------------------------------- |
+| `showChevron`     | `boolean`                           | `true`    | Shows the chevron icon.                               |
+| `chevronIcon`     | `React.ReactNode`                   | —         | Custom icon for the chevron.                          |
+| `chevronPosition` | `'left'` \| `'right'`               | `'right'` | Position of the chevron icon.                         |
+| `asChild`         | `boolean`                           | `false`   | Allows passing a custom child element as the trigger. |
+| `children`        | `React.ReactNode`                   | —         | Trigger label or content.                             |
+| `onClick`         | `(event: React.MouseEvent) => void` | —         | Click handler (merged with open/close logic).         |
+| `className`       | `string`                            | —         | Additional classes.                                   |
+
+### CollapsibleContent
+
+| Prop         | Type              | Default | Description                                        |
+| ------------ | ----------------- | ------- | -------------------------------------------------- |
+| `forceMount` | `boolean`         | `false` | Renders content even when closed (useful for SSR). |
+| `children`   | `React.ReactNode` | —       | Content to be revealed/collapsed.                  |
+| `className`  | `string`          | —       | Additional classes.                                |
