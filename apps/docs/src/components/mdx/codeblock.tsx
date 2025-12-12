@@ -28,7 +28,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group border-border relative mt-5 overflow-hidden rounded-xl border bg-[#040609]',
+        'group border-border relative mt-5 overflow-hidden rounded-xl border bg-[#f5f5f5] dark:bg-[#090b0f]',
         className,
       )}
     >
