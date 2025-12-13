@@ -7,6 +7,7 @@ import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
 
 // Types
+import { Searcher } from '@/features/docs/components/searcher';
 import type { Navigation } from '@/lib/definitions';
 
 export function Navbar() {
@@ -34,7 +35,10 @@ export function Navbar() {
           ))}
         </nav>
       </div>
-      <HeaderActions />
+      <div className="flex space-x-4">
+        <Searcher />
+        <HeaderActions />
+      </div>
     </div>
   );
 }

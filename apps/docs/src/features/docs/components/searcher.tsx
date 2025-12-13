@@ -27,12 +27,12 @@ export function Searcher() {
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
-          className="gap-2"
+          className="w-32 justify-start"
           leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
         >
-          <span className="text-xs">{t('label')}</span>
+          <span className="text-xs">{t('label')}...</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-sm rounded-xl sm:max-w-lg">
