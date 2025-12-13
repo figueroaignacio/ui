@@ -112,7 +112,6 @@ const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
     const setIsOpen = React.useCallback(
       (open: boolean) => {
         if (disabled) return;
-
         if (!isControlled) {
           setInternalOpen(open);
         }
@@ -122,12 +121,7 @@ const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
     );
 
     const contextValue = React.useMemo<CollapsibleContextValue>(
-      () => ({
-        isOpen,
-        setIsOpen,
-        disabled,
-        variant,
-      }),
+      () => ({ isOpen, setIsOpen, disabled, variant }),
       [isOpen, setIsOpen, disabled, variant],
     );
 
@@ -177,6 +171,8 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
 
     const chevron = chevronIcon ?? <ChevronDown className="h-4 w-4 shrink-0" />;
 
+    const iconTransition = { type: 'spring', stiffness: 300, damping: 20 } as const;
+
     if (asChild && React.isValidElement(children)) {
       return React.cloneElement(children, {
         onClick: handleClick,
@@ -194,7 +190,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
         disabled={disabled}
         data-state={isOpen ? 'open' : 'closed'}
         aria-expanded={isOpen}
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }}
         whileTap={{ scale: 0.99 }}
         className={cn(collapsibleTriggerVariants({ variant }), className)}
         {...props}
@@ -203,7 +199,8 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
           <motion.span
             aria-hidden="true"
             animate={{ rotate: isOpen ? 90 : 0 }}
-            transition={{ duration: 0.2 }}
+            transition={iconTransition}
+            className="mr-2"
           >
             {chevron}
           </motion.span>
@@ -213,7 +210,8 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
           <motion.span
             aria-hidden="true"
             animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
+            transition={iconTransition}
+            className="ml-2"
           >
             {chevron}
           </motion.span>
@@ -230,23 +228,46 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
     const { isOpen, variant } = useCollapsibleContext();
 
     return (
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="sync">
         {(isOpen || forceMount) && (
           <motion.div
             ref={ref}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            data-state={isOpen ? 'open' : 'closed'}
+            initial={{ height: 0, opacity: 0, filter: 'blur(10px)' }}
+            animate={{
+              height: 'auto',
+              opacity: 1,
+              filter: 'blur(0px)',
+              transition: {
+                height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+                opacity: { duration: 0.25, delay: 0.05 },
+                filter: { duration: 0.3 },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              filter: 'blur(10px)',
+              transition: {
+                height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] },
+                opacity: { duration: 0.15 }, // Desaparece rápido para no estorbar
+                filter: { duration: 0.2 },
+              },
+            }}
             className={cn(collapsibleContentVariants({ variant }), className)}
             {...props}
           >
             <motion.div
-              initial={{ y: -10 }}
-              animate={{ y: 0 }}
-              exit={{ y: -10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ y: -8, scale: 0.98 }}
+              animate={{
+                y: 0,
+                scale: 1,
+                transition: { duration: 0.3, ease: 'easeOut' },
+              }}
+              exit={{
+                y: -8,
+                scale: 0.98,
+                transition: { duration: 0.2 },
+              }}
             >
               {children}
             </motion.div>
