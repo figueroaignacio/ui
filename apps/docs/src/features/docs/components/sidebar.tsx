@@ -7,11 +7,11 @@ import { useState } from 'react';
 
 // Components
 import { Link } from '@/i18n/navigation';
-import { ChevronDown } from 'lucide-react'; // Solo dejamos iconos de UI del componente
+import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 
 // Utils
-import { getIcon } from '@/lib/get-icon'; // Importamos la utilidad
+import { getIcon } from '@/lib/get-icon';
 import { cn } from '@repo/ui/lib/cn';
 
 // Types

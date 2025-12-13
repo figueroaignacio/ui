@@ -8,13 +8,13 @@ import { useState } from 'react';
 // Components
 import { Searcher } from '@/features/docs/components/searcher';
 import { Link } from '@/i18n/navigation';
-import { ChevronRight, X } from 'lucide-react'; // Solo iconos de UI
+import { ChevronRight, X } from 'lucide-react';
 import { LocaleSwitcher } from '../common/locale-switcher';
 import { Logo } from '../common/logo';
 import { ThemeToggle } from '../common/theme-toggle';
 
 // Utils
-import { getIcon } from '@/lib/get-icon'; // Importamos la utilidad
+import { getIcon } from '@/lib/get-icon';
 import { cn } from '@repo/ui/lib/cn';
 
 // Definitions
