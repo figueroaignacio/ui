@@ -5,6 +5,17 @@ import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { cn } from '../lib/cn';
 
+export type GitStatus = 'modified' | 'deleted' | 'added' | 'untracked' | 'renamed' | 'ignored';
+
+const gitStatusStyles: Record<GitStatus, { color: string; letter: string }> = {
+  modified: { color: 'text-yellow-500', letter: 'M' },
+  deleted: { color: 'text-red-500 line-through opacity-70', letter: 'D' },
+  added: { color: 'text-green-500', letter: 'A' },
+  untracked: { color: 'text-green-500', letter: 'U' },
+  renamed: { color: 'text-blue-500', letter: 'R' },
+  ignored: { color: 'text-muted-foreground opacity-50', letter: 'I' },
+};
+
 interface FilesContextValue {
   openFolders: Set<string>;
   toggleFolder: (path: string) => void;
@@ -20,37 +31,50 @@ const useFiles = () => {
   return context;
 };
 
+const FolderPathContext = React.createContext<string>('');
+
 export type FileProps = {
   name: string;
   className?: string;
   onClick?: () => void;
+  status?: GitStatus;
 };
 
-export const File: React.FC<FileProps> = ({ name, className, onClick }) => (
-  <motion.div
-    onClick={onClick}
-    whileHover={{ x: 4, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
-    whileTap={{ scale: 0.98 }}
-    transition={{ duration: 0.15 }}
-    className={cn(
-      'flex cursor-pointer items-center space-x-2 rounded px-2 py-1 text-sm',
-      className,
-    )}
-  >
-    <span className="text-muted-foreground">
-      <FileIcon className="size-4" />
-    </span>
-    <span>{name}</span>
-  </motion.div>
-);
+export const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
+  const statusConfig = status ? gitStatusStyles[status] : undefined;
 
-const FolderPathContext = React.createContext<string>('');
+  return (
+    <motion.div
+      onClick={onClick}
+      whileHover={{ x: 4, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.15 }}
+      className={cn(
+        'flex cursor-pointer items-center space-x-2 rounded px-2 py-1 text-sm transition-colors',
+        className,
+      )}
+    >
+      <span className={cn('text-muted-foreground', statusConfig?.color)}>
+        <FileIcon className="size-4" />
+      </span>
+
+      <span className={cn('flex-1 truncate', statusConfig?.color)}>{name}</span>
+
+      {statusConfig && (
+        <span className={cn('ml-auto w-4 text-center text-xs font-bold', statusConfig.color)}>
+          {statusConfig.letter}
+        </span>
+      )}
+    </motion.div>
+  );
+};
 
 export type FolderProps = {
   name: string;
   children?: React.ReactNode;
   className?: string;
   path?: string;
+  status?: GitStatus;
 };
 
 export const Folder: React.FC<FolderProps> = ({
@@ -58,12 +82,15 @@ export const Folder: React.FC<FolderProps> = ({
   children,
   className,
   path: externalPath,
+  status,
 }) => {
   const { openFolders, toggleFolder } = useFiles();
   const parentPath = React.useContext(FolderPathContext);
   const currentPath = externalPath || (parentPath ? `${parentPath}/${name}` : name);
   const isOpen = openFolders.has(currentPath);
   const hasChildren = React.Children.count(children) > 0;
+
+  const statusConfig = status ? gitStatusStyles[status] : undefined;
 
   const handleToggle = () => {
     if (hasChildren) {
@@ -82,22 +109,32 @@ export const Folder: React.FC<FolderProps> = ({
           hasChildren && 'cursor-pointer',
         )}
       >
-        {hasChildren && (
+        {hasChildren ? (
           <motion.div
             animate={{ rotate: isOpen ? 90 : 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
             <ChevronRight className="text-muted-foreground mr-1 size-4 shrink-0" />
           </motion.div>
+        ) : (
+          <span className="w-5" />
         )}
+
         <motion.div
           animate={{ scale: isOpen ? 1.1 : 1 }}
           transition={{ duration: 0.2 }}
-          className="text-muted-foreground"
+          className={cn('text-muted-foreground', statusConfig?.color)}
         >
           {isOpen ? <FolderOpenIcon className="size-4" /> : <FolderIcon className="size-4" />}
         </motion.div>
-        <span className="ml-2">{name}</span>
+
+        <span className={cn('ml-2 flex-1 truncate', statusConfig?.color)}>{name}</span>
+
+        {statusConfig && (
+          <span className={cn('ml-auto w-4 text-center text-xs font-bold', statusConfig.color)}>
+            {statusConfig.letter}
+          </span>
+        )}
       </motion.div>
 
       <AnimatePresence initial={false}>

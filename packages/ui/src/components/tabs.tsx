@@ -1,68 +1,47 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { HTMLMotionProps, motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import * as React from 'react';
+import { cn } from '../lib/cn';
 
-const cn = (...inputs: any[]) => {
-  return inputs.filter(Boolean).join(' ');
-};
-
-const tabsListVariants = cva('inline-flex items-center justify-center p-1 transition-colors', {
-  variants: {
-    variant: {
-      default: 'bg-muted text-muted-foreground rounded-lg',
-      outline: 'border border-border bg-transparent rounded-lg',
-      underline: 'bg-transparent border-b border-border',
-      pills: 'bg-transparent gap-2',
-    },
-    size: {
-      default: 'h-10',
-      sm: 'h-9',
-      lg: 'h-11',
+const tabsListVariants = cva(
+  'inline-flex items-center justify-center rounded-lg p-1 text-muted-foreground w-full sm:w-auto overflow-hidden',
+  {
+    variants: {
+      variant: {
+        default: 'bg-muted/50 border border-border/50 backdrop-blur-sm',
+        outline: 'border border-border bg-transparent',
+        underline: 'bg-transparent border-b border-border rounded-none p-0 justify-start w-full',
+        ghost: 'bg-transparent p-0 gap-2',
+      },
+      size: {
+        default: 'h-10',
+        sm: 'h-9',
+        lg: 'h-12',
+      },
     },
   },
-  defaultVariants: {
-    variant: 'default',
-    size: 'default',
-  },
-});
+);
 
 const tabsTriggerVariants = cva(
   [
-    'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium',
-    'transition-all duration-200',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-    'disabled:pointer-events-none disabled:opacity-50',
+    'relative inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 z-10 cursor-pointer',
   ].join(' '),
   {
     variants: {
       variant: {
-        default: [
-          'rounded-md px-3 py-1.5',
-          'data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm',
-          'data-[state=inactive]:hover:bg-background/50 data-[state=inactive]:hover:text-foreground',
-        ].join(' '),
-        outline: [
-          'rounded-md px-3 py-1.5 border border-transparent',
-          'data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-primary/5',
-          'data-[state=inactive]:hover:text-primary',
-        ].join(' '),
-        underline: [
-          'rounded-none px-4 py-2 border-b-2 border-transparent',
-          'data-[state=active]:border-primary data-[state=active]:text-foreground',
-          'data-[state=inactive]:hover:border-muted-foreground/50 data-[state=inactive]:hover:text-foreground',
-        ].join(' '),
-        pills: [
-          'rounded-full px-4 py-1.5',
-          'data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm',
-          'data-[state=inactive]:hover:bg-primary/90 data-[state=inactive]:hover:text-primary-foreground',
-        ].join(' '),
+        default: 'text-muted-foreground data-[state=active]:text-foreground',
+        outline: 'text-muted-foreground data-[state=active]:text-foreground',
+        underline:
+          'text-muted-foreground hover:text-foreground data-[state=active]:text-foreground rounded-none bg-transparent px-4 pb-3 pt-2',
+        ghost:
+          'text-muted-foreground hover:text-foreground data-[state=active]:text-foreground hover:bg-muted/50 rounded-md',
       },
       size: {
         default: 'text-sm',
-        sm: 'text-xs px-2 py-1',
-        lg: 'text-base px-4 py-2',
+        sm: 'text-xs',
+        lg: 'text-base px-5',
       },
     },
     defaultVariants: {
@@ -75,45 +54,27 @@ const tabsTriggerVariants = cva(
 interface TabsContextValue {
   activeTab: string;
   setActiveTab: (value: string) => void;
-  variant?: 'default' | 'outline' | 'underline' | 'pills';
-  size?: 'default' | 'sm' | 'lg';
-  onValueChange?: (value: string) => void;
+  direction: number;
+  setDirection: (dir: number) => void;
+  variant: NonNullable<TabsProps['variant']>;
+  layoutId: string;
+}
+
+const TabsContext = React.createContext<TabsContextValue | null>(null);
+
+function useTabsContext() {
+  const context = React.useContext(TabsContext);
+  if (!context) throw new Error('Tabs components must be used within Tabs');
+  return context;
 }
 
 interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultValue?: string;
   value?: string;
   onValueChange?: (value: string) => void;
-  variant?: 'default' | 'outline' | 'underline' | 'pills';
+  variant?: 'default' | 'outline' | 'underline' | 'ghost';
   size?: 'default' | 'sm' | 'lg';
 }
-
-interface TabsListProps
-  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tabsListVariants> {}
-
-interface TabsTriggerProps
-  extends Omit<HTMLMotionProps<'button'>, 'children'>, VariantProps<typeof tabsTriggerVariants> {
-  value: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  children: React.ReactNode;
-}
-
-interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'children'> {
-  value: string;
-  forceMount?: boolean;
-  children: React.ReactNode;
-}
-
-const TabsContext = React.createContext<TabsContextValue | null>(null);
-
-const useTabsContext = (): TabsContextValue => {
-  const context = React.useContext(TabsContext);
-  if (!context) {
-    throw new Error('Tabs components must be used within Tabs');
-  }
-  return context;
-};
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (
@@ -132,6 +93,8 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     const [internalValue, setInternalValue] = React.useState(defaultValue || '');
     const isControlled = controlledValue !== undefined;
     const activeTab = isControlled ? controlledValue : internalValue;
+    const [direction, setDirection] = React.useState(0);
+    const layoutId = React.useId();
 
     const setActiveTab = React.useCallback(
       (newValue: string) => {
@@ -143,40 +106,38 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       [isControlled, onValueChange],
     );
 
-    const contextValue = React.useMemo<TabsContextValue>(
-      () => ({
-        activeTab,
-        setActiveTab,
-        variant,
-        size,
-        onValueChange,
-      }),
-      [activeTab, setActiveTab, variant, size, onValueChange],
-    );
-
     return (
-      <TabsContext.Provider value={contextValue}>
-        <div ref={ref} className={className} data-orientation="horizontal" {...props}>
+      <TabsContext.Provider
+        value={{
+          activeTab,
+          setActiveTab,
+          direction,
+          setDirection,
+          variant,
+          layoutId,
+        }}
+      >
+        <div ref={ref} className={cn('w-full', className)} {...props}>
           {children}
         </div>
       </TabsContext.Provider>
     );
   },
 );
-
 Tabs.displayName = 'Tabs';
+
+interface TabsListProps
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tabsListVariants> {}
 
 const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   ({ className, variant, size, children, ...props }, ref) => {
-    const context = useTabsContext();
-    const finalVariant = variant ?? context.variant;
-    const finalSize = size ?? context.size;
+    const { variant: contextVariant } = useTabsContext();
+    const finalVariant = variant || contextVariant;
 
     return (
       <div
         ref={ref}
-        role="tablist"
-        className={cn(tabsListVariants({ variant: finalVariant, size: finalSize }), className)}
+        className={cn(tabsListVariants({ variant: finalVariant, size }), className)}
         {...props}
       >
         {children}
@@ -184,76 +145,132 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
     );
   },
 );
-
 TabsList.displayName = 'TabsList';
 
+interface TabsTriggerProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof tabsTriggerVariants> {
+  value: string;
+  children: React.ReactNode;
+}
+
 const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ className, variant, size, value, leftIcon, rightIcon, children, ...props }, ref) => {
-    const context = useTabsContext();
-    const finalVariant = variant ?? context.variant;
-    const finalSize = size ?? context.size;
-    const isActive = context.activeTab === value;
+  ({ className, value, children, variant, size, ...props }, ref) => {
+    const {
+      activeTab,
+      setActiveTab,
+      setDirection,
+      variant: contextVariant,
+      layoutId,
+    } = useTabsContext();
+    const isActive = activeTab === value;
+    const finalVariant = variant || contextVariant;
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const parent = buttonRef.current?.parentElement;
+      if (parent) {
+        const childrenArray = Array.from(parent.children);
+        const newIndex = childrenArray.indexOf(buttonRef.current!);
+        const currentIndex = childrenArray.findIndex(
+          (child) => child.getAttribute('data-state') === 'active',
+        );
+        if (currentIndex !== -1 && newIndex !== currentIndex) {
+          setDirection(newIndex > currentIndex ? 1 : -1);
+        }
+      }
+      setActiveTab(value);
+      props.onClick?.(e);
+    };
 
     return (
-      <motion.button
-        ref={ref}
+      <button
+        ref={buttonRef}
         type="button"
         role="tab"
         aria-selected={isActive}
-        aria-controls={`tabpanel-${value}`}
         data-state={isActive ? 'active' : 'inactive'}
-        id={`tab-${value}`}
-        tabIndex={isActive ? 0 : -1}
-        onClick={() => context.setActiveTab(value)}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={cn(tabsTriggerVariants({ variant: finalVariant, size: finalSize }), className)}
+        onClick={handleClick}
+        className={cn(tabsTriggerVariants({ variant: finalVariant, size }), className)}
         {...props}
       >
-        {leftIcon && <span className="mr-2 [&_svg]:size-4">{leftIcon}</span>}
-        {children}
-        {rightIcon && <span className="ml-2 [&_svg]:size-4">{rightIcon}</span>}
-      </motion.button>
+        <span className="inherit relative z-20">{children}</span>
+        {isActive && (
+          <motion.div
+            layoutId={`${layoutId}-indicator`}
+            className={cn(
+              'absolute inset-0 z-10',
+              finalVariant === 'underline'
+                ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
+                : 'bg-secondary border-border/50 rounded-md border shadow-sm',
+            )}
+            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </button>
     );
   },
 );
-
 TabsTrigger.displayName = 'TabsTrigger';
 
-const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ className, value, forceMount = false, children, ...props }, ref) => {
-    const context = useTabsContext();
-    const isActive = context.activeTab === value;
+interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
 
-    if (!isActive && !forceMount) {
-      return null;
-    }
+const contentVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 20 : -20,
+    opacity: 0,
+    filter: 'blur(4px)',
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 1, 0.5, 1] as const,
+    },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -20 : 20,
+    opacity: 0,
+    filter: 'blur(4px)',
+    transition: {
+      duration: 0.2,
+      ease: [0.25, 0.1, 0.25, 1] as const,
+    },
+  }),
+};
+
+const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
+  ({ className, value, children, ...props }, ref) => {
+    const { activeTab, direction } = useTabsContext();
+    const isActive = activeTab === value;
 
     return (
-      <motion.div
-        ref={ref}
-        role="tabpanel"
-        id={`tabpanel-${value}`}
-        aria-labelledby={`tab-${value}`}
-        tabIndex={0}
-        initial={false}
-        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-        transition={{ duration: 0.2 }}
-        hidden={!isActive}
-        className={cn(
-          'focus-visible:ring-ring mt-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-          className,
+      <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+        {isActive && (
+          <motion.div
+            ref={ref}
+            role="tabpanel"
+            custom={direction}
+            variants={contentVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className={cn(
+              'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+              className,
+            )}
+            {...props}
+          >
+            {children}
+          </motion.div>
         )}
-        {...props}
-      >
-        {children}
-      </motion.div>
+      </AnimatePresence>
     );
   },
 );
-
 TabsContent.displayName = 'TabsContent';
 
-export { Tabs, TabsContent, TabsList, tabsListVariants, TabsTrigger, tabsTriggerVariants };
-
-export type { TabsContentProps, TabsListProps, TabsProps, TabsTriggerProps };
+export { Tabs, TabsContent, TabsList, TabsTrigger };

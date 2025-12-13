@@ -1,30 +1,47 @@
+'use client';
+
 import { File, Files, Folder } from '../../components/files';
 
 export function FilesDemo() {
   return (
-    <Files defaultValue="src/components">
-      <Folder name="src">
+    <Files defaultValue="src/components/ui">
+      <Folder name="src" status="modified">
+        <File name="main.tsx" />
+        <File name="App.tsx" status="modified" />
+        <File name="index.css" />
+
         <Folder name="components">
-          <File name="button.tsx" />
-          <File name="input.tsx" />
-          <File name="dialog.tsx" />
+          <Folder name="ui" status="modified">
+            <File name="button.tsx" />
+            <File name="card.tsx" status="modified" />
+            <File name="toast.tsx" status="added" />
+          </Folder>
+
+          <File name="header.tsx" />
+          <File name="footer.tsx" />
         </Folder>
+
+        <Folder name="hooks" status="untracked">
+          <File name="use-auth.ts" status="untracked" />
+          <File name="use-toast.ts" status="untracked" />
+        </Folder>
+
         <Folder name="lib">
-          <File name="utils.ts" />
           <File name="cn.ts" />
+          <File name="utils.ts" />
         </Folder>
-        <Folder name="hooks">
-          <File name="use-debounce.ts" />
-          <File name="use-local-storage.ts" />
-        </Folder>
-        <File name="index.ts" />
       </Folder>
+
       <Folder name="public">
-        <File name="favicon.ico" />
-        <File name="logo.svg" />
+        <File name="favicon.svg" />
       </Folder>
-      <File name="package.json" />
+
+      <File name=".env" status="ignored" />
+      <File name=".eslintrc.cjs" />
+      <File name="index.html" />
+      <File name="package.json" status="modified" />
       <File name="tsconfig.json" />
+      <File name="vite.config.ts" />
     </Files>
   );
 }

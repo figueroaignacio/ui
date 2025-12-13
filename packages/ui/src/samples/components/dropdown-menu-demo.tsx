@@ -1,5 +1,7 @@
 'use client';
 
+import { Bell, Keyboard, LogOut, Settings, Shield, User } from 'lucide-react';
+
 import { Button } from '../../components/button';
 import {
   DropdownLabel,
@@ -14,36 +16,37 @@ export function DropdownMenuDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Options</Button>
+        <Button variant="outline">Account</Button>
       </DropdownMenuTrigger>
-
-      <DropdownMenuContent className="w-64" align="start">
-        <DropdownLabel>Quick Actions</DropdownLabel>
-        <DropdownMenuItem onSelect={() => alert('Generate report')}>
-          Generate Report 📝
+      <DropdownMenuContent className="w-56" align="start">
+        <DropdownLabel>Account</DropdownLabel>
+        <DropdownMenuItem>
+          <User className="mr-2 size-4" />
+          Profile
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => alert('Send feedback')}>
-          Send Feedback ✉️
+        <DropdownMenuItem>
+          <Bell className="mr-2 size-4" />
+          Notifications
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => alert('Start tutorial')}>
-          Start Tutorial 🎓
+        <DropdownMenuItem>
+          <Settings className="mr-2 size-4" />
+          Settings
         </DropdownMenuItem>
-
         <DropdownSeparator />
-
-        <DropdownLabel>Fun Stuff</DropdownLabel>
-        <DropdownMenuItem onSelect={() => alert('Random joke')}>Tell me a joke 😂</DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => alert('Motivational quote')}>
-          Motivation 💪
+        <DropdownLabel>Security</DropdownLabel>
+        <DropdownMenuItem>
+          <Shield className="mr-2 size-4" />
+          Privacy & Security
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => alert('Surprise')}>Surprise 🎁</DropdownMenuItem>
-
+        <DropdownMenuItem>
+          <Keyboard className="mr-2 size-4" />
+          Keyboard shortcuts
+        </DropdownMenuItem>
         <DropdownSeparator />
-
-        <DropdownLabel>Settings</DropdownLabel>
-        <DropdownMenuItem onSelect={() => alert('Toggle dark mode')}>Dark Mode 🌙</DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => alert('Change language')}>Language 🌐</DropdownMenuItem>
-        <DropdownMenuItem disabled>Advanced ⚠️</DropdownMenuItem>
+        <DropdownMenuItem className="text-destructive focus:text-destructive">
+          <LogOut className="mr-2 size-4" />
+          Sign out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

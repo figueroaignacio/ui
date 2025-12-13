@@ -27,7 +27,7 @@ function Accordion({ type = 'single', defaultValue, children, className }: Accor
   };
 
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('w-full space-y-2', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, {
@@ -53,7 +53,7 @@ interface AccordionItemProps {
 
 function AccordionItem({ children, isOpen, onToggle, className }: AccordionItemProps) {
   return (
-    <div className={cn('border-b', className)}>
+    <div className={cn('overflow-hidden border-b border-white/5 last:border-0', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
@@ -78,10 +78,10 @@ function AccordionTrigger({ children, isOpen, onToggle, className }: AccordionTr
     <motion.button
       onClick={onToggle}
       type="button"
-      whileHover={{ x: 2 }}
+      // Eliminado el whileHover para que no se mueva al pasar el mouse
       whileTap={{ scale: 0.98 }}
       className={cn(
-        'flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all hover:underline',
+        'group flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all hover:underline', // Volvimos al hover clásico de underline
         className,
       )}
     >
@@ -96,8 +96,10 @@ function AccordionTrigger({ children, isOpen, onToggle, className }: AccordionTr
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-muted-foreground h-4 w-4 shrink-0"
-        animate={{ rotate: isOpen ? 180 : 0 }}
+        className="text-muted-foreground group-hover:text-primary h-4 w-4 shrink-0 transition-colors"
+        animate={{
+          rotate: isOpen ? 180 : 0,
+        }}
         transition={{
           duration: 0.3,
           type: 'spring',
@@ -119,36 +121,44 @@ interface AccordionContentProps {
 
 function AccordionContent({ children, isOpen, className }: AccordionContentProps) {
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial={false} mode="wait">
       {isOpen && (
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{
-            height: 'auto',
-            opacity: 1,
-          }}
-          exit={{
-            height: 0,
-            opacity: 0,
-          }}
+          key="content"
+          initial={{ height: 0 }}
+          animate={{ height: 'auto' }}
+          exit={{ height: 0 }}
           transition={{
             height: {
               duration: 0.3,
               ease: [0.04, 0.62, 0.23, 0.98],
             },
-            opacity: {
-              duration: 0.2,
-              ease: 'easeInOut',
-            },
           }}
           className={cn('overflow-hidden text-sm', className)}
         >
           <motion.div
-            initial={{ y: -10 }}
-            animate={{ y: 0 }}
-            exit={{ y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="pt-0 pb-4"
+            // Mantenemos la animación de blur y opacidad al abrirse
+            initial={{
+              y: -15,
+              opacity: 0,
+              filter: 'blur(6px)',
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              filter: 'blur(0px)',
+            }}
+            exit={{
+              y: -15,
+              opacity: 0,
+              filter: 'blur(6px)',
+              transition: { duration: 0.2, ease: 'easeIn' },
+            }}
+            transition={{
+              duration: 0.35,
+              ease: 'easeOut',
+            }}
+            className="text-muted-foreground pt-0 pb-4"
           >
             {children}
           </motion.div>
@@ -157,4 +167,5 @@ function AccordionContent({ children, isOpen, className }: AccordionContentProps
     </AnimatePresence>
   );
 }
+
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

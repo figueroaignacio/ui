@@ -126,14 +126,11 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
     return (
       <motion.div
         ref={ref}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2, ease: 'easeInOut' }}
-        className={cn(
-          'fixed inset-0 z-200 bg-white/10 backdrop-blur-xs dark:bg-black/20',
-          className,
-        )}
+        initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+        animate={{ opacity: 1, backdropFilter: 'blur(4px)' }}
+        exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+        transition={{ duration: 0.3 }}
+        className={cn('fixed inset-0 z-200 bg-white/10 dark:bg-black/40', className)}
         onClick={() => setOpen(false)}
         {...props}
       />
@@ -165,22 +162,28 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
               onClick={(e) => e.stopPropagation()}
               initial={{
                 opacity: 0,
-                scale: 0.95,
-                y: -20,
+                scale: 0.9,
+                filter: 'blur(10px)',
+                y: 10,
               }}
               animate={{
                 opacity: 1,
                 scale: 1,
+                filter: 'blur(0px)',
                 y: 0,
               }}
               exit={{
                 opacity: 0,
-                scale: 0.95,
-                y: 20,
+                scale: 0.9,
+                filter: 'blur(10px)',
+                y: 10,
+                transition: { duration: 0.2, ease: 'easeIn' },
               }}
               transition={{
-                duration: 0.2,
-                ease: [0.16, 1, 0.3, 1],
+                type: 'spring',
+                damping: 25,
+                stiffness: 350,
+                mass: 0.5,
               }}
               className={cn(
                 'bg-background fixed top-[50%] left-[50%] z-500 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg',
