@@ -1,7 +1,7 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
@@ -212,7 +212,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
 );
 TabsTrigger.displayName = 'TabsTrigger';
 
-interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   value: string;
 }
 
