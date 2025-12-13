@@ -1,16 +1,17 @@
 'use client';
 
-// hOOKS
+// Hooks
 import { usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 // Components
 import { Link } from '@/i18n/navigation';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
+import { ChevronDown } from 'lucide-react'; // Solo dejamos iconos de UI del componente
 import { AnimatePresence, motion } from 'motion/react';
 
 // Utils
+import { getIcon } from '@/lib/get-icon'; // Importamos la utilidad
 import { cn } from '@repo/ui/lib/cn';
 
 // Types
@@ -33,17 +34,21 @@ export function Sidebar() {
 
   return (
     <aside className="border-border border-r pr-4">
-      <nav className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 space-y-6 overflow-y-scroll lg:block">
+      <nav className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 space-y-8 overflow-y-scroll lg:block">
         {docsNavigation.map((section: DocSection) => (
-          <div key={section.title} className="space-y-2">
+          <div key={section.title} className="space-y-3">
             <button
               onClick={() => toggleSection(section.title)}
-              className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-xs font-semibold"
+              className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-sm font-semibold transition-colors"
             >
-              {section.title}
-              <ChevronDownIcon
+              <div className="flex items-center gap-2">
+                {/* Usamos la utilidad */}
+                {getIcon(section.title)}
+                {section.title}
+              </div>
+              <ChevronDown
                 className={cn(
-                  'h-4 w-4 transition-transform',
+                  'h-4 w-4 transition-transform duration-200',
                   openSections.includes(section.title) && 'rotate-180',
                 )}
               />
@@ -52,25 +57,32 @@ export function Sidebar() {
               {openSections.includes(section.title) && (
                 <motion.ul
                   key="content"
-                  initial={{ height: 0, opacity: 0, y: -6 }}
-                  animate={{ height: 'auto', opacity: 1, y: 0 }}
-                  exit={{ height: 0, opacity: 0, y: -6 }}
-                  transition={{ duration: 0.22, ease: 'easeOut' }}
-                  className="space-y-1 overflow-hidden border-l pl-4"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="ml-1.5 space-y-1 overflow-hidden border-l pl-3"
                 >
-                  {section.items.map((item: DocItem) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          'hover:bg-secondary block rounded-xl px-2.5 py-2 text-xs',
-                          pathname === item.href && 'bg-secondary font-bold',
-                        )}
-                      >
-                        {item.title}
-                      </Link>
-                    </li>
-                  ))}
+                  {section.items.map((item: DocItem) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={cn(
+                            'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors',
+                            isActive
+                              ? 'bg-secondary text-foreground font-medium'
+                              : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
+                          )}
+                        >
+                          {/* Usamos la utilidad */}
+                          {getIcon(item.title, item.href)}
+                          <span>{item.title}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </motion.ul>
               )}
             </AnimatePresence>
