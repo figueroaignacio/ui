@@ -31,6 +31,13 @@ const PACKAGE_MANAGERS = {
   },
 } as const;
 
+const PACKAGE_MANAGER_COMMANDS = {
+  npm: (cmd: string) => `npm install ${cmd}`,
+  pnpm: (cmd: string) => `pnpm add ${cmd}`,
+  yarn: (cmd: string) => `yarn add ${cmd}`,
+  bun: (cmd: string) => `bun add ${cmd}`,
+} as const;
+
 export function PackageManagerTabs({
   command,
   managers = ['npm', 'pnpm', 'yarn', 'bun'],
@@ -41,7 +48,7 @@ export function PackageManagerTabs({
     <Tabs defaultValue={defaultManager} className="mt-5 w-full" size="sm">
       <TabsList variant="default">
         {managers.map((manager) => (
-          <TabsTrigger key={manager} value={manager} leftIcon={PACKAGE_MANAGERS[manager].icon}>
+          <TabsTrigger key={manager} value={manager}>
             {PACKAGE_MANAGERS[manager].name}
           </TabsTrigger>
         ))}
@@ -49,7 +56,7 @@ export function PackageManagerTabs({
       {managers.map((manager) => (
         <TabsContent key={manager} value={manager} className="mt-0">
           <CodeBlock
-            code={`${manager} ${command}`}
+            code={PACKAGE_MANAGER_COMMANDS[manager](command)}
             language="bash"
             showLineNumbers={showLineNumbers}
           />
