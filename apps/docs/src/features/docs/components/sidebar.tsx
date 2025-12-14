@@ -39,7 +39,7 @@ export function Sidebar() {
           <div key={section.title} className="space-y-3">
             <button
               onClick={() => toggleSection(section.title)}
-              className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-sm font-semibold transition-colors"
+              className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-xs font-semibold transition-colors"
             >
               <div className="flex items-center gap-2">
                 {getIcon(section.title)}
