@@ -37,9 +37,7 @@ export function MobileMenu() {
         <ChevronRight className="h-6 w-6 cursor-pointer" />
         Menu
       </button>
-
       <Searcher />
-
       <nav
         className={cn(
           'bg-background/80 fixed inset-0 z-50 flex h-screen w-full flex-col pb-12 backdrop-blur-xl transition-transform duration-300',
@@ -61,8 +59,7 @@ export function MobileMenu() {
             </button>
           </div>
         </div>
-
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="flex-1 overflow-y-auto mask-[linear-gradient(180deg,black_90%,transparent)] px-6 py-6">
           {navigation && navigation.length > 0 && (
             <div className="mb-8">
               <h2 className="text-muted-foreground mb-3 text-xs font-bold tracking-widest uppercase">
@@ -83,7 +80,6 @@ export function MobileMenu() {
               </ul>
             </div>
           )}
-
           {docsNavigation.map((section, sectionIndex) => (
             <div key={sectionIndex} className="mb-6 last:mb-0">
               <h2 className="text-foreground mb-3 flex items-center gap-2 text-sm font-bold tracking-tight">
