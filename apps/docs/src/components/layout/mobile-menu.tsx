@@ -42,7 +42,7 @@ export function MobileMenu() {
 
       <nav
         className={cn(
-          'bg-background/80 fixed inset-0 z-50 flex h-screen w-full flex-col backdrop-blur-xl transition-transform duration-300',
+          'bg-background/80 fixed inset-0 z-50 flex h-screen w-full flex-col pb-12 backdrop-blur-xl transition-transform duration-300',
           isMenuOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >

@@ -34,7 +34,7 @@ export function Sidebar() {
 
   return (
     <aside className="border-border border-r pr-4">
-      <nav className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 space-y-8 overflow-y-scroll lg:block">
+      <nav className="hide-scrollbar sticky top-24 hidden h-[calc(100vh-5rem)] shrink-0 space-y-8 overflow-y-scroll pb-10 lg:block">
         {docsNavigation.map((section: DocSection) => (
           <div key={section.title} className="space-y-3">
             <button
