@@ -32,6 +32,7 @@ import { FilesDemo } from './components/files-demo';
 import { SheetDemo } from './components/sheet-demo';
 import { TabsDemo } from './components/tabs-demo';
 import { TimelineDemo } from './components/timeline-demo';
+import { TooltipDemo } from './components/tooltip-demo';
 
 export const Index = {
   'button-source': {
@@ -203,5 +204,10 @@ export const Index = {
     name: 'breadcrumb-demo',
     component: BreadcrumbDemo,
     file: 'packages/ui/src/samples/components/breadcrumb-demo.tsx',
+  },
+  'tooltip-demo': {
+    name: 'tooltip-demo',
+    component: TooltipDemo,
+    file: 'packages/ui/src/samples/components/tooltip-demo.tsx',
   },
 };

@@ -92,6 +92,11 @@
           "title": "Tabs",
           "href": "/docs/components/tabs",
           "description": "Organiza contenido en pestañas intercambiables."
+        },
+        {
+          "title": "Tooltip",
+          "href": "/docs/components/tooltip",
+          "description": "Un popup que muestra información contextual asociada a un elemento cuando este recibe foco mediante el teclado o cuando el usuario pasa el cursor por encima."
         }
       ]
     }

@@ -132,10 +132,22 @@ export function TooltipContent({
   };
 
   const animationVariants = {
-    top: { initial: { opacity: 0, y: 5 }, animate: { opacity: 1, y: 0 } },
-    bottom: { initial: { opacity: 0, y: -5 }, animate: { opacity: 1, y: 0 } },
-    left: { initial: { opacity: 0, x: 5 }, animate: { opacity: 1, x: 0 } },
-    right: { initial: { opacity: 0, x: -5 }, animate: { opacity: 1, x: 0 } },
+    top: {
+      initial: { opacity: 0, y: 5, filter: 'blur(4px)' },
+      animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    },
+    bottom: {
+      initial: { opacity: 0, y: -5, filter: 'blur(4px)' },
+      animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    },
+    left: {
+      initial: { opacity: 0, x: 5, filter: 'blur(4px)' },
+      animate: { opacity: 1, x: 0, filter: 'blur(0px)' },
+    },
+    right: {
+      initial: { opacity: 0, x: -5, filter: 'blur(4px)' },
+      animate: { opacity: 1, x: 0, filter: 'blur(0px)' },
+    },
   };
 
   const arrowPosition = {
@@ -152,7 +164,7 @@ export function TooltipContent({
           initial={animationVariants[side].initial}
           animate={animationVariants[side].animate}
           exit={animationVariants[side].initial}
-          transition={{ duration: 0.15, ease: 'easeOut' }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           style={{
             ...(side === 'top' && { marginBottom: sideOffset }),
             ...(side === 'bottom' && { marginTop: sideOffset }),
