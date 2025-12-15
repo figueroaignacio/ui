@@ -1,7 +1,7 @@
 'use client';
 
 // Utils
-import { fontSans } from '@/lib/font';
+import { fontCode } from '@/lib/font';
 import { cn } from '@repo/ui/lib/cn';
 import { Highlight, themes } from 'prism-react-renderer';
 
@@ -45,8 +45,8 @@ export function CodeBlock({
         {({ style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
-              'overflow-auto p-4 text-sm leading-7 transition-all duration-300 ease-in-out',
-              fontSans.className,
+              'overflow-auto p-4 text-xs leading-7 transition-all duration-300 ease-in-out',
+              fontCode.className,
               !isExpanded ? 'max-h-[500px]' : 'max-h-[1000px]',
             )}
             style={{
