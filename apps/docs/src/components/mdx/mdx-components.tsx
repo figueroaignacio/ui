@@ -5,6 +5,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@repo/ui/components/accordion';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@repo/ui/components/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { Blockquote } from './blockquote';
 import { CodeBlockWrapper } from './code-block-wrapper';
@@ -15,7 +23,6 @@ import { H1, H2, H3, H4, H5, H6 } from './heading';
 import { Image } from './image';
 import { InlineCode } from './inline-code';
 import { PackageManagerTabs } from './package-manager-tabs';
-import { Table, TableCell, TableHeader, TableRow } from './table';
 import {
   HorizontalRule,
   Link,
@@ -44,8 +51,10 @@ export const mdxComponents = {
   blockquote: Blockquote,
   img: Image,
   table: Table,
+  thead: TableHeader,
+  tbody: TableBody,
   tr: TableRow,
-  th: TableHeader,
+  th: TableHead,
   td: TableCell,
   CodeBlockWrapper,
   Tabs,
