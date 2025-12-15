@@ -42,7 +42,6 @@ export function ComponentPreviewClient({
               code={code}
               language="tsx"
               showLineNumbers
-              // Extrae solo el nombre del archivo (ej: "button.tsx")
               filename={filePath?.split('/').pop()}
               className="mt-0 rounded-t-none border-none"
             />
