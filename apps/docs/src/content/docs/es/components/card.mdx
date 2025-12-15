@@ -49,12 +49,6 @@ import {
 
 ## Variantes
 
-### Elevada
-
-Tarjetas con sombra elevada para dar énfasis.
-
-<ComponentPreview name="card-elevated-demo" />
-
 ### Outline
 
 Tarjetas con un borde prominente y sin sombra.
@@ -67,18 +61,6 @@ Tarjetas transparentes sin borde ni sombra.
 
 <ComponentPreview name="card-ghost-demo" />
 
-### Hoverable
-
-Tarjetas interactivas con efectos hover.
-
-<ComponentPreview name="card-hoverable-demo" />
-
-### Clickable
-
-Tarjetas clicables con soporte para teclado.
-
-<ComponentPreview name="card-clickable-demo" />
-
 ### Compacta
 
 Tarjetas con padding reducido para diseños densos.
@@ -89,15 +71,12 @@ Tarjetas con padding reducido para diseños densos.
 
 ### Card
 
-| Prop        | Tipo                                                    | Default     | Descripción                                                             |
-| ----------- | ------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
-| `variant`   | `"default"` \| `"elevated"` \| `"outline"` \| `"ghost"` | `"default"` | Variante visual del card.                                               |
-| `hoverable` | `boolean`                                               | `false`     | Agrega efecto hover (sombra + leve movimiento).                         |
-| `clickable` | `boolean`                                               | `false`     | Hace que toda la tarjeta sea clickeable (incluye soporte para teclado). |
-| `gradient`  | `boolean`                                               | `false`     | Aplica un fondo con gradiente sutil.                                    |
-| `as`        | `React.ElementType`                                     | `'div'`     | Cambia el elemento raíz del card.                                       |
-| `className` | `string`                                                | —           | Clases adicionales.                                                     |
-| `children`  | `React.ReactNode`                                       | —           | Contenido del card.                                                     |
+| Prop        | Tipo                                    | Default     | Descripción                       |
+| ----------- | --------------------------------------- | ----------- | --------------------------------- |
+| `variant`   | `"default"` \| `"outline"` \| `"ghost"` | `"default"` | Variante visual del card.         |
+| `as`        | `React.ElementType`                     | `'div'`     | Cambia el elemento raíz del card. |
+| `className` | `string`                                | —           | Clases adicionales.               |
+| `children`  | `React.ReactNode`                       | —           | Contenido del card.               |
 
 ### CardHeader
 

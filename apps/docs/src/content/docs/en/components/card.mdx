@@ -49,12 +49,6 @@ import {
 
 ## Variants
 
-### Elevated
-
-Cards with elevated shadow for emphasis.
-
-<ComponentPreview name="card-elevated-demo" />
-
 ### Outline
 
 Cards with a prominent border and no shadow.
@@ -67,18 +61,6 @@ Transparent cards without border or shadow.
 
 <ComponentPreview name="card-ghost-demo" />
 
-### Hoverable
-
-Interactive cards with hover effects.
-
-<ComponentPreview name="card-hoverable-demo" />
-
-### Clickable
-
-Clickable cards with keyboard support.
-
-<ComponentPreview name="card-clickable-demo" />
-
 ### Compact
 
 Cards with reduced padding for dense layouts.
@@ -89,15 +71,12 @@ Cards with reduced padding for dense layouts.
 
 ### Card
 
-| Prop        | Type                                                    | Default     | Description                                                  |
-| ----------- | ------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| `variant`   | `"default"` \| `"elevated"` \| `"outline"` \| `"ghost"` | `"default"` | Visual variant of the card.                                  |
-| `hoverable` | `boolean`                                               | `false`     | Adds a hover effect (shadow + slight movement).              |
-| `clickable` | `boolean`                                               | `false`     | Makes the entire card clickable (includes keyboard support). |
-| `gradient`  | `boolean`                                               | `false`     | Applies a subtle gradient background.                        |
-| `as`        | `React.ElementType`                                     | `'div'`     | Changes the root element of the card.                        |
-| `className` | `string`                                                | —           | Additional classes.                                          |
-| `children`  | `React.ReactNode`                                       | —           | Card content.                                                |
+| Prop        | Type                                    | Default     | Description                           |
+| ----------- | --------------------------------------- | ----------- | ------------------------------------- |
+| `variant`   | `"default"` \| `"outline"` \| `"ghost"` | `"default"` | Visual variant of the card.           |
+| `as`        | `React.ElementType`                     | `'div'`     | Changes the root element of the card. |
+| `className` | `string`                                | —           | Additional classes.                   |
+| `children`  | `React.ReactNode`                       | —           | Card content.                         |
 
 ### CardHeader
 

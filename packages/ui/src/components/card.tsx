@@ -10,24 +10,17 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: 'bg-card text-card-foreground border border-border shadow-sm',
-        elevated: 'bg-card text-card-foreground border-0 shadow-lg',
+
         outline: 'bg-card text-card-foreground border-2 border-border shadow-none',
         ghost: 'bg-transparent text-card-foreground border-0 shadow-none',
       },
-      hoverable: {
-        true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
-      },
-      clickable: {
-        true: 'cursor-pointer hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm',
-      },
+
       gradient: {
         true: 'bg-gradient-to-br from-card to-card/80',
       },
     },
     defaultVariants: {
       variant: 'default',
-      hoverable: false,
-      clickable: false,
       gradient: false,
     },
   },
@@ -102,32 +95,13 @@ interface CardFooterProps
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    {
-      className,
-      variant = 'default',
-      hoverable = false,
-      clickable = false,
-      gradient = false,
-      as: Component = 'div',
-      children,
-      ...props
-    },
+    { className, variant = 'default', gradient = false, as: Component = 'div', children, ...props },
     ref,
   ) => {
     return (
       <Component
         ref={ref}
-        className={cn(cardVariants({ variant, hoverable, clickable, gradient }), className)}
-        {...(clickable && {
-          role: 'button',
-          tabIndex: 0,
-          onKeyDown: (e: React.KeyboardEvent) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              (e.currentTarget as HTMLElement).click();
-            }
-          },
-        })}
+        className={cn(cardVariants({ variant, gradient }), className)}
         {...props}
       >
         {children}
