@@ -21,7 +21,7 @@ export function ComponentSourceClient({
     <div className={className}>
       {code ? (
         <CodeBlockWrapper expandButtonTitle={expandButtonTitle}>
-          <CodeBlock code={code} language="tsx" showLineNumbers />
+          <CodeBlock code={code} language="tsx" filename={filePath?.split('/').pop()} />
         </CodeBlockWrapper>
       ) : (
         <div className="rounded border border-red-300 p-4 text-red-500">
