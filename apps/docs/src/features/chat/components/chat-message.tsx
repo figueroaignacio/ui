@@ -44,7 +44,7 @@ const messageVariants: Variants = {
 export function ChatMessage({ message, shouldAnimate, onType }: ChatMessageProps) {
   const isUser = message.role === 'user';
   const enableTypewriter = !isUser && shouldAnimate;
-  const { displayedText, isComplete } = useTypewriter(message.content, 5, enableTypewriter);
+  const { displayedText, isComplete } = useTypewriter(message.content, 10, enableTypewriter);
 
   useEffect(() => {
     if (enableTypewriter && !isComplete && onType) {
