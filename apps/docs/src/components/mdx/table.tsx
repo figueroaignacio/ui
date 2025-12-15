@@ -2,7 +2,7 @@ import { cn } from '@repo/ui/lib/cn';
 
 export function Table({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) {
   return (
-    <div className="my-6 w-full overflow-auto rounded-xl border text-sm">
+    <div className="border-border my-6 w-full overflow-auto rounded-xl border text-sm">
       <table
         className={cn('w-full border-separate border-spacing-0 text-sm', className)}
         {...props}
@@ -22,7 +22,7 @@ export function TableHeader({
   return (
     <th
       className={cn(
-        'border-b px-4 py-2 text-left text-sm font-semibold ' +
+        'bg-card border-b px-4 py-2 text-left text-sm font-semibold' +
           '[[align=center]]:text-center [[align=right]]:text-right',
         className,
       )}
