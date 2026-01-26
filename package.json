@@ -23,7 +23,7 @@
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "ts-node": "^10.9.2",
-    "turbo": "^2.7.5",
+    "turbo": "^2.7.6",
     "typescript": "^5.9.3"
   }
 }
