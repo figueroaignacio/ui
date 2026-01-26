@@ -21,14 +21,24 @@ export default function NotFound() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <ButtonGroup>
             <Link href="/">
-              <Button size="sm" variant="secondary">
-                <HomeIcon className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+              <Button
+                size="sm"
+                variant="secondary"
+                leftIcon={
+                  <HomeIcon className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                }
+              >
                 {t('goHome')}
               </Button>
             </Link>
             <Link href="/docs">
-              <Button size="sm" variant="ghost">
-                <MagnifyingGlassIcon className="h-4 w-4 transition-transform group-hover:scale-110" />
+              <Button
+                size="sm"
+                variant="ghost"
+                leftIcon={
+                  <MagnifyingGlassIcon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                }
+              >
                 {t('goDocs')}
               </Button>
             </Link>

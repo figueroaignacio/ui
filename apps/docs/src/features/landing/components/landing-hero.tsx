@@ -20,7 +20,7 @@ export function LandingHero() {
 
   return (
     <div className="bg-grid-pattern relative flex min-h-[80svh] items-center justify-center overflow-hidden">
-      <section className="relative z-10 max-w-5xl flex-col space-y-4 px-4 py-8 text-center md:px-0">
+      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 px-4 py-8 md:px-0">
         <div className="border-primary/20 bg-primary/10 text-primary mx-auto inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium shadow-md backdrop-blur-sm">
           <span className="bg-primary h-2 w-2 rounded-full motion-safe:animate-pulse" />
           {t('badge')}
@@ -28,10 +28,10 @@ export function LandingHero() {
         <h1 className="text-4xl leading-tight font-extrabold tracking-tight text-balance md:text-5xl">
           {t('subheading')}
         </h1>
-        <p className="text-muted-foreground mx-auto max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
+        <p className="text-muted-foreground max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
           {t('description')}
         </p>
-        <div className="z-50 flex flex-wrap justify-center gap-4 pt-6">
+        <div className="z-50 flex flex-wrap gap-4 pt-6">
           {actions.map((action, index) => {
             const Icon = index === 0 ? ArrowRight : index === 1 ? Component : null;
             return (

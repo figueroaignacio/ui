@@ -19,9 +19,6 @@ export function Navbar() {
       <div className="flex items-center justify-between gap-x-6">
         <div className="flex items-center justify-between space-x-1 py-3">
           <Logo />
-          <span className="border-primary bg-primary rounded-lg border px-2 text-xs text-white">
-            indev
-          </span>
         </div>
         <nav className="space-x-5">
           {navigation.map((item) => (
