@@ -19,7 +19,7 @@ export function LandingHero() {
   const actions: HomePageActions[] = t.raw('actions');
 
   return (
-    <div className="bg-grid-pattern relative flex min-h-[80svh] items-center justify-center overflow-hidden">
+    <div className="bg-grid-pattern relative flex min-h-[90svh] items-center justify-center overflow-hidden">
       <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 px-4 py-8 md:px-0">
         <div className="border-primary/20 bg-primary/10 text-primary mx-auto inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium shadow-md backdrop-blur-sm">
           <span className="bg-primary h-2 w-2 rounded-full motion-safe:animate-pulse" />
