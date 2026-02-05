@@ -23,20 +23,15 @@ export function Searcher() {
   return (
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-32 justify-start"
-          leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
-        >
+        <Button variant="outline" size="sm" leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}>
           <span className="text-xs">{t('label')}...</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-sm rounded-xl sm:max-w-lg">
+      <DialogContent className="max-w-xl rounded-xl">
         <DialogHeader>
-          <DialogTitle>NachUI UI docs</DialogTitle>
+          <DialogTitle>NachUI docs</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-4 py-10">
           <SearchInput
             value={query}
             onChange={setQuery}
