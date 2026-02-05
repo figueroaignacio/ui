@@ -1,7 +1,6 @@
 import type { Message } from '@/lib/definitions';
 import { cn } from '@repo/ui/lib/cn';
 import { motion, type Variants } from 'motion/react';
-
 import { ChatMarkdownContent } from './chat-markdown-content';
 
 interface ChatMessageProps {

@@ -12,7 +12,6 @@ interface ChatMessagesProps {
 
 export function ChatMessages({ messages, isLoading, onSuggestionClick }: ChatMessagesProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const initialMessageCount = useRef(messages.length);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -30,14 +29,13 @@ export function ChatMessages({ messages, isLoading, onSuggestionClick }: ChatMes
     <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto p-4">
       {messages.map((msg, idx) => {
         const isLast = idx === messages.length - 1;
-        const shouldAnimate = isLast && idx >= initialMessageCount.current;
 
         return (
           <div key={idx} className="flex flex-col items-start">
             <span className="text-muted-foreground text-sm">
               {msg.role === 'assistant' ? 'NachUI Bot' : 'You'}
             </span>
-            <ChatMessage message={msg} shouldAnimate={shouldAnimate} onType={scrollToBottom} />
+            <ChatMessage message={msg} />
           </div>
         );
       })}
