@@ -1,14 +1,11 @@
 import type { Message } from '@/lib/definitions';
 import { cn } from '@repo/ui/lib/cn';
 import { motion, type Variants } from 'motion/react';
-import { useEffect } from 'react';
-import { useTypewriter } from '../hooks/use-typewriter';
+
 import { ChatMarkdownContent } from './chat-markdown-content';
 
 interface ChatMessageProps {
   message: Message;
-  shouldAnimate: boolean;
-  onType?: () => void;
 }
 
 const messageVariants: Variants = {
@@ -34,16 +31,8 @@ const messageVariants: Variants = {
   },
 };
 
-export function ChatMessage({ message, shouldAnimate, onType }: ChatMessageProps) {
+export function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user';
-  const enableTypewriter = !isUser && shouldAnimate;
-  const { displayedText, isComplete } = useTypewriter(message.content, 10, enableTypewriter);
-
-  useEffect(() => {
-    if (enableTypewriter && !isComplete && onType) {
-      onType();
-    }
-  }, [displayedText, enableTypewriter, isComplete, onType]);
 
   return (
     <motion.div
@@ -58,7 +47,7 @@ export function ChatMessage({ message, shouldAnimate, onType }: ChatMessageProps
           <p className="mb-5 text-sm wrap-break-word">{message.content}</p>
         ) : (
           <div className="relative w-full min-w-0 text-sm">
-            <ChatMarkdownContent content={displayedText} />
+            <ChatMarkdownContent content={message.content} />
           </div>
         )}
       </div>

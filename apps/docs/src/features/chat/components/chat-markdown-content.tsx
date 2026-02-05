@@ -1,6 +1,15 @@
 import { InlineCode } from '@/components/mdx/inline-code';
 import { Pre } from '@/components/mdx/typography';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@repo/ui/components/table';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MarkdownContentProps {
   content: string;
@@ -10,63 +19,62 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
   return (
     <div className="max-w-full overflow-x-hidden">
       <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="text-foreground wrap-break-words mt-6 mb-4 text-2xl font-bold tracking-tight">
+            <h1 className="text-foreground wrap-break-words mt-8 mb-4 text-3xl font-bold tracking-tight first:mt-0">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-foreground wrap-break-words mt-5 mb-3 text-xl font-semibold tracking-tight">
+            <h2 className="text-foreground wrap-break-words mt-8 mb-4 text-2xl font-semibold tracking-tight first:mt-0">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-foreground wrap-break-words mt-4 mb-2 text-lg font-semibold tracking-tight">
+            <h3 className="text-foreground wrap-break-words mt-6 mb-3 text-xl font-semibold tracking-tight">
               {children}
             </h3>
           ),
           h4: ({ children }) => (
-            <h4 className="text-foreground wrap-break-words mt-3 mb-2 text-base font-medium">
+            <h4 className="text-foreground wrap-break-words mt-4 mb-2 text-lg font-semibold tracking-tight">
               {children}
             </h4>
           ),
           p: ({ children }) => (
-            <p className="text-foreground wrap-break-words mb-4 leading-relaxed not-first:mt-4">
+            <p className="text-foreground wrap-break-words mb-4 leading-7 not-first:mt-4">
               {children}
             </p>
           ),
           ul: ({ children }) => (
-            <ul className="text-foreground wrap-break-words my-4 ml-6 list-disc space-y-2 [&>li]:pl-1">
+            <ul className="text-foreground wrap-break-words my-6 ml-6 list-disc space-y-2 [&>li]:pl-2">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="text-foreground wrap-break-words my-4 ml-6 list-decimal space-y-2 [&>li]:pl-1">
+            <ol className="text-foreground wrap-break-words my-6 ml-6 list-decimal space-y-2 [&>li]:pl-2">
               {children}
             </ol>
           ),
           li: ({ children }) => (
-            <li className="text-foreground wrap-break-words leading-relaxed [&>p]:my-1">
-              {children}
-            </li>
+            <li className="text-foreground wrap-break-words leading-7 [&>p]:my-1">{children}</li>
           ),
           a: ({ children, href }) => (
             <a
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary wrap-break-words font-medium underline-offset-4 transition-colors hover:underline hover:opacity-80"
+              className="text-primary wrap-break-words hover:text-primary/80 font-medium underline underline-offset-4 transition-colors"
             >
               {children}
             </a>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-primary/50 bg-muted/30 my-4 rounded-r-lg border-l-4 py-2 pr-3 pl-4 italic">
-              <div className="text-muted-foreground wrap-break-words [&>p]:my-1">{children}</div>
+            <blockquote className="border-primary/30 bg-muted/40 text-muted-foreground my-6 border-l-4 pl-6 italic [&>p]:my-1">
+              {children}
             </blockquote>
           ),
-          hr: () => <hr className="border-border my-6" />,
+          hr: () => <hr className="border-border my-8" />,
           strong: ({ children }) => (
             <strong className="text-foreground wrap-break-words font-semibold">{children}</strong>
           ),
@@ -74,25 +82,23 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
             <em className="text-foreground/90 wrap-break-words italic">{children}</em>
           ),
           table: ({ children }) => (
-            <div className="my-4 w-full overflow-x-auto rounded-lg border">
-              <table className="w-full border-collapse text-sm">{children}</table>
+            <div className="my-6 w-full overflow-y-auto rounded-lg border shadow-sm">
+              <Table>{children}</Table>
             </div>
           ),
-          thead: ({ children }) => <thead className="bg-muted/50">{children}</thead>,
-          tbody: ({ children }) => <tbody className="divide-y">{children}</tbody>,
-          tr: ({ children }) => (
-            <tr className="hover:bg-muted/30 border-b transition-colors">{children}</tr>
-          ),
+          thead: ({ children }) => <TableHeader>{children}</TableHeader>,
+          tbody: ({ children }) => <TableBody>{children}</TableBody>,
+          tr: ({ children }) => <TableRow className="hover:bg-muted/50">{children}</TableRow>,
           th: ({ children }) => (
-            <th className="text-foreground wrap-break-words px-4 py-2 text-left font-semibold">
+            <TableHead className="text-foreground px-4 py-3 text-left font-bold">
               {children}
-            </th>
+            </TableHead>
           ),
           td: ({ children }) => (
-            <td className="text-foreground wrap-break-words px-4 py-2">{children}</td>
+            <TableCell className="px-4 py-3 align-top leading-6">{children}</TableCell>
           ),
           pre: ({ children }) => (
-            <div className="my-4 overflow-x-auto rounded-lg">
+            <div className="my-6 overflow-x-auto rounded-lg border bg-zinc-950 dark:bg-zinc-900">
               <Pre>{children}</Pre>
             </div>
           ),
