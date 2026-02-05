@@ -1,13 +1,8 @@
-// Hooks
+import type { Message } from '@/lib/definitions';
 import { useEffect, useRef } from 'react';
-
-// Components
 import { ChatLoading } from './chat-loading';
 import { ChatMessage } from './chat-message';
 import { ChatSuggestions } from './chat-suggestions';
-
-// Types
-import type { Message } from '@/lib/definitions';
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -40,7 +35,7 @@ export function ChatMessages({ messages, isLoading, onSuggestionClick }: ChatMes
         return (
           <div key={idx} className="flex flex-col items-start">
             <span className="text-muted-foreground text-sm">
-              {msg.role === 'assistant' ? 'I7A Bot' : 'You'}
+              {msg.role === 'assistant' ? 'NachUI Bot' : 'You'}
             </span>
             <ChatMessage message={msg} shouldAnimate={shouldAnimate} onType={scrollToBottom} />
           </div>

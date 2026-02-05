@@ -1,11 +1,7 @@
 'use client';
 
-// Hooks
 import { useSearch } from '@/features/docs/hooks/use-search';
 import { useDialogFocus } from '@/hooks/use-dialog-focus';
-import { useTranslations } from 'next-intl';
-
-// Components
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Button } from '@repo/ui/components/button';
 import {
@@ -15,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@repo/ui/components/dialog';
+import { useTranslations } from 'next-intl';
 import { SearchInput } from './search-input';
 import { SearchResults } from './search-results';
 
@@ -37,7 +34,7 @@ export function Searcher() {
       </DialogTrigger>
       <DialogContent className="max-w-sm rounded-xl sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>I7A UI docs</DialogTitle>
+          <DialogTitle>NachUI UI docs</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <SearchInput

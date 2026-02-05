@@ -1,13 +1,8 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import { Link } from '@/i18n/navigation';
+import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
 import { CodeIcon, FileIcon, RocketIcon } from '@radix-ui/react-icons';
 import { DialogClose } from '@repo/ui/components/dialog';
-
-// Definitions
-import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
+import { useTranslations } from 'next-intl';
 
 const CATEGORY_ICONS: Record<string, typeof RocketIcon> = {
   'getting started': RocketIcon,

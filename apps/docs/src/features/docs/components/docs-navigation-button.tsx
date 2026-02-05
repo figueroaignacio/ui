@@ -1,9 +1,6 @@
 'use client';
 
-// Hooks
 import { useDocsNavigation } from '@/features/docs/hooks/use-docs-navigation';
-
-// Components
 import { Link } from '@/i18n/navigation';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import { Button } from '@repo/ui/components/button';

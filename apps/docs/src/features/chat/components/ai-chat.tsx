@@ -1,12 +1,9 @@
 'use client';
 
-// Hooks
 import { useChat } from '@/features/chat/hooks/use-chat';
 import { useChatInput } from '@/features/chat/hooks/use-chat-input';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { useState, type RefObject } from 'react';
-
-// Components
 import { ChatToggleButton } from './chat-toggle-button';
 import { ChatWindow } from './chat-window';
 

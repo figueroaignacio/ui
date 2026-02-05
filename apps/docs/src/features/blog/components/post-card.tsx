@@ -1,5 +1,6 @@
-// Components
+import type { Posts } from '@/content';
 import { Link } from '@/i18n/navigation';
+import { formatDateOnly } from '@/lib/format-date';
 import { Button } from '@repo/ui/components/button';
 import {
   Card,
@@ -10,13 +11,7 @@ import {
   CardTitle,
 } from '@repo/ui/components/card';
 import { ArrowRight } from 'lucide-react';
-
-// Utils
-import { formatDateOnly } from '@/lib/format-date';
 import { getLocale, getTranslations } from 'next-intl/server';
-
-// Types
-import type { Posts } from '@/content';
 
 export async function PostCard({ title, description, slug, date }: Partial<Posts>) {
   const locale = await getLocale();

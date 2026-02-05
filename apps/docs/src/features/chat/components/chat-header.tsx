@@ -1,4 +1,3 @@
-// Components
 import { Button } from '@repo/ui/components/button';
 import { X } from 'lucide-react';
 

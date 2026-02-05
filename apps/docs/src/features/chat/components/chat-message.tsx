@@ -1,16 +1,9 @@
-// Hooks
+import type { Message } from '@/lib/definitions';
+import { cn } from '@repo/ui/lib/cn';
+import { motion, type Variants } from 'motion/react';
 import { useEffect } from 'react';
 import { useTypewriter } from '../hooks/use-typewriter';
-
-// Components
-import { motion, type Variants } from 'motion/react';
 import { ChatMarkdownContent } from './chat-markdown-content';
-
-// Utils
-import { cn } from '@repo/ui/lib/cn';
-
-// Types
-import type { Message } from '@/lib/definitions';
 
 interface ChatMessageProps {
   message: Message;

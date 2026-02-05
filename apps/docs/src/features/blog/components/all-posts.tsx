@@ -1,8 +1,5 @@
-// Content
 import { getLocale } from 'next-intl/server';
 import { getPosts } from '../lib/get-posts';
-
-// Components
 import { PostCard } from './post-card';
 
 export async function AllPosts() {

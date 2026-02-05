@@ -1,7 +1,3 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import {
   MotionIcon,
   NextJSIcon,
@@ -9,6 +5,7 @@ import {
   TailwindIcon,
   TypescriptIcon,
 } from '@/components/common/tech-icons';
+import { useTranslations } from 'next-intl';
 
 interface TechnologyConfig {
   icon: React.ReactNode;

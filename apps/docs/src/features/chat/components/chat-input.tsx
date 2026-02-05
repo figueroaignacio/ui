@@ -1,9 +1,6 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import { Loader2, Send } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 
 interface ChatInputProps {
   message: string;

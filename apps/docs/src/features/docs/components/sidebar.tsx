@@ -1,21 +1,13 @@
 'use client';
 
-// Hooks
-import { usePathname } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-
-// Components
-import { Link } from '@/i18n/navigation';
-import { ChevronDown } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
-
-// Utils
+import { Link, usePathname } from '@/i18n/navigation';
+import type { DocItem, DocSection } from '@/lib/definitions';
 import { getIcon } from '@/lib/get-icon';
 import { cn } from '@repo/ui/lib/cn';
-
-// Types
-import type { DocItem, DocSection } from '@/lib/definitions';
+import { ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 export function Sidebar() {
   const pathname = usePathname();

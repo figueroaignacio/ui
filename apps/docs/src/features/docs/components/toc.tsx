@@ -1,12 +1,9 @@
 'use client';
 
-// Hooks
 import { useMounted } from '@/hooks/use-mounted';
+import { cn } from '@repo/ui/lib/cn';
 import { useTranslations } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
-
-// Utils
-import { cn } from '@repo/ui/lib/cn';
 
 interface TocEntry {
   items?: TocEntry[];

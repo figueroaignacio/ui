@@ -1,11 +1,8 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
-
-// Components
 import { Button } from '@repo/ui/components/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@repo/ui/components/tooltip';
 import { BotMessageSquare } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 interface ChatToggleButtonProps {
   isOpen: boolean;
@@ -41,7 +38,6 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
           NachUI Bot
         </Button>
       </TooltipTrigger>
-
       <TooltipContent side="left" sideOffset={10}>
         {t('tooltip')}
       </TooltipContent>

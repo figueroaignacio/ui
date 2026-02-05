@@ -1,10 +1,7 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import { Link } from '@/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { ArrowRight, Component } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface HomePageActions {
   href: string;

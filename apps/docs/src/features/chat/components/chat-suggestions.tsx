@@ -1,9 +1,6 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import { Code2, Lightbulb, MessageSquare, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 
 interface ChatSuggestionsProps {
   onSuggestionClick: (text: string) => void;

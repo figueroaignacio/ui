@@ -1,13 +1,8 @@
-// Hooks
+import type { NavigationSection } from '@/lib/definitions';
 import { useTranslations } from 'next-intl';
 import { useCallback, useMemo, useState } from 'react';
-
-// Utils
 import { flattenNavigationItems } from '../lib/flatten-navigation-items';
 import { searchItems } from '../lib/search-items';
-
-// Definitions
-import type { NavigationSection } from '@/lib/definitions';
 
 export function useSearch() {
   const [query, setQuery] = useState('');
