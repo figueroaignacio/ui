@@ -179,7 +179,7 @@ function DropdownMenuTrigger({
       whileTap={{ scale: 0.98 }}
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium',
-        'bg-background text-foreground border-input border shadow-sm',
+        'text-foreground border-border border',
         'hover:bg-muted transition-colors',
         'focus-visible:ring-ring focus-visible:ring-1 focus-visible:outline-none',
         isOpen && '',
@@ -306,8 +306,8 @@ function DropdownMenuContent({
           }}
           style={{ ...verticalStyle }}
           className={cn(
-            'border-border absolute z-50 min-w-[12rem] overflow-hidden rounded-xl border',
-            'bg-popover/30 text-popover-foreground backdrop-blur-lg',
+            'border-border absolute z-50 min-w-48 overflow-hidden rounded-md border',
+            'bg-background backdrop-blur-lg',
             alignClasses[align].split(' ')[0],
             transformOriginClass,
             className,
