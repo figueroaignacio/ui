@@ -12,7 +12,7 @@ interface CardLinkProps {
 export function CardLink({ label, href, description }: CardLinkProps) {
   return (
     <Link href={href}>
-      <Card className="flex flex-col p-3 transition-all duration-150">
+      <Card className="border-border hover:bg-secondary group bg-card flex flex-1 flex-col gap-2 rounded-xl border p-4 transition-all active:scale-95">
         <CardHeader compact>
           <CardTitle>{label}</CardTitle>
         </CardHeader>

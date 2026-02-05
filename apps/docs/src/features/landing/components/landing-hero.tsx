@@ -1,6 +1,11 @@
-import { Link } from '@/i18n/navigation';
-import { Button } from '@repo/ui/components/button';
-import { ArrowRight, Component } from 'lucide-react';
+import { CardLink } from '@/components/common/card-link';
+import {
+  MotionIcon,
+  NextJSIcon,
+  ReactIcon,
+  TailwindIcon,
+  TypescriptIcon,
+} from '@/components/common/tech-icons';
 import { useTranslations } from 'next-intl';
 
 interface HomePageActions {
@@ -12,15 +17,17 @@ interface HomePageActions {
 
 export function LandingHero() {
   const t = useTranslations('sections.home');
-
   const actions: HomePageActions[] = t.raw('actions');
 
   return (
     <div className="bg-grid-pattern relative flex min-h-[90svh] items-center justify-center overflow-hidden">
-      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 px-4 py-8 md:px-0">
-        <div className="border-primary/20 bg-primary/10 text-primary mx-auto inline-flex w-fit max-w-2xl items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium shadow-md backdrop-blur-sm">
-          <span className="bg-primary h-2 w-2 rounded-full motion-safe:animate-pulse" />
-          {t('badge')}
+      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 px-4 py-16 md:px-0">
+        <div className="flex items-center gap-4">
+          <ReactIcon />
+          <MotionIcon />
+          <TailwindIcon />
+          <TypescriptIcon />
+          <NextJSIcon />
         </div>
         <h1 className="text-4xl leading-tight font-extrabold tracking-tight text-balance md:text-5xl">
           {t('subheading')}
@@ -28,22 +35,10 @@ export function LandingHero() {
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
           {t('description')}
         </p>
-        <div className="z-50 flex flex-wrap gap-4 pt-6">
-          {actions.map((action, index) => {
-            const Icon = index === 0 ? ArrowRight : index === 1 ? Component : null;
+        <div className="z-50 flex flex-col gap-4 pt-4 sm:flex-row">
+          {actions.map((action) => {
             return (
-              <div key={action.href}>
-                <Link href={action.href}>
-                  <Button
-                    variant={action.variant}
-                    size="sm"
-                    className="items-center gap-2 font-semibold"
-                    rightIcon={Icon ? <Icon className="h-5 w-5" /> : undefined}
-                  >
-                    {action.label}
-                  </Button>
-                </Link>
-              </div>
+              <CardLink label={action.label} description={action.description} href={action.href} />
             );
           })}
         </div>
