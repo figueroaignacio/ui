@@ -82,7 +82,7 @@ export function Footer() {
         <div className="py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-muted-foreground text-sm">
-              © {currentYear} I7A UI. {t('footer.copyright')}
+              © {currentYear} NachUI UI. {t('footer.copyright')}
             </p>
             <div className="flex gap-6">
               <Link
