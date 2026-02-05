@@ -41,7 +41,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
       layout="position"
       className={cn('flex w-full max-w-full gap-3', !isUser && 'mt-2')}
     >
-      <div>
+      <div className="min-w-0 flex-1">
         {isUser ? (
           <p className="mb-5 text-sm wrap-break-word">{message.content}</p>
         ) : (

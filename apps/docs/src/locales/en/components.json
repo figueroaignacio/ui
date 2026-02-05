@@ -34,7 +34,8 @@
       "howWorks": "How does NachUI work?",
       "technologies": "What technologies does it support?",
       "features": "What are the main features?",
-      "getStarted": "How do I get started?"
+      "getStarted": "How do I get started?",
+      "thinking": "Thinking"
     }
   },
   "backButton": {

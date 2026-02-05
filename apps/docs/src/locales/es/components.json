@@ -26,7 +26,8 @@
       "initial": "Soy NachUI Bot. ¿Cómo puedo ayudarte hoy?",
       "error": "Lo siento, encontré un error. Por favor, intenta de nuevo.",
       "helperText": "Presiona Enter para enviar, Shift + Enter para nueva línea",
-      "tooltip": "¿Puedo ayudarte?"
+      "tooltip": "¿Puedo ayudarte?",
+      "thinking": "Pensando"
     },
     "suggestions": {
       "title": "Prueba con:",

@@ -58,7 +58,7 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
                   <Icon className="size-3" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-foreground text-left text-sm leading-snug font-medium wrap-break-word">
+                  <p className="text-foreground text-left text-xs leading-snug font-medium wrap-break-word">
                     {suggestion.text}
                   </p>
                 </div>
