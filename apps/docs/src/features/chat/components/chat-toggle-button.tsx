@@ -38,7 +38,7 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
           leftIcon={<BotMessageSquare className="size-4" />}
           className="relative z-50 shadow-lg"
         >
-          I7A Bot
+          NachUI Bot
         </Button>
       </TooltipTrigger>
 
