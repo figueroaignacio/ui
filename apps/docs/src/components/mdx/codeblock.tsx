@@ -1,11 +1,8 @@
 'use client';
 
-// Utils
 import { fontCode } from '@/lib/font';
 import { cn } from '@repo/ui/lib/cn';
 import { Highlight, themes } from 'prism-react-renderer';
-
-// Components
 import { CopyButton } from './copy-button';
 
 interface CodeBlockProps {
@@ -13,7 +10,6 @@ interface CodeBlockProps {
   language?: string;
   className?: string;
   showLineNumbers?: boolean;
-  expandButton?: React.ReactNode;
   isExpanded?: boolean;
   filename?: string;
 }
@@ -26,49 +22,60 @@ export function CodeBlock({
   isExpanded = false,
   filename,
 }: CodeBlockProps) {
+  const codeString = code.trim();
+
   return (
     <div
       className={cn(
-        'group border-border relative mt-5 overflow-hidden rounded-xl border bg-[#090b0f]',
+        'group relative mt-6 w-full overflow-hidden rounded-md border border-white/10 bg-[#1e1f20]',
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-[#181b1f] px-4 py-2.5">
-        <div className="flex items-center gap-2">
-          {filename && <span className="text-xs font-medium text-white">{filename}</span>}
+      <div className="flex items-center justify-between border-b border-white/5 bg-white/2 px-4 py-2">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          </div>
         </div>
         <div className="flex items-center gap-2">
-          <CopyButton value={code} />
+          <CopyButton value={codeString} />
         </div>
       </div>
-      <Highlight code={code.trim()} language={language} theme={themes.oneDark}>
-        {({ style, tokens, getLineProps, getTokenProps }) => (
+      <Highlight code={codeString} language={language} theme={themes.vsDark}>
+        {({ className: _className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={cn(
-              'overflow-auto p-4 text-xs leading-7 transition-all duration-300 ease-in-out',
+              'overflow-x-auto p-5 text-[13px] leading-relaxed transition-all duration-500',
               fontCode.className,
-              !isExpanded ? 'max-h-[500px]' : 'max-h-[1000px]',
+              !isExpanded ? 'max-h-[450px]' : 'max-h-none',
             )}
-            style={{
-              ...style,
-              backgroundColor: 'transparent',
-            }}
+            style={{ ...style, backgroundColor: 'transparent' }}
           >
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line })} className="table-row">
-                {showLineNumbers && (
-                  <span className="table-cell pr-4 text-right opacity-50 select-none">{i + 1}</span>
-                )}
-                <span className="table-cell">
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </span>
-              </div>
-            ))}
+            {tokens.map((line, i) => {
+              const lineProps = getLineProps({ line, key: i });
+              return (
+                <div key={i} {...lineProps} className={cn('table-row', lineProps.className)}>
+                  {showLineNumbers && (
+                    <span className="table-cell w-8 pr-4 text-right text-white/20 select-none">
+                      {i + 1}
+                    </span>
+                  )}
+                  <span className="table-cell">
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </span>
+                </div>
+              );
+            })}
           </pre>
         )}
       </Highlight>
+      {!isExpanded && codeString.split('\n').length > 15 && (
+        <div className="pointer-events-none absolute bottom-0 left-0 h-12 w-full bg-linear-to-t from-[#0B0B0B] to-transparent" />
+      )}
     </div>
   );
 }

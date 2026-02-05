@@ -1,9 +1,6 @@
 'use client';
 
-// Hooks
 import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
-
-// Components
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
 
 interface CopyButtonProps {
