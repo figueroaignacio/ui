@@ -1,19 +1,13 @@
-import { cookies } from 'next/headers';
-
-// Components
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
-
-// Utils
 import { routing } from '@/i18n/routing';
+import { fontHeading, fontSans } from '@/lib/font';
+import '@repo/ui/globals.css';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
-
-// Global Styles
-import { fontSans } from '@/lib/font';
-import '@repo/ui/globals.css';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -24,7 +18,7 @@ interface LocaleLayoutProps {
 
 export const metadata = {
   title: {
-    template: `%s - I7A UI`,
+    template: `%s - NachUI UI`,
   },
 };
 
@@ -46,7 +40,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
 
   return (
     <html lang={locale} suppressHydrationWarning className={theme}>
-      <body className={`relative ${fontSans.className}`}>
+      <body className={`relative ${fontSans.variable} ${fontHeading.variable} `}>
         <NextIntlClientProvider>
           <Providers>
             <div className="flex min-h-screen flex-col lg:pb-0">

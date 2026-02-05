@@ -75,6 +75,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 0.5rem);
   --radius-2xl: calc(var(--radius) + 1rem);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
 }
 
 @layer base {
@@ -98,7 +100,16 @@
   }
 
   body {
-    @apply bg-background text-foreground tracking-wide antialiased;
+    @apply bg-background text-foreground font-sans tracking-wide antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
   }
 }
 
