@@ -28,7 +28,7 @@ export function initCommand(program: Command): void {
         const projectRoot = process.cwd();
         const TEMPLATE_DIR = path.join(__dirname, '../templates');
 
-        logger.info('Initializing i7a UI project...');
+        logger.info('Initializing NachUI project...');
 
         await copyTemplate({
           src: path.join(TEMPLATE_DIR, 'utils/cn.ts'),

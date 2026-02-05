@@ -15,7 +15,7 @@ const program = new Command();
 
 program
   .name('i7a')
-  .description('Official CLI for managing i7a UI components')
+  .description('Official CLI for managing NachUI components')
   .version('0.1.0')
   .configureOutput({
     outputError: (str, write) => write(logger.format.error(str)),

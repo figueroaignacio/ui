@@ -1,13 +1,13 @@
-# I7A UI
+# NachUI
 
-## I7A UI is an independent, open-source collection of clean, minimal, and professional UI components — created by Ignacio Figueroa.
+## NachUI is an independent, open-source collection of clean, minimal, and professional UI components — created by Ignacio Figueroa.
 
 It’s not a library, not a package, and nothing needs to be installed.
 Every component is designed to be copy-paste, dependency-free, and easy to customize.
 
-## 🚀 What is I7A UI?
+## 🚀 What is NachUI?
 
-I7A UI is a curated set of UI components built with:
+NachUI is a curated set of UI components built with:
 
 - React
 - Next.js
@@ -27,18 +27,18 @@ The goal is simple:
 
 ## 🤖 AI-Powered Chatbot (Groq SDK)
 
-### I7A UI includes an integrated AI-powered chatbot inside the documentation site.
+### NachUI includes an integrated AI-powered chatbot inside the documentation site.
 
 It is built using the official Groq SDK, offering ultra-fast inference and a smooth developer experience.
 The chatbot’s purpose is to:
 
-- Assist users with questions about I7A UI
+- Assist users with questions about NachUI
 - Provide guidance on how to copy, use, and customize components
 - Offer quick help related to React, Next.js, TypeScript, Tailwind CSS, and Framer Motion
 - Explain best practices and usage patterns
 - Deliver clean, concise answers based on the project’s philosophy
-- The assistant runs entirely client-side within the docs UI and serves as an example of how developers can integrate AI tooling into modern user interfaces using I7A UI components.
-- This makes I7A UI not only a component collection, but also a practical reference for building real-world AI-driven features with the Groq SDK.
+- The assistant runs entirely client-side within the docs UI and serves as an example of how developers can integrate AI tooling into modern user interfaces using NachUI components.
+- This makes NachUI not only a component collection, but also a practical reference for building real-world AI-driven features with the Groq SDK.
 
 ## 🛠️ Tech Stack
 
@@ -58,7 +58,7 @@ Docs app (docs/)
 
 ## 🎨 Philosophy
 
-I7A UI exists for developers who want:
+NachUI exists for developers who want:
 
 - Modern UI
 - Zero installation
@@ -72,7 +72,7 @@ I7A UI exists for developers who want:
 - Simple to customize
 - Free forever
 
-## 📚 How to Use I7A UI
+## 📚 How to Use NachUI
 
 - Open the component in the documentation
 - Copy the full code
@@ -84,5 +84,5 @@ I7A UI exists for developers who want:
 
 ## ✨ Created by Ignacio Figueroa
 
-If you enjoy I7A UI, consider starring the repository ❤️
+If you enjoy NachUI, consider starring the repository ❤️
 Your support helps keep this project growing.
