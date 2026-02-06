@@ -13,6 +13,17 @@ interface HomePageActions {
   variant?: 'default' | 'secondary';
 }
 
+export default async function HomePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  return (
+    <>
+      <LandingHero />
+    </>
+  );
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'siteConfig' });
@@ -60,15 +71,4 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     },
   };
-}
-
-export default async function HomePage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  return (
-    <>
-      <LandingHero />
-    </>
-  );
 }
