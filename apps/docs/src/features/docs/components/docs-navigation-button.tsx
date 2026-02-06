@@ -27,7 +27,7 @@ function NavIconButton({ href, label, icon: Icon, disabled }: NavIconButtonProps
 
   return (
     <Link href={href} aria-label={label}>
-      <Button size="icon" variant="outline">
+      <Button size="icon" variant="outline" className="rounded-md">
         <Icon className="h-4 w-4" />
       </Button>
     </Link>
