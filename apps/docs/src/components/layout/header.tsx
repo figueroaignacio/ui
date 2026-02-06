@@ -1,4 +1,3 @@
-// Components
 import { MobileMenu } from './mobile-menu';
 import { Navbar } from './navbar';
 

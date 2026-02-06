@@ -1,14 +1,9 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
+import { Searcher } from '@/features/docs/components/searcher';
 import { Link } from '@/i18n/navigation';
+import type { Navigation } from '@/lib/definitions';
+import { useTranslations } from 'next-intl';
 import { Logo } from '../common/logo';
 import { HeaderActions } from './header-actions';
-
-// Types
-import { Searcher } from '@/features/docs/components/searcher';
-import type { Navigation } from '@/lib/definitions';
 
 export function Navbar() {
   const t = useTranslations('ui');

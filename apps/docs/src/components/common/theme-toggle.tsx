@@ -1,11 +1,9 @@
 'use client';
 
 import { useMounted } from '@/hooks/use-mounted';
-import { useTheme } from 'i7a-themes';
-
-// Components
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Button } from '@repo/ui/components/button';
+import { useTheme } from 'i7a-themes';
 
 export function ThemeToggle() {
   const mounted = useMounted();

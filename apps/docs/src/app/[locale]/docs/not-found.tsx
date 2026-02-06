@@ -1,10 +1,7 @@
-// Hooks
-import { useTranslations } from 'next-intl';
-
-// Components
 import { Link } from '@/i18n/navigation';
 import { HomeIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Button, ButtonGroup } from '@repo/ui/components/button';
+import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
   const t = useTranslations('docs.notFound');

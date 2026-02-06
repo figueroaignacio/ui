@@ -1,24 +1,17 @@
 'use client';
 
-// Hooks
+import { Searcher } from '@/features/docs/components/searcher';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
+import { Link } from '@/i18n/navigation';
+import type { DocSection, Navigation } from '@/lib/definitions';
+import { getIcon } from '@/lib/get-icon';
+import { cn } from '@repo/ui/lib/cn';
+import { ChevronRight, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-
-// Components
-import { Searcher } from '@/features/docs/components/searcher';
-import { Link } from '@/i18n/navigation';
-import { ChevronRight, X } from 'lucide-react';
 import { LocaleSwitcher } from '../common/locale-switcher';
 import { Logo } from '../common/logo';
 import { ThemeToggle } from '../common/theme-toggle';
-
-// Utils
-import { getIcon } from '@/lib/get-icon';
-import { cn } from '@repo/ui/lib/cn';
-
-// Definitions
-import type { DocSection, Navigation } from '@/lib/definitions';
 
 export function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

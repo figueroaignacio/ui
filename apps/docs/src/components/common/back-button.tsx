@@ -1,11 +1,8 @@
 'use client';
 
-// Hooks
+import { ArrowLeft } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-
-// Components
-import { ArrowLeft } from 'lucide-react';
 
 export function BackButton() {
   const router = useRouter();

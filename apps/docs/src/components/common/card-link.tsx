@@ -1,4 +1,3 @@
-// Components
 import { Link } from '@/i18n/navigation';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@repo/ui/components/card';

@@ -1,4 +1,3 @@
-// Components
 import { LocaleSwitcher } from '../common/locale-switcher';
 import { ThemeToggle } from '../common/theme-toggle';
 

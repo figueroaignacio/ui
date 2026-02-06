@@ -1,4 +1,3 @@
-// Components
 import { AiChat } from '@/features/chat/components/ai-chat';
 import { Sidebar } from '@/features/docs/components/sidebar';
 

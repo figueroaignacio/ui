@@ -1,8 +1,5 @@
-// Hooks
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-
-// Components
 import { Logo } from '../common/logo';
 import { GitHubIcon } from '../common/tech-icons';
 

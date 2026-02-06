@@ -1,11 +1,6 @@
-// Components
 import { LandingHero } from '@/features/landing/components/landing-hero';
-
-// Utils
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-
-// Types
 import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 type PageProps = {
   params: Promise<{ locale: string }>;

@@ -1,4 +1,3 @@
-// Hooks
 import { useTranslations } from 'next-intl';
 
 let githubUsername = 'figueroaignacio';
