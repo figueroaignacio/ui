@@ -18,7 +18,7 @@ interface LocaleLayoutProps {
 
 export const metadata = {
   title: {
-    template: `%s - NachUI UI`,
+    template: `NachUI - %s`,
   },
 };
 

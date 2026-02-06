@@ -37,9 +37,9 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   return (
     <>
       <article className="flex w-full min-w-0 flex-col lg:px-26">
-        <div className="my-9 flex items-start justify-between">
+        <div className="border-border my-9 flex items-start justify-between border-b pb-6">
           <div className="space-y-3">
-            <h1 className="text-3xl font-black">{doc.title}</h1>
+            <h1 className="text-xl font-black lg:text-4xl">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
           </div>
           <div className="flex items-center gap-2">
