@@ -4,7 +4,8 @@ import { MDXContent } from '@/components/mdx/mdx-content';
 import { docs } from '@/content';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
-import { OpenInMenu } from '@/features/docs/components/open-in-menu';
+import { EditOnGithub } from '@/features/docs/components/edit-on-github';
+import { OpenInButtons } from '@/features/docs/components/open-in-buttons';
 import { Toc } from '@/features/docs/components/toc';
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
 import type { Metadata } from 'next';
@@ -39,13 +40,14 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <article className="flex w-full min-w-0 flex-col lg:px-26">
         <div className="border-border my-9 flex items-start justify-between border-b pb-6">
           <div className="space-y-3">
-            <h1 className="text-xl font-black lg:text-4xl">{doc.title}</h1>
+            <h1 className="text-4xl font-black">{doc.title}</h1>
             <p className="text-muted-foreground max-w-lg">{doc.description}</p>
+            <OpenInButtons
+              url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+            />
+            <EditOnGithub filePath={doc.sourceFilePath} />
           </div>
           <div className="flex items-center gap-2">
-            <OpenInMenu
-              url={`https://nach-ui.vercel.app/${doc.locale || 'en'}/docs/${doc.slugAsParams}`}
-            />
             <DocsNavigationButtons currentPath={currentPath} />
           </div>
         </div>

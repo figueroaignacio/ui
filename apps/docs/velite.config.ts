@@ -15,6 +15,7 @@ const computedFields = <T extends { slug: string; locale: 'es' | 'en' }>(data: T
     slug: cleanedSlug,
     slugAsParams: cleanedSlug.split('/').slice(1).join('/'),
     localeSlug: `${data.locale}/${cleanedSlug.split('/').slice(1).join('/')}`,
+    sourceFilePath: data.slug,
   };
 };
 

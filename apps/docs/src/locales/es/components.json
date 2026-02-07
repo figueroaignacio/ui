@@ -47,5 +47,8 @@
   "openIn": {
     "label": "Abrir en",
     "prompt": "Estoy viendo esta documentación: {url}.\nAyúdame a entender cómo usarla. Prepárate para explicar conceptos, dar ejemplos o ayudar a depurar basándote en ella."
+  },
+  "editOnGithub": {
+    "label": "Editar esta página"
   }
 }

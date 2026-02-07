@@ -1,20 +1,13 @@
 'use client';
 
 import { Button } from '@repo/ui/components/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/ui/components/dropdown-menu';
-import { Share2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-type OpenInMenuProps = {
+type OpenInButtonsProps = {
   url: string;
 };
 
-export function OpenInMenu({ url }: OpenInMenuProps) {
+export function OpenInButtons({ url }: OpenInButtonsProps) {
   const t = useTranslations('components.openIn');
   const prompt = t('prompt', { url });
   const encodedPrompt = encodeURIComponent(prompt);
@@ -38,33 +31,21 @@ export function OpenInMenu({ url }: OpenInMenuProps) {
   ];
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <div className="flex flex-wrap gap-2">
+      {links.map((link) => (
         <Button
-          variant="secondary"
+          key={link.name}
+          variant="outline"
           size="sm"
-          className="h-8 gap-1"
-          rightIcon={<Share2 className="h-3.5 w-3.5 opacity-60" />}
+          className="h-8 gap-2"
+          leftIcon={<link.icon />}
         >
-          {t('label')}
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            <span>{link.name}</span>
+          </a>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
-        {links.map((link) => (
-          <DropdownMenuItem key={link.name} className="p-0">
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center gap-2 px-3 py-2 outline-none"
-            >
-              <link.icon />
-              <span className="truncate">{link.name}</span>
-            </a>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      ))}
+    </div>
   );
 }
 
