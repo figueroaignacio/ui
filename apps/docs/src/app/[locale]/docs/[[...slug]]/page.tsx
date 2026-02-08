@@ -39,13 +39,15 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
     <>
       <article className="flex w-full min-w-0 flex-col lg:px-26">
         <div className="border-border my-9 flex items-start justify-between border-b pb-6">
-          <div className="space-y-3">
-            <h1 className="text-4xl font-black">{doc.title}</h1>
-            <p className="text-muted-foreground max-w-lg">{doc.description}</p>
-            <OpenInButtons
-              url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
-            />
-            <EditOnGithub filePath={doc.sourceFilePath} />
+          <div className="space-y-6">
+            <h1 className="gradient-text text-4xl font-black">{doc.title}</h1>
+            <p className="max-w-lg">{doc.description}</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <OpenInButtons
+                url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+              />
+              <EditOnGithub filePath={doc.sourceFilePath} />
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <DocsNavigationButtons currentPath={currentPath} />

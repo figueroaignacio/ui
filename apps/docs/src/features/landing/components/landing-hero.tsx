@@ -29,9 +29,7 @@ export function LandingHero() {
           <TypescriptIcon />
           <NextJSIcon />
         </div>
-        <h1 className="from-foreground to-foreground/30 bg-linear-to-br bg-clip-text text-4xl leading-tight font-extrabold tracking-tight text-balance text-transparent md:text-5xl">
-          {t('subheading')}
-        </h1>
+        <h1 className="gradient-text text-4xl md:text-5xl">{t('subheading')}</h1>
         <p className="text-muted-foreground max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
           {t('description')}
         </p>

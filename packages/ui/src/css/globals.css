@@ -141,3 +141,7 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.gradient-text {
+  @apply from-foreground to-foreground/30 bg-linear-to-br bg-clip-text leading-tight font-extrabold tracking-tight text-balance text-transparent;
+}
