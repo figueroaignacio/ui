@@ -23,7 +23,7 @@ export function FAQSection({ faqs, title }: FAQSectionProps) {
           <h2 className="gradient-text text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
         </div>
       )}
-      <Accordion type="multiple" className="mt-6" defaultValue="faq-0">
+      <Accordion type="single" className="mt-6" defaultValue="faq-0">
         {faqs.map((faq, index) => (
           <AccordionItem key={`faq-${index}`} value={`faq-${index}`}>
             <AccordionTrigger className="gradient-text">{faq.question}</AccordionTrigger>
