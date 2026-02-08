@@ -78,5 +78,42 @@
     },
     "copyright": "Todos los derechos reservados.",
     "sitemap": "Mapa del sitio"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "items": [
+      {
+        "question": "¿NachUI es una librería npm?",
+        "answer": "No. NachUI no es un paquete npm tradicional. Es un Sistema de Diseño basado en copiar y pegar código directamente en tu proyecto. Esto te da control total sobre el código sin dependencias externas que puedan quedar obsoletas o limitarte."
+      },
+      {
+        "question": "¿Qué hace diferente a NachUI de otras librerías de componentes?",
+        "answer": "A diferencia de librerías como MUI o Ant Design que funcionan como cajas negras, NachUI entrega el código fuente completo. Esto significa: Sin abstracciones ocultas - Ves y modificas todo el código. Sin cambios incompatibles - El código es tuyo, tú decides cuándo actualizarlo. Sin limitaciones - No estás atado a las decisiones de diseño de otros. Sistema de Diseño Completo - No solo componentes, sino tokens, patrones y guías."
+      },
+      {
+        "question": "¿Puedo usar NachUI en proyectos comerciales?",
+        "answer": "Sí, absolutamente. NachUI es completamente gratuito y de código abierto. Puedes usarlo en proyectos personales, comerciales, de clientes o cualquier otro tipo sin restricciones. El código es tuyo una vez que lo copias a tu proyecto."
+      },
+      {
+        "question": "¿Cómo actualizo los componentes si hay nuevas versiones?",
+        "answer": "Como el código vive en tu proyecto, tú controlas las actualizaciones. Puedes copiar selectivamente las mejoras que te interesen, mantener tu versión si ya la has personalizado, o usar el CLI para facilitar la comparación y fusión de cambios. No hay un npm update forzado que rompa tu aplicación."
+      },
+      {
+        "question": "¿Necesito conocimientos de diseño para usar NachUI?",
+        "answer": "No. NachUI viene con un sistema de diseño completo y coherente listo para usar. Los tokens de diseño, colores, espaciado y componentes ya están diseñados profesionalmente. Puedes usarlos tal cual o personalizarlos según tus necesidades."
+      },
+      {
+        "question": "¿NachUI funciona con Next.js, Remix, Vite?",
+        "answer": "Sí. NachUI está construido con React y funciona con cualquier framework moderno que lo soporte: Next.js (App Router y Pages Router), Remix, Vite, React Router, Create React App (No recomendado por razones obvias), Astro con integración de React, y cualquier otra configuración de React. Solo necesitas React 18+ y Tailwind CSS."
+      },
+      {
+        "question": "¿Cómo funciona con herramientas de IA como Cursor o Claude?",
+        "answer": "NachUI está diseñado pensando en la IA. Al ser código abierto y completamente visible: Las IAs pueden leer y entender toda la implementación, pueden sugerir modificaciones basadas en tu código real, pueden generar nuevos componentes siguiendo tus patrones existentes, y no hay cajas negras que confundan a los modelos. Es el futuro del desarrollo: humanos e IA trabajando sobre el mismo código."
+      },
+      {
+        "question": "¿Los componentes son accesibles?",
+        "answer": "Sí. Todos los componentes de NachUI están diseñados siguiendo las pautas WCAG y WAI-ARIA: Navegación completa por teclado, roles y atributos ARIA apropiados, soporte para lectores de pantalla, contraste de color adecuado, y estados de foco visibles. La accesibilidad es un principio fundamental, no una característica opcional."
+      }
+    ]
   }
 }

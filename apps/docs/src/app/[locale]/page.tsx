@@ -1,3 +1,4 @@
+import { FAQSection } from '@/features/landing/components/faq-section';
 import { LandingHero } from '@/features/landing/components/landing-hero';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -6,20 +7,17 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-interface HomePageActions {
-  href: string;
-  label: string;
-  description: string;
-  variant?: 'default' | 'secondary';
-}
-
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: 'sections.faq' });
+  const faqs = t.raw('items');
+
   return (
     <>
       <LandingHero />
+      <FAQSection faqs={faqs} title={t('title')} />
     </>
   );
 }
