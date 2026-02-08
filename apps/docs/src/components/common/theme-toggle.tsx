@@ -1,7 +1,8 @@
 'use client';
 
 import { useMounted } from '@/hooks/use-mounted';
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { MoonIcon, SunIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { useTheme } from 'i7a-themes';
 
@@ -33,7 +34,7 @@ export function ThemeToggle() {
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       className="h-8 w-8"
     >
-      <Icon className="h-5 w-5" />
+      <HugeiconsIcon icon={Icon} size={16} />
     </Button>
   );
 }

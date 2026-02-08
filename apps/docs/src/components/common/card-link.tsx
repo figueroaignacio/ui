@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
-import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { ArrowRight02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@repo/ui/components/card';
 
 interface CardLinkProps {
@@ -21,7 +22,7 @@ export function CardLink({ label, href, description }: CardLinkProps) {
           </CardContent>
         )}
         <CardFooter align="end" compact>
-          <ArrowRightIcon className="text-muted-foreground" />
+          <HugeiconsIcon icon={ArrowRight02Icon} size={16} />
         </CardFooter>
       </Card>
     </Link>

@@ -5,8 +5,9 @@ import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { DocSection, Navigation } from '@/lib/definitions';
 import { getIcon } from '@/lib/get-icon';
+import { ArrowRight01Icon, Cancel01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from '@repo/ui/lib/cn';
-import { ChevronRight, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { LocaleSwitcher } from '../common/locale-switcher';
@@ -28,7 +29,7 @@ export function MobileMenu() {
   return (
     <div className="relative flex w-full items-center justify-between px-5 py-5 lg:hidden">
       <button className="flex items-center gap-x-2 text-sm font-medium" onClick={toggleMenu}>
-        <ChevronRight className="h-6 w-6 cursor-pointer" />
+        <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
         Menu
       </button>
       <Searcher />
@@ -49,7 +50,7 @@ export function MobileMenu() {
               onClick={toggleMenu}
               className="hover:bg-muted rounded-md p-2 transition-colors"
             >
-              <X className="size-6 cursor-pointer" />
+              <HugeiconsIcon icon={Cancel01Icon} size={20} />
             </button>
           </div>
         </div>

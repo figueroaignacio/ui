@@ -22,8 +22,11 @@
     "input": {
       "placeholder": "Type a message..."
     },
+    "button": {
+      "label": "Ask AI"
+    },
     "messages": {
-      "initial": "I'm NachUI Bot. How can I assist you today?",
+      "initial": "How can I assist you today?",
       "error": "I'm sorry, I encountered an error. Please try again.",
       "helperText": "Press Enter to send, Shift + Enter for new line",
       "tooltip": "Hey! I can help you"

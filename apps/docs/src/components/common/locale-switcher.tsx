@@ -2,13 +2,15 @@
 
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { locales } from '@/i18n/routing';
+import { LanguageSquareIcon, Tick02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu';
-import { Check, Languages } from 'lucide-react';
+
 import type { Locale } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { useTransition } from 'react';
@@ -38,7 +40,7 @@ export function LocaleSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger className="w-[140px] justify-between">
         <div className="flex items-center gap-2">
-          <Languages className="h-4 w-4 opacity-70" />
+          <HugeiconsIcon icon={LanguageSquareIcon} size={16} />
           <span className="text-xs">{getLocaleLabel(locale)}</span>
         </div>
       </DropdownMenuTrigger>
@@ -53,7 +55,7 @@ export function LocaleSwitcher() {
             <span className={locale === localeOption ? 'font-medium' : ''}>
               {getLocaleLabel(localeOption)}
             </span>
-            {locale === localeOption && <Check className="text-foreground ml-2 h-3.5 w-3.5" />}
+            {locale === localeOption && <HugeiconsIcon icon={Tick02Icon} size={16} />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -1,6 +1,7 @@
+import { AiBeautifyIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@repo/ui/components/tooltip';
-import { BotMessageSquare } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +13,7 @@ interface ChatToggleButtonProps {
 export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [autoShow, setAutoShow] = useState(false);
-  const t = useTranslations('components.chat.messages');
+  const t = useTranslations('components.chat');
 
   useEffect(() => {
     const showTimer = setTimeout(() => setAutoShow(true), 1000);
@@ -32,14 +33,14 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
         <Button
           onClick={onClick}
           variant="outline"
-          leftIcon={<BotMessageSquare className="size-4" />}
           className="relative z-50 shadow-lg"
+          leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} />}
         >
-          NachUI Bot
+          {t('button.label')}
         </Button>
       </TooltipTrigger>
       <TooltipContent side="left" sideOffset={10}>
-        {t('tooltip')}
+        {t('messages.tooltip')}
       </TooltipContent>
     </Tooltip>
   );

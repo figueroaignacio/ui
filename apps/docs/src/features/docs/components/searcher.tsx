@@ -2,7 +2,8 @@
 
 import { useSearch } from '@/features/docs/hooks/use-search';
 import { useDialogFocus } from '@/hooks/use-dialog-focus';
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { Search02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import {
   Dialog,
@@ -23,7 +24,11 @@ export function Searcher() {
   return (
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}>
+        <Button
+          variant="outline"
+          size="sm"
+          leftIcon={<HugeiconsIcon icon={Search02Icon} size={16} />}
+        >
           <span className="text-xs">{t('label')}...</span>
         </Button>
       </DialogTrigger>

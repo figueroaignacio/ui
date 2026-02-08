@@ -1,4 +1,5 @@
-import { Loader2, Send } from 'lucide-react';
+import { Loading03Icon, SentIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
@@ -34,7 +35,11 @@ export function ChatInput(props: ChatInputProps) {
           whileTap={{ scale: disabled ? 1 : 0.95 }}
           className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+          {isLoading ? (
+            <HugeiconsIcon icon={Loading03Icon} size={16} className="h-4 w-4 animate-spin" />
+          ) : (
+            <HugeiconsIcon icon={SentIcon} size={16} />
+          )}
         </motion.button>
       </div>
       <p className="text-muted-foreground mt-2 hidden px-1 text-xs lg:block">

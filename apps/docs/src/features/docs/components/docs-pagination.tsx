@@ -1,6 +1,7 @@
 import { useDocsNavigation } from '@/features/docs/hooks/use-docs-navigation';
 import { Link } from '@/i18n/navigation';
-import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import { ArrowLeft01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslations } from 'next-intl';
 
 type DocsPaginationProps = {
@@ -21,7 +22,7 @@ function PaginationLink({
   direction: 'prev' | 'next';
   label: string;
 }) {
-  const Icon = direction === 'prev' ? ChevronLeftIcon : ChevronRightIcon;
+  const icon = direction === 'prev' ? ArrowLeft01Icon : ArrowRight01Icon;
   const isNext = direction === 'next';
 
   if (!item) {
@@ -36,9 +37,9 @@ function PaginationLink({
       <span
         className={`text-muted-foreground flex items-center gap-2 text-sm ${isNext ? 'justify-end' : ''}`}
       >
-        {!isNext && <Icon className="h-4 w-4" />}
+        {!isNext && <HugeiconsIcon icon={icon} className="h-4 w-4" />}
         {label}
-        {isNext && <Icon className="h-4 w-4" />}
+        {isNext && <HugeiconsIcon icon={icon} className="h-4 w-4" />}
       </span>
       <span className="font-medium group-hover:underline">{item.title}</span>
     </Link>
