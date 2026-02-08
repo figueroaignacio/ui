@@ -1,7 +1,6 @@
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
-import { LandingBackground } from '@/features/landing/components/landing-background';
 import { routing } from '@/i18n/routing';
 import { fontHeading, fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
@@ -41,7 +40,6 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
 
   return (
     <html lang={locale} suppressHydrationWarning className={theme}>
-      <LandingBackground />
       <body className={`relative ${fontSans.variable} ${fontHeading.variable} `}>
         <NextIntlClientProvider>
           <Providers>

@@ -23,7 +23,7 @@
   --input: #ffffff;
   --ring: #0b57d0;
   --radius: 1.5rem;
-  --grid-color: rgba(0, 0, 0, 0.02);
+  --grid-color: rgba(0, 0, 0, 0.09);
 }
 
 .dark {
@@ -46,7 +46,7 @@
   --border: #1b1b1c;
   --input: #111111;
   --ring: #8ab4f8;
-  --grid-color: rgba(255, 255, 255, 0.02);
+  --grid-color: rgba(255, 255, 255, 0.03);
   --shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.9);
 }
 
@@ -119,7 +119,7 @@
 
 .bg-grid-pattern {
   background-image:
-    radial-gradient(circle at center, transparent 0%, var(--background) 85%),
+    radial-gradient(circle at center, transparent 0%, var(--background) 100%),
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-position:
