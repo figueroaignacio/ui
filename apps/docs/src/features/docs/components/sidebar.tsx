@@ -3,8 +3,9 @@
 import { Link, usePathname } from '@/i18n/navigation';
 import type { DocItem, DocSection } from '@/lib/definitions';
 import { getIcon } from '@/lib/get-icon';
+import { ChevronDown } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from '@repo/ui/lib/cn';
-import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -37,7 +38,9 @@ export function Sidebar() {
                 {getIcon(section.title)}
                 {section.title}
               </div>
-              <ChevronDown
+              <HugeiconsIcon
+                icon={ChevronDown}
+                size={16}
                 className={cn(
                   'h-4 w-4 transition-transform duration-200',
                   openSections.includes(section.title) && 'rotate-180',
