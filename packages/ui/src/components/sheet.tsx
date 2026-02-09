@@ -1,7 +1,8 @@
 'use client';
 
+import { Cancel01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { X } from 'lucide-react';
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
@@ -182,7 +183,7 @@ export function SheetContent({
                 onClick={() => setOpen(false)}
                 className="hover:bg-secondary rounded-full p-2 transition"
               >
-                <X className="h-5 w-5" />
+                <HugeiconsIcon icon={Cancel01Icon} className="h-5 w-5" size={20} />
               </motion.button>
             </div>
             <div className="px-6 pb-6">{children}</div>

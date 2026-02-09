@@ -1,7 +1,8 @@
 'use client';
 
+import { Loading02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Loader2 } from 'lucide-react';
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import React, { forwardRef } from 'react';
 import { cn } from '../lib/cn';
@@ -86,7 +87,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               transition={{ duration: 0.2 }}
               className="absolute flex items-center justify-center"
             >
-              {loader ?? <Loader2 className="size-4 animate-spin" />}
+              {loader ?? (
+                <HugeiconsIcon icon={Loading02Icon} className="size-4 animate-spin" size={16} />
+              )}
             </motion.span>
           ) : (
             <motion.div

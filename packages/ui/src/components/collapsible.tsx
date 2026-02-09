@@ -1,7 +1,8 @@
 'use client';
 
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva } from 'class-variance-authority';
-import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
@@ -169,7 +170,9 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
       [disabled, isOpen, setIsOpen, onClick],
     );
 
-    const chevron = chevronIcon ?? <ChevronDown className="h-4 w-4 shrink-0" />;
+    const chevron = chevronIcon ?? (
+      <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4 shrink-0" size={16} />
+    );
 
     // SOLUCIÓN AQUÍ: Agregamos 'as const'
     const iconTransition = { type: 'spring', stiffness: 300, damping: 20 } as const;
@@ -287,7 +290,8 @@ export {
   collapsibleContentVariants,
   CollapsibleTrigger,
   collapsibleTriggerVariants,
-  collapsibleVariants,
+  collapsibleVariants
 };
 
-export type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps };
+  export type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps };
+

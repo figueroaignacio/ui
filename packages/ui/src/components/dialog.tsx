@@ -1,6 +1,7 @@
 'use client';
 
-import { X } from 'lucide-react';
+import { Cancel01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
 import { cloneElement } from 'react';
@@ -193,7 +194,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
             >
               {children}
               <DialogClose className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none">
-                <X className="h-4 w-4" />
+                <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" size={16} />
                 <span className="sr-only">Close</span>
               </DialogClose>
             </motion.div>

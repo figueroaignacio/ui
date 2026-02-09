@@ -1,6 +1,7 @@
 'use client';
 
-import { ChevronDown } from 'lucide-react';
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
@@ -196,7 +197,7 @@ function DropdownMenuTrigger({
         animate={isOpen ? 'open' : 'closed'}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        <ChevronDown className="h-4 w-4 opacity-50" />
+        <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4 opacity-50" size={16} />
       </motion.span>
     </motion.button>
   );

@@ -1,5 +1,11 @@
+import {
+  Alert01Icon,
+  Alert02Icon,
+  CheckmarkCircle01Icon,
+  InformationCircleIcon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertCircle, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 import React, { forwardRef } from 'react';
 import { cn } from '../lib/cn';
 
@@ -31,13 +37,13 @@ const Callout = forwardRef<HTMLDivElement, CalloutProps>(
 
       switch (variant) {
         case 'info':
-          return <Info size={18} />;
+          return <HugeiconsIcon icon={InformationCircleIcon} size={18} />;
         case 'warning':
-          return <AlertTriangle size={18} />;
+          return <HugeiconsIcon icon={Alert02Icon} size={18} />;
         case 'danger':
-          return <AlertCircle size={18} />;
+          return <HugeiconsIcon icon={Alert01Icon} size={18} />;
         case 'success':
-          return <CheckCircle size={18} />;
+          return <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />;
         default:
           return null;
       }

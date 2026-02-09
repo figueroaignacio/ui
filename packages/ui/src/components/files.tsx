@@ -1,6 +1,12 @@
 'use client';
 
-import { ChevronRight, FileIcon, FolderIcon, FolderOpenIcon } from 'lucide-react';
+import {
+  ArrowRight01Icon,
+  File01Icon,
+  Folder01Icon,
+  FolderOpenIcon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { cn } from '../lib/cn';
@@ -55,7 +61,7 @@ export const File: React.FC<FileProps> = ({ name, className, onClick, status }) 
       )}
     >
       <span className={cn('text-muted-foreground', statusConfig?.color)}>
-        <FileIcon className="size-4" />
+        <HugeiconsIcon icon={File01Icon} className="size-4" size={16} />
       </span>
 
       <span className={cn('flex-1 truncate', statusConfig?.color)}>{name}</span>
@@ -114,7 +120,11 @@ export const Folder: React.FC<FolderProps> = ({
             animate={{ rotate: isOpen ? 90 : 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            <ChevronRight className="text-muted-foreground mr-1 size-4 shrink-0" />
+            <HugeiconsIcon
+              icon={ArrowRight01Icon}
+              className="text-muted-foreground mr-1 size-4 shrink-0"
+              size={16}
+            />
           </motion.div>
         ) : (
           <span className="w-5" />
@@ -125,7 +135,11 @@ export const Folder: React.FC<FolderProps> = ({
           transition={{ duration: 0.2 }}
           className={cn('text-muted-foreground', statusConfig?.color)}
         >
-          {isOpen ? <FolderOpenIcon className="size-4" /> : <FolderIcon className="size-4" />}
+          {isOpen ? (
+            <HugeiconsIcon icon={FolderOpenIcon} className="size-4" size={16} />
+          ) : (
+            <HugeiconsIcon icon={Folder01Icon} className="size-4" size={16} />
+          )}
         </motion.div>
 
         <span className={cn('ml-2 flex-1 truncate', statusConfig?.color)}>{name}</span>
