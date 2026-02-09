@@ -1,5 +1,6 @@
 import { FAQSection } from '@/features/landing/components/faq-section';
 import { LandingHero } from '@/features/landing/components/landing-hero';
+import { LandingTechSection } from '@/features/landing/components/landing-tech-section';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
@@ -17,6 +18,7 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <LandingHero />
+      <LandingTechSection />
       <FAQSection faqs={faqs} title={t('title')} />
     </>
   );
