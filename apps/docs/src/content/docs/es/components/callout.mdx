@@ -1,0 +1,66 @@
+---
+title: Callout
+description: Un componente para mostrar información importante.
+published: true
+date: 2024-03-24
+label: Nuevo
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview name="callout-demo" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource name="callout-source" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Uso
+
+```tsx
+import { Callout } from '@/components/ui/callout';
+```
+
+```tsx
+<Callout variant="info" title="Nota">
+  Este es un callout con información.
+</Callout>
+```
+
+## Ejemplos
+
+### Variantes
+
+El componente `Callout` viene con diferentes variantes para indicar el tipo de mensaje.
+
+```tsx
+<Callout>Callout por defecto</Callout>
+<Callout variant="info">Callout de información</Callout>
+<Callout variant="warning">Callout de advertencia</Callout>
+<Callout variant="danger">Callout de peligro</Callout>
+<Callout variant="success">Callout de éxito</Callout>
+```
+
+### Icono Personalizado
+
+Puedes anular el icono por defecto pasando la propiedad `icon`.
+
+```tsx
+<Callout icon={<MiIconoPersonalizado />}>Callout con icono personalizado</Callout>
+```
+
+## Referencia de API
+
+### Callout
+
+| Propiedad   | Tipo                                                                | Por defecto | Descripción                                                                                                |
+| ----------- | ------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"default"` \| `"info"` \| `"warning"` \| `"danger"` \| `"success"` | `"default"` | El estilo del callout.                                                                                     |
+| `icon`      | `React.ReactNode`                                                   | —           | Icono personalizado para mostrar. Si no se proporciona, se usa un icono por defecto basado en la variante. |
+| `title`     | `string`                                                            | —           | El título del callout.                                                                                     |
+| `className` | `string`                                                            | —           | Nombres de clases CSS adicionales.                                                                         |
+| `children`  | `React.ReactNode`                                                   | —           | El contenido del callout.                                                                                  |

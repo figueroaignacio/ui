@@ -64,6 +64,11 @@
           "description": "Flexible container with header, content, and footer."
         },
         {
+          "title": "Callout",
+          "href": "/docs/components/callout",
+          "description": "Callout component to show additional content."
+        },
+        {
           "title": "Collapsible",
           "href": "/docs/components/collapsible",
           "description": "Hide or show sections of content dynamically."

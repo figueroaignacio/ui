@@ -11,6 +11,8 @@ import { ButtonOutlineDemo } from './components/button/button-outline-demo';
 import { ButtonSecondaryDemo } from './components/button/button-secondary-demo';
 import { ButtonSizesDemo } from './components/button/button-sizes-demo';
 import { Button } from './components/button/button-source';
+import { CalloutDemo } from './components/callout/callout-demo';
+import { Callout } from './components/callout/callout-source';
 import { CardCompactDemo } from './components/card/card-compact-demo';
 import { CardDemo } from './components/card/card-demo';
 import { CardGhostDemo } from './components/card/card-ghost-demo';
@@ -191,5 +193,15 @@ export const Index = {
     name: 'tooltip-demo',
     component: TooltipDemo,
     file: 'packages/ui/src/samples/components/tooltip-demo.tsx',
+  },
+  'callout-demo': {
+    name: 'callout-demo',
+    component: CalloutDemo,
+    file: 'packages/ui/src/samples/components/callout/callout-demo.tsx',
+  },
+  'callout-source': {
+    name: 'callout-source',
+    component: Callout,
+    file: 'packages/ui/src/samples/components/callout/callout-source.tsx',
   },
 };

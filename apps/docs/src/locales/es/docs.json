@@ -64,6 +64,11 @@
           "description": "Tarjetas minimalistas para agrupar contenido"
         },
         {
+          "title": "Callout",
+          "href": "/docs/components/callout",
+          "description": "Componente para mostrar contenido adicional."
+        },
+        {
           "title": "Collapsible",
           "href": "/docs/components/collapsible",
           "description": "Secciones plegables con animaciones suaves."
