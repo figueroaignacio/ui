@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -17,7 +18,7 @@ export function BackButton() {
       onClick={onBack}
       className="hover:text-primary flex items-center gap-x-2 text-sm hover:cursor-pointer hover:underline"
     >
-      <ArrowLeft className="size-5" />
+      <HugeiconsIcon icon={ArrowLeft} />
       {t('label')}
     </button>
   );
