@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
-import { HomeIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { Home01Icon, Search02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Button, ButtonGroup } from '@repo/ui/components/button';
 import { useTranslations } from 'next-intl';
 
@@ -22,7 +23,10 @@ export default function NotFound() {
                 size="sm"
                 variant="secondary"
                 leftIcon={
-                  <HomeIcon className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                  <HugeiconsIcon
+                    icon={Home01Icon}
+                    className="h-4 w-4 transition-transform group-hover:-translate-y-0.5"
+                  />
                 }
               >
                 {t('goHome')}
@@ -33,7 +37,10 @@ export default function NotFound() {
                 size="sm"
                 variant="ghost"
                 leftIcon={
-                  <MagnifyingGlassIcon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                  <HugeiconsIcon
+                    icon={Search02Icon}
+                    className="h-4 w-4 transition-transform group-hover:scale-110"
+                  />
                 }
               >
                 {t('goDocs')}

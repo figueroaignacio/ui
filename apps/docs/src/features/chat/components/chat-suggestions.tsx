@@ -1,4 +1,5 @@
-import { Code2, Lightbulb, MessageSquare, Sparkles } from 'lucide-react';
+import { BulbIcon, CodeIcon, Comment01Icon, SparklesIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
@@ -11,22 +12,22 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
 
   const suggestions = [
     {
-      icon: MessageSquare,
+      icon: Comment01Icon,
       text: t('howWorks'),
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: Code2,
+      icon: CodeIcon,
       text: t('technologies'),
       gradient: 'from-purple-500 to-pink-500',
     },
     {
-      icon: Sparkles,
+      icon: SparklesIcon,
       text: t('features'),
       gradient: 'from-orange-500 to-red-500',
     },
     {
-      icon: Lightbulb,
+      icon: BulbIcon,
       text: t('getStarted'),
       gradient: 'from-green-500 to-emerald-500',
     },
@@ -44,7 +45,6 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
       </motion.div>
       <div className="flex flex-wrap gap-3">
         {suggestions.map((suggestion, index) => {
-          const Icon = suggestion.icon;
           return (
             <motion.button
               key={index}
@@ -55,7 +55,7 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
             >
               <div className="border-border bg-card flex cursor-pointer items-center gap-3 rounded-full border px-5 py-3 transition-transform duration-75 hover:scale-[1.02] active:scale-[0.98]">
                 <div>
-                  <Icon className="size-3" />
+                  <HugeiconsIcon icon={suggestion.icon} className="size-3" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-foreground text-left text-xs leading-snug font-medium wrap-break-word">

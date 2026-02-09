@@ -1,19 +1,20 @@
 import { Link } from '@/i18n/navigation';
 import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
-import { CodeIcon, FileIcon, RocketIcon } from '@radix-ui/react-icons';
+import { Layout01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { DialogClose } from '@repo/ui/components/dialog';
 import { useTranslations } from 'next-intl';
 
-const CATEGORY_ICONS: Record<string, typeof RocketIcon> = {
-  'getting started': RocketIcon,
-  comenzando: RocketIcon,
-  components: CodeIcon,
-  componentes: CodeIcon,
+const CATEGORY_ICONS: Record<string, any> = {
+  'getting started': Rocket01Icon,
+  comenzando: Rocket01Icon,
+  components: PackageIcon,
+  componentes: PackageIcon,
 };
 
 function getCategoryIcon(category: string) {
-  const Icon = CATEGORY_ICONS[category.toLowerCase()] ?? FileIcon;
-  return <Icon className="h-4 w-4" />;
+  const icon = CATEGORY_ICONS[category.toLowerCase()] ?? Layout01Icon;
+  return <HugeiconsIcon icon={icon} size={16} className="h-4 w-4" />;
 }
 
 interface SearchResultsProps {

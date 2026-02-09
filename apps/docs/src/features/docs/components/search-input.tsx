@@ -1,4 +1,5 @@
-import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { Cancel01Icon, Search02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 
 interface SearchInputProps {
   value: string;
@@ -17,7 +18,10 @@ export function SearchInput({
 }: SearchInputProps) {
   return (
     <div className="relative">
-      <MagnifyingGlassIcon className="text-muted-foreground absolute top-2.5 left-2 h-4 w-4" />
+      <HugeiconsIcon
+        icon={Search02Icon}
+        className="text-muted-foreground absolute top-2.5 left-2 h-4 w-4"
+      />
       <input
         ref={inputRef}
         type="text"
@@ -33,7 +37,7 @@ export function SearchInput({
           className="text-muted-foreground hover:text-foreground absolute top-2.5 right-2 h-4 w-4 cursor-pointer"
           aria-label="Clear search"
         >
-          <Cross2Icon className="h-4 w-4" />
+          <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" />
         </button>
       )}
     </div>
