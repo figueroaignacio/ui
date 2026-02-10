@@ -21,7 +21,7 @@ export function LandingHero() {
 
   return (
     <div className="bg-grid-pattern relative flex min-h-svh items-center justify-center overflow-hidden">
-      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 px-4 py-16 md:px-0">
+      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 py-16 md:px-0">
         <div className="flex items-center gap-4">
           <ReactIcon />
           <MotionIcon />

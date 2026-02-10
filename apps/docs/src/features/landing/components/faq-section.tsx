@@ -17,7 +17,7 @@ interface FAQSectionProps {
 
 export function FAQSection({ faqs, title }: FAQSectionProps) {
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 py-12">
+    <section className="mx-auto w-full max-w-3xl py-12">
       {title && (
         <div className="mb-8">
           <h2 className="gradient-text text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
