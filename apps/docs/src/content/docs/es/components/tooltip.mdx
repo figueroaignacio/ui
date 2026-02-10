@@ -1,12 +1,114 @@
 ---
 title: Tooltip
-description: Un popup que muestra información contextual asociada a un elemento cuando este recibe foco mediante el teclado o cuando el usuario pasa el cursor por encima.
+description: Un popup que muestra información relacionada con un elemento cuando el elemento recibe el foco del teclado o el mouse pasa sobre él.
 published: true
 date: 2025-10-22
-label: New
+label: Nuevo
 locale: es
 toc:
   visible: true
 ---
 
-<ComponentPreview name="tooltip-demo" />
+<ComponentPreview component="tooltip" demo="default" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="tooltip" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Uso
+
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="outline">Pasa el mouse</Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    <p>Texto de tooltip útil</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## Características
+
+- **Múltiples posiciones** - Colocación arriba, abajo, izquierda o derecha
+- **Control de retraso** - Retraso de hover configurable
+- **Animaciones suaves** - Efectos de entrada con desvanecimiento y desenfoque
+- **Indicador de flecha** - Puntero visual al elemento activador
+
+## Referencia de API
+
+### Tooltip
+
+Componente raíz que gestiona el estado del tooltip.
+
+| Prop            | Tipo                      | Por defecto | Descripción                      |
+| --------------- | ------------------------- | ----------- | -------------------------------- |
+| `delayDuration` | `number`                  | `200`       | Retraso antes de mostrar (ms)    |
+| `open`          | `boolean`                 | -           | Estado abierto controlado        |
+| `onOpenChange`  | `(open: boolean) => void` | -           | Callback cuando cambia el estado |
+
+### TooltipTrigger
+
+Elemento que activa el tooltip al pasar el mouse.
+
+| Prop        | Tipo      | Por defecto | Descripción                   |
+| ----------- | --------- | ----------- | ----------------------------- |
+| `asChild`   | `boolean` | `false`     | Renderizar como elemento hijo |
+| `className` | `string`  | -           | Clases CSS adicionales        |
+
+### TooltipContent
+
+El contenido del tooltip con posicionamiento y animaciones.
+
+| Prop         | Tipo                                     | Por defecto | Descripción                  |
+| ------------ | ---------------------------------------- | ----------- | ---------------------------- |
+| `side`       | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'`     | Posición del tooltip         |
+| `sideOffset` | `number`                                 | `4`         | Distancia del activador (px) |
+| `className`  | `string`                                 | -           | Clases CSS adicionales       |
+
+## Ejemplos
+
+### Diferentes Posiciones
+
+```tsx
+// Arriba (por defecto)
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button>Arriba</Button>
+  </TooltipTrigger>
+  <TooltipContent side="top">
+    <p>Tooltip arriba</p>
+  </TooltipContent>
+</Tooltip>
+
+// Abajo
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button>Abajo</Button>
+  </TooltipTrigger>
+  <TooltipContent side="bottom">
+    <p>Tooltip abajo</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+### Retraso Personalizado
+
+```tsx
+<Tooltip delayDuration={500}>
+  <TooltipTrigger asChild>
+    <Button>Tooltip lento</Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    <p>Esto aparece después de 500ms</p>
+  </TooltipContent>
+</Tooltip>
+```

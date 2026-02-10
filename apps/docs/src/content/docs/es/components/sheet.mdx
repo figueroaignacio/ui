@@ -1,12 +1,117 @@
 ---
 title: Sheet
-description: Componente de hoja para mostrar contenido adicional.
+description: Extiende el componente Dialog para mostrar contenido que se desliza desde el borde de la pantalla.
 published: true
 date: 2025-10-22
-label: New
+label: Nuevo
 locale: es
 toc:
   visible: true
 ---
 
-<ComponentPreview name="sheet-demo" />
+<ComponentPreview component="sheet" demo="default" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="sheet" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Uso
+
+```tsx
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>
+    <Button>Abrir Sheet</Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Título del Sheet</SheetTitle>
+      <SheetDescription>Este es un componente sheet.</SheetDescription>
+    </SheetHeader>
+    <div>Tu contenido aquí</div>
+  </SheetContent>
+</Sheet>
+```
+
+## Características
+
+- **Múltiples lados** - Desliza desde abajo, arriba, izquierda o derecha
+- **Arrastrar para cerrar** - Desliza hacia abajo/arriba para descartar (en sheets inferior/superior)
+- **Responsivo** - Se adapta a diferentes tamaños de pantalla
+- **Animaciones suaves** - Transiciones de deslizamiento basadas en resorte
+
+## Referencia de API
+
+### Sheet
+
+Componente raíz que gestiona el estado del sheet.
+
+| Prop       | Tipo        | Por defecto | Descripción                     |
+| ---------- | ----------- | ----------- | ------------------------------- |
+| `children` | `ReactNode` | -           | Activador y contenido del sheet |
+
+### SheetTrigger
+
+Botón que abre el sheet.
+
+| Prop        | Tipo        | Por defecto | Descripción                   |
+| ----------- | ----------- | ----------- | ----------------------------- |
+| `children`  | `ReactNode` | -           | Contenido del botón activador |
+| `className` | `string`    | -           | Clases CSS adicionales        |
+
+### SheetContent
+
+El contenedor de contenido del sheet con animaciones de deslizamiento.
+
+| Prop             | Tipo                                     | Por defecto | Descripción                         |
+| ---------------- | ---------------------------------------- | ----------- | ----------------------------------- |
+| `side`           | `'bottom' \| 'top' \| 'left' \| 'right'` | `'bottom'`  | Lado desde el que deslizar          |
+| `size`           | `'sm' \| 'md' \| 'lg' \| 'full'`         | `'md'`      | Tamaño del sheet                    |
+| `showDragHandle` | `boolean`                                | `true`      | Mostrar asa de arrastre para cerrar |
+| `className`      | `string`                                 | -           | Clases CSS adicionales              |
+
+### SheetHeader
+
+Contenedor para título y descripción del sheet.
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### SheetTitle
+
+El encabezado de título del sheet.
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### SheetDescription
+
+Texto de descripción opcional para el sheet.
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### SheetClose
+
+Envoltorio que cierra el sheet cuando se hace clic.
+
+| Prop       | Tipo        | Por defecto | Descripción        |
+| ---------- | ----------- | ----------- | ------------------ |
+| `children` | `ReactNode` | -           | Contenido clicable |

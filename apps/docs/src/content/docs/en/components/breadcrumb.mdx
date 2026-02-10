@@ -1,6 +1,6 @@
 ---
 title: Breadcrumb
-description: Indicates the location within the site through a sequence of links.
+description: Displays the path to the current resource using a hierarchy of links.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,95 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="breadcrumb-demo" />
+<ComponentPreview component="breadcrumb" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="breadcrumb" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## API Reference
+
+### Breadcrumb
+
+The root container for the breadcrumb navigation.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### BreadcrumbList
+
+Container for breadcrumb items with proper spacing and layout.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### BreadcrumbItem
+
+Individual breadcrumb item wrapper.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### BreadcrumbLink
+
+Clickable link for navigation between pages.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `href`      | `string` | -       | URL to navigate to     |
+| `className` | `string` | -       | Additional CSS classes |
+
+### BreadcrumbPage
+
+Represents the current page (non-clickable).
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### BreadcrumbSeparator
+
+Visual separator between breadcrumb items.
+
+| Prop        | Type        | Default    | Description              |
+| ----------- | ----------- | ---------- | ------------------------ |
+| `children`  | `ReactNode` | Arrow icon | Custom separator element |
+| `className` | `string`    | -          | Additional CSS classes   |

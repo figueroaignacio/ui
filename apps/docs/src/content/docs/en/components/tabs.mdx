@@ -1,6 +1,6 @@
 ---
 title: Tabs
-description: Organize content into interchangeable tabs.
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,99 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="tabs-demo" />
+<ComponentPreview component="tabs" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="tabs" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+```
+
+```tsx
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Account settings content</TabsContent>
+  <TabsContent value="password">Password settings content</TabsContent>
+</Tabs>
+```
+
+## Features
+
+- **Multiple variants** - Default, outline, underline, and ghost styles
+- **Animated indicator** - Smooth sliding active tab indicator
+- **Keyboard navigation** - Full keyboard support
+- **Smooth transitions** - Animated content switching
+
+## API Reference
+
+### Tabs
+
+Root component that manages tab state.
+
+| Prop            | Type                                               | Default     | Description               |
+| --------------- | -------------------------------------------------- | ----------- | ------------------------- |
+| `defaultValue`  | `string`                                           | -           | Default active tab        |
+| `value`         | `string`                                           | -           | Controlled active tab     |
+| `onValueChange` | `(value: string) => void`                          | -           | Callback when tab changes |
+| `variant`       | `'default' \| 'outline' \| 'underline' \| 'ghost'` | `'default'` | Visual style              |
+| `size`          | `'default' \| 'sm' \| 'lg'`                        | `'default'` | Tab size                  |
+| `className`     | `string`                                           | -           | Additional CSS classes    |
+
+### TabsList
+
+Container for tab triggers.
+
+| Prop        | Type                                               | Default  | Description            |
+| ----------- | -------------------------------------------------- | -------- | ---------------------- |
+| `variant`   | `'default' \| 'outline' \| 'underline' \| 'ghost'` | Inherits | Override variant       |
+| `size`      | `'default' \| 'sm' \| 'lg'`                        | Inherits | Override size          |
+| `className` | `string`                                           | -        | Additional CSS classes |
+
+### TabsTrigger
+
+Individual tab button.
+
+| Prop        | Type                                               | Default  | Description            |
+| ----------- | -------------------------------------------------- | -------- | ---------------------- |
+| `value`     | `string`                                           | -        | Unique tab identifier  |
+| `variant`   | `'default' \| 'outline' \| 'underline' \| 'ghost'` | Inherits | Override variant       |
+| `size`      | `'default' \| 'sm' \| 'lg'`                        | Inherits | Override size          |
+| `className` | `string`                                           | -        | Additional CSS classes |
+
+### TabsContent
+
+Content panel for each tab.
+
+| Prop        | Type     | Default | Description             |
+| ----------- | -------- | ------- | ----------------------- |
+| `value`     | `string` | -       | Matching tab identifier |
+| `className` | `string` | -       | Additional CSS classes  |
+
+## Variants
+
+### Default
+
+Tabs with a subtle background and border.
+
+### Outline
+
+Tabs with a border outline style.
+
+### Underline
+
+Tabs with an underline indicator for the active tab.
+
+### Ghost
+
+Minimal tabs with no background, just hover effects.

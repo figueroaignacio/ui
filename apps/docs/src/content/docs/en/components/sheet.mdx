@@ -1,6 +1,6 @@
 ---
 title: Sheet
-description: Sheet component to show additional content.
+description: Extends the Dialog component to display content that slides in from the edge of the screen.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,109 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="sheet-demo" />
+<ComponentPreview component="sheet" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="sheet" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>
+    <Button>Open Sheet</Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Sheet Title</SheetTitle>
+      <SheetDescription>This is a sheet component.</SheetDescription>
+    </SheetHeader>
+    <div>Your content here</div>
+  </SheetContent>
+</Sheet>
+```
+
+## Features
+
+- **Multiple sides** - Slide from bottom, top, left, or right
+- **Drag to close** - Swipe down/up to dismiss (on bottom/top sheets)
+- **Responsive** - Adapts to different screen sizes
+- **Smooth animations** - Spring-based slide transitions
+
+## API Reference
+
+### Sheet
+
+Root component that manages sheet state.
+
+| Prop       | Type        | Default | Description               |
+| ---------- | ----------- | ------- | ------------------------- |
+| `children` | `ReactNode` | -       | Sheet trigger and content |
+
+### SheetTrigger
+
+Button that opens the sheet.
+
+| Prop        | Type        | Default | Description            |
+| ----------- | ----------- | ------- | ---------------------- |
+| `children`  | `ReactNode` | -       | Trigger button content |
+| `className` | `string`    | -       | Additional CSS classes |
+
+### SheetContent
+
+The sheet content container with slide animations.
+
+| Prop             | Type                                     | Default    | Description                  |
+| ---------------- | ---------------------------------------- | ---------- | ---------------------------- |
+| `side`           | `'bottom' \| 'top' \| 'left' \| 'right'` | `'bottom'` | Side to slide from           |
+| `size`           | `'sm' \| 'md' \| 'lg' \| 'full'`         | `'md'`     | Sheet size                   |
+| `showDragHandle` | `boolean`                                | `true`     | Show drag handle for closing |
+| `className`      | `string`                                 | -          | Additional CSS classes       |
+
+### SheetHeader
+
+Container for sheet title and description.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### SheetTitle
+
+The sheet title heading.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### SheetDescription
+
+Optional description text for the sheet.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### SheetClose
+
+Wrapper that closes the sheet when clicked.
+
+| Prop       | Type        | Default | Description       |
+| ---------- | ----------- | ------- | ----------------- |
+| `children` | `ReactNode` | -       | Clickable content |

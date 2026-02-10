@@ -1,6 +1,6 @@
 ---
 title: Files
-description: An interactive file tree component for displaying hierarchical folder and file structures.
+description: A file tree component for displaying hierarchical file structures with folders and files.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,85 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="files-demo" />
+<ComponentPreview component="files" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="files" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import { Files, Folder, File } from '@/components/ui/files';
+```
+
+```tsx
+<Files defaultValue="src/components">
+  <Folder name="src">
+    <Folder name="components">
+      <File name="button.tsx" />
+      <File name="card.tsx" />
+    </Folder>
+    <File name="index.ts" />
+  </Folder>
+  <File name="package.json" />
+</Files>
+```
+
+## Features
+
+- **Expandable folders** - Click to expand/collapse nested structures
+- **Git status indicators** - Show file modification states
+- **Smooth animations** - Animated expand/collapse transitions
+- **Auto-expand** - Use `defaultValue` to expand specific paths on load
+
+## API Reference
+
+### Files
+
+Root container for the file tree.
+
+| Prop           | Type     | Default | Description                                        |
+| -------------- | -------- | ------- | -------------------------------------------------- |
+| `defaultValue` | `string` | -       | Path to expand by default (e.g., "src/components") |
+| `className`    | `string` | -       | Additional CSS classes                             |
+
+### Folder
+
+Represents a folder that can contain files and other folders.
+
+| Prop        | Type        | Default | Description              |
+| ----------- | ----------- | ------- | ------------------------ |
+| `name`      | `string`    | -       | Folder name              |
+| `path`      | `string`    | -       | Optional explicit path   |
+| `status`    | `GitStatus` | -       | Git status indicator     |
+| `className` | `string`    | -       | Additional CSS classes   |
+| `children`  | `ReactNode` | -       | Nested files and folders |
+
+### File
+
+Represents an individual file.
+
+| Prop        | Type         | Default | Description            |
+| ----------- | ------------ | ------- | ---------------------- |
+| `name`      | `string`     | -       | File name              |
+| `onClick`   | `() => void` | -       | Click handler          |
+| `status`    | `GitStatus`  | -       | Git status indicator   |
+| `className` | `string`     | -       | Additional CSS classes |
+
+### Git Status Types
+
+Available status values: `'modified' | 'deleted' | 'added' | 'untracked' | 'renamed' | 'ignored'`
+
+Each status has a unique color and letter indicator:
+
+- **M** (Modified) - Yellow
+- **D** (Deleted) - Red with strikethrough
+- **A** (Added) - Green
+- **U** (Untracked) - Green
+- **R** (Renamed) - Blue
+- **I** (Ignored) - Gray

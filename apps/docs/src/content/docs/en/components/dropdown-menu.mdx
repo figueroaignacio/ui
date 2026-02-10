@@ -1,6 +1,6 @@
 ---
 title: Dropdown Menu
-description: Drop-down menus for actions or navigation.
+description: Displays a menu to the user with a list of actions or functions triggered by a button.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,96 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="dropdown-menu-demo" />
+<ComponentPreview component="dropdown-menu" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="dropdown-menu" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownSeparator,
+  DropdownLabel,
+} from '@/components/ui/dropdown-menu';
+```
+
+```tsx
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownLabel>My Account</DropdownLabel>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownSeparator />
+    <DropdownMenuItem variant="destructive">Logout</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## API Reference
+
+### DropdownMenu
+
+The root component that manages menu state.
+
+| Prop           | Type                      | Default | Description                      |
+| -------------- | ------------------------- | ------- | -------------------------------- |
+| `defaultOpen`  | `boolean`                 | `false` | Initial open state               |
+| `onOpenChange` | `(open: boolean) => void` | -       | Callback when open state changes |
+| `className`    | `string`                  | -       | Additional CSS classes           |
+
+### DropdownMenuTrigger
+
+Button that toggles the dropdown menu.
+
+| Prop        | Type      | Default | Description             |
+| ----------- | --------- | ------- | ----------------------- |
+| `asChild`   | `boolean` | `false` | Render as child element |
+| `className` | `string`  | -       | Additional CSS classes  |
+
+### DropdownMenuContent
+
+Container for menu items with positioning and animations.
+
+| Prop         | Type                           | Default   | Description            |
+| ------------ | ------------------------------ | --------- | ---------------------- |
+| `align`      | `'start' \| 'center' \| 'end'` | `'start'` | Horizontal alignment   |
+| `sideOffset` | `number`                       | `6`       | Distance from trigger  |
+| `className`  | `string`                       | -         | Additional CSS classes |
+
+### DropdownMenuItem
+
+Individual menu item that can be clicked.
+
+| Prop        | Type                         | Default     | Description            |
+| ----------- | ---------------------------- | ----------- | ---------------------- |
+| `disabled`  | `boolean`                    | `false`     | Disable the item       |
+| `variant`   | `'default' \| 'destructive'` | `'default'` | Visual style           |
+| `onSelect`  | `() => void`                 | -           | Callback when selected |
+| `className` | `string`                     | -           | Additional CSS classes |
+
+### DropdownLabel
+
+Label for grouping menu items.
+
+| Prop       | Type        | Default | Description |
+| ---------- | ----------- | ------- | ----------- |
+| `children` | `ReactNode` | -       | Label text  |
+
+### DropdownSeparator
+
+Visual separator between menu items.
+
+No props - renders a horizontal line.

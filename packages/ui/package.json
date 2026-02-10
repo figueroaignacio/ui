@@ -9,8 +9,19 @@
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
-    "./samples": "./src/samples/__index__.ts",
-    "./samples/*": "./src/samples/*.tsx"
+    "./registry": "./src/lib/registry.ts",
+    "./src/demos/*/*": "./src/demos/*/*.tsx",
+    "./src/*": "./src/*"
+  },
+  "typesVersions": {
+    "*": {
+      "src/demos/*/*": [
+        "./src/demos/*/*.tsx"
+      ],
+      "src/*": [
+        "./src/*"
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

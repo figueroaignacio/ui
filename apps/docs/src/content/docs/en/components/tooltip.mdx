@@ -1,6 +1,6 @@
 ---
 title: Tooltip
-description: A popup that displays contextual information associated with an element when it receives keyboard focus or when the user hovers over it with the mouse.
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,106 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="tooltip-demo" />
+<ComponentPreview component="tooltip" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="tooltip" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="outline">Hover me</Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    <p>Helpful tooltip text</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## Features
+
+- **Multiple positions** - Top, bottom, left, or right placement
+- **Delay control** - Configurable hover delay
+- **Smooth animations** - Fade and blur entrance effects
+- **Arrow indicator** - Visual pointer to the trigger element
+
+## API Reference
+
+### Tooltip
+
+Root component that manages tooltip state.
+
+| Prop            | Type                      | Default | Description                 |
+| --------------- | ------------------------- | ------- | --------------------------- |
+| `delayDuration` | `number`                  | `200`   | Delay before showing (ms)   |
+| `open`          | `boolean`                 | -       | Controlled open state       |
+| `onOpenChange`  | `(open: boolean) => void` | -       | Callback when state changes |
+
+### TooltipTrigger
+
+Element that triggers the tooltip on hover.
+
+| Prop        | Type      | Default | Description             |
+| ----------- | --------- | ------- | ----------------------- |
+| `asChild`   | `boolean` | `false` | Render as child element |
+| `className` | `string`  | -       | Additional CSS classes  |
+
+### TooltipContent
+
+The tooltip content with positioning and animations.
+
+| Prop         | Type                                     | Default | Description                |
+| ------------ | ---------------------------------------- | ------- | -------------------------- |
+| `side`       | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Tooltip position           |
+| `sideOffset` | `number`                                 | `4`     | Distance from trigger (px) |
+| `className`  | `string`                                 | -       | Additional CSS classes     |
+
+## Examples
+
+### Different Positions
+
+```tsx
+// Top (default)
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button>Top</Button>
+  </TooltipTrigger>
+  <TooltipContent side="top">
+    <p>Tooltip on top</p>
+  </TooltipContent>
+</Tooltip>
+
+// Bottom
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button>Bottom</Button>
+  </TooltipTrigger>
+  <TooltipContent side="bottom">
+    <p>Tooltip on bottom</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+### Custom Delay
+
+```tsx
+<Tooltip delayDuration={500}>
+  <TooltipTrigger asChild>
+    <Button>Slow tooltip</Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    <p>This appears after 500ms</p>
+  </TooltipContent>
+</Tooltip>
+```

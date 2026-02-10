@@ -1,12 +1,107 @@
 ---
 title: Tabs
-description: Organiza contenido en pestañas intercambiables.
+description: Un conjunto de secciones de contenido en capas, conocidas como paneles de pestañas, que se muestran una a la vez.
 published: true
 date: 2025-10-22
-label: New
+label: Nuevo
 locale: es
 toc:
   visible: true
 ---
 
-<ComponentPreview name="tabs-demo" />
+<ComponentPreview component="tabs" demo="default" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="tabs" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Uso
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+```
+
+```tsx
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Cuenta</TabsTrigger>
+    <TabsTrigger value="password">Contraseña</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Contenido de configuración de cuenta</TabsContent>
+  <TabsContent value="password">Contenido de configuración de contraseña</TabsContent>
+</Tabs>
+```
+
+## Características
+
+- **Múltiples variantes** - Estilos predeterminado, contorno, subrayado y fantasma
+- **Indicador animado** - Indicador de pestaña activa con deslizamiento suave
+- **Navegación por teclado** - Soporte completo de teclado
+- **Transiciones suaves** - Cambio de contenido animado
+
+## Referencia de API
+
+### Tabs
+
+Componente raíz que gestiona el estado de las pestañas.
+
+| Prop            | Tipo                                               | Por defecto | Descripción                       |
+| --------------- | -------------------------------------------------- | ----------- | --------------------------------- |
+| `defaultValue`  | `string`                                           | -           | Pestaña activa por defecto        |
+| `value`         | `string`                                           | -           | Pestaña activa controlada         |
+| `onValueChange` | `(value: string) => void`                          | -           | Callback cuando cambia la pestaña |
+| `variant`       | `'default' \| 'outline' \| 'underline' \| 'ghost'` | `'default'` | Estilo visual                     |
+| `size`          | `'default' \| 'sm' \| 'lg'`                        | `'default'` | Tamaño de pestaña                 |
+| `className`     | `string`                                           | -           | Clases CSS adicionales            |
+
+### TabsList
+
+Contenedor para activadores de pestañas.
+
+| Prop        | Tipo                                               | Por defecto | Descripción            |
+| ----------- | -------------------------------------------------- | ----------- | ---------------------- |
+| `variant`   | `'default' \| 'outline' \| 'underline' \| 'ghost'` | Hereda      | Sobrescribir variante  |
+| `size`      | `'default' \| 'sm' \| 'lg'`                        | Hereda      | Sobrescribir tamaño    |
+| `className` | `string`                                           | -           | Clases CSS adicionales |
+
+### TabsTrigger
+
+Botón de pestaña individual.
+
+| Prop        | Tipo                                               | Por defecto | Descripción                    |
+| ----------- | -------------------------------------------------- | ----------- | ------------------------------ |
+| `value`     | `string`                                           | -           | Identificador único de pestaña |
+| `variant`   | `'default' \| 'outline' \| 'underline' \| 'ghost'` | Hereda      | Sobrescribir variante          |
+| `size`      | `'default' \| 'sm' \| 'lg'`                        | Hereda      | Sobrescribir tamaño            |
+| `className` | `string`                                           | -           | Clases CSS adicionales         |
+
+### TabsContent
+
+Panel de contenido para cada pestaña.
+
+| Prop        | Tipo     | Por defecto | Descripción                          |
+| ----------- | -------- | ----------- | ------------------------------------ |
+| `value`     | `string` | -           | Identificador de pestaña coincidente |
+| `className` | `string` | -           | Clases CSS adicionales               |
+
+## Variantes
+
+### Default
+
+Pestañas con fondo sutil y borde.
+
+### Outline
+
+Pestañas con estilo de contorno de borde.
+
+### Underline
+
+Pestañas con indicador de subrayado para la pestaña activa.
+
+### Ghost
+
+Pestañas minimalistas sin fondo, solo efectos de hover.

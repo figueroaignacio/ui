@@ -4,7 +4,7 @@ import {
   ArrowRight01Icon,
   File01Icon,
   Folder01Icon,
-  FolderOpenIcon,
+  Folder02Icon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, motion } from 'motion/react';
@@ -136,7 +136,7 @@ export const Folder: React.FC<FolderProps> = ({
           className={cn('text-muted-foreground', statusConfig?.color)}
         >
           {isOpen ? (
-            <HugeiconsIcon icon={FolderOpenIcon} className="size-4" size={16} />
+            <HugeiconsIcon icon={Folder02Icon} className="size-4" size={16} />
           ) : (
             <HugeiconsIcon icon={Folder01Icon} className="size-4" size={16} />
           )}

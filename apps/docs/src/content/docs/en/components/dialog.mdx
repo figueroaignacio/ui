@@ -1,6 +1,6 @@
 ---
 title: Dialog
-description: Modal windows for user interaction.
+description: A modal dialog that interrupts the user with important content and expects a response.
 published: true
 date: 2025-10-22
 label: New
@@ -9,4 +9,118 @@ toc:
   visible: true
 ---
 
-<ComponentPreview name="dialog-demo" />
+<ComponentPreview component="dialog" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="dialog" />
+
+Make sure to update the import paths according to your project structure.
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+```
+
+```tsx
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>This action cannot be undone.</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </DialogClose>
+      <Button>Confirm</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+## API Reference
+
+### Dialog
+
+The root component that manages dialog state.
+
+| Prop           | Type                      | Default | Description                      |
+| -------------- | ------------------------- | ------- | -------------------------------- |
+| `defaultOpen`  | `boolean`                 | `false` | Initial open state               |
+| `open`         | `boolean`                 | -       | Controlled open state            |
+| `onOpenChange` | `(open: boolean) => void` | -       | Callback when open state changes |
+
+### DialogTrigger
+
+Button that opens the dialog.
+
+| Prop        | Type      | Default | Description             |
+| ----------- | --------- | ------- | ----------------------- |
+| `asChild`   | `boolean` | `false` | Render as child element |
+| `className` | `string`  | -       | Additional CSS classes  |
+
+### DialogContent
+
+The dialog content container with animations.
+
+| Prop        | Type        | Default | Description            |
+| ----------- | ----------- | ------- | ---------------------- |
+| `className` | `string`    | -       | Additional CSS classes |
+| `children`  | `ReactNode` | -       | Dialog content         |
+
+### DialogHeader
+
+Container for dialog title and description.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### DialogTitle
+
+The dialog title (required for accessibility).
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### DialogDescription
+
+Optional description text for the dialog.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### DialogFooter
+
+Container for dialog action buttons.
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### DialogClose
+
+Button that closes the dialog.
+
+| Prop        | Type      | Default | Description             |
+| ----------- | --------- | ------- | ----------------------- |
+| `asChild`   | `boolean` | `false` | Render as child element |
+| `className` | `string`  | -       | Additional CSS classes  |

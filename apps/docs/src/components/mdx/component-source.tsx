@@ -2,25 +2,25 @@
 import { ComponentSourceClient } from './component-source-client';
 
 // Utils
-import { getComponentCode } from '@/features/docs/lib/get-component-code';
+import { getComponentSourceCode } from '@/features/docs/lib/get-component-code';
 
 interface ComponentSourceProps {
-  name: string;
+  component: string;
   expandButtonTitle?: string;
   className?: string;
 }
 
 export async function ComponentSource({
-  name,
+  component,
   expandButtonTitle = 'View Source',
   className,
 }: ComponentSourceProps) {
-  const { item, code, error } = await getComponentCode(name);
+  const { code, filePath, error } = await getComponentSourceCode(component);
 
-  if (error || !item) {
+  if (error) {
     return (
       <div className="rounded border border-red-300 p-4 text-red-500">
-        {error ?? `Error: Componente "${name}" no encontrado.`}
+        {error ?? `Error: Component "${component}" not found.`}
       </div>
     );
   }
@@ -30,7 +30,7 @@ export async function ComponentSource({
       code={code}
       expandButtonTitle={expandButtonTitle}
       className={className}
-      filePath={item.file}
+      filePath={filePath || undefined}
     />
   );
 }
