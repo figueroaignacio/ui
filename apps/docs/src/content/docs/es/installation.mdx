@@ -152,38 +152,39 @@ Agrega las variables de color en tu archivo CSS global (típicamente `globals.cs
 
 Aquí está la estructura de carpetas recomendada para organizar los componentes de NachUI en tu proyecto:
 
-<Files defaultValue="src">
-  <Folder name="src">
-    <Folder name="app">
-      <File name="layout.tsx" />
-      <File name="page.tsx" />
-      <File name="globals.css" />
-    </Folder>
-    <Folder name="components">
-      <Folder name="ui">
-        <File name="button.tsx" />
-        <File name="card.tsx" />
-        <File name="tabs.tsx" />
-        <File name="..." />
+<div className="mt-6">
+  <Files defaultValue="src/components/ui">
+    <Folder name="src">
+      <Folder name="app">
+        <File name="layout.tsx" />
+        <File name="page.tsx" />
+        <File name="globals.css" />
       </Folder>
-      <File name="header.tsx" />
-      <File name="footer.tsx" />
+      <Folder name="components">
+        <Folder name="ui">
+          <File name="button.tsx" />
+          <File name="card.tsx" />
+          <File name="tabs.tsx" />
+          <File name="..." />
+        </Folder>
+        <File name="header.tsx" />
+        <File name="footer.tsx" />
+      </Folder>
+      <Folder name="lib">
+        <File name="cn.ts" />
+        <File name="utils.ts" />
+      </Folder>
     </Folder>
-    <Folder name="lib">
-      <File name="cn.ts" />
-      <File name="utils.ts" />
-    </Folder>
-  </Folder>
-  <File name="package.json" />
-  <File name="tailwind.config.ts" />
-  <File name="tsconfig.json" />
-</Files>
+    <File name="package.json" />
+    <File name="tailwind.config.ts" />
+    <File name="tsconfig.json" />
+  </Files>
+</div>
 
 **Directorios clave:**
 
 - `components/ui/` - Componentes de NachUI (copiados de los docs)
 - `lib/` - Funciones de utilidad como `cn`
-- `app/` - Tus páginas y layouts de Next.js
 
 ## Cómo usar los componentes
 
