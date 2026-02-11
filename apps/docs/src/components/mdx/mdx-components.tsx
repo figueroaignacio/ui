@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from '@repo/ui/components/accordion';
 import { Callout } from '@repo/ui/components/callout';
+import { File, Files, Folder } from '@repo/ui/components/files';
 import {
   Table,
   TableBody,
@@ -71,4 +72,7 @@ export const mdxComponents = {
   AccordionItem,
   AccordionTrigger,
   Callout,
+  Files,
+  Folder,
+  File,
 };

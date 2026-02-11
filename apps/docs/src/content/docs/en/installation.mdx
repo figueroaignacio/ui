@@ -148,6 +148,43 @@ Add the color variables to your global CSS file (typically `globals.css` or `app
 }
 ```
 
+### 6. Recommended Project Structure
+
+Here's the recommended folder structure for organizing NachUI components in your project:
+
+<Files defaultValue="src">
+  <Folder name="src">
+    <Folder name="app">
+      <File name="layout.tsx" />
+      <File name="page.tsx" />
+      <File name="globals.css" />
+    </Folder>
+    <Folder name="components">
+      <Folder name="ui">
+        <File name="button.tsx" />
+        <File name="card.tsx" />
+        <File name="tabs.tsx" />
+        <File name="..." />
+      </Folder>
+      <File name="header.tsx" />
+      <File name="footer.tsx" />
+    </Folder>
+    <Folder name="lib">
+      <File name="cn.ts" />
+      <File name="utils.ts" />
+    </Folder>
+  </Folder>
+  <File name="package.json" />
+  <File name="tailwind.config.ts" />
+  <File name="tsconfig.json" />
+</Files>
+
+**Key directories:**
+
+- `components/ui/` - NachUI components (copied from docs)
+- `lib/` - Utility functions like `cn`
+- `app/` - Your Next.js pages and layouts
+
 ## How to use components
 
 Once your project is configured, you can start copying components:

@@ -1,8 +1,5 @@
-// Components
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { CodeBlock } from './codeblock';
-
-// Icons
 import { PackageManagerIcons } from './package-manager-icons';
 
 interface PackageManagerTabsProps {
@@ -48,8 +45,9 @@ export function PackageManagerTabs({
     <Tabs defaultValue={defaultManager} className="mt-5 w-full" size="sm">
       <TabsList variant="default">
         {managers.map((manager) => (
-          <TabsTrigger key={manager} value={manager}>
-            {PACKAGE_MANAGERS[manager].name}
+          <TabsTrigger key={manager} value={manager} className="flex-row gap-2">
+            {/* <div>{PACKAGE_MANAGERS[manager].icon}</div> */}
+            <div>{PACKAGE_MANAGERS[manager].name}</div>
           </TabsTrigger>
         ))}
       </TabsList>
