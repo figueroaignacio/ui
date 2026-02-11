@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'system', content: systemPrompt }, ...normalizedMessages],
       model: GROQ_CONFIG.model,
-      temperature: 0.3,
+      temperature: 0.1,
       max_tokens: 2048,
       top_p: 0.9,
       stream: false,

@@ -115,17 +115,19 @@ export function findRelevantDocs(
   query: string,
 ): DocumentationContext[] {
   const normalizedQuery = query.toLowerCase();
+  const queryWords = normalizedQuery.split(/\s+/).filter((word) => word.length > 2); // Filter out short words like "el", "de", etc.
 
   return docs
     .filter((doc) => {
       const normalizedTitle = doc.title.toLowerCase();
       const normalizedContent = doc.content.toLowerCase();
 
-      return (
-        normalizedTitle.includes(normalizedQuery) || normalizedContent.includes(normalizedQuery)
+      // Check if any query word matches the title or content
+      return queryWords.some(
+        (word) => normalizedTitle.includes(word) || normalizedContent.includes(word),
       );
     })
-    .slice(0, 2);
+    .slice(0, 3); // Increased from 2 to 3 to get more context
 }
 
 export function buildEnrichedContext(
@@ -135,14 +137,18 @@ export function buildEnrichedContext(
 ): string {
   let context = '';
 
-  context += '\n\n' + '='.repeat(60) + '\n';
-  context += 'CONTEXTO DEL PROYECTO - USA ESTE CÓDIGO EXACTAMENTE\n';
-  context += '='.repeat(60) + '\n\n';
+  context += '\n\n' + '='.repeat(80) + '\n';
+  context += '⚠️  INSTRUCCIONES CRÍTICAS - LEÉ ESTO PRIMERO ⚠️\n';
+  context += '='.repeat(80) + '\n\n';
+  context += '1. SOLO podés usar el código y props que aparecen ABAJO en este contexto.\n';
+  context += '2. Si una prop NO está en la tabla "API Reference", NO EXISTE.\n';
+  context += '3. Si un método o feature NO está en los ejemplos, NO LO INVENTES.\n';
+  context += '4. Copiá los ejemplos EXACTAMENTE como aparecen en "Usage" o "Examples".\n';
+  context += '5. Si no estás 100% seguro, decí: "No veo eso en la documentación actual."\n\n';
 
   if (components.length > 0) {
-    context += '## COMPONENTES DISPONIBLES\n\n';
-    context += '**IMPORTANTE**: Usa estos componentes EXACTAMENTE como están definidos.\n';
-    context += 'NO inventes props que no existan. NO asumas APIs diferentes.\n\n';
+    context += '## CÓDIGO FUENTE DE COMPONENTES\n\n';
+    context += '⚠️ Este es el código REAL. No asumas que tiene features que no ves acá.\n\n';
 
     components.forEach((comp, idx) => {
       context += `### ${comp.name}\n\n`;
@@ -150,7 +156,7 @@ export function buildEnrichedContext(
 
       const propsMatch = comp.code.match(/interface\s+\w+Props\s*{([^}]+)}/);
       if (propsMatch) {
-        context += '**Props:**\n```typescript\n' + propsMatch[0] + '\n```\n\n';
+        context += '**Props Interface:**\n```typescript\n' + propsMatch[0] + '\n```\n\n';
       }
 
       context += '---\n\n';
@@ -158,21 +164,59 @@ export function buildEnrichedContext(
   }
 
   if (docs.length > 0) {
-    context += '\n## DOCUMENTACIÓN RELEVANTE\n\n';
+    context += '\n## DOCUMENTACIÓN OFICIAL\n\n';
+    context += '⚠️ Esta es la ÚNICA fuente de verdad. No inventes nada fuera de esto.\n\n';
+
     docs.forEach((doc) => {
-      context += `### ${doc.title}\n\n`;
-      context += doc.content.slice(0, 2000);
-      if (doc.content.length > 2000) {
-        context += '\n\n_(truncado)_\n';
+      context += `### 📄 ${doc.title}\n\n`;
+
+      // Extract and parse the API Reference section from MDX
+      const apiReferenceMatch = doc.content.match(/## API Reference([\s\S]*?)(?=\n##|\n---\n|$)/i);
+      if (apiReferenceMatch) {
+        context += '#### ✅ PROPS VÁLIDAS (SOLO ESTAS EXISTEN):\n\n';
+        context += apiReferenceMatch[0] + '\n\n';
+        context += '⚠️ Si una prop no está en esta tabla, NO LA USES.\n\n';
       }
-      context += '\n\n---\n\n';
+
+      // Extract usage examples
+      const usageMatch = doc.content.match(/## Usage([\s\S]*?)(?=\n##|$)/i);
+      if (usageMatch) {
+        context += '#### 📖 EJEMPLOS DE USO (COPIÁ ESTOS):\n\n';
+        context += usageMatch[0].slice(0, 1000) + '\n\n';
+      }
+
+      // Extract examples section
+      const examplesMatch = doc.content.match(/## Examples([\s\S]*?)(?=\n## API Reference|$)/i);
+      if (examplesMatch) {
+        context += '#### 💡 MÁS EJEMPLOS:\n\n';
+        context += examplesMatch[0].slice(0, 1500) + '\n\n';
+      }
+
+      // If no specific sections found, show truncated content
+      if (!apiReferenceMatch && !usageMatch && !examplesMatch) {
+        context += doc.content.slice(0, 2000);
+        if (doc.content.length > 2000) {
+          context += '\n\n_(truncado)_\n';
+        }
+      }
+
+      context += '\n' + '-'.repeat(80) + '\n\n';
     });
   }
 
   if (components.length === 0 && docs.length === 0) {
-    context += '\nNo se encontró contexto específico del proyecto para: "' + query + '"\n';
-    context += 'Responde con conocimiento general.\n\n';
+    context += '\n⚠️ NO SE ENCONTRÓ DOCUMENTACIÓN PARA: "' + query + '"\n\n';
+    context += '🚫 NO INVENTES NADA. Solo podés:\n';
+    context += '  1. Decir que no tenés esa información\n';
+    context += '  2. Sugerir componentes similares que SÍ existen\n';
+    context += '  3. Explicar conceptos generales de React/Next.js (sin código específico)\n\n';
   }
+
+  context += '\n' + '='.repeat(80) + '\n';
+  context += '⚠️  RECORDATORIO FINAL ⚠️\n';
+  context += '='.repeat(80) + '\n';
+  context += 'Solo usá lo que está ARRIBA. No asumas. No inventes. No extrapoles.\n';
+  context += '='.repeat(80) + '\n\n';
 
   return context;
 }
