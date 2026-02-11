@@ -97,11 +97,7 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
           td: ({ children }) => (
             <TableCell className="px-4 py-3 align-top leading-6">{children}</TableCell>
           ),
-          pre: ({ children }) => (
-            <div className="my-6 overflow-x-auto rounded-lg border bg-zinc-950 dark:bg-zinc-900">
-              <Pre>{children}</Pre>
-            </div>
-          ),
+          pre: ({ children }) => <Pre>{children}</Pre>,
           code: ({ children }) => <InlineCode>{children}</InlineCode>,
         }}
       >
