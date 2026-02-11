@@ -82,7 +82,7 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
             <em className="text-foreground/90 wrap-break-words italic">{children}</em>
           ),
           table: ({ children }) => (
-            <div className="my-6 w-full overflow-y-auto rounded-lg border shadow-sm">
+            <div className="my-6 w-full overflow-y-auto rounded-md border shadow-sm">
               <Table>{children}</Table>
             </div>
           ),
