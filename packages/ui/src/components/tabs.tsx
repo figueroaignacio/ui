@@ -1,12 +1,12 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
 const tabsListVariants = cva(
-  'inline-flex items-center justify-center rounded-lg p-1 text-muted-foreground w-full sm:w-auto overflow-hidden',
+  'inline-flex   rounded-md p-1 text-muted-foreground w-full sm:w-auto overflow-hidden',
   {
     variants: {
       variant: {
@@ -201,7 +201,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
               'absolute inset-0 z-10',
               finalVariant === 'underline'
                 ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
-                : 'bg-secondary border-border/50 rounded-md border shadow-sm',
+                : 'bg-secondary border-border/50 rounded-sm border shadow-sm',
             )}
             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
           />
@@ -212,62 +212,29 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
 );
 TabsTrigger.displayName = 'TabsTrigger';
 
-interface TabsContentProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
+interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
 }
 
-const contentVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 20 : -20,
-    opacity: 0,
-    filter: 'blur(4px)',
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.3,
-      ease: [0.25, 1, 0.5, 1] as const,
-    },
-  },
-  exit: (direction: number) => ({
-    x: direction > 0 ? -20 : 20,
-    opacity: 0,
-    filter: 'blur(4px)',
-    transition: {
-      duration: 0.2,
-      ease: [0.25, 0.1, 0.25, 1] as const,
-    },
-  }),
-};
-
 const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   ({ className, value, children, ...props }, ref) => {
-    const { activeTab, direction } = useTabsContext();
+    const { activeTab } = useTabsContext();
     const isActive = activeTab === value;
 
+    if (!isActive) return null;
+
     return (
-      <AnimatePresence mode="popLayout" custom={direction} initial={false}>
-        {isActive && (
-          <motion.div
-            ref={ref}
-            role="tabpanel"
-            custom={direction}
-            variants={contentVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className={cn(
-              'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-              className,
-            )}
-            {...props}
-          >
-            {children}
-          </motion.div>
+      <div
+        ref={ref}
+        role="tabpanel"
+        className={cn(
+          'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+          className,
         )}
-      </AnimatePresence>
+        {...props}
+      >
+        {children}
+      </div>
     );
   },
 );
