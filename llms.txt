@@ -1,0 +1,348 @@
+# NachUI
+
+A modern, accessible React component library built with TypeScript, Tailwind CSS, and Radix UI primitives. Designed for building beautiful, performant web applications with a focus on developer experience.
+
+## Project Overview
+
+NachUI is a monorepo containing:
+- **Component Library** (`@repo/ui`) - Reusable React components
+- **Documentation Site** - Interactive documentation with live examples and AI assistant
+- **Demos** - Component usage examples and variants
+
+## Tech Stack
+
+- **Framework**: React 19, Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with custom design tokens
+- **Components**: Built on Radix UI primitives
+- **Animations**: Motion (Framer Motion)
+- **Icons**: Hugeicons
+- **Monorepo**: Turborepo + pnpm workspaces
+- **i18n**: next-intl (English & Spanish)
+
+## Project Structure
+
+```
+ui/
+├── apps/
+│   └── docs/                    # Documentation website (Next.js 15)
+│       ├── src/
+│       │   ├── app/            # App router pages
+│       │   ├── components/     # Doc-specific components
+│       │   │   ├── common/     # Shared components (Logo, ThemeToggle)
+│       │   │   ├── layout/     # Layout components (Header, Footer, Navbar)
+│       │   │   └── mdx/        # MDX components (CodeBlock, ComponentPreview)
+│       │   ├── content/        # MDX documentation files
+│       │   │   └── docs/
+│       │   │       ├── en/     # English docs
+│       │   │       └── es/     # Spanish docs
+│       │   ├── features/       # Feature modules
+│       │   │   ├── chat/       # AI chat assistant
+│       │   │   └── docs/       # Documentation features
+│       │   ├── i18n/           # Internationalization
+│       │   └── lib/            # Utilities
+│       └── public/             # Static assets
+│
+└── packages/
+    └── ui/                      # Component library (@repo/ui)
+        ├── src/
+        │   ├── components/     # React components
+        │   ├── demos/          # Component demos by variant
+        │   ├── lib/            # Utilities (cn, registry)
+        │   └── globals.css     # Global styles & design tokens
+        └── package.json
+```
+
+## Available Components
+
+### Layout & Navigation
+- **Accordion** - Collapsible content sections (single/multiple mode)
+- **Breadcrumb** - Navigation breadcrumbs
+- **Tabs** - Tabbed interface with keyboard navigation
+- **Collapsible** - Expandable content (default, bordered, card variants)
+
+### Data Display
+- **Card** - Content container (default, outline, ghost, compact variants)
+- **Table** - Data tables with header, body, footer
+- **Timeline** - Event timeline visualization
+- **Files** - File/folder tree structure
+- **Callout** - Highlighted messages (info, warning, danger, success)
+
+### Overlays
+- **Dialog** - Modal dialogs with backdrop
+- **Sheet** - Side panel (left, right, top, bottom)
+- **Dropdown Menu** - Contextual menus with animations
+- **Tooltip** - Hover tooltips with customizable positioning
+
+### Forms
+- **Button** - Interactive buttons (default, secondary, destructive, outline, ghost, link)
+- **Input** - Text input fields
+- **Label** - Form labels
+
+### Utilities
+- **Snippet** - Code snippets with copy functionality
+
+## Component Patterns
+
+### Variant System
+Components use `class-variance-authority` (cva) for type-safe variants:
+
+```tsx
+const buttonVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'variant-classes',
+      secondary: 'variant-classes',
+    },
+    size: {
+      default: 'size-classes',
+      sm: 'size-classes',
+    },
+  },
+  defaultVariants: { variant: 'default', size: 'default' },
+});
+```
+
+### Animation Pattern
+Components use Motion for smooth animations:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: 20 }}
+  transition={{ type: 'spring', stiffness: 300 }}
+>
+  {children}
+</motion.div>
+```
+
+### Composition Pattern
+Components follow a compound component pattern:
+
+```tsx
+<Accordion>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Title</AccordionTrigger>
+    <AccordionContent>Content</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Design Tokens
+
+### Colors
+- **Primary**: Main brand color
+- **Secondary**: Secondary actions
+- **Destructive**: Dangerous actions
+- **Muted**: Subtle backgrounds
+- **Accent**: Highlights
+- **Success**: Success states
+- **Warning**: Warning states
+- **Info**: Informational states
+
+### Spacing
+- Uses Tailwind's spacing scale (0.25rem increments)
+- Custom spacing: `gap-x-6`, `px-4`, `py-2`
+
+### Typography
+- **Font Sans**: Variable font for body text
+- **Font Heading**: Variable font for headings
+- **Font Code**: Monospace for code
+
+### Borders & Shadows
+- **Border Radius**: `rounded-lg` (0.5rem), `rounded-xl` (0.75rem)
+- **Shadows**: `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-2xl`
+
+## Key Features
+
+### Component Registry
+Components are registered in `packages/ui/src/lib/registry.ts` for documentation:
+
+```ts
+export const DEMO_REGISTRY = {
+  button: {
+    default: 'packages/ui/src/demos/button/default.tsx',
+    secondary: 'packages/ui/src/demos/button/secondary.tsx',
+  },
+};
+```
+
+### Component Preview System
+Documentation uses `ComponentPreview` to show live demos:
+
+```mdx
+<ComponentPreview component="button" demo="default" />
+```
+
+### AI Chat Assistant
+Built-in AI assistant for documentation help:
+- Context-aware responses
+- Component suggestions
+- Code examples
+- Markdown rendering
+
+### Internationalization
+Full i18n support with next-intl:
+- English (en)
+- Spanish (es)
+- Locale-specific routing
+- Translated component docs
+
+## Development
+
+### Getting Started
+```bash
+# Install dependencies
+pnpm install
+
+# Run dev server
+pnpm dev
+
+# Build all packages
+pnpm build
+
+# Lint
+pnpm lint
+
+# Format
+pnpm format
+```
+
+### Adding a New Component
+
+1. **Create component file**: `packages/ui/src/components/my-component.tsx`
+2. **Export from index**: Add to `packages/ui/src/index.ts`
+3. **Create demos**: `packages/ui/src/demos/my-component/default.tsx`
+4. **Register demos**: Add to `packages/ui/src/lib/registry.ts`
+5. **Create docs**: `apps/docs/src/content/docs/en/components/my-component.mdx`
+6. **Add to preview**: Import in `apps/docs/src/components/mdx/component-preview.tsx`
+
+### Component Template
+```tsx
+import { cva, type VariantProps } from 'class-variance-authority';
+import { forwardRef } from 'react';
+import { cn } from '../lib/cn';
+
+const myComponentVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'variant-classes',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+interface MyComponentProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof myComponentVariants> {}
+
+const MyComponent = forwardRef<HTMLDivElement, MyComponentProps>(
+  ({ className, variant, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(myComponentVariants({ variant }), className)}
+        {...props}
+      />
+    );
+  },
+);
+
+MyComponent.displayName = 'MyComponent';
+
+export { MyComponent, myComponentVariants };
+export type { MyComponentProps };
+```
+
+## Documentation Structure
+
+### MDX Files
+Documentation uses MDX with custom components:
+- `ComponentPreview` - Live component demos
+- `CodeBlock` - Syntax-highlighted code
+- `InlineCode` - Inline code snippets
+- `Callout` - Important notes
+
+### Frontmatter
+```yaml
+---
+title: Component Name
+description: Brief description
+---
+```
+
+### Sections
+1. **Overview** - What the component does
+2. **Installation** - How to install/import
+3. **Usage** - Basic usage example
+4. **Examples** - Variant demonstrations
+5. **API Reference** - Props documentation
+
+## Styling Guidelines
+
+### Utility-First
+Use Tailwind utilities directly:
+```tsx
+<div className="flex items-center gap-2 rounded-lg bg-muted px-4 py-2">
+```
+
+### Custom Classes
+For complex styles, use cva:
+```tsx
+const variants = cva('base', {
+  variants: { size: { sm: 'text-sm', lg: 'text-lg' } },
+});
+```
+
+### Dark Mode
+Use `dark:` prefix for dark mode styles:
+```tsx
+<div className="bg-white dark:bg-black">
+```
+
+### Responsive
+Use breakpoint prefixes:
+```tsx
+<div className="flex-col md:flex-row lg:gap-4">
+```
+
+## Accessibility
+
+- **Keyboard Navigation**: All interactive components support keyboard
+- **ARIA Attributes**: Proper ARIA labels and roles
+- **Focus Management**: Visible focus indicators
+- **Screen Readers**: Semantic HTML and ARIA descriptions
+
+## Performance
+
+- **Code Splitting**: Components lazy-loaded where appropriate
+- **Tree Shaking**: ESM exports for optimal bundling
+- **CSS Optimization**: Tailwind purges unused styles
+- **Image Optimization**: Next.js Image component
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Follow existing component patterns
+2. Use TypeScript for type safety
+3. Include demos for all variants
+4. Write documentation in English and Spanish
+5. Test accessibility
+6. Format with Prettier
+
+## Resources
+
+- **Radix UI**: https://radix-ui.com
+- **Tailwind CSS**: https://tailwindcss.com
+- **Motion**: https://motion.dev
+- **Next.js**: https://nextjs.org
+- **Hugeicons**: https://hugeicons.com
