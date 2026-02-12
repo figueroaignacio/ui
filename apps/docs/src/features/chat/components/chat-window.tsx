@@ -40,7 +40,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-9998 bg-white backdrop-blur-md dark:bg-black/60"
+            className="dark:bg-background/80 fixed inset-0 z-9998 bg-white backdrop-blur-md"
             onClick={onClose}
           />
           <motion.div
