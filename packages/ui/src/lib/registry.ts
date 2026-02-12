@@ -41,6 +41,8 @@ export const DEMO_REGISTRY = {
   // Collapsible demos
   collapsible: {
     default: 'packages/ui/src/demos/collapsible/default.tsx',
+    bordered: 'packages/ui/src/demos/collapsible/bordered.tsx',
+    card: 'packages/ui/src/demos/collapsible/card.tsx',
   },
   // Callout demos
   callout: {

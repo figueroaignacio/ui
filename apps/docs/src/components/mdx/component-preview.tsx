@@ -1,6 +1,7 @@
 'use server';
 
 import { getDemoCode } from '@/features/docs/lib/get-component-code';
+import { Callout } from '@repo/ui/components/callout';
 import { Collapsed as AccordionCollapsed } from '../../../../../packages/ui/src/demos/accordion/collapsed';
 import { Default as AccordionDefault } from '../../../../../packages/ui/src/demos/accordion/default';
 import { Multiple as AccordionMultiple } from '../../../../../packages/ui/src/demos/accordion/multiple';
@@ -17,6 +18,8 @@ import { Compact as CardCompact } from '../../../../../packages/ui/src/demos/car
 import { Default as CardDefault } from '../../../../../packages/ui/src/demos/card/default';
 import { Ghost as CardGhost } from '../../../../../packages/ui/src/demos/card/ghost';
 import { Outline as CardOutline } from '../../../../../packages/ui/src/demos/card/outline';
+import { Bordered as CollapsibleBordered } from '../../../../../packages/ui/src/demos/collapsible/bordered';
+import { Card as CollapsibleCard } from '../../../../../packages/ui/src/demos/collapsible/card';
 import { Default as CollapsibleDefault } from '../../../../../packages/ui/src/demos/collapsible/default';
 import { Default as DialogDefault } from '../../../../../packages/ui/src/demos/dialog/default';
 import { Default as DropdownMenuDefault } from '../../../../../packages/ui/src/demos/dropdown-menu/default';
@@ -49,6 +52,8 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   },
   collapsible: {
     default: CollapsibleDefault,
+    bordered: CollapsibleBordered,
+    card: CollapsibleCard,
   },
   callout: {
     default: CalloutDefault,
@@ -95,9 +100,9 @@ export async function ComponentPreview({
 
   if (error) {
     return (
-      <div className="rounded border border-red-300 p-4 text-red-500">
+      <Callout variant="danger" className="my-4">
         {error ?? `Error: Demo "${demo}" not found for component "${component}".`}
-      </div>
+      </Callout>
     );
   }
 
@@ -105,9 +110,9 @@ export async function ComponentPreview({
 
   if (!DemoComponent) {
     return (
-      <div className="rounded border border-red-300 p-4 text-red-500">
-        Error: Demo component not imported for "{component}/{demo}".
-      </div>
+      <Callout variant="danger" className="my-4">
+        Error: Demo component not imported for &quot;{component}/{demo}&quot;.
+      </Callout>
     );
   }
 
