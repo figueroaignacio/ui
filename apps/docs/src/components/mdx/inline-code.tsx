@@ -38,7 +38,7 @@ export function InlineCode({ className, children, language = 'tsx', ...props }: 
           {...props}
         >
           {tokens[0].map((token, i) => {
-            const tokenProps = getTokenProps({ token, key: i });
+            const { key, ...tokenProps } = getTokenProps({ token, key: i });
             return <span key={i} {...tokenProps} />;
           })}
         </code>

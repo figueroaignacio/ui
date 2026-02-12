@@ -54,7 +54,7 @@ export function CodeBlock({
             style={{ ...style, backgroundColor: 'transparent' }}
           >
             {tokens.map((line, i) => {
-              const lineProps = getLineProps({ line, key: i });
+              const { key, ...lineProps } = getLineProps({ line, key: i });
               return (
                 <div key={i} {...lineProps} className={cn('table-row', lineProps.className)}>
                   {showLineNumbers && (
