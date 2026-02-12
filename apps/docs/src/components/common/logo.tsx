@@ -2,16 +2,16 @@ import { Link } from '@/i18n/navigation';
 
 export function Logo() {
   return (
-    <Link href="/" className="flex size-12 items-center" suppressHydrationWarning>
+    <Link href="/" className="flex h-10 w-10 items-center overflow-hidden" suppressHydrationWarning>
       <img
         src="/assets/logo-dark.png"
-        className="size-12 object-contain dark:hidden"
+        className="h-14 w-14 object-cover dark:hidden"
         alt="NachUI"
         suppressHydrationWarning
       />
       <img
         src="/assets/logo-light.png"
-        className="hidden size-12 object-contain dark:block"
+        className="hidden h-14 w-14 object-cover dark:block"
         alt="NachUI"
         suppressHydrationWarning
       />

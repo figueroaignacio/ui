@@ -10,7 +10,7 @@ export function Navbar() {
   const navigation: Navigation[] = t.raw('navigation');
 
   return (
-    <div className="relative z-50 hidden w-full items-center justify-between px-6 lg:flex">
+    <div className="relative z-50 hidden w-full items-center justify-between px-6 py-3 lg:flex">
       <div className="flex items-center justify-between gap-x-6">
         <Logo />
         <nav className="space-x-5">
