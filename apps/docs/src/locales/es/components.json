@@ -53,5 +53,9 @@
   },
   "editOnGithub": {
     "label": "Editar esta página"
+  },
+  "explainButton": {
+    "label": "Explícame esto",
+    "prompt": "Explícame el contenido de esta página: {component}. Contexto: {url}. Explica cuándo usarlo, por qué usarlo, mejores prácticas y alternativas basándote en la documentación provista."
   }
 }

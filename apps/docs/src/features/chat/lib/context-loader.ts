@@ -20,6 +20,47 @@ const COMPONENTS_PATH = path.join(WORKSPACE_ROOT, 'packages/ui/src/components');
 const DOCS_EN_PATH = path.join(process.cwd(), 'src/content/docs/en');
 const DOCS_ES_PATH = path.join(process.cwd(), 'src/content/docs/es');
 
+const STOP_WORDS = new Set([
+  'modo',
+  'ingeniería',
+  'ingenieria',
+  'inversa',
+  'para',
+  'explica',
+  'cuándo',
+  'cuando',
+  'usarlo',
+  'por',
+  'qué',
+  'que',
+  'mejores',
+  'prácticas',
+  'practicas',
+  'alternativas',
+  'este',
+  'esta',
+  'componente',
+  'component',
+  'reverse',
+  'engineering',
+  'mode',
+  'how',
+  'use',
+  'why',
+  'best',
+  'practices',
+  'de',
+  'la',
+  'el',
+  'en',
+  'con',
+  'para',
+  'las',
+  'los',
+  'un',
+  'una',
+]);
+
 async function readFilesRecursively(
   dir: string,
   extension: string,
@@ -91,22 +132,30 @@ export function findRelevantComponents(
   query: string,
 ): ComponentContext[] {
   const normalizedQuery = query.toLowerCase();
-  const queryWords = normalizedQuery.split(/\s+/);
+  const queryWords = normalizedQuery
+    .split(/\s+/)
+    .filter((word) => !STOP_WORDS.has(word) && word.length > 2);
+
+  if (queryWords.length === 0) return [];
 
   return components
-    .filter((comp) => {
+    .map((comp) => {
       const normalizedName = comp.name.toLowerCase();
       const codeContent = comp.code.toLowerCase();
+      let score = 0;
 
-      const matchesName = queryWords.some(
-        (word) =>
-          normalizedName.includes(word) || word.includes(normalizedName) || normalizedName === word,
-      );
+      queryWords.forEach((word) => {
+        if (normalizedName === word) score += 100;
+        else if (normalizedName.includes(word)) score += 50;
 
-      const matchesCode = queryWords.some((word) => codeContent.includes(word));
+        if (codeContent.includes(word)) score += 5;
+      });
 
-      return matchesName || matchesCode;
+      return { comp, score };
     })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((item) => item.comp)
     .slice(0, 3);
 }
 
@@ -115,19 +164,31 @@ export function findRelevantDocs(
   query: string,
 ): DocumentationContext[] {
   const normalizedQuery = query.toLowerCase();
-  const queryWords = normalizedQuery.split(/\s+/).filter((word) => word.length > 2); // Filter out short words like "el", "de", etc.
+  const queryWords = normalizedQuery
+    .split(/\s+/)
+    .filter((word) => !STOP_WORDS.has(word) && word.length > 2);
+
+  if (queryWords.length === 0) return [];
 
   return docs
-    .filter((doc) => {
+    .map((doc) => {
       const normalizedTitle = doc.title.toLowerCase();
       const normalizedContent = doc.content.toLowerCase();
+      let score = 0;
 
-      // Check if any query word matches the title or content
-      return queryWords.some(
-        (word) => normalizedTitle.includes(word) || normalizedContent.includes(word),
-      );
+      queryWords.forEach((word) => {
+        if (normalizedTitle === word) score += 100;
+        else if (normalizedTitle.includes(word)) score += 50;
+
+        if (normalizedContent.includes(word)) score += 5;
+      });
+
+      return { doc, score };
     })
-    .slice(0, 3); // Increased from 2 to 3 to get more context
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((item) => item.doc)
+    .slice(0, 3);
 }
 
 export function buildEnrichedContext(
@@ -170,7 +231,6 @@ export function buildEnrichedContext(
     docs.forEach((doc) => {
       context += `### 📄 ${doc.title}\n\n`;
 
-      // Extract and parse the API Reference section from MDX
       const apiReferenceMatch = doc.content.match(/## API Reference([\s\S]*?)(?=\n##|\n---\n|$)/i);
       if (apiReferenceMatch) {
         context += '#### ✅ PROPS VÁLIDAS (SOLO ESTAS EXISTEN):\n\n';
@@ -178,21 +238,18 @@ export function buildEnrichedContext(
         context += '⚠️ Si una prop no está en esta tabla, NO LA USES.\n\n';
       }
 
-      // Extract usage examples
       const usageMatch = doc.content.match(/## Usage([\s\S]*?)(?=\n##|$)/i);
       if (usageMatch) {
         context += '#### 📖 EJEMPLOS DE USO (COPIÁ ESTOS):\n\n';
         context += usageMatch[0].slice(0, 1000) + '\n\n';
       }
 
-      // Extract examples section
       const examplesMatch = doc.content.match(/## Examples([\s\S]*?)(?=\n## API Reference|$)/i);
       if (examplesMatch) {
         context += '#### 💡 MÁS EJEMPLOS:\n\n';
         context += examplesMatch[0].slice(0, 1500) + '\n\n';
       }
 
-      // If no specific sections found, show truncated content
       if (!apiReferenceMatch && !usageMatch && !examplesMatch) {
         context += doc.content.slice(0, 2000);
         if (doc.content.length > 2000) {

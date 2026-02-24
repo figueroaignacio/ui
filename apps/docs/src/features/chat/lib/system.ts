@@ -100,6 +100,11 @@ function requiresTechnicalContext(message: string): boolean {
     'icono',
     'variant',
     'variante',
+    'reverse',
+    'engineering',
+    'ingeniería',
+    'ingenieria',
+    'inversa',
   ];
 
   const normalized = message.toLowerCase();

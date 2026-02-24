@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export function useChatInput(onSubmit: (message: string) => void) {
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (message.trim()) {
-      onSubmit(message);
-      setMessage('');
-    }
-  };
+  const handleSubmit = useCallback(
+    (e?: React.FormEvent) => {
+      e?.preventDefault();
+      if (message.trim()) {
+        onSubmit(message);
+        setMessage('');
+      }
+    },
+    [message, onSubmit],
+  );
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-    }
-  };
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSubmit();
+      }
+    },
+    [handleSubmit],
+  );
 
   return {
     message,

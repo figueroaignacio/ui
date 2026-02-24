@@ -53,5 +53,9 @@
   },
   "editOnGithub": {
     "label": "Edit this page"
+  },
+  "explainButton": {
+    "label": "Explain this",
+    "prompt": "Explain the content of this page: {component}. Context: {url}. Explain when to use it, why to use it, best practices, and alternatives based on the documentation provided."
   }
 }

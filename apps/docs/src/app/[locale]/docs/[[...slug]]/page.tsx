@@ -5,6 +5,7 @@ import { docs } from '@/content';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
 import { EditOnGithub } from '@/features/docs/components/edit-on-github';
+import { ExplainButton } from '@/features/docs/components/explain-button';
 import { OpenInButtons } from '@/features/docs/components/open-in-buttons';
 import { Toc } from '@/features/docs/components/toc';
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
@@ -44,6 +45,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             <p className="max-w-lg">{doc.description}</p>
             <div className="flex flex-wrap items-center gap-2">
               <OpenInButtons
+                url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+              />
+              <ExplainButton
+                componentName={doc.title}
                 url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
               />
               <EditOnGithub filePath={doc.sourceFilePath} />
