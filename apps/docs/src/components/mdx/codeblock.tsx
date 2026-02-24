@@ -27,7 +27,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20]',
+        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#2d2f31]',
         className,
       )}
     >
@@ -73,9 +73,6 @@ export function CodeBlock({
           </pre>
         )}
       </Highlight>
-      {!isExpanded && codeString.split('\n').length > 15 && (
-        <div className="pointer-events-none absolute bottom-0 left-0 h-12 w-full bg-linear-to-t from-[#0B0B0B] to-transparent" />
-      )}
     </div>
   );
 }
