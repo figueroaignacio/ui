@@ -2,11 +2,9 @@ export const dynamic = 'force-dynamic';
 
 import { MDXContent } from '@/components/mdx/mdx-content';
 import { docs } from '@/content';
+import { DocActions } from '@/features/docs/components/doc-actions';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
-import { EditOnGithub } from '@/features/docs/components/edit-on-github';
-import { ExplainButton } from '@/features/docs/components/explain-button';
-import { OpenInButtons } from '@/features/docs/components/open-in-buttons';
 import { Toc } from '@/features/docs/components/toc';
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
 import type { Metadata } from 'next';
@@ -39,24 +37,19 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   return (
     <>
       <article className="flex w-full min-w-0 flex-col lg:px-26">
-        <div className="my-9 flex items-start justify-between">
-          <div className="space-y-6">
-            <h1 className="gradient-text text-4xl font-black">{doc.title}</h1>
-            <p className="max-w-lg">{doc.description}</p>
-            <div className="flex flex-wrap items-center gap-2">
-              <OpenInButtons
-                url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
-              />
-              <ExplainButton
+        <div className="my-9 flex flex-col gap-6">
+          <div className="flex items-center justify-between gap-4">
+            <h1 className="gradient-text text-4xl font-bold">{doc.title}</h1>
+            <div className="flex items-center gap-2">
+              <DocActions
                 componentName={doc.title}
                 url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+                filePath={doc.sourceFilePath}
               />
-              <EditOnGithub filePath={doc.sourceFilePath} />
+              <DocsNavigationButtons currentPath={currentPath} />
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <DocsNavigationButtons currentPath={currentPath} />
-          </div>
+          <p className="text-muted-foreground">{doc.description}</p>
         </div>
         <div className="min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}

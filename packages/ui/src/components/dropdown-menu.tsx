@@ -313,6 +313,18 @@ function DropdownMenuContent({
   );
 }
 
+interface DropdownMenuItemProps {
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  className?: string;
+  disabled?: boolean;
+  onSelect?: () => void;
+  variant?: 'default' | 'destructive';
+  asChild?: boolean;
+}
+
+// ... context and other components ...
+
 function DropdownMenuItem({
   children,
   onClick,
@@ -320,6 +332,7 @@ function DropdownMenuItem({
   disabled = false,
   variant = 'default',
   onSelect,
+  asChild = false,
 }: DropdownMenuItemProps): React.JSX.Element {
   const { closeMenu } = useDropdownContext();
 
@@ -327,14 +340,18 @@ function DropdownMenuItem({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (disabled) return;
       e.stopPropagation();
-      onClick?.(e);
+      onClick?.(e as any);
       onSelect?.();
       closeMenu();
     },
     [disabled, onClick, onSelect, closeMenu],
   );
 
-  return (
+  const style = {
+    '--accent': variant === 'destructive' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(0,0,0, 0.04)',
+  } as React.CSSProperties;
+
+  const content = (
     <motion.div
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
@@ -348,15 +365,28 @@ function DropdownMenuItem({
         variant === 'destructive' && 'text-destructive focus:text-destructive',
         className,
       )}
-      style={
-        {
-          '--accent': variant === 'destructive' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(0,0,0, 0.04)',
-        } as React.CSSProperties
-      }
+      style={style}
     >
       {children}
     </motion.div>
   );
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children, {
+      onClick: handleClick,
+      className: cn(
+        'relative flex cursor-pointer items-center rounded-md px-3 py-2 text-sm outline-none select-none',
+        'transition-colors duration-200',
+        disabled && 'pointer-events-none opacity-50',
+        variant === 'destructive' && 'text-destructive focus:text-destructive',
+        className,
+        (children.props as any).className,
+      ),
+      style: { ...style, ...(children.props as any).style },
+    } as any);
+  }
+
+  return content;
 }
 
 function DropdownLabel({ children }: { children: React.ReactNode }) {
