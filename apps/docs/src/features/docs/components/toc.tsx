@@ -3,7 +3,7 @@
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@repo/ui/lib/cn';
 import { useTranslations } from 'next-intl';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface TocEntry {
   items?: TocEntry[];
@@ -14,6 +14,9 @@ interface TocEntry {
 interface TocProps {
   toc: TocEntry[];
 }
+
+// Hoisted — stable observer options object (rendering-hoist-jsx)
+const OBSERVER_OPTIONS: IntersectionObserverInit = { rootMargin: '0% 0% -60% 0%' };
 
 export function Toc({ toc }: TocProps) {
   const itemIds = useMemo(
@@ -69,42 +72,28 @@ export function Toc({ toc }: TocProps) {
 function useActiveItem(itemIds: (string | undefined)[]) {
   const [activeId, setActiveId] = useState<string>('');
 
+  // useCallback — stable ref so the useEffect dep doesn't change every render (rerender-dependencies)
+  const handleIntersect = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setActiveId(entry.target.id);
+      }
+    });
+  }, []);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: `0% 0% -60% 0%` },
-    );
+    const observer = new IntersectionObserver(handleIntersect, OBSERVER_OPTIONS);
 
     itemIds?.forEach((id) => {
-      if (!id) {
-        return;
-      }
-
+      if (!id) return;
       const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
+      if (element) observer.observe(element);
     });
 
     return () => {
-      itemIds?.forEach((id) => {
-        if (!id) {
-          return;
-        }
-
-        const element = document.getElementById(id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
+      observer.disconnect();
     };
-  }, [itemIds]);
+  }, [itemIds, handleIntersect]);
 
   return activeId;
 }

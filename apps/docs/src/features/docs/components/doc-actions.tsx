@@ -14,6 +14,7 @@ import {
   DropdownSeparator,
 } from '@repo/ui/components/dropdown-menu';
 import { useTranslations } from 'next-intl';
+import { useCallback, useMemo } from 'react';
 
 type DocActionsProps = {
   componentName: string;
@@ -25,31 +26,34 @@ export function DocActions({ componentName, url, filePath }: DocActionsProps) {
   const t = useTranslations('components');
   const { triggerExplanation } = useChatContext();
 
-  const handleExplain = () => {
+  const handleExplain = useCallback(() => {
     const prompt = t('explainButton.prompt', { component: componentName, url });
     triggerExplanation(componentName, prompt);
-  };
+  }, [t, componentName, url, triggerExplanation]);
 
-  const openInPrompt = t('openIn.prompt', { url });
-  const encodedPrompt = encodeURIComponent(openInPrompt);
+  const openInLinks = useMemo(() => {
+    const openInPrompt = t('openIn.prompt', { url });
+    const encodedPrompt = encodeURIComponent(openInPrompt);
+    return [
+      {
+        name: 'ChatGPT',
+        icon: ChatGPTIcon,
+        href: `https://chatgpt.com/?q=${encodedPrompt}`,
+      },
+      {
+        name: 'Claude',
+        icon: ClaudeIcon,
+        href: `https://claude.ai/new?q=${encodedPrompt}`,
+      },
+      {
+        name: 'v0',
+        icon: V0Icon,
+        href: `https://v0.dev/chat?q=${encodedPrompt}`,
+      },
+    ];
+  }, [t, url]);
 
-  const openInLinks = [
-    {
-      name: 'ChatGPT',
-      icon: ChatGPTIcon,
-      href: `https://chatgpt.com/?q=${encodedPrompt}`,
-    },
-    {
-      name: 'Claude',
-      icon: ClaudeIcon,
-      href: `https://claude.ai/new?q=${encodedPrompt}`,
-    },
-    {
-      name: 'v0',
-      icon: V0Icon,
-      href: `https://v0.dev/chat?q=${encodedPrompt}`,
-    },
-  ];
+  const githubEditUrl = `https://github.com/figueroaignacio/ui/edit/main/apps/docs/src/content/${filePath}.mdx`;
 
   return (
     <ButtonGroup attached>
@@ -86,7 +90,7 @@ export function DocActions({ componentName, url, filePath }: DocActionsProps) {
           <DropdownSeparator />
           <DropdownMenuItem asChild className="gap-2">
             <a
-              href={`https://github.com/figueroaignacio/ui/edit/main/apps/docs/src/content/${filePath}.mdx`}
+              href={githubEditUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center gap-2"
