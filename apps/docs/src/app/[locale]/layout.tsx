@@ -6,7 +6,6 @@ import { fontHeading, fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 interface LocaleLayoutProps {
@@ -34,13 +33,9 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
 
   setRequestLocale(locale);
 
-  const cookieStore = await cookies();
-  const themeCookie = cookieStore.get('theme');
-  const theme = themeCookie?.value === 'light' ? 'light' : 'dark';
-
   return (
-    <html lang={locale} suppressHydrationWarning className={theme}>
-      <body className={`relative ${fontSans.variable} ${fontHeading.variable} `}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`relative ${fontSans.variable} ${fontHeading.variable}`}>
         <NextIntlClientProvider>
           <Providers>
             <div className="flex min-h-screen flex-col lg:pb-0">

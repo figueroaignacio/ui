@@ -1,20 +1,12 @@
-export const dynamic = 'force-dynamic';
-
-import { posts } from '@/content';
-
-// Components
 import { BackButton } from '@/components/common/back-button';
 import { DeveloperWatermark } from '@/components/layout/developer-watermark';
 import { MDXContent } from '@/components/mdx/mdx-content';
-
-// Utils
+import { posts } from '@/content';
 import { getPostsBySlug } from '@/features/blog/lib/get-posts-by-slug';
 import { formatDateOnly } from '@/lib/format-date';
+import type { Locale } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-
-// Types
-import type { Locale } from 'next-intl';
 import type { Metadata } from 'next/types';
 
 interface PostPageProps {

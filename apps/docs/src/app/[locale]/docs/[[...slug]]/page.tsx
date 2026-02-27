@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 import { MDXContent } from '@/components/mdx/mdx-content';
 import { docs } from '@/content';
 import { DocActions } from '@/features/docs/components/doc-actions';
