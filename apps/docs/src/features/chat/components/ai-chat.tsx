@@ -10,7 +10,8 @@ import { ChatWindow } from './chat-window';
 
 export function AiChat() {
   const { isOpen, setIsOpen, setExternalSendMessage } = useChatContext();
-  const { messages, isLoading, messagesEndRef, sendMessage, handleSuggestionClick } = useChat();
+  const { messages, isLoading, isStreaming, messagesEndRef, sendMessage, handleSuggestionClick } =
+    useChat();
   const { message, setMessage, handleSubmit, handleKeyPress } = useChatInput(sendMessage);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export function AiChat() {
         isOpen={isOpen}
         messages={messages}
         isLoading={isLoading}
+        isStreaming={isStreaming}
         messagesEndRef={messagesEndRef as RefObject<HTMLDivElement>}
         message={message}
         onMessageChange={setMessage}

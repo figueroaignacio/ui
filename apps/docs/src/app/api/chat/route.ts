@@ -1,7 +1,7 @@
 import { groq, GROQ_CONFIG } from '@/features/chat/lib/groq-client';
 import { getSystemPrompt } from '@/features/chat/lib/system';
-import { generateText } from 'ai';
-import { NextRequest, NextResponse } from 'next/server';
+import { streamText } from 'ai';
+import { NextRequest } from 'next/server';
 
 interface Message {
   role: 'user' | 'assistant' | 'system';
@@ -35,14 +35,17 @@ export async function POST(req: NextRequest) {
     const { messages } = await req.json();
 
     if (!validateMessages(messages)) {
-      return NextResponse.json({ error: 'Invalid messages format' }, { status: 400 });
+      return new Response(JSON.stringify({ error: 'Invalid messages format' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     const sanitizedMessages = messages.slice(-5);
     const normalizedMessages = normalizeMessages(sanitizedMessages);
     const systemPrompt = await getSystemPrompt(normalizedMessages);
 
-    const { text } = await generateText({
+    const result = await streamText({
       model: groq(GROQ_CONFIG.model),
       system: systemPrompt,
       messages: normalizedMessages,
@@ -51,7 +54,13 @@ export async function POST(req: NextRequest) {
       topP: GROQ_CONFIG.topP,
     });
 
-    return NextResponse.json({ message: text });
+    return result.toTextStreamResponse({
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache',
+        'X-Accel-Buffering': 'no',
+      },
+    });
   } catch (error) {
     console.error('Groq API Error:', error);
 
@@ -61,23 +70,23 @@ export async function POST(req: NextRequest) {
       err?.status === 413 ||
       (typeof err?.message === 'string' && err.message.includes('rate_limit_exceeded'))
     ) {
-      return NextResponse.json(
-        {
+      return new Response(
+        JSON.stringify({
           error: 'The message is too long. Please try a shorter message.',
           details: 'Token limit exceeded',
-        },
-        { status: 413 },
+        }),
+        { status: 413, headers: { 'Content-Type': 'application/json' } },
       );
     }
 
-    return NextResponse.json(
-      {
+    return new Response(
+      JSON.stringify({
         error:
           typeof err?.message === 'string'
             ? err.message
             : String(error) || 'Failed to process chat request',
-      },
-      { status: 500 },
+      }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } },
     );
   }
 }

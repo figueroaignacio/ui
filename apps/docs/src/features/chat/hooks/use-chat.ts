@@ -14,24 +14,22 @@ export function useChat() {
 
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesRef = useRef<Message[]>(messages);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     messagesRef.current = messages;
   }, [messages]);
 
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, scrollToBottom]);
-
   const sendMessage = useCallback(
     async (content: string) => {
-      if (!content.trim() || isLoading) return;
+      if (!content.trim() || isLoading || isStreaming) return;
+
+      abortControllerRef.current?.abort();
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
 
       const userMessage: Message = { role: 'user', content: content.trim() };
       setMessages((prev) => [...prev, userMessage]);
@@ -44,31 +42,60 @@ export function useChat() {
           body: JSON.stringify({
             messages: [...messagesRef.current, userMessage],
           }),
+          signal: controller.signal,
         });
 
-        if (!response.ok) throw new Error('Failed to get response');
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.error || 'Failed to get response');
+        }
 
-        const data = await response.json();
-        const assistantMessage: Message = {
-          role: 'assistant',
-          content: data.message,
-        };
+        if (!response.body) throw new Error('No response body');
 
-        setMessages((prev) => [...prev, assistantMessage]);
-      } catch (error) {
+        setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
+        setIsLoading(false);
+        setIsStreaming(true);
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+
+          setMessages((prev) => {
+            const next = [...prev];
+            const last = next[next.length - 1];
+            if (last && last.role === 'assistant') {
+              next[next.length - 1] = {
+                ...last,
+                content: last.content + chunk,
+              };
+            }
+            return next;
+          });
+        }
+      } catch (error: unknown) {
+        if (error instanceof Error && error.name === 'AbortError') return;
+
         console.error('Chat error:', error);
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: 'assistant',
-            content: t('error'),
-          },
-        ]);
+        setMessages((prev) => {
+          const next = [...prev];
+          const last = next[next.length - 1];
+          if (last && last.role === 'assistant' && last.content === '') {
+            next[next.length - 1] = { ...last, content: t('error') };
+            return next;
+          }
+          return [...prev, { role: 'assistant', content: t('error') }];
+        });
       } finally {
         setIsLoading(false);
+        setIsStreaming(false);
       }
     },
-    [isLoading, t],
+    [isLoading, isStreaming, t],
   );
 
   const handleSuggestionClick = useCallback(
@@ -81,6 +108,7 @@ export function useChat() {
   return {
     messages,
     isLoading,
+    isStreaming,
     messagesEndRef,
     sendMessage,
     handleSuggestionClick,
