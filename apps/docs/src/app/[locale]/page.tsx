@@ -11,9 +11,6 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations({ locale, namespace: 'sections.faq' });
-  const faqs = t.raw('items');
-
   return (
     <>
       <LandingHero />
