@@ -1,53 +1,38 @@
 import type { Message } from '../../../lib/definitions';
-import { detectLanguage } from './ai-language-detector';
 import { getCachedContext } from './cache-manager';
 import { buildEnrichedContext, findRelevantComponents, findRelevantDocs } from './context-loader';
-import { SYSTEM_PROMPTS } from './prompts';
-
-type Language = 'en' | 'es';
+import { SYSTEM_PROMPT } from './prompts';
 
 function getLastUserMessage(messages: Message[]): string {
-  const lastUserMsg = messages.filter((m) => m.role === 'user').pop();
-  return lastUserMsg?.content || '';
+  return messages.filter((m) => m.role === 'user').pop()?.content ?? '';
 }
 
 export async function getSystemPrompt(messages: Message[]): Promise<string> {
-  let lang: Language = 'en';
-
-  try {
-    lang = detectLanguage(messages) as Language;
-  } catch (error) {
-    console.warn('Language detection failed, defaulting to "en"');
-  }
-
-  const basePrompt = SYSTEM_PROMPTS[lang];
   const lastMessage = getLastUserMessage(messages);
 
   if (!requiresTechnicalContext(lastMessage)) {
-    return basePrompt;
+    return SYSTEM_PROMPT;
   }
 
   try {
-    const { components, docsEn, docsEs } = await getCachedContext();
-    const docs = lang === 'en' ? docsEn : docsEs;
+    const { components, docs } = await getCachedContext();
 
     if (components.length === 0 && docs.length === 0) {
-      return basePrompt;
+      return SYSTEM_PROMPT;
     }
 
     const relevantComponents = findRelevantComponents(components, lastMessage);
     const relevantDocs = findRelevantDocs(docs, lastMessage);
 
     if (relevantComponents.length === 0 && relevantDocs.length === 0) {
-      return basePrompt;
+      return SYSTEM_PROMPT;
     }
 
     const enrichedContext = buildEnrichedContext(relevantComponents, relevantDocs, lastMessage);
-
-    return `${basePrompt}\n\n${enrichedContext}`;
+    return `${SYSTEM_PROMPT}\n\n${enrichedContext}`;
   } catch (error) {
     console.error('Error loading context:', error);
-    return basePrompt;
+    return SYSTEM_PROMPT;
   }
 }
 
@@ -91,7 +76,6 @@ function requiresTechnicalContext(message: string): boolean {
     'sheet',
     'timeline',
     'tooltip',
-    'files',
     'dark mode',
     'modo oscuro',
     'theming',
@@ -100,11 +84,6 @@ function requiresTechnicalContext(message: string): boolean {
     'icono',
     'variant',
     'variante',
-    'reverse',
-    'engineering',
-    'ingeniería',
-    'ingenieria',
-    'inversa',
   ];
 
   const normalized = message.toLowerCase();

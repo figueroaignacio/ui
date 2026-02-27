@@ -4,21 +4,18 @@ import path from 'path';
 export interface ComponentContext {
   name: string;
   code: string;
-  language: 'en' | 'es';
   filePath: string;
 }
 
 export interface DocumentationContext {
   title: string;
   content: string;
-  language: 'en' | 'es';
   path: string;
 }
 
 const WORKSPACE_ROOT = path.resolve(process.cwd(), '../..');
 const COMPONENTS_PATH = path.join(WORKSPACE_ROOT, 'packages/ui/src/components');
-const DOCS_EN_PATH = path.join(process.cwd(), 'src/content/docs/en');
-const DOCS_ES_PATH = path.join(process.cwd(), 'src/content/docs/es');
+const DOCS_PATH = path.join(process.cwd(), 'src/content/docs/en');
 
 const STOP_WORDS = new Set([
   'modo',
@@ -95,7 +92,6 @@ export async function loadComponents(): Promise<ComponentContext[]> {
     return files.map((file) => ({
       name: path.basename(file.path, '.tsx'),
       code: file.content,
-      language: 'en' as const,
       filePath: file.path,
     }));
   } catch (error) {
@@ -104,20 +100,17 @@ export async function loadComponents(): Promise<ComponentContext[]> {
   }
 }
 
-export async function loadDocumentation(language: 'en' | 'es'): Promise<DocumentationContext[]> {
-  const docsPath = language === 'en' ? DOCS_EN_PATH : DOCS_ES_PATH;
-
+export async function loadDocumentation(): Promise<DocumentationContext[]> {
   try {
-    const files = await readFilesRecursively(docsPath, '.mdx');
+    const files = await readFilesRecursively(DOCS_PATH, '.mdx');
 
     return files.map((file) => {
-      const relativePath = path.relative(docsPath, file.path);
+      const relativePath = path.relative(DOCS_PATH, file.path);
       const title = relativePath.replace(/\.mdx$/, '').replace(/\//g, ' > ');
 
       return {
         title,
         content: file.content,
-        language,
         path: relativePath,
       };
     });
@@ -199,17 +192,18 @@ export function buildEnrichedContext(
   let context = '';
 
   context += '\n\n' + '='.repeat(80) + '\n';
-  context += '⚠️  INSTRUCCIONES CRÍTICAS - LEÉ ESTO PRIMERO ⚠️\n';
+  context += '⚠️  CRITICAL INSTRUCTIONS - READ THIS FIRST ⚠️\n';
   context += '='.repeat(80) + '\n\n';
-  context += '1. SOLO podés usar el código y props que aparecen ABAJO en este contexto.\n';
-  context += '2. Si una prop NO está en la tabla "API Reference", NO EXISTE.\n';
-  context += '3. Si un método o feature NO está en los ejemplos, NO LO INVENTES.\n';
-  context += '4. Copiá los ejemplos EXACTAMENTE como aparecen en "Usage" o "Examples".\n';
-  context += '5. Si no estás 100% seguro, decí: "No veo eso en la documentación actual."\n\n';
+  context += '1. ONLY use code and props that appear BELOW in this context.\n';
+  context += '2. If a prop is NOT in the "API Reference" table, IT DOES NOT EXIST.\n';
+  context += '3. If a method or feature is NOT in the examples, DO NOT INVENT IT.\n';
+  context += '4. Copy examples EXACTLY as they appear in "Usage" or "Examples".\n';
+  context +=
+    '5. If you are not 100% sure, say: "I don\'t see that in the current documentation."\n\n';
 
   if (components.length > 0) {
-    context += '## CÓDIGO FUENTE DE COMPONENTES\n\n';
-    context += '⚠️ Este es el código REAL. No asumas que tiene features que no ves acá.\n\n';
+    context += '## COMPONENT SOURCE CODE\n\n';
+    context += '⚠️ This is the REAL code. Do not assume features you do not see here.\n\n';
 
     components.forEach((comp, idx) => {
       context += `### ${comp.name}\n\n`;
@@ -225,28 +219,28 @@ export function buildEnrichedContext(
   }
 
   if (docs.length > 0) {
-    context += '\n## DOCUMENTACIÓN OFICIAL\n\n';
-    context += '⚠️ Esta es la ÚNICA fuente de verdad. No inventes nada fuera de esto.\n\n';
+    context += '\n## OFFICIAL DOCUMENTATION\n\n';
+    context += '⚠️ This is the ONLY source of truth. Do not invent anything outside this.\n\n';
 
     docs.forEach((doc) => {
       context += `### 📄 ${doc.title}\n\n`;
 
       const apiReferenceMatch = doc.content.match(/## API Reference([\s\S]*?)(?=\n##|\n---\n|$)/i);
       if (apiReferenceMatch) {
-        context += '#### ✅ PROPS VÁLIDAS (SOLO ESTAS EXISTEN):\n\n';
+        context += '#### ✅ VALID PROPS (ONLY THESE EXIST):\n\n';
         context += apiReferenceMatch[0] + '\n\n';
-        context += '⚠️ Si una prop no está en esta tabla, NO LA USES.\n\n';
+        context += '⚠️ If a prop is not in this table, DO NOT USE IT.\n\n';
       }
 
       const usageMatch = doc.content.match(/## Usage([\s\S]*?)(?=\n##|$)/i);
       if (usageMatch) {
-        context += '#### 📖 EJEMPLOS DE USO (COPIÁ ESTOS):\n\n';
+        context += '#### 📖 USAGE EXAMPLES (COPY THESE):\n\n';
         context += usageMatch[0].slice(0, 1000) + '\n\n';
       }
 
       const examplesMatch = doc.content.match(/## Examples([\s\S]*?)(?=\n## API Reference|$)/i);
       if (examplesMatch) {
-        context += '#### 💡 MÁS EJEMPLOS:\n\n';
+        context += '#### 💡 MORE EXAMPLES:\n\n';
         context += examplesMatch[0].slice(0, 1500) + '\n\n';
       }
 
@@ -262,17 +256,17 @@ export function buildEnrichedContext(
   }
 
   if (components.length === 0 && docs.length === 0) {
-    context += '\n⚠️ NO SE ENCONTRÓ DOCUMENTACIÓN PARA: "' + query + '"\n\n';
-    context += '🚫 NO INVENTES NADA. Solo podés:\n';
-    context += '  1. Decir que no tenés esa información\n';
-    context += '  2. Sugerir componentes similares que SÍ existen\n';
-    context += '  3. Explicar conceptos generales de React/Next.js (sin código específico)\n\n';
+    context += '\n⚠️ NO DOCUMENTATION FOUND FOR: "' + query + '"\n\n';
+    context += '🚫 DO NOT INVENT ANYTHING. You can only:\n';
+    context += '  1. Say you do not have that information\n';
+    context += '  2. Suggest similar components that do exist\n';
+    context += '  3. Explain general React/Next.js concepts (without specific code)\n\n';
   }
 
   context += '\n' + '='.repeat(80) + '\n';
-  context += '⚠️  RECORDATORIO FINAL ⚠️\n';
+  context += '⚠️  FINAL REMINDER ⚠️\n';
   context += '='.repeat(80) + '\n';
-  context += 'Solo usá lo que está ARRIBA. No asumas. No inventes. No extrapoles.\n';
+  context += 'Only use what is ABOVE. Do not assume. Do not invent. Do not extrapolate.\n';
   context += '='.repeat(80) + '\n\n';
 
   return context;
