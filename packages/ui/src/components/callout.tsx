@@ -53,9 +53,11 @@ const Callout = forwardRef<HTMLDivElement, CalloutProps>(
 
     return (
       <div ref={ref} className={cn(calloutVariants({ variant }), className)} {...props}>
-        {calloutIcon && <div className="mt-0.5 shrink-0 text-base select-none">{calloutIcon}</div>}
+        {calloutIcon ? (
+          <div className="mt-0.5 shrink-0 text-base select-none">{calloutIcon}</div>
+        ) : null}
         <div className="flex-1 space-y-1">
-          {title && <div className="leading-none font-semibold tracking-tight">{title}</div>}
+          {title ? <div className="leading-none font-semibold tracking-tight">{title}</div> : null}
           <div className="text-muted-foreground/90 [&_p]:leading-relaxed">{children}</div>
         </div>
       </div>

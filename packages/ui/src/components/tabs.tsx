@@ -5,8 +5,14 @@ import { motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
+// --- Animation constants (module level) ---
+
+const TABS_INDICATOR_TRANSITION = { type: 'spring', bounce: 0.2, duration: 0.6 } as const;
+
+// --- CVA ---
+
 const tabsListVariants = cva(
-  'inline-flex   rounded-md p-1 text-muted-foreground w-full sm:w-auto overflow-hidden',
+  'inline-flex rounded-md p-1 text-muted-foreground w-full sm:w-auto overflow-hidden',
   {
     variants: {
       variant: {
@@ -25,9 +31,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-  [
-    'relative inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 z-10 cursor-pointer',
-  ].join(' '),
+  'relative inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 z-10 cursor-pointer',
   {
     variants: {
       variant: {
@@ -51,6 +55,8 @@ const tabsTriggerVariants = cva(
   },
 );
 
+// --- Context ---
+
 interface TabsContextValue {
   activeTab: string;
   setActiveTab: (value: string) => void;
@@ -67,6 +73,8 @@ function useTabsContext() {
   if (!context) throw new Error('Tabs components must be used within Tabs');
   return context;
 }
+
+// --- Components ---
 
 interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultValue?: string;
@@ -203,7 +211,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
                 ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
                 : 'bg-secondary border-border/50 rounded-sm border shadow-sm',
             )}
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+            transition={TABS_INDICATOR_TRANSITION}
           />
         )}
       </button>

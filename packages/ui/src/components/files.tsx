@@ -11,9 +11,13 @@ import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { cn } from '../lib/cn';
 
+// --- Types ---
+
 export type GitStatus = 'modified' | 'deleted' | 'added' | 'untracked' | 'renamed' | 'ignored';
 
-const gitStatusStyles: Record<GitStatus, { color: string; letter: string }> = {
+// --- Constants (module level) ---
+
+const GIT_STATUS_STYLES: Record<GitStatus, { color: string; letter: string }> = {
   modified: { color: 'text-yellow-500', letter: 'M' },
   deleted: { color: 'text-red-500 line-through opacity-70', letter: 'D' },
   added: { color: 'text-green-500', letter: 'A' },
@@ -21,6 +25,30 @@ const gitStatusStyles: Record<GitStatus, { color: string; letter: string }> = {
   renamed: { color: 'text-blue-500', letter: 'R' },
   ignored: { color: 'text-muted-foreground opacity-50', letter: 'I' },
 };
+
+const FILE_HOVER = { x: 4, backgroundColor: 'rgba(0, 0, 0, 0.05)' } as const;
+const FILE_TAP = { scale: 0.98 } as const;
+const FILE_TRANSITION = { duration: 0.15 } as const;
+const FILE_STYLE = { willChange: 'transform' } as const;
+
+const FOLDER_CHEVRON_OPEN = { rotate: 90 } as const;
+const FOLDER_CHEVRON_CLOSED = { rotate: 0 } as const;
+const FOLDER_CHEVRON_TRANSITION = { duration: 0.2, ease: 'easeInOut' } as const;
+
+const FOLDER_ICON_OPEN = { scale: 1.1 } as const;
+const FOLDER_ICON_CLOSED = { scale: 1 } as const;
+const FOLDER_ICON_TRANSITION = { duration: 0.2 } as const;
+
+const FOLDER_CONTENT_VARIANTS = {
+  open: { height: 'auto', opacity: 1 },
+  closed: { height: 0, opacity: 0 },
+} as const;
+
+const FOLDER_CONTENT_TRANSITION = { duration: 0.2, ease: 'easeInOut' } as const;
+
+const FOLDER_CONTENT_STYLE = { willChange: 'height, opacity' } as const;
+
+// --- Context ---
 
 interface FilesContextValue {
   openFolders: Set<string>;
@@ -39,6 +67,8 @@ const useFiles = () => {
 
 const FolderPathContext = React.createContext<string>('');
 
+// --- Components ---
+
 export type FileProps = {
   name: string;
   className?: string;
@@ -47,14 +77,15 @@ export type FileProps = {
 };
 
 export const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
-  const statusConfig = status ? gitStatusStyles[status] : undefined;
+  const statusConfig = status ? GIT_STATUS_STYLES[status] : undefined;
 
   return (
     <motion.div
       onClick={onClick}
-      whileHover={{ x: 4, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.15 }}
+      whileHover={FILE_HOVER}
+      whileTap={FILE_TAP}
+      transition={FILE_TRANSITION}
+      style={FILE_STYLE}
       className={cn(
         'flex cursor-pointer items-center space-x-2 rounded px-2 py-1 text-sm transition-colors',
         className,
@@ -66,11 +97,11 @@ export const File: React.FC<FileProps> = ({ name, className, onClick, status }) 
 
       <span className={cn('flex-1 truncate', statusConfig?.color)}>{name}</span>
 
-      {statusConfig && (
+      {statusConfig ? (
         <span className={cn('ml-auto w-4 text-center text-xs font-bold', statusConfig.color)}>
           {statusConfig.letter}
         </span>
-      )}
+      ) : null}
     </motion.div>
   );
 };
@@ -96,7 +127,7 @@ export const Folder: React.FC<FolderProps> = ({
   const isOpen = openFolders.has(currentPath);
   const hasChildren = React.Children.count(children) > 0;
 
-  const statusConfig = status ? gitStatusStyles[status] : undefined;
+  const statusConfig = status ? GIT_STATUS_STYLES[status] : undefined;
 
   const handleToggle = () => {
     if (hasChildren) {
@@ -117,8 +148,8 @@ export const Folder: React.FC<FolderProps> = ({
       >
         {hasChildren ? (
           <motion.div
-            animate={{ rotate: isOpen ? 90 : 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            animate={isOpen ? FOLDER_CHEVRON_OPEN : FOLDER_CHEVRON_CLOSED}
+            transition={FOLDER_CHEVRON_TRANSITION}
           >
             <HugeiconsIcon
               icon={ArrowRight01Icon}
@@ -131,8 +162,8 @@ export const Folder: React.FC<FolderProps> = ({
         )}
 
         <motion.div
-          animate={{ scale: isOpen ? 1.1 : 1 }}
-          transition={{ duration: 0.2 }}
+          animate={isOpen ? FOLDER_ICON_OPEN : FOLDER_ICON_CLOSED}
+          transition={FOLDER_ICON_TRANSITION}
           className={cn('text-muted-foreground', statusConfig?.color)}
         >
           {isOpen ? (
@@ -144,20 +175,22 @@ export const Folder: React.FC<FolderProps> = ({
 
         <span className={cn('ml-2 flex-1 truncate', statusConfig?.color)}>{name}</span>
 
-        {statusConfig && (
+        {statusConfig ? (
           <span className={cn('ml-auto w-4 text-center text-xs font-bold', statusConfig.color)}>
             {statusConfig.letter}
           </span>
-        )}
+        ) : null}
       </motion.div>
 
       <AnimatePresence initial={false}>
         {hasChildren && isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            variants={FOLDER_CONTENT_VARIANTS}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            transition={FOLDER_CONTENT_TRANSITION}
+            style={FOLDER_CONTENT_STYLE}
             className="overflow-hidden"
           >
             <div className="border-border mt-1 ml-2 border-l pl-4">

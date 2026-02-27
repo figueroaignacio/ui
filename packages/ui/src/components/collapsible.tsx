@@ -3,9 +3,48 @@
 import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cva } from 'class-variance-authority';
-import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
+import { AnimatePresence, HTMLMotionProps, motion, useReducedMotion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
+
+// --- Animation constants (module level) ---
+
+const COLLAPSIBLE_ICON_TRANSITION = { type: 'spring', stiffness: 300, damping: 20 } as const;
+
+const COLLAPSIBLE_HEIGHT_VARIANTS = {
+  open: {
+    height: 'auto',
+    opacity: 1,
+    filter: 'blur(0px)',
+    transition: {
+      height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] as [number, number, number, number] },
+      opacity: { duration: 0.25, delay: 0.05 },
+      filter: { duration: 0.3 },
+    },
+  },
+  closed: {
+    height: 0,
+    opacity: 0,
+    filter: 'blur(10px)',
+    transition: {
+      height: {
+        duration: 0.25,
+        ease: [0.04, 0.62, 0.23, 0.98] as [number, number, number, number],
+      },
+      opacity: { duration: 0.15 },
+      filter: { duration: 0.2 },
+    },
+  },
+} as const;
+
+const COLLAPSIBLE_INNER_VARIANTS = {
+  open: { y: 0, scale: 1, transition: { duration: 0.3, ease: 'easeOut' } },
+  closed: { y: -8, scale: 0.98, transition: { duration: 0.2 } },
+} as const;
+
+const COLLAPSIBLE_CONTENT_STYLE = { willChange: 'height, opacity, filter' } as const;
+
+// --- CVA ---
 
 const collapsibleVariants = cva('', {
   variants: {
@@ -54,6 +93,8 @@ const collapsibleContentVariants = cva('overflow-hidden', {
   },
 });
 
+// --- Context ---
+
 interface CollapsibleContextValue {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
@@ -91,6 +132,8 @@ const useCollapsibleContext = (): CollapsibleContextValue => {
   }
   return context;
 };
+
+// --- Components ---
 
 const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
   (
@@ -159,6 +202,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
     ref,
   ) => {
     const { isOpen, setIsOpen, disabled, variant } = useCollapsibleContext();
+    const shouldReduceMotion = useReducedMotion();
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -173,9 +217,6 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
     const chevron = chevronIcon ?? (
       <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4 shrink-0" size={16} />
     );
-
-    // SOLUCIÓN AQUÍ: Agregamos 'as const'
-    const iconTransition = { type: 'spring', stiffness: 300, damping: 20 } as const;
 
     if (asChild && React.isValidElement(children)) {
       return React.cloneElement(children, {
@@ -194,16 +235,20 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
         disabled={disabled}
         data-state={isOpen ? 'open' : 'closed'}
         aria-expanded={isOpen}
-        whileHover={{ scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }}
-        whileTap={{ scale: 0.99 }}
+        whileHover={
+          !disabled && !shouldReduceMotion
+            ? { scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }
+            : {}
+        }
+        whileTap={!disabled && !shouldReduceMotion ? { scale: 0.99 } : {}}
         className={cn(collapsibleTriggerVariants({ variant }), className)}
         {...props}
       >
         {showChevron && chevronPosition === 'left' && (
           <motion.span
             aria-hidden="true"
-            animate={{ rotate: isOpen ? 90 : 0 }}
-            transition={iconTransition}
+            animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 90 : 0 }}
+            transition={COLLAPSIBLE_ICON_TRANSITION}
             className="mr-2"
           >
             {chevron}
@@ -213,8 +258,8 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
         {showChevron && chevronPosition === 'right' && (
           <motion.span
             aria-hidden="true"
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={iconTransition}
+            animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 180 : 0 }}
+            transition={COLLAPSIBLE_ICON_TRANSITION}
             className="ml-2"
           >
             {chevron}
@@ -236,42 +281,19 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
         {(isOpen || forceMount) && (
           <motion.div
             ref={ref}
-            initial={{ height: 0, opacity: 0, filter: 'blur(10px)' }}
-            animate={{
-              height: 'auto',
-              opacity: 1,
-              filter: 'blur(0px)',
-              transition: {
-                height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
-                opacity: { duration: 0.25, delay: 0.05 },
-                filter: { duration: 0.3 },
-              },
-            }}
-            exit={{
-              height: 0,
-              opacity: 0,
-              filter: 'blur(10px)',
-              transition: {
-                height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] },
-                opacity: { duration: 0.15 }, // Desaparece rápido para no estorbar
-                filter: { duration: 0.2 },
-              },
-            }}
+            variants={COLLAPSIBLE_HEIGHT_VARIANTS}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            style={COLLAPSIBLE_CONTENT_STYLE}
             className={cn(collapsibleContentVariants({ variant }), className)}
             {...props}
           >
             <motion.div
-              initial={{ y: -8, scale: 0.98 }}
-              animate={{
-                y: 0,
-                scale: 1,
-                transition: { duration: 0.3, ease: 'easeOut' },
-              }}
-              exit={{
-                y: -8,
-                scale: 0.98,
-                transition: { duration: 0.2 },
-              }}
+              variants={COLLAPSIBLE_INNER_VARIANTS}
+              initial="closed"
+              animate="open"
+              exit="closed"
             >
               {children}
             </motion.div>
@@ -290,8 +312,7 @@ export {
   collapsibleContentVariants,
   CollapsibleTrigger,
   collapsibleTriggerVariants,
-  collapsibleVariants
+  collapsibleVariants,
 };
 
-  export type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps };
-
+export type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps };

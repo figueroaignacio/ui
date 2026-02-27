@@ -1,7 +1,7 @@
 import { ArrowRight01Icon, MoreHorizontalIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { cn } from '@repo/ui/lib/cn';
 import * as React from 'react';
+import { cn } from '../lib/cn';
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<'nav'>) {
   return <nav aria-label="breadcrumb" className={className} {...props} />;
@@ -11,7 +11,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
   return (
     <ol
       className={cn(
-        'text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5',
+        'text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm wrap-break-word sm:gap-2.5',
         className,
       )}
       {...props}

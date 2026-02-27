@@ -3,9 +3,11 @@
 import { Loading02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
+import { AnimatePresence, HTMLMotionProps, motion, useReducedMotion } from 'motion/react';
 import React, { forwardRef } from 'react';
 import { cn } from '../lib/cn';
+
+// --- CVA ---
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium outline-none select-none relative overflow-hidden disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed aria-invalid:ring-2 aria-invalid:ring-destructive/50 aria-invalid:border-destructive',
@@ -36,6 +38,26 @@ const buttonVariants = cva(
   },
 );
 
+// --- Animation variants (hoisted at module level) ---
+
+const LOADER_VARIANTS = {
+  initial: { opacity: 0, scale: 0.8, filter: 'blur(4px)' },
+  animate: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+  exit: { opacity: 0, scale: 0.8, filter: 'blur(4px)' },
+} as const;
+
+const CONTENT_VARIANTS = {
+  initial: { opacity: 0, y: 5, filter: 'blur(4px)' },
+  animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  exit: { opacity: 0, y: -5, filter: 'blur(4px)' },
+} as const;
+
+const SWAP_TRANSITION = { duration: 0.2 } as const;
+const BUTTON_SPRING = { type: 'spring', stiffness: 400, damping: 17 } as const;
+const BUTTON_STYLE = { willChange: 'transform' } as const;
+
+// --- Component ---
+
 interface ButtonProps extends HTMLMotionProps<'button'>, VariantProps<typeof buttonVariants> {
   loading?: boolean;
   loader?: React.ReactNode;
@@ -65,6 +87,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const isDisabled = disabled || loading;
+    const shouldReduceMotion = useReducedMotion();
 
     return (
       <motion.button
@@ -72,19 +95,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         disabled={isDisabled}
         className={cn(buttonVariants({ variant, size }), fullWidth && 'w-full', className)}
-        whileHover={{ scale: 1.02, y: -1 }}
-        whileTap={{ scale: 0.96 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+        whileTap={!isDisabled && !shouldReduceMotion ? { scale: 0.96 } : undefined}
+        transition={BUTTON_SPRING}
+        style={BUTTON_STYLE}
         {...props}
       >
         <AnimatePresence mode="popLayout" initial={false}>
           {loading ? (
             <motion.span
               key="loader"
-              initial={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, scale: 0.8, filter: 'blur(4px)' }}
-              transition={{ duration: 0.2 }}
+              variants={LOADER_VARIANTS}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={SWAP_TRANSITION}
               className="absolute flex items-center justify-center"
             >
               {loader ?? (
@@ -95,14 +119,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <motion.div
               key="content"
               className="flex items-center gap-2"
-              initial={{ opacity: 0, y: 5, filter: 'blur(4px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -5, filter: 'blur(4px)' }}
-              transition={{ duration: 0.2 }}
+              variants={CONTENT_VARIANTS}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={SWAP_TRANSITION}
             >
-              {leftIcon && <span className="shrink-0">{leftIcon}</span>}
+              {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
               <span>{children}</span>
-              {rightIcon && <span className="shrink-0">{rightIcon}</span>}
+              {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
             </motion.div>
           )}
         </AnimatePresence>
@@ -112,6 +137,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+
+// --- ButtonGroup ---
 
 interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
