@@ -7,16 +7,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export function useChat() {
   const t = useTranslations('components.chat.messages');
 
-  const INITIAL_MESSAGE: Message = {
-    role: 'assistant',
-    content: t('initial'),
-  };
-
-  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
+  const [messages, setMessages] = useState<Message[]>(() => [
+    { role: 'assistant', content: t('initial') },
+  ]);
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const messagesRef = useRef<Message[]>(messages);
+  const messagesRef = useRef<Message[]>([{ role: 'assistant', content: t('initial') }]);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {

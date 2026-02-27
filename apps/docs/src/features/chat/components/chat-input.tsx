@@ -1,6 +1,6 @@
 import { Loading03Icon, SentIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 interface ChatInputProps {
@@ -14,8 +14,11 @@ interface ChatInputProps {
 export function ChatInput(props: ChatInputProps) {
   const { message, isLoading, onMessageChange, onSubmit, onKeyPress } = props;
   const t = useTranslations('components.chat');
+  const shouldReduceMotion = useReducedMotion();
 
   const disabled = isLoading || !message.trim();
+  const hoverScale = shouldReduceMotion || disabled ? 1 : 1.05;
+  const tapScale = shouldReduceMotion || disabled ? 1 : 0.95;
 
   return (
     <form onSubmit={onSubmit} className="w-full">
@@ -31,8 +34,9 @@ export function ChatInput(props: ChatInputProps) {
         <motion.button
           type="submit"
           disabled={disabled}
-          whileHover={{ scale: disabled ? 1 : 1.05 }}
-          whileTap={{ scale: disabled ? 1 : 0.95 }}
+          whileHover={{ scale: hoverScale }}
+          whileTap={{ scale: tapScale }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (

@@ -3,6 +3,8 @@ import { getSystemPrompt } from '@/features/chat/lib/system';
 import { streamText } from 'ai';
 import { NextRequest } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;

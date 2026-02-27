@@ -1,6 +1,7 @@
 import type { Message } from '@/lib/definitions';
-import { AnimatePresence, motion } from 'motion/react';
-import { type RefObject, useEffect } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import type { RefObject } from 'react';
+import { useEffect } from 'react';
 import { ChatLoading } from './chat-loading';
 import { ChatMessage } from './chat-message';
 import { ChatSuggestions } from './chat-suggestions';
@@ -13,6 +14,28 @@ interface ChatMessagesProps {
   onSuggestionClick: (text: string) => void;
 }
 
+const messageRowVariants = {
+  initial: { opacity: 0, y: 12 },
+  animate: { opacity: 1, y: 0 },
+} as const;
+
+const messageRowTransition = {
+  type: 'spring' as const,
+  stiffness: 300,
+  damping: 28,
+  duration: 0.3,
+};
+
+const messageRowStyle = { willChange: 'opacity, transform' } as const;
+
+const loadingVariants = {
+  initial: { opacity: 0, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -4 },
+} as const;
+
+const loadingTransition = { duration: 0.2 };
+
 export function ChatMessages({
   messages,
   isLoading,
@@ -20,6 +43,7 @@ export function ChatMessages({
   endRef,
   onSuggestionClick,
 }: ChatMessagesProps) {
+  const shouldReduceMotion = useReducedMotion();
   const showSuggestions = messages.length === 1 && messages[0].role === 'assistant';
 
   const lastMsg = messages[messages.length - 1];
@@ -29,10 +53,10 @@ export function ChatMessages({
   useEffect(() => {
     if (!endRef.current) return;
     endRef.current.scrollIntoView({
-      behavior: isStreaming ? 'instant' : 'smooth',
+      behavior: shouldReduceMotion || isStreaming ? 'instant' : 'smooth',
       block: 'end',
     });
-  }, [lastContent, lastRole, isLoading, messages.length]);
+  }, [lastContent, lastRole, isLoading, messages.length, isStreaming, shouldReduceMotion, endRef]);
 
   return (
     <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto p-4">
@@ -45,9 +69,11 @@ export function ChatMessages({
             <motion.div
               key={idx}
               layout="position"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 28, duration: 0.3 }}
+              style={messageRowStyle}
+              variants={messageRowVariants}
+              initial="initial"
+              animate="animate"
+              transition={messageRowTransition}
               className="flex flex-col items-start"
             >
               <span className="text-muted-foreground text-sm">
@@ -67,10 +93,12 @@ export function ChatMessages({
         {isLoading && (
           <motion.div
             key="loading"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.2 }}
+            style={messageRowStyle}
+            variants={loadingVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={loadingTransition}
           >
             <ChatLoading />
           </motion.div>
