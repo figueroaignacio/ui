@@ -4,7 +4,7 @@ import { useMounted } from '@/hooks/use-mounted';
 import { MoonIcon, SunIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
-import { useTheme } from 'i7a-themes';
+import { useTheme } from 'nach-themes';
 
 export function ThemeToggle() {
   const mounted = useMounted();

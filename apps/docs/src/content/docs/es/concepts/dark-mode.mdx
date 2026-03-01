@@ -8,13 +8,13 @@ date: 2024-03-14
 locale: es
 ---
 
-La librería `i7a-themes` proporciona una forma simple y elegante de implementar modo oscuro en tus aplicaciones React, con soporte para preferencias del sistema, transiciones suaves y animaciones al hacer clic.
+La librería `nach-themes` proporciona una forma simple y elegante de implementar modo oscuro en tus aplicaciones React, con soporte para preferencias del sistema, transiciones suaves y animaciones al hacer clic.
 
 ## Instalación
 
 Instala el paquete vía pnpm:
 
-<PackageManagerTabs command="install i7a-themes" />
+<PackageManagerTabs command="install nach-themes" />
 
 ## Inicio Rápido
 
@@ -43,7 +43,7 @@ Crea un componente providers para envolver tu aplicación:
 ```tsx
 'use client';
 
-import { ThemeProvider } from 'i7a-themes';
+import { ThemeProvider } from 'nach-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ThemeProvider>{children}</ThemeProvider>;
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```tsx
 'use client';
 
-import { useTheme } from 'i7a-themes';
+import { useTheme } from 'nach-themes';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 
@@ -156,7 +156,7 @@ Maneja el estado de hidratación para prevenir cambios en el layout:
 'use client';
 
 import { useMounted } from '@/hooks/use-mounted';
-import { useTheme } from 'i7a-themes';
+import { useTheme } from 'nach-themes';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 
@@ -217,7 +217,7 @@ Crea un selector de tema más sofisticado:
 ```tsx
 'use client';
 
-import { useTheme } from 'i7a-themes';
+import { useTheme } from 'nach-themes';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -265,7 +265,7 @@ Accede a información del tema en cualquier parte de tu app:
 ```tsx
 'use client';
 
-import { useTheme } from 'i7a-themes';
+import { useTheme } from 'nach-themes';
 import { useEffect } from 'react';
 
 export function ContenidoDinamico() {
@@ -291,7 +291,7 @@ export function ContenidoDinamico() {
 La librería está completamente tipada. Todos los hooks y componentes tienen definiciones completas de TypeScript:
 
 ```tsx
-import { Theme } from 'i7a-themes';
+import { Theme } from 'nach-themes';
 
 const miTema: Theme = 'dark';
 ```

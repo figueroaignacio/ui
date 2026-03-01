@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeProvider } from 'i7a-themes';
+import { ThemeProvider } from 'nach-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ThemeProvider>{children}</ThemeProvider>;
