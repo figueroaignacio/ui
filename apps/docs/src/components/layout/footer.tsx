@@ -2,6 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Logo } from '../common/logo';
 import { GitHubIcon } from '../common/tech-icons';
+import { ThemeToggle } from '../common/theme-toggle';
 
 function FooterSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -81,7 +82,7 @@ export function Footer() {
             <p className="text-muted-foreground text-sm">
               © {currentYear} NachUI UI. {t('footer.copyright')}
             </p>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-6">
               <Link
                 href="/sitemap.xml"
                 className="text-muted-foreground hover:text-foreground text-sm transition-colors"
@@ -94,6 +95,9 @@ export function Footer() {
               >
                 RSS
               </Link>
+              <div className="hidden lg:block">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>

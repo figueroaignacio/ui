@@ -28,11 +28,20 @@ export function MobileMenu() {
 
   return (
     <div className="relative flex w-full items-center justify-between px-5 py-5 lg:hidden">
-      <button className="flex items-center gap-x-2 text-sm font-medium" onClick={toggleMenu}>
+      <button
+        className="flex items-center gap-x-2 text-sm font-medium"
+        onClick={toggleMenu}
+        title="menu"
+        aria-label="menu"
+        type="button"
+      >
         <HugeiconsIcon icon={Menu06Icon} />
         Menu
       </button>
-      <Searcher />
+      <div className="flex items-center gap-x-3">
+        <LocaleSwitcher />
+        <Searcher />
+      </div>
       <div
         className={cn(
           'bg-background/20 fixed inset-0 z-40 backdrop-blur-sm transition-opacity duration-300',
@@ -48,14 +57,22 @@ export function MobileMenu() {
         )}
       >
         <div className="flex items-center justify-between border-b px-6 py-4">
-          <button onClick={toggleMenu}>
+          <button
+            onClick={toggleMenu}
+            title="logo"
+            aria-label="logo"
+            type="button"
+            className="flex items-center gap-x-2 text-sm font-medium"
+          >
             <Logo />
           </button>
           <div className="flex items-center gap-x-3">
-            <LocaleSwitcher />
             <ThemeToggle />
             <button
               onClick={toggleMenu}
+              title="close menu"
+              aria-label="close menu"
+              type="button"
               className="hover:bg-muted rounded-md p-2 transition-colors"
             >
               <HugeiconsIcon icon={Cancel01Icon} size={20} />

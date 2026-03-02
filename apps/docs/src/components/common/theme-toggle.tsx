@@ -1,40 +1,46 @@
 'use client';
 
-import { useMounted } from '@/hooks/use-mounted';
-import { MoonIcon, SunIcon } from '@hugeicons/core-free-icons';
+import { LaptopIcon, Moon02Icon, SunIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Button } from '@repo/ui/components/button';
+import { motion } from 'motion/react';
 import { useTheme } from 'nach-themes';
 
 export function ThemeToggle() {
-  const mounted = useMounted();
   const { theme, setTheme } = useTheme();
 
-  if (!mounted) {
-    return (
-      <Button
-        variant="ghost"
-        size="icon"
-        disabled
-        className="bg-muted/30 animate-pulse cursor-default"
-      >
-        <div className="bg-foreground/20 h-5 w-5 rounded-full" />
-      </Button>
-    );
-  }
-
-  const isDark = theme === 'dark';
-  const Icon = isDark ? MoonIcon : SunIcon;
+  const themes = [
+    { value: 'light' as const, icon: SunIcon, label: 'Light' },
+    { value: 'dark' as const, icon: Moon02Icon, label: 'Dark' },
+    { value: 'system' as const, icon: LaptopIcon, label: 'System' },
+  ] as const;
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-      className="h-8 w-8"
-    >
-      <HugeiconsIcon icon={Icon} size={16} />
-    </Button>
+    <div className="border-border/50 bg-muted/50 relative z-10 inline-flex items-center rounded-full border p-1 shadow-sm backdrop-blur-xl">
+      {themes.map((t) => {
+        const isActive = theme === t.value;
+
+        return (
+          <button
+            key={t.value}
+            type="button"
+            onClick={(e) => setTheme(t.value, e)}
+            className={`hover:text-foreground relative flex items-center justify-center rounded-full p-2 text-sm font-medium transition-colors ${
+              isActive ? 'text-foreground' : 'text-muted-foreground'
+            }`}
+            aria-label={`Switch to ${t.label} theme`}
+            title={t.label}
+          >
+            {isActive && (
+              <motion.div
+                layoutId="theme-bubble-nextjs"
+                className="bg-muted/20 absolute inset-0 rounded-full shadow-sm"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <HugeiconsIcon icon={t.icon} size={14} />
+          </button>
+        );
+      })}
+    </div>
   );
 }
