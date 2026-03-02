@@ -17,22 +17,22 @@ import { useTranslations } from 'next-intl';
 import { useCallback, useMemo } from 'react';
 
 type DocActionsProps = {
-  componentName: string;
+  page: string;
   url: string;
   filePath: string;
 };
 
-export function DocActions({ componentName, url, filePath }: DocActionsProps) {
+export function DocActions({ page, url, filePath }: DocActionsProps) {
   const t = useTranslations('components');
   const { triggerExplanation } = useChatContext();
 
   const handleExplain = useCallback(() => {
-    const prompt = t('explainButton.prompt', { component: componentName, url });
-    triggerExplanation(componentName, prompt);
-  }, [t, componentName, url, triggerExplanation]);
+    const prompt = t('explainButton.prompt', { page, url });
+    triggerExplanation(page, prompt);
+  }, [t, page, url, triggerExplanation]);
 
   const openInLinks = useMemo(() => {
-    const openInPrompt = t('openIn.prompt', { url });
+    const openInPrompt = t('openIn.prompt', { page, url });
     const encodedPrompt = encodeURIComponent(openInPrompt);
     return [
       {

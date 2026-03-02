@@ -7,17 +7,17 @@ import { Button } from '@repo/ui/components/button';
 import { useTranslations } from 'next-intl';
 
 type ExplainButtonProps = {
-  componentName: string;
+  page: string;
   url: string;
 };
 
-export function ExplainButton({ componentName, url }: ExplainButtonProps) {
+export function ExplainButton({ page, url }: ExplainButtonProps) {
   const t = useTranslations('components.explainButton');
   const { triggerExplanation } = useChatContext();
 
   const handleClick = () => {
-    const prompt = t('prompt', { component: componentName, url });
-    triggerExplanation(componentName, prompt);
+    const prompt = t('prompt', { page, url });
+    triggerExplanation(page, prompt);
   };
 
   return (

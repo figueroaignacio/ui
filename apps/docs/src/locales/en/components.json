@@ -47,15 +47,15 @@
   "postCard": {
     "action": "Read More"
   },
-  "openIn": {
-    "label": "Open in",
-    "prompt": "I'm looking at this documentation: {url}.\nHelp me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it."
-  },
   "editOnGithub": {
     "label": "Edit this page"
   },
+  "openIn": {
+    "label": "Open in",
+    "prompt": "Explain the content of this page: {page}. Context: {url}. Explain when to use it, why to use it, best practices, and alternatives based on the documentation provided. It could be a page about components, tools, libraries, concepts, etc. Do not provide unnecessary information. ALWAYS based on the documentation provided."
+  },
   "explainButton": {
     "label": "Explain this",
-    "prompt": "Explain the content of this page: {component}. Context: {url}. Explain when to use it, why to use it, best practices, and alternatives based on the documentation provided."
+    "prompt": "Explain the content of this page: {page}. Context: {url}. Explain when to use it, why to use it, best practices, and alternatives based on the documentation provided. It could be a page about components, tools, libraries, concepts, etc. Do not provide unnecessary information. ALWAYS based on the documentation provided."
   }
 }
