@@ -72,7 +72,7 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
             <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuContent align="start" className="w-56">
           <DropdownLabel>{t('openIn.label')}</DropdownLabel>
           {openInLinks.map((link) => (
             <DropdownMenuItem key={link.name} asChild className="gap-2">
