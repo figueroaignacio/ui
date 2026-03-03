@@ -25,24 +25,26 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
     <motion.div layout="position" className={cn('flex w-full max-w-full gap-3', !isUser && 'mt-2')}>
       <div className="min-w-0 flex-1">
         {isUser ? (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={userMessageTransition}
-            className="mb-5 text-sm wrap-break-word"
+            className="mb-8 flex justify-end"
           >
-            {message.content}
-          </motion.p>
+            <p className="max-w-[85%] rounded-3xl rounded-tr-sm bg-white px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word text-black shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+              {message.content}
+            </p>
+          </motion.div>
         ) : (
-          <div className="relative w-full min-w-0 text-sm">
+          <div className="relative mb-8 w-full min-w-0 text-[15px] leading-relaxed text-neutral-200/90">
             {isStreaming ? (
-              <p className="text-foreground leading-7 wrap-break-word whitespace-pre-wrap">
+              <p className="wrap-break-word whitespace-pre-wrap">
                 {message.content}
                 {!shouldReduceMotion && (
                   <motion.span
                     aria-hidden
                     style={cursorStyle}
-                    className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-current align-middle"
+                    className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-white align-middle"
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
                   />

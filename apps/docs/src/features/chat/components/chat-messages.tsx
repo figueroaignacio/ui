@@ -1,4 +1,5 @@
 import type { Message } from '@/lib/definitions';
+import { cn } from '@repo/ui/lib/cn';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
@@ -59,7 +60,7 @@ export function ChatMessages({
   }, [lastContent, lastRole, isLoading, messages.length, isStreaming, shouldReduceMotion, endRef]);
 
   return (
-    <div className="flex-1 space-y-4 overflow-x-hidden overflow-y-auto p-4">
+    <div className="flex-1 space-y-6 overflow-x-hidden overflow-y-auto px-6 py-2">
       <AnimatePresence initial={false}>
         {messages.map((msg, idx) => {
           const isLastAssistant = idx === messages.length - 1 && msg.role === 'assistant';
@@ -74,9 +75,9 @@ export function ChatMessages({
               initial="initial"
               animate="animate"
               transition={messageRowTransition}
-              className="flex flex-col items-start"
+              className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
             >
-              <span className="text-muted-foreground text-sm">
+              <span className="mb-1.5 text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase">
                 {msg.role === 'assistant' ? 'NachUI Bot' : 'You'}
               </span>
               <ChatMessage message={msg} isStreaming={isActiveStream} />

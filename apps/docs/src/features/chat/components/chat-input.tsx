@@ -21,15 +21,19 @@ export function ChatInput(props: ChatInputProps) {
   const tapScale = shouldReduceMotion || disabled ? 1 : 0.95;
 
   return (
-    <form onSubmit={onSubmit} className="w-full">
-      <div className="bg-muted/30 border-border focus-within:ring-primary/20 flex items-center gap-3 rounded-xl border p-1.5 shadow-sm transition-all focus-within:ring-2">
+    <form
+      onSubmit={onSubmit}
+      className="relative z-10 w-full px-4 py-4 before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-linear-to-t before:from-neutral-950/90 before:to-transparent"
+    >
+      <div className="flex items-center gap-3 rounded-4xl border border-white/10 bg-neutral-900/60 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-white/5 backdrop-blur-2xl transition-all duration-300 focus-within:border-white/20 focus-within:ring-white/20">
         <input
           value={message}
           disabled={isLoading}
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyPress={onKeyPress}
           placeholder={t('input.placeholder')}
-          className="placeholder:text-muted-foreground flex-1 bg-transparent px-3 py-2 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex-1 bg-transparent px-4 py-2.5 text-[15px] text-white outline-none placeholder:text-white/30 disabled:cursor-not-allowed disabled:opacity-50"
+          autoFocus
         />
         <motion.button
           type="submit"
@@ -37,12 +41,12 @@ export function ChatInput(props: ChatInputProps) {
           whileHover={{ scale: hoverScale }}
           whileTap={{ scale: tapScale }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_10px_rgba(255,255,255,0.1)] transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (
-            <HugeiconsIcon icon={Loading03Icon} size={16} className="h-4 w-4 animate-spin" />
+            <HugeiconsIcon icon={Loading03Icon} size={18} className="animate-spin" />
           ) : (
-            <HugeiconsIcon icon={SentIcon} size={16} />
+            <HugeiconsIcon icon={SentIcon} size={18} />
           )}
         </motion.button>
       </div>

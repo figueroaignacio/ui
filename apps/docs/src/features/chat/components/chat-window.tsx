@@ -27,9 +27,9 @@ const backdropVariants = {
 const backdropTransition = { duration: 0.2 };
 
 const windowVariants = {
-  initial: { opacity: 0, y: 20, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, y: 20, scale: 0.96 },
+  initial: { opacity: 0, x: '100%' },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: '100%' },
 } as const;
 
 const windowTransition = {
@@ -68,7 +68,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={backdropTransition}
-            className="dark:bg-background/80 fixed inset-0 z-9998 bg-white backdrop-blur-md"
+            className="fixed inset-0 z-9998 px-12 backdrop-blur-xs"
             onClick={onClose}
           />
           <motion.div
@@ -79,7 +79,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="fixed inset-4 z-9999 flex flex-col md:inset-auto md:top-1/2 md:left-1/2 md:h-screen md:max-h-[800px] md:w-full md:max-w-2xl md:-translate-x-1/2 md:-translate-y-1/2"
+            className="fixed inset-0 z-9999 flex flex-col bg-neutral-950/80 backdrop-blur-3xl md:inset-auto md:top-0 md:right-0 md:h-dvh md:w-[400px] md:border-l md:border-white/10 lg:w-[450px]"
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">
