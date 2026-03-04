@@ -37,7 +37,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
       <article className="flex w-full min-w-0 flex-col lg:px-26">
         <div className="my-9 flex flex-col gap-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <h1 className="text-2xl lg:text-4xl">{doc.title}</h1>
+            <h1 className="text-2xl font-bold lg:text-4xl">{doc.title}</h1>
             <div className="flex items-center gap-2">
               <DocsNavigationButtons currentPath={currentPath} />
             </div>
