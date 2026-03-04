@@ -44,7 +44,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           </div>
           <p className="text-muted-foreground">{doc.description}</p>
           <DocActions
-            componentName={doc.title}
+            page={doc.title}
             url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
             filePath={doc.sourceFilePath}
           />
