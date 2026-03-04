@@ -10,7 +10,7 @@ export function ChatHeader({ onClose }: ChatHeaderProps) {
   if (!onClose) return null;
 
   return (
-    <header className="border-border bg-secondary mb-4 flex items-center justify-between border-b px-6 py-4">
+    <header className="mb-4 flex items-center justify-between px-6 py-4">
       <div className="flex items-center gap-2">
         <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
         <h2 className="text-sm font-medium tracking-wide">AI Assistant</h2>

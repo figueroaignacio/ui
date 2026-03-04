@@ -77,7 +77,7 @@ export function ChatMessages({
               transition={messageRowTransition}
               className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
             >
-              <span className="mb-1.5 text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase">
+              <span className="mb-1.5 text-[10px] font-bold tracking-[0.15em] uppercase">
                 {msg.role === 'assistant' ? '' : 'You'}
               </span>
               <ChatMessage message={msg} isStreaming={isActiveStream} />

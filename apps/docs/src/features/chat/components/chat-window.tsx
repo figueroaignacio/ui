@@ -79,7 +79,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="bg-card fixed inset-0 z-9999 flex flex-col backdrop-blur-3xl md:inset-auto md:top-0 md:right-0 md:h-dvh md:w-[400px] md:border-l md:border-white/10 lg:w-[450px]"
+            className="bg-background/50 fixed inset-0 z-9999 flex flex-col backdrop-blur-3xl md:inset-auto md:top-0 md:right-0 md:h-dvh md:w-[400px] md:border-l md:border-white/10 lg:w-[450px]"
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">

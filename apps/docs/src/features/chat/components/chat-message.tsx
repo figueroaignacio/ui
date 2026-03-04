@@ -31,7 +31,7 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
             transition={userMessageTransition}
             className="mb-8 flex justify-end"
           >
-            <p className="max-w-[85%] rounded-3xl rounded-tr-sm bg-white px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word text-black shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+            <p className="bg-secondary-foreground text-background max-w-[85%] rounded-3xl rounded-tr-sm px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
               {message.content}
             </p>
           </motion.div>
