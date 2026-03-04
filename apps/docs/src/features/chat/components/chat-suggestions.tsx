@@ -46,26 +46,23 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
       <div className="flex flex-wrap gap-3">
         {suggestions.map((suggestion, index) => {
           return (
-            <motion.button
+            <button
+              type="button"
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => onSuggestionClick(suggestion.text)}
+              className="transition-all duration-300 hover:-translate-y-0.5"
             >
-              <div className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/8 bg-white/3 px-5 py-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/8">
-                <div
-                  className={`rounded-xl bg-linear-to-br p-2 ${suggestion.gradient} bg-opacity-20`}
-                >
-                  <HugeiconsIcon icon={suggestion.icon} className="size-4 text-white" />
+              <div className="bg-secondary border-border flex cursor-pointer items-center gap-1 rounded-2xl border px-4 py-2">
+                <div>
+                  <HugeiconsIcon icon={suggestion.icon} size={16} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-left text-sm leading-snug font-medium wrap-break-word text-white/80">
+                  <p className="text-left text-sm leading-snug font-medium wrap-break-word">
                     {suggestion.text}
                   </p>
                 </div>
               </div>
-            </motion.button>
+            </button>
           );
         })}
       </div>

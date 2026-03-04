@@ -23,16 +23,16 @@ export function ChatInput(props: ChatInputProps) {
   return (
     <form
       onSubmit={onSubmit}
-      className="relative z-10 w-full px-4 py-4 before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-linear-to-t before:from-neutral-950/90 before:to-transparent"
+      className="relative z-10 w-full px-4 py-4 before:pointer-events-none before:absolute before:inset-0 before:-z-10"
     >
-      <div className="flex items-center gap-3 rounded-4xl border border-white/10 bg-neutral-900/60 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-white/5 backdrop-blur-2xl transition-all duration-300 focus-within:border-white/20 focus-within:ring-white/20">
+      <div className="bg-secondary border-border focus-within:border-border focus-within:ring-border flex items-center gap-3 rounded-4xl border p-1.5 transition-all duration-300">
         <input
           value={message}
           disabled={isLoading}
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyPress={onKeyPress}
           placeholder={t('input.placeholder')}
-          className="flex-1 bg-transparent px-4 py-2.5 text-[15px] text-white outline-none placeholder:text-white/30 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex-1 bg-transparent px-4 py-2.5 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
           autoFocus
         />
         <motion.button
