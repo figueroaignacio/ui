@@ -16,7 +16,7 @@ export function Navbar() {
         <nav className="space-x-5">
           {navigation.map((item) => (
             <Link
-              className="text-muted-foreground hover:text-foreground hover:underline text-sm"
+              className="text-muted-foreground hover:text-foreground text-sm hover:underline"
               href={item.href}
               key={item.href}
             >
@@ -26,8 +26,8 @@ export function Navbar() {
         </nav>
       </div>
       <div className="flex space-x-4">
-        <Searcher />
         <HeaderActions />
+        <Searcher />
       </div>
     </div>
   );

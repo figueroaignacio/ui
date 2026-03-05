@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { LocaleSwitcher } from '../common/locale-switcher';
 import { Logo } from '../common/logo';
 import { GitHubIcon } from '../common/tech-icons';
 import { ThemeToggle } from '../common/theme-toggle';
@@ -95,8 +96,11 @@ export function Footer() {
               >
                 RSS
               </Link>
-              <div className="hidden lg:block">
-                <ThemeToggle />
+              <div className="flex items-center gap-3">
+                <LocaleSwitcher />
+                <div className="hidden lg:block">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </div>
