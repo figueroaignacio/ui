@@ -37,27 +37,15 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
           </motion.div>
         ) : (
           <div className="relative mb-8 w-full min-w-0 text-[15px] leading-relaxed text-neutral-200/90">
-            {isStreaming ? (
-              <p className="wrap-break-word whitespace-pre-wrap">
-                {message.content}
-                {!shouldReduceMotion && (
-                  <motion.span
-                    aria-hidden
-                    style={cursorStyle}
-                    className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-white align-middle"
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-                )}
-              </p>
-            ) : (
-              <motion.div
-                initial={{ opacity: shouldReduceMotion ? 1 : 0.6 }}
-                animate={{ opacity: 1 }}
-                transition={markdownRevealTransition}
-              >
-                <ChatMarkdownContent content={message.content} />
-              </motion.div>
+            <ChatMarkdownContent content={message.content} />
+            {isStreaming && !shouldReduceMotion && (
+              <motion.span
+                aria-hidden
+                style={cursorStyle}
+                className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-white align-middle"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
+              />
             )}
           </div>
         )}

@@ -3,7 +3,6 @@ import { Link } from '@/i18n/navigation';
 import type { Navigation } from '@/lib/definitions';
 import { useTranslations } from 'next-intl';
 import { Logo } from '../common/logo';
-import { HeaderActions } from './header-actions';
 
 export function Navbar() {
   const t = useTranslations('ui');
@@ -26,7 +25,6 @@ export function Navbar() {
         </nav>
       </div>
       <div className="flex space-x-4">
-        <HeaderActions />
         <Searcher />
       </div>
     </div>
