@@ -1,7 +1,7 @@
+import { NACHUI_SYSTEM_PROMPT as SYSTEM_PROMPT } from '@repo/ai/prompts';
 import type { Message } from '../../../lib/definitions';
 import { getCachedContext } from './cache-manager';
 import { buildEnrichedContext, findRelevantComponents, findRelevantDocs } from './context-loader';
-import { SYSTEM_PROMPT } from './prompts';
 
 function getLastUserMessage(messages: Message[]): string {
   return messages.filter((m) => m.role === 'user').pop()?.content ?? '';

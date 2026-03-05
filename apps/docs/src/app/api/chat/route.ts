@@ -1,6 +1,6 @@
 import { groq, GROQ_CONFIG } from '@/features/chat/lib/groq-client';
 import { getSystemPrompt } from '@/features/chat/lib/system';
-import { streamText } from 'ai';
+import { streamText } from '@repo/ai';
 import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic';

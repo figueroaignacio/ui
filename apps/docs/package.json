@@ -8,10 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.26",
+    "@repo/ai": "workspace:*",
     "@hugeicons/core-free-icons": "^3.3.0",
     "@hugeicons/react": "^1.1.5",
-    "ai": "^6.0.105",
     "date-fns": "^4.1.0",
     "motion": "^12.34.3",
     "nach-themes": "^4.0.1",
