@@ -1,6 +1,5 @@
 import { BulbIcon, CodeIcon, Comment01Icon, SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 interface ChatSuggestionsProps {
@@ -35,14 +34,10 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
 
   return (
     <div className="flex flex-col space-y-6 py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div>
         <h3 className="text-foreground mb-2 font-semibold">{t('title')}</h3>
         <p className="text-muted-foreground text-sm">{t('subtitle')}</p>
-      </motion.div>
+      </div>
       <div className="flex flex-wrap gap-3">
         {suggestions.map((suggestion, index) => {
           return (

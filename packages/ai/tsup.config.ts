@@ -5,6 +5,7 @@ export default defineConfig({
     index: 'src/index.ts',
     providers: 'src/providers.ts',
     prompts: 'src/prompts/system-prompt.ts',
+    agent: 'src/agent.ts',
   },
   format: ['cjs', 'esm'],
   dts: true,

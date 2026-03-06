@@ -20,6 +20,11 @@
       "types": "./dist/prompts.d.ts",
       "import": "./dist/prompts.mjs",
       "require": "./dist/prompts.js"
+    },
+    "./agent": {
+      "types": "./dist/agent.d.ts",
+      "import": "./dist/agent.mjs",
+      "require": "./dist/agent.js"
     }
   },
   "scripts": {
@@ -29,7 +34,8 @@
   },
   "dependencies": {
     "@ai-sdk/groq": "^3.0.24",
-    "ai": "^6.0.97"
+    "ai": "^6.0.97",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

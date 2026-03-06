@@ -48,3 +48,13 @@ export function AiChat() {
     </div>
   );
 }
+
+/*
+  isLoading:   (-.-)  "thinking..."
+  isStreaming: (°ロ°) "I AM BECOM—"
+  isDone:      (¬‿¬) "as I was saying,"
+  
+  isError:     (._.)
+               // TODO: handle gracefully
+               // current handling: ¯\_(ツ)_/¯
+*/

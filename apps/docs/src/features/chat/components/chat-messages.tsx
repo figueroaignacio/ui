@@ -91,7 +91,7 @@ export function ChatMessages({
       )}
 
       <AnimatePresence>
-        {isLoading && (
+        {isLoading && !isStreaming && (
           <motion.div
             key="loading"
             style={messageRowStyle}
