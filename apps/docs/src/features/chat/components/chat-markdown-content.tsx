@@ -1,5 +1,5 @@
+import { CodeBlock } from '@/components/mdx/codeblock';
 import { InlineCode } from '@/components/mdx/inline-code';
-import { Pre } from '@/components/mdx/typography';
 import {
   Table,
   TableBody,
@@ -97,7 +97,23 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
           td: ({ children }) => (
             <TableCell className="px-4 py-3 align-top leading-6">{children}</TableCell>
           ),
-          pre: ({ children }) => <Pre>{children}</Pre>,
+          pre: ({ children }) => {
+            const child = (children as any)?.props;
+            if (!child) return <pre className="overflow-x-auto">{children}</pre>;
+            const language = child.className?.replace('language-', '') || 'tsx';
+            const extractCode = (node: any): string => {
+              if (!node) return '';
+              if (typeof node === 'string') return node;
+              if (Array.isArray(node)) return node.map(extractCode).join('');
+              return '';
+            };
+            const code = extractCode(child.children).trim();
+            return (
+              <div className="w-full overflow-x-auto">
+                <CodeBlock code={code} language={language} className="min-w-0" />
+              </div>
+            );
+          },
           code: ({ children }) => <InlineCode>{children}</InlineCode>,
         }}
       >
