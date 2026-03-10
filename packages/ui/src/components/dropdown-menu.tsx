@@ -100,12 +100,12 @@ function useClickOutside(
 
 // --- Components ---
 
-function DropdownMenu({
+const DropdownMenuRoot = ({
   children,
   className,
   defaultOpen = false,
   onOpenChange,
-}: DropdownMenuProps): React.JSX.Element {
+}: DropdownMenuProps): React.JSX.Element => {
   const [isOpen, setIsOpen] = React.useState(defaultOpen);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
 
@@ -149,14 +149,14 @@ function DropdownMenu({
       <div className={cn('relative inline-block text-left', className)}>{children}</div>
     </DropdownContext.Provider>
   );
-}
+};
 
-function DropdownMenuTrigger({
+const DropdownMenuTrigger = ({
   children,
   onClick,
   className,
   asChild = false,
-}: DropdownMenuTriggerProps): React.JSX.Element {
+}: DropdownMenuTriggerProps): React.JSX.Element => {
   const { isOpen, toggleMenu, triggerRef, triggerId, contentId } = useDropdownContext();
   const shouldReduceMotion = useReducedMotion();
 
@@ -208,14 +208,14 @@ function DropdownMenuTrigger({
       </motion.span>
     </motion.button>
   );
-}
+};
 
-function DropdownMenuContent({
+const DropdownMenuContent = ({
   children,
   className,
   align = 'start',
   sideOffset = 6,
-}: DropdownMenuContentProps): React.JSX.Element | null {
+}: DropdownMenuContentProps): React.JSX.Element | null => {
   const { isOpen, closeMenu, contentId, triggerId, triggerRef } = useDropdownContext();
   const contentRef = React.useRef<HTMLDivElement>(null);
   const [position, setPosition] = React.useState<'bottom' | 'top'>('bottom');
@@ -325,9 +325,9 @@ function DropdownMenuContent({
       )}
     </AnimatePresence>
   );
-}
+};
 
-function DropdownMenuItem({
+const DropdownMenuItem = ({
   children,
   onClick,
   className,
@@ -335,7 +335,7 @@ function DropdownMenuItem({
   variant = 'default',
   onSelect,
   asChild = false,
-}: DropdownMenuItemProps): React.JSX.Element {
+}: DropdownMenuItemProps): React.JSX.Element => {
   const { closeMenu } = useDropdownContext();
 
   const handleClick = React.useCallback(
@@ -389,28 +389,29 @@ function DropdownMenuItem({
   }
 
   return content;
-}
+};
 
-function DropdownLabel({ children }: { children: React.ReactNode }) {
+const DropdownLabel = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="text-muted-foreground px-3 py-2 text-xs font-semibold tracking-wider uppercase">
       {children}
     </div>
   );
-}
-
-function DropdownSeparator() {
-  return <div className="bg-border/50 my-1 h-px" />;
-}
-
-export {
-  DropdownLabel,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownSeparator,
 };
+
+const DropdownSeparator = () => {
+  return <div className="bg-border/50 my-1 h-px" />;
+};
+
+const DropdownMenu = Object.assign(DropdownMenuRoot, {
+  Trigger: DropdownMenuTrigger,
+  Content: DropdownMenuContent,
+  Item: DropdownMenuItem,
+  Label: DropdownLabel,
+  Separator: DropdownSeparator,
+});
+
+export { DropdownMenu };
 export type {
   DropdownMenuContentProps,
   DropdownMenuItemProps,

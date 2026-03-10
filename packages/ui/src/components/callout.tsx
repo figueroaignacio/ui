@@ -30,7 +30,36 @@ interface CalloutProps
   title?: string;
 }
 
-const Callout = forwardRef<HTMLDivElement, CalloutProps>(
+const CalloutTitle = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('leading-none font-semibold tracking-tight', className)}
+      {...props}
+    />
+  ),
+);
+CalloutTitle.displayName = 'CalloutTitle';
+
+const CalloutContent = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('text-muted-foreground/90 [&_p]:leading-relaxed', className)}
+      {...props}
+    />
+  ),
+);
+CalloutContent.displayName = 'CalloutContent';
+
+const CalloutIcon = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('mt-0.5 shrink-0 text-base select-none', className)} {...props} />
+  ),
+);
+CalloutIcon.displayName = 'CalloutIcon';
+
+const CalloutRoot = forwardRef<HTMLDivElement, CalloutProps>(
   ({ className, variant, icon, title, children, ...props }, ref) => {
     const getIcon = () => {
       if (icon) return icon;
@@ -53,19 +82,23 @@ const Callout = forwardRef<HTMLDivElement, CalloutProps>(
 
     return (
       <div ref={ref} className={cn(calloutVariants({ variant }), className)} {...props}>
-        {calloutIcon ? (
-          <div className="mt-0.5 shrink-0 text-base select-none">{calloutIcon}</div>
-        ) : null}
+        {calloutIcon ? <CalloutIcon>{calloutIcon}</CalloutIcon> : null}
         <div className="flex-1 space-y-1">
-          {title ? <div className="leading-none font-semibold tracking-tight">{title}</div> : null}
-          <div className="text-muted-foreground/90 [&_p]:leading-relaxed">{children}</div>
+          {title ? <CalloutTitle>{title}</CalloutTitle> : null}
+          <CalloutContent>{children}</CalloutContent>
         </div>
       </div>
     );
   },
 );
 
-Callout.displayName = 'Callout';
+CalloutRoot.displayName = 'Callout';
+
+const Callout = Object.assign(CalloutRoot, {
+  Title: CalloutTitle,
+  Content: CalloutContent,
+  Icon: CalloutIcon,
+});
 
 export { Callout, calloutVariants };
 export type { CalloutProps };

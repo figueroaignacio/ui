@@ -135,7 +135,7 @@ const useCollapsibleContext = (): CollapsibleContextValue => {
 
 // --- Components ---
 
-const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
+const CollapsibleRoot = React.forwardRef<HTMLDivElement, CollapsibleProps>(
   (
     {
       className,
@@ -185,7 +185,7 @@ const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
   },
 );
 
-Collapsible.displayName = 'Collapsible';
+CollapsibleRoot.displayName = 'Collapsible';
 
 const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTriggerProps>(
   (
@@ -306,13 +306,11 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
 
 CollapsibleContent.displayName = 'CollapsibleContent';
 
-export {
-  Collapsible,
-  CollapsibleContent,
-  collapsibleContentVariants,
-  CollapsibleTrigger,
-  collapsibleTriggerVariants,
-  collapsibleVariants,
-};
+const Collapsible = Object.assign(CollapsibleRoot, {
+  Trigger: CollapsibleTrigger,
+  Content: CollapsibleContent,
+});
+
+export { Collapsible, collapsibleContentVariants, collapsibleTriggerVariants, collapsibleVariants };
 
 export type { CollapsibleContentProps, CollapsibleProps, CollapsibleTriggerProps };

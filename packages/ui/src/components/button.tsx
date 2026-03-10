@@ -68,7 +68,7 @@ interface ButtonProps extends HTMLMotionProps<'button'>, VariantProps<typeof but
   children?: React.ReactNode;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -136,7 +136,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-Button.displayName = 'Button';
+ButtonRoot.displayName = 'Button';
 
 // --- ButtonGroup ---
 
@@ -172,5 +172,9 @@ const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
 
 ButtonGroup.displayName = 'ButtonGroup';
 
-export { Button, ButtonGroup, buttonVariants };
+const Button = Object.assign(ButtonRoot, {
+  Group: ButtonGroup,
+});
+
+export { Button, buttonVariants };
 export type { ButtonGroupProps, ButtonProps };

@@ -70,12 +70,12 @@ interface TooltipProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-export function Tooltip({
+const TooltipRoot = ({
   children,
   delayDuration = 200,
   open: controlledOpen,
   onOpenChange,
-}: TooltipProps) {
+}: TooltipProps) => {
   const [internalOpen, setInternalOpen] = React.useState(false);
 
   const isControlled = controlledOpen !== undefined;
@@ -97,18 +97,13 @@ export function Tooltip({
       <div className="relative flex h-fit w-fit items-center justify-center">{children}</div>
     </TooltipContext.Provider>
   );
-}
+};
 
 interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
   asChild?: boolean;
 }
 
-export function TooltipTrigger({
-  children,
-  asChild = false,
-  className,
-  ...props
-}: TooltipTriggerProps) {
+function TooltipTrigger({ children, asChild = false, className, ...props }: TooltipTriggerProps) {
   const { setOpen, delayDuration } = useTooltip();
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -158,13 +153,13 @@ interface TooltipContentProps extends HTMLMotionProps<'div'> {
   children?: React.ReactNode;
 }
 
-export function TooltipContent({
+const TooltipContent = ({
   side = 'top',
   sideOffset = 4,
   className,
   children,
   ...props
-}: TooltipContentProps) {
+}: TooltipContentProps) => {
   const { open } = useTooltip();
 
   const sideOffsetStyle = React.useMemo(
@@ -202,6 +197,13 @@ export function TooltipContent({
       )}
     </AnimatePresence>
   );
-}
+};
 
-export const TooltipProvider = Tooltip;
+const Tooltip = Object.assign(TooltipRoot, {
+  Trigger: TooltipTrigger,
+  Content: TooltipContent,
+});
+
+const TooltipProvider = Tooltip;
+
+export { Tooltip, TooltipProvider };

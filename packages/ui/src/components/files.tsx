@@ -76,7 +76,7 @@ export type FileProps = {
   status?: GitStatus;
 };
 
-export const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
+const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
   const statusConfig = status ? GIT_STATUS_STYLES[status] : undefined;
 
   return (
@@ -114,7 +114,7 @@ export type FolderProps = {
   status?: GitStatus;
 };
 
-export const Folder: React.FC<FolderProps> = ({
+const Folder: React.FC<FolderProps> = ({
   name,
   children,
   className,
@@ -211,7 +211,7 @@ type FilesProps = {
   className?: string;
 };
 
-export const Files: React.FC<FilesProps> = ({ children, defaultValue, className }) => {
+const FilesRoot: React.FC<FilesProps> = ({ children, defaultValue, className }) => {
   const [openFolders, setOpenFolders] = React.useState<Set<string>>(() => {
     if (!defaultValue) return new Set();
 
@@ -250,3 +250,10 @@ export const Files: React.FC<FilesProps> = ({ children, defaultValue, className 
     </FilesContext.Provider>
   );
 };
+
+const Files = Object.assign(FilesRoot, {
+  Folder,
+  File,
+});
+
+export { Files };

@@ -71,7 +71,7 @@ function useSheetContext() {
 
 // --- Components ---
 
-function Sheet({ children }: { children: React.ReactNode }) {
+const SheetRoot = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -82,9 +82,15 @@ function Sheet({ children }: { children: React.ReactNode }) {
   }, [open]);
 
   return <SheetContext.Provider value={{ open, setOpen }}>{children}</SheetContext.Provider>;
-}
+};
 
-function SheetTrigger({ children, className }: { children: React.ReactNode; className?: string }) {
+const SheetTrigger = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   const { setOpen } = useSheetContext();
 
   return (
@@ -92,9 +98,9 @@ function SheetTrigger({ children, className }: { children: React.ReactNode; clas
       {children}
     </Button>
   );
-}
+};
 
-function SheetOverlay({ className }: { className?: string }) {
+const SheetOverlay = ({ className }: { className?: string }) => {
   const { setOpen } = useSheetContext();
 
   return (
@@ -109,7 +115,7 @@ function SheetOverlay({ className }: { className?: string }) {
       onClick={() => setOpen(false)}
     />
   );
-}
+};
 
 // --- CVA ---
 
@@ -140,14 +146,14 @@ interface SheetContentProps
   showDragHandle?: boolean;
 }
 
-function SheetContent({
+const SheetContent = ({
   children,
   className,
   side = 'bottom',
   size,
   showDragHandle = true,
   ...props
-}: SheetContentProps) {
+}: SheetContentProps) => {
   const { open, setOpen } = useSheetContext();
   const [mounted, setMounted] = React.useState(false);
 
@@ -244,9 +250,9 @@ function SheetContent({
   );
 
   return createPortal(sheet, document.body);
-}
+};
 
-function SheetClose({ children }: { children: React.ReactNode }) {
+const SheetClose = ({ children }: { children: React.ReactNode }) => {
   const { setOpen } = useSheetContext();
 
   return (
@@ -254,24 +260,39 @@ function SheetClose({ children }: { children: React.ReactNode }) {
       {children}
     </button>
   );
-}
+};
 
-function SheetHeader({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={cn('mb-4', className)}>{children}</div>;
-}
-
-function SheetTitle({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <h2 className={cn('text-xl font-semibold tracking-tight', className)}>{children}</h2>;
-}
-
-function SheetDescription({
+const SheetHeader = ({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
-}) {
-  return <p className={cn('text-muted-foreground mt-1 text-sm', className)}>{children}</p>;
-}
+}) => {
+  return <div className={cn('mb-4', className)}>{children}</div>;
+};
 
-export { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger };
+const SheetTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  return <h2 className={cn('text-xl font-semibold tracking-tight', className)}>{children}</h2>;
+};
+
+const SheetDescription = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return <p className={cn('text-muted-foreground mt-1 text-sm', className)}>{children}</p>;
+};
+
+const Sheet = Object.assign(SheetRoot, {
+  Trigger: SheetTrigger,
+  Content: SheetContent,
+  Header: SheetHeader,
+  Title: SheetTitle,
+  Description: SheetDescription,
+  Close: SheetClose,
+});
+
+export { Sheet };

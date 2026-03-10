@@ -62,7 +62,7 @@ interface DialogProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-const Dialog = ({
+const DialogRoot = ({
   children,
   defaultOpen = false,
   open: controlledOpen,
@@ -229,19 +229,26 @@ DialogContent.displayName = 'DialogContent';
 
 interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const DialogHeader = ({ className, ...props }: DialogHeaderProps) => (
-  <div className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props} />
-);
+const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
+  return (
+    <div
+      className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)}
+      {...props}
+    />
+  );
+};
 DialogHeader.displayName = 'DialogHeader';
 
 interface DialogFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const DialogFooter = ({ className, ...props }: DialogFooterProps) => (
-  <div
-    className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
-    {...props}
-  />
-);
+const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
+  return (
+    <div
+      className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
+      {...props}
+    />
+  );
+};
 DialogFooter.displayName = 'DialogFooter';
 
 interface DialogTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
@@ -280,15 +287,16 @@ const DialogDescription = React.forwardRef<HTMLParagraphElement, DialogDescripti
 );
 DialogDescription.displayName = 'DialogDescription';
 
-export {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-};
+const Dialog = Object.assign(DialogRoot, {
+  Trigger: DialogTrigger,
+  Portal: DialogPortal,
+  Overlay: DialogOverlay,
+  Close: DialogClose,
+  Content: DialogContent,
+  Header: DialogHeader,
+  Footer: DialogFooter,
+  Title: DialogTitle,
+  Description: DialogDescription,
+});
+
+export { Dialog };

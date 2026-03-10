@@ -3,11 +3,11 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
-function Breadcrumb({ className, ...props }: React.ComponentProps<'nav'>) {
+const BreadcrumbRoot = ({ className, ...props }: React.ComponentProps<'nav'>) => {
   return <nav aria-label="breadcrumb" className={className} {...props} />;
-}
+};
 
-function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
+const BreadcrumbList = ({ className, ...props }: React.ComponentProps<'ol'>) => {
   return (
     <ol
       className={cn(
@@ -17,17 +17,17 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
       {...props}
     />
   );
-}
+};
 
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
+const BreadcrumbItem = ({ className, ...props }: React.ComponentProps<'li'>) => {
   return <li className={cn('inline-flex items-center gap-1.5', className)} {...props} />;
-}
+};
 
 type BreadcrumbLinkProps = React.ComponentProps<'a'> & {
   children: React.ReactNode;
 };
 
-function BreadcrumbLink({ className, children, ...props }: BreadcrumbLinkProps) {
+const BreadcrumbLink = ({ className, children, ...props }: BreadcrumbLinkProps) => {
   const isLinkComponent =
     React.isValidElement(children) &&
     (typeof children.type === 'function' || typeof children.type === 'object');
@@ -41,9 +41,9 @@ function BreadcrumbLink({ className, children, ...props }: BreadcrumbLinkProps) 
       {children}
     </a>
   );
-}
+};
 
-function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
+const BreadcrumbPage = ({ className, ...props }: React.ComponentProps<'span'>) => {
   return (
     <span
       role="link"
@@ -53,9 +53,9 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
       {...props}
     />
   );
-}
+};
 
-function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<'li'>) {
+const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<'li'>) => {
   return (
     <li
       role="presentation"
@@ -66,9 +66,9 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
       {children ?? <HugeiconsIcon icon={ArrowRight01Icon} size={14} className="size-3.5" />}
     </li>
   );
-}
+};
 
-function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'>) {
+const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => {
   return (
     <span
       role="presentation"
@@ -80,14 +80,15 @@ function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'
       <span className="sr-only">More</span>
     </span>
   );
-}
-
-export {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
 };
+
+const Breadcrumb = Object.assign(BreadcrumbRoot, {
+  List: BreadcrumbList,
+  Item: BreadcrumbItem,
+  Link: BreadcrumbLink,
+  Page: BreadcrumbPage,
+  Separator: BreadcrumbSeparator,
+  Ellipsis: BreadcrumbEllipsis,
+});
+
+export { Breadcrumb };

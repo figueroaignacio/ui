@@ -6,18 +6,35 @@ interface InputProps extends React.ComponentProps<'input'> {
   error?: string;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const InputWrapper = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('flex flex-col gap-1.5', className)} {...props} />
+  ),
+);
+InputWrapper.displayName = 'InputWrapper';
+
+const InputLabel = React.forwardRef<HTMLLabelElement, React.LabelHTMLAttributes<HTMLLabelElement>>(
+  ({ className, ...props }, ref) => (
+    <label ref={ref} className={cn('text-foreground text-sm font-medium', className)} {...props} />
+  ),
+);
+InputLabel.displayName = 'InputLabel';
+
+const InputError = React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(
+  ({ className, ...props }, ref) => (
+    <span ref={ref} className={cn('text-destructive text-xs', className)} {...props} />
+  ),
+);
+InputError.displayName = 'InputError';
+
+const InputRoot = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, ...props }, ref) => {
     const generatedId = React.useId();
     const inputId = id ?? generatedId;
 
     return (
-      <div className="flex flex-col gap-1.5">
-        {label && (
-          <label htmlFor={inputId} className="text-foreground text-sm font-medium">
-            {label}
-          </label>
-        )}
+      <InputWrapper>
+        {label && <InputLabel htmlFor={inputId}>{label}</InputLabel>}
         <input
           ref={ref}
           id={inputId}
@@ -33,13 +50,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           aria-invalid={!!error}
           {...props}
         />
-        {error && <span className="text-destructive text-xs">{error}</span>}
-      </div>
+        {error && <InputError>{error}</InputError>}
+      </InputWrapper>
     );
   },
 );
 
-Input.displayName = 'Input';
+InputRoot.displayName = 'Input';
+
+const Input = Object.assign(InputRoot, {
+  Wrapper: InputWrapper,
+  Label: InputLabel,
+  Error: InputError,
+});
 
 export { Input };
 export type { InputProps };

@@ -90,7 +90,7 @@ interface CardContentProps
 interface CardFooterProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardFooterVariants> {}
 
-const Card = forwardRef<HTMLDivElement, CardProps>(
+const CardRoot = forwardRef<HTMLDivElement, CardProps>(
   (
     { className, variant = 'default', gradient = false, as: Component = 'div', children, ...props },
     ref,
@@ -107,7 +107,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
   },
 );
 
-Card.displayName = 'Card';
+CardRoot.displayName = 'Card';
 
 const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, compact, children, ...props }, ref) => {
@@ -169,17 +169,20 @@ const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
 
 CardFooter.displayName = 'CardFooter';
 
+const Card = Object.assign(CardRoot, {
+  Header: CardHeader,
+  Title: CardTitle,
+  Description: CardDescription,
+  Content: CardContent,
+  Footer: CardFooter,
+});
+
 export {
   Card,
-  CardContent,
   cardContentVariants,
-  CardDescription,
   cardDescriptionVariants,
-  CardFooter,
   cardFooterVariants,
-  CardHeader,
   cardHeaderVariants,
-  CardTitle,
   cardTitleVariants,
   cardVariants,
 };

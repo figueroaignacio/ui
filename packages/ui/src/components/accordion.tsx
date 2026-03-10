@@ -70,7 +70,7 @@ interface AccordionProps {
   onValueChange?: (value: string[]) => void;
 }
 
-const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
+const AccordionRoot = React.forwardRef<HTMLDivElement, AccordionProps>(
   ({ type = 'single', defaultValue, children, className, value, onValueChange }, ref) => {
     const [uncontrolledValue, setUncontrolledValue] = React.useState<string[]>(
       defaultValue ? [defaultValue] : [],
@@ -113,7 +113,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   },
 );
 
-Accordion.displayName = 'Accordion';
+AccordionRoot.displayName = 'Accordion';
 
 interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
@@ -229,5 +229,11 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
 
 AccordionContent.displayName = 'AccordionContent';
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+const Accordion = Object.assign(AccordionRoot, {
+  Item: AccordionItem,
+  Trigger: AccordionTrigger,
+  Content: AccordionContent,
+});
+
+export { Accordion };
 export type { AccordionContentProps, AccordionItemProps, AccordionProps, AccordionTriggerProps };

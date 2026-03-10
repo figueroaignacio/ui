@@ -84,7 +84,7 @@ interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'default' | 'sm' | 'lg';
 }
 
-const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
+const TabsRoot = React.forwardRef<HTMLDivElement, TabsProps>(
   (
     {
       className,
@@ -132,7 +132,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     );
   },
 );
-Tabs.displayName = 'Tabs';
+TabsRoot.displayName = 'Tabs';
 
 interface TabsListProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tabsListVariants> {}
@@ -248,4 +248,10 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
 );
 TabsContent.displayName = 'TabsContent';
 
-export { Tabs, TabsContent, TabsList, TabsTrigger };
+const Tabs = Object.assign(TabsRoot, {
+  List: TabsList,
+  Trigger: TabsTrigger,
+  Content: TabsContent,
+});
+
+export { Tabs };
