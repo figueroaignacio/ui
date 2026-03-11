@@ -27,7 +27,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#2d2f31]',
+        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20]',
         className,
       )}
     >
