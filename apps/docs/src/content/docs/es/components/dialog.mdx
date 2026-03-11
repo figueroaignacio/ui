@@ -22,35 +22,26 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Uso
 
 ```tsx
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog } from '@/components/ui/dialog';
 ```
 
 ```tsx
 <Dialog>
-  <DialogTrigger asChild>
+  <Dialog.Trigger asChild>
     <Button>Abrir Diálogo</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>¿Estás absolutamente seguro?</DialogTitle>
-      <DialogDescription>Esta acción no se puede deshacer.</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose asChild>
+  </Dialog.Trigger>
+  <Dialog.Content>
+    <Dialog.Header>
+      <Dialog.Title>¿Estás absolutamente seguro?</Dialog.Title>
+      <Dialog.Description>Esta acción no se puede deshacer.</Dialog.Description>
+    </Dialog.Header>
+    <Dialog.Footer>
+      <Dialog.Close asChild>
         <Button variant="outline">Cancelar</Button>
-      </DialogClose>
+      </Dialog.Close>
       <Button>Confirmar</Button>
-    </DialogFooter>
-  </DialogContent>
+    </Dialog.Footer>
+  </Dialog.Content>
 </Dialog>
 ```
 

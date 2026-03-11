@@ -22,17 +22,17 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Uso
 
 ```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 ```
 
 ```tsx
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button variant="outline">Pasa el mouse</Button>
-  </TooltipTrigger>
-  <TooltipContent>
+  </Tooltip.Trigger>
+  <Tooltip.Content>
     <p>Texto de tooltip útil</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```
 
@@ -81,22 +81,22 @@ El contenido del tooltip con posicionamiento y animaciones.
 ```tsx
 // Arriba (por defecto)
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Arriba</Button>
-  </TooltipTrigger>
-  <TooltipContent side="top">
+  </Tooltip.Trigger>
+  <Tooltip.Content side="top">
     <p>Tooltip arriba</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 
 // Abajo
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Abajo</Button>
-  </TooltipTrigger>
-  <TooltipContent side="bottom">
+  </Tooltip.Trigger>
+  <Tooltip.Content side="bottom">
     <p>Tooltip abajo</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```
 
@@ -104,11 +104,11 @@ El contenido del tooltip con posicionamiento y animaciones.
 
 ```tsx
 <Tooltip delayDuration={500}>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Tooltip lento</Button>
-  </TooltipTrigger>
-  <TooltipContent>
+  </Tooltip.Trigger>
+  <Tooltip.Content>
     <p>Esto aparece después de 500ms</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```

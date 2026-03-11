@@ -22,20 +22,15 @@ Make sure to update the import paths to match your project structure.
 ## Usage
 
 ```tsx
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion } from '@/components/ui/accordion';
 ```
 
 ```tsx
 <Accordion type="single" defaultValue="item-1">
-  <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
-  </AccordionItem>
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+    <Accordion.Content>Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 

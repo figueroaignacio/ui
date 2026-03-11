@@ -22,28 +22,21 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Uso
 
 ```tsx
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet } from '@/components/ui/sheet';
 ```
 
 ```tsx
 <Sheet>
-  <SheetTrigger>
+  <Sheet.Trigger>
     <Button>Abrir Sheet</Button>
-  </SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Título del Sheet</SheetTitle>
-      <SheetDescription>Este es un componente sheet.</SheetDescription>
-    </SheetHeader>
+  </Sheet.Trigger>
+  <Sheet.Content>
+    <Sheet.Header>
+      <Sheet.Title>Título del Sheet</Sheet.Title>
+      <Sheet.Description>Este es un componente sheet.</Sheet.Description>
+    </Sheet.Header>
     <div>Tu contenido aquí</div>
-  </SheetContent>
+  </Sheet.Content>
 </Sheet>
 ```
 

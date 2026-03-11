@@ -22,28 +22,21 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Uso
 
 ```tsx
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownSeparator,
-  DropdownLabel,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu } from '@/components/ui/dropdown-menu';
 ```
 
 ```tsx
 <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenu.Trigger asChild>
     <Button variant="outline">Abrir Menú</Button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownLabel>Mi Cuenta</DropdownLabel>
-    <DropdownMenuItem>Perfil</DropdownMenuItem>
-    <DropdownMenuItem>Configuración</DropdownMenuItem>
-    <DropdownSeparator />
-    <DropdownMenuItem variant="destructive">Cerrar Sesión</DropdownMenuItem>
-  </DropdownMenuContent>
+  </DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
+    <DropdownMenu.Item>Perfil</DropdownMenu.Item>
+    <DropdownMenu.Item>Configuración</DropdownMenu.Item>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Item variant="destructive">Cerrar Sesión</DropdownMenu.Item>
+  </DropdownMenu.Content>
 </DropdownMenu>
 ```
 

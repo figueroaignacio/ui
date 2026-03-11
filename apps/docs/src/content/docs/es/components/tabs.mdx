@@ -22,17 +22,17 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Uso
 
 ```tsx
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs } from '@/components/ui/tabs';
 ```
 
 ```tsx
 <Tabs defaultValue="account">
-  <TabsList>
-    <TabsTrigger value="account">Cuenta</TabsTrigger>
-    <TabsTrigger value="password">Contraseña</TabsTrigger>
-  </TabsList>
-  <TabsContent value="account">Contenido de configuración de cuenta</TabsContent>
-  <TabsContent value="password">Contenido de configuración de contraseña</TabsContent>
+  <Tabs.List>
+    <Tabs.Trigger value="account">Cuenta</Tabs.Trigger>
+    <Tabs.Trigger value="password">Contraseña</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">Contenido de configuración de cuenta</Tabs.Content>
+  <Tabs.Content value="password">Contenido de configuración de contraseña</Tabs.Content>
 </Tabs>
 ```
 

@@ -22,17 +22,17 @@ Make sure to update the import paths according to your project structure.
 ## Usage
 
 ```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 ```
 
 ```tsx
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button variant="outline">Hover me</Button>
-  </TooltipTrigger>
-  <TooltipContent>
+  </Tooltip.Trigger>
+  <Tooltip.Content>
     <p>Helpful tooltip text</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```
 
@@ -81,22 +81,22 @@ The tooltip content with positioning and animations.
 ```tsx
 // Top (default)
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Top</Button>
-  </TooltipTrigger>
-  <TooltipContent side="top">
+  </Tooltip.Trigger>
+  <Tooltip.Content side="top">
     <p>Tooltip on top</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 
 // Bottom
 <Tooltip>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Bottom</Button>
-  </TooltipTrigger>
-  <TooltipContent side="bottom">
+  </Tooltip.Trigger>
+  <Tooltip.Content side="bottom">
     <p>Tooltip on bottom</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```
 
@@ -104,11 +104,11 @@ The tooltip content with positioning and animations.
 
 ```tsx
 <Tooltip delayDuration={500}>
-  <TooltipTrigger asChild>
+  <Tooltip.Trigger asChild>
     <Button>Slow tooltip</Button>
-  </TooltipTrigger>
-  <TooltipContent>
+  </Tooltip.Trigger>
+  <Tooltip.Content>
     <p>This appears after 500ms</p>
-  </TooltipContent>
+  </Tooltip.Content>
 </Tooltip>
 ```

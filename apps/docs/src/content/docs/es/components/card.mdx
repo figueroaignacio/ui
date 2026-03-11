@@ -22,28 +22,21 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Modo de uso
 
 ```tsx
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 ```
 
 ```tsx
 <Card>
-  <CardHeader>
-    <CardTitle>Título de la tarjeta</CardTitle>
-    <CardDescription>Descripción de la tarjeta</CardDescription>
-  </CardHeader>
-  <CardContent>
+  <Card.Header>
+    <Card.Title>Título de la tarjeta</Card.Title>
+    <Card.Description>Descripción de la tarjeta</Card.Description>
+  </Card.Header>
+  <Card.Content>
     <p>Contenido de la tarjeta</p>
-  </CardContent>
-  <CardFooter>
+  </Card.Content>
+  <Card.Footer>
     <p>Pie de la tarjeta</p>
-  </CardFooter>
+  </Card.Footer>
 </Card>
 ```
 

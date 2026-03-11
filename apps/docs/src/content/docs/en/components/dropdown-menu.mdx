@@ -22,28 +22,21 @@ Make sure to update the import paths according to your project structure.
 ## Usage
 
 ```tsx
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownSeparator,
-  DropdownLabel,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu } from '@/components/ui/dropdown-menu';
 ```
 
 ```tsx
 <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenu.Trigger asChild>
     <Button variant="outline">Open Menu</Button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownLabel>My Account</DropdownLabel>
-    <DropdownMenuItem>Profile</DropdownMenuItem>
-    <DropdownMenuItem>Settings</DropdownMenuItem>
-    <DropdownSeparator />
-    <DropdownMenuItem variant="destructive">Logout</DropdownMenuItem>
-  </DropdownMenuContent>
+  </DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Label>My Account</DropdownMenu.Label>
+    <DropdownMenu.Item>Profile</DropdownMenu.Item>
+    <DropdownMenu.Item>Settings</DropdownMenu.Item>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Item variant="destructive">Logout</DropdownMenu.Item>
+  </DropdownMenu.Content>
 </DropdownMenu>
 ```
 

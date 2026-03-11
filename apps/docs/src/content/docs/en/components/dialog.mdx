@@ -22,35 +22,26 @@ Make sure to update the import paths according to your project structure.
 ## Usage
 
 ```tsx
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog } from '@/components/ui/dialog';
 ```
 
 ```tsx
 <Dialog>
-  <DialogTrigger asChild>
+  <Dialog.Trigger asChild>
     <Button>Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>This action cannot be undone.</DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose asChild>
+  </Dialog.Trigger>
+  <Dialog.Content>
+    <Dialog.Header>
+      <Dialog.Title>Are you absolutely sure?</Dialog.Title>
+      <Dialog.Description>This action cannot be undone.</Dialog.Description>
+    </Dialog.Header>
+    <Dialog.Footer>
+      <Dialog.Close asChild>
         <Button variant="outline">Cancel</Button>
-      </DialogClose>
+      </Dialog.Close>
       <Button>Confirm</Button>
-    </DialogFooter>
-  </DialogContent>
+    </Dialog.Footer>
+  </Dialog.Content>
 </Dialog>
 ```
 

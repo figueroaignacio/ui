@@ -22,28 +22,21 @@ Make sure to update the import paths according to your project structure.
 ## Usage
 
 ```tsx
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet } from '@/components/ui/sheet';
 ```
 
 ```tsx
 <Sheet>
-  <SheetTrigger>
+  <Sheet.Trigger>
     <Button>Open Sheet</Button>
-  </SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Sheet Title</SheetTitle>
-      <SheetDescription>This is a sheet component.</SheetDescription>
-    </SheetHeader>
+  </Sheet.Trigger>
+  <Sheet.Content>
+    <Sheet.Header>
+      <Sheet.Title>Sheet Title</Sheet.Title>
+      <Sheet.Description>This is a sheet component.</Sheet.Description>
+    </Sheet.Header>
     <div>Your content here</div>
-  </SheetContent>
+  </Sheet.Content>
 </Sheet>
 ```
 

@@ -22,19 +22,19 @@ Make sure to update the import paths according to your project structure.
 ## Usage
 
 ```tsx
-import { Files, Folder, File } from '@/components/ui/files';
+import { Files } from '@/components/ui/files';
 ```
 
 ```tsx
 <Files defaultValue="src/components">
-  <Folder name="src">
-    <Folder name="components">
-      <File name="button.tsx" />
-      <File name="card.tsx" />
-    </Folder>
-    <File name="index.ts" />
-  </Folder>
-  <File name="package.json" />
+  <Files.Folder name="src">
+    <Files.Folder name="components">
+      <Files.File name="button.tsx" />
+      <Files.File name="card.tsx" />
+    </Files.Folder>
+    <Files.File name="index.ts" />
+  </Files.Folder>
+  <Files.File name="package.json" />
 </Files>
 ```
 

@@ -22,20 +22,15 @@ Asegúrate de actualizar las rutas de importación según la estructura de tu pr
 ## Modo de uso
 
 ```tsx
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion } from '@/components/ui/accordion';
 ```
 
 ```tsx
 <Accordion type="single" defaultValue="item-1">
-  <AccordionItem value="item-1">
-    <AccordionTrigger>¿Es accesible?</AccordionTrigger>
-    <AccordionContent>Sí. Se adhiere al estándar de diseño WAI-ARIA.</AccordionContent>
-  </AccordionItem>
+  <Accordion.Item value="item-1">
+    <Accordion.Trigger>¿Es accesible?</Accordion.Trigger>
+    <Accordion.Content>Sí. Se adhiere al estándar de diseño WAI-ARIA.</Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 
