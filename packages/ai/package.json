@@ -2,34 +2,35 @@
   "name": "@repo/ai",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
     },
     "./providers": {
-      "types": "./dist/providers.d.ts",
-      "import": "./dist/providers.mjs",
-      "require": "./dist/providers.js"
+      "types": "./src/providers.ts",
+      "default": "./src/providers.ts"
     },
     "./prompts": {
-      "types": "./dist/prompts.d.ts",
-      "import": "./dist/prompts.mjs",
-      "require": "./dist/prompts.js"
+      "types": "./src/prompts/system-prompt.ts",
+      "default": "./src/prompts/system-prompt.ts"
     },
     "./agent": {
-      "types": "./dist/agent.d.ts",
-      "import": "./dist/agent.mjs",
-      "require": "./dist/agent.js"
+      "types": "./src/agent.ts",
+      "default": "./src/agent.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
     }
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
@@ -40,7 +41,6 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.0.0",
-    "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   }
 }
