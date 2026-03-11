@@ -55,7 +55,11 @@ export function Footer() {
             </div>
             <p className="text-muted-foreground mb-6 max-w-xs text-sm">{t('home.description')}</p>
             <div className="flex items-center gap-4">
-              <SocialLink href="https://github.com" icon={GitHubIcon} label="GitHub" />
+              <SocialLink
+                href="https://github.com/figueroaignacio/ui"
+                icon={GitHubIcon}
+                label="GitHub"
+              />
             </div>
           </div>
           <FooterSection title={t('footer.product.title')}>
