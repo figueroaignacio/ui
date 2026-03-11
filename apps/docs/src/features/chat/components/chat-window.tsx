@@ -27,9 +27,9 @@ const backdropVariants = {
 const backdropTransition = { duration: 0.2 };
 
 const windowVariants = {
-  initial: { opacity: 0, x: '100%' },
+  initial: { opacity: 0, x: 'calc(100% + 2rem)' },
   animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: '100%' },
+  exit: { opacity: 0, x: 'calc(100% + 2rem)' },
 } as const;
 
 const windowTransition = {
@@ -79,7 +79,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="bg-card fixed inset-0 z-9999 flex flex-col backdrop-blur-3xl md:inset-auto md:top-0 md:right-0 md:h-dvh md:w-[400px] md:border-l md:border-white/10 lg:w-[450px]"
+            className="bg-card border-border fixed inset-4 z-9999 flex flex-col overflow-hidden rounded-lg border shadow-2xl backdrop-blur-3xl md:inset-auto md:top-4 md:right-4 md:h-[calc(100dvh-2rem)] md:w-[400px] lg:w-[450px]"
           >
             <ChatHeader onClose={onClose} />
             <div className="flex-1 overflow-y-auto">
