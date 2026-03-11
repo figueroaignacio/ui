@@ -1,214 +1,149 @@
-# AGENTS.md - Developer Guide for NachUI
+# AGENTS.md - NachUI Operator Manual
 
-This file contains guidelines and commands for agents working on the NachUI codebase.
+This guide outlines the essential commands and coding conventions for agents working inside the NachUI monorepo.
 
-## Project Overview
+## Repository Snapshot
 
-NachUI is a monorepo containing:
+- Monorepo managed by pnpm 9 + Turbo on Node >= 18.
+- apps/docs: Next.js 16 docs app with Velite content pipeline and Groq-powered chatbot.
+- packages/ui: React 19 component catalog using Tailwind CSS v4, Vitest, and class-variance-authority.
+- packages/ai: Groq SDK helpers bundled via tsup (cjs + esm + dts).
+- packages/typescript-config: strict base + react-library presets reused across workspaces.
 
-- `packages/ui` - React UI component library
-- `apps/docs` - Documentation site (Next.js)
-- `packages/typescript-config` - Shared TypeScript configs
+## Prerequisites
 
-## Build & Development Commands
+- Install dependencies once with `pnpm install`; lockfile is pnpm-lock.yaml.
+- Use `pnpm --filter <target>` to scope commands instead of `cd`.
+- Velite caches live in `apps/docs/.velite`; delete only when a rebuild is required.
+- Secrets (e.g., Groq tokens) belong in `apps/docs/.env`; never commit populated files.
 
-### Root Commands (via Turbo)
+## Root Scripts
 
-```bash
-pnpm build           # Build all packages
-pnpm dev             # Start dev servers for all apps
-pnpm lint            # Lint all packages
-pnpm start           # Start production servers
-pnpm format          # Format code with Prettier
-```
-
-### UI Package Commands (`packages/ui/`)
+Turbo fan-out commands available at repo root:
 
 ```bash
-# Run all tests
-pnpm test            # Run tests in watch mode
-pnpm test:run        # Run tests once
-
-# Run a single test file
-pnpm vitest run src/lib/cn.test.ts
-pnpm vitest run src/components/button.test.tsx
-
-# Other test options
-pnpm test:ui         # Run tests with UI
-pnpm test:coverage   # Run tests with coverage
-
-# Linting & Type Checking
-pnpm lint            # ESLint with max-warnings 0
-pnpm type-check      # TypeScript type checking
+pnpm build        # Runs every workspace build (tsup, velite, next, vitest build targets)
+pnpm dev          # Starts docs dev server + package watchers
+pnpm lint         # Dispatches workspace lint tasks
+pnpm start        # Launches production servers after build
+pnpm format       # Prettier with Tailwind plugin
 ```
 
-### Docs App Commands (`apps/docs/`)
+Use pnpm workspace filters for targeted work:
 
 ```bash
-pnpm dev             # Start dev server (runs Velite + Next.js)
-pnpm build           # Build for production
-pnpm start           # Start production server
+pnpm --filter @repo/ui lint
+pnpm --filter docs dev
+pnpm --filter @repo/ai build
 ```
 
-## Code Style Guidelines
+## Workspace Commands
 
-### General Principles
+- apps/docs:
+  - `pnpm --filter docs dev` runs `velite dev --watch` alongside `next dev`.
+  - `pnpm --filter docs build` executes `velite generate && velite build && next build`.
+  - `pnpm --filter docs start` launches production Next.js (requires a prior build).
+- packages/ui:
+  - `pnpm --filter @repo/ui lint` uses ESLint with `--max-warnings 0`.
+  - `pnpm --filter @repo/ui type-check` invokes tsc with the react-library preset.
+- packages/ai:
+  - `pnpm --filter @repo/ai build` calls tsup for cjs/esm bundles plus declarations.
+  - `pnpm --filter @repo/ai dev` runs tsup --watch for local iteration.
+  - `pnpm --filter @repo/ai check-types` runs tsc --noEmit.
 
-- Write clean, minimal, professional code
-- Prioritize readability and maintainability
-- Components should be copy-paste ready (dependency-free where possible)
-- Accessibility is a first-class concern
+## Testing Playbook
 
-### Formatting (Prettier)
+- All automated tests live in `packages/ui` and use Vitest + React Testing Library.
+- Common scripts (run from root or within the package):
 
-```json
-{
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "arrowParens": "always",
-  "plugins": ["prettier-plugin-tailwindcss"]
-}
+```bash
+pnpm --filter @repo/ui test             # Vitest watch mode
+pnpm --filter @repo/ui test:run         # CI-style run
+pnpm --filter @repo/ui test:coverage    # Coverage output
+pnpm --filter @repo/ui test:ui          # Vitest UI dashboard
 ```
 
-Run `pnpm format` to format all files.
+- Run a single spec via native vitest CLI:
 
-### TypeScript Rules
+```bash
+pnpm --filter @repo/ui vitest run src/lib/cn.test.ts
+pnpm --filter @repo/ui vitest run src/components/button.test.tsx -t "renders loading state"
+```
 
-- **Strict mode enabled** - All strict checks are on
-- **Use explicit types** for component props and function returns
-- **Use `noUncheckedIndexedAccess`** - Array access returns `T | undefined`
-- **Always use `type`** for type-only imports
-- **Use interfaces** for object shapes that may be extended
-- **Use type aliases** for unions, intersections, and primitives
+- No automated tests exist for apps/docs or packages/ai yet.
+
+## Formatting & Static Analysis
+
+- Prettier (.prettierrc) => tabWidth 2, semi true, singleQuote true, trailingComma all, printWidth 100, arrowParens always, plus prettier-plugin-tailwindcss.
+- Run `pnpm format` before shipping shared changes to keep Tailwind classes auto-sorted.
+- ESLint currently targets packages/ui; fix warnings because the CLI enforces `--max-warnings 0`.
+- TypeScript configs enable strict mode, isolated modules, and `noUncheckedIndexedAccess`; array access returns `T | undefined`.
+
+## Import Ordering
+
+1. Core platform modules (`react`, `next/navigation`).
+2. Third-party packages (motion, zod, date-fns, lucide-react, etc.).
+3. Workspace aliases (@repo/ui, @repo/ai, @/lib, @/features).
+4. Relative paths (`./component`, `../lib/cn`).
+
+- Separate groups with a blank line and prefer `import type { Foo }` for type-only references.
+
+## React & Component Patterns
+
+- Function components by default; add `'use client'` only when hooks or DOM APIs require it.
+- Keep primitives dependency-free by accepting text/icons via props rather than importing docs data.
+- Derive class strings via `cn(...)`; never build Tailwind strings manually.
+- Declare CVA configs outside the component, export them, and share the associated `VariantProps`.
+- Forward refs for interactive primitives and set `displayName`.
+- Store Motion variants/transitions as top-level constants for memoization.
+- Hooks live under `packages/ui/src/hooks`, use camelCase names prefixed with `use`.
+- MDX-friendly components must be deterministic; avoid random IDs or Date.now defaults.
+- Context helpers should throw when accessed outside providers:
 
 ```typescript
-// Good
-import { cn, type ClassValue } from '../lib/cn';
-interface ButtonProps extends HTMLMotionProps<'button'> {
-  loading?: boolean;
-}
-
-// Avoid
-import { cn, ClassValue } from '../lib/cn';
-```
-
-### Imports Organization
-
-Order imports as follows:
-
-1. React / Next.js imports (`react`, `next/*`)
-2. Third-party libraries (grouped by package)
-3. Internal imports (`@repo/ui`, `@/lib`)
-4. Relative imports (`../lib/cn`)
-
-```typescript
-import React, { forwardRef } from 'react';
-import { motion } from 'motion/react';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { cn } from '../lib/cn';
-import { buttonVariants } from './button';
-```
-
-### Component Patterns
-
-#### File Structure
-
-- One component per file (or closely related components)
-- Export component as named export
-- Export types separately
-- Use CVA (class-variance-authority) for variants
-
-```typescript
-// button.tsx
-'use client';
-
-import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef } from 'react';
-import { cn } from '../lib/cn';
-
-const buttonVariants = cva('...', { variants: { ... } });
-
-interface ButtonProps extends VariantProps<typeof buttonVariants> {
-  loading?: boolean;
-}
-
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => {
-    return <button ref={ref} className={cn(buttonVariants(...), className)} {...props} />;
-  }
-);
-Button.displayName = 'Button';
-
-export { Button, buttonVariants };
-export type { ButtonProps };
-```
-
-#### Animation Constants
-
-Define animation variants and transitions at module level (outside component):
-
-```typescript
-const VARIANTS = { initial: {...}, animate: {...}, exit: {...} } as const;
-const TRANSITION = { duration: 0.3 } as const;
-const STYLE = { willChange: 'opacity' } as const;
-```
-
-#### Context Patterns
-
-When using React Context:
-
-```typescript
-const DialogContext = React.createContext<DialogContextType | undefined>(undefined);
-
-const useDialogContext = () => {
-  const context = React.useContext(DialogContext);
-  if (!context) {
-    throw new Error('useXxxContext must be used within a Xxx provider');
-  }
-  return context;
+const ChatContext = React.createContext<ChatContextValue | null>(null);
+export const useChatContext = () => {
+  const ctx = React.useContext(ChatContext);
+  if (!ctx) throw new Error('useChatContext must be used within ChatProvider');
+  return ctx;
 };
 ```
 
-### Tailwind CSS Conventions
+## Styling & Tailwind
 
-- Use `cn()` utility for conditional classes
-- Group related classes logically
-- Use Tailwind CSS v4 features (no custom `tailwind.config.js`)
-- Prefer Tailwind's built-in utilities over custom CSS
+- Tailwind CSS v4 removes the config file; rely on utilities and CSS variables in `packages/ui/src/css/globals.css`.
+- Keep class order semantic (layout → spacing → typography → color → effects) before Prettier re-sorts.
+- Reuse CSS variables such as `var(--surface-muted)` instead of repeating literal hex values.
+- Prefer responsive primitives (`grid-cols-[auto,1fr]`, `[mask-image:linear-gradient(...)]`) to custom CSS blocks.
+- Use Motion transitions for animation timing; fall back to CSS keyframes only when necessary.
 
-### Naming Conventions
+## Naming & File Organization
 
-- **Components**: PascalCase (`Button`, `DialogContent`)
-- **Hooks**: camelCase with `use` prefix (`useDialogContext`)
-- **Utils**: camelCase (`cn`, `formatDate`)
-- **Types/Interfaces**: PascalCase (`ButtonProps`, `DialogContextType`)
-- **Constants**: SCREAMING_SNAKE_CASE for config objects, camelCase for small objects
-- **Files**: kebab-case (`button.tsx`, `dialog-content.tsx`)
+- Files: kebab-case for components (`mobile-menu.tsx`), camelCase for helpers, PascalCase for React exports.
+- Components + props: `ComponentName` + `ComponentNameProps`; hooks always start with `use`.
+- Constants default to camelCase; reserve SCREAMING_SNAKE_CASE for configuration objects.
+- Tests live next to the source with the `.test.ts`/`.test.tsx` suffix.
+- Demo/story content belongs under `packages/ui/src/demos`; docs import via the registry entry.
 
-### Error Handling
+## Type Usage & Error Handling
 
-- Throw descriptive errors in context hooks
-- Use Zod for runtime validation when needed
-- Provide meaningful error messages
+- Provide explicit prop and return types; prefer `type` aliases for unions and use `interface` only when extension is needed.
+- Validate user-supplied data (AI prompts, search queries) with Zod before invoking Groq/Velite helpers.
+- Model async flows with discriminated unions like `{ status: 'idle' | 'loading' | 'error' | 'ready' }`.
+- Re-throw caught errors with contextual detail so downstream UI can surface actionable messages.
+- Never swallow promise rejections; return the promise or handle it inside try/catch.
+- Memoize expensive computations (Velite indexes, chat history) rather than mutating module scope.
 
-### Testing
+## Git & Commit Rules
 
-- Place tests next to source files: `button.test.tsx`
-- Use Vitest with React Testing Library
-- Include `@testing-library/jest-dom` matchers
+- Follow Conventional Commits enforced by `commitlint.config.ts` (feat, fix, docs, style, refactor, perf, test, chore).
+- Keep commits tightly scoped; avoid formatting unrelated files just to appease linting.
+- Never commit populated `.env` files or generated Velite output.
 
-### Git Commit Messages
+## AI Policy References
 
-Follow Conventional Commits (validated by commitlint):
+- Cursor-specific rules: none found in `.cursor/` or `.cursorrules`.
+- Copilot instructions: none present under `.github/copilot-instructions.md`.
+- Treat this document as the single source of truth for automated workflows.
 
-```
-feat: add new button variant
-fix: resolve dialog close behavior
-docs: update button documentation
-refactor: simplify animation logic
-test: add tests for input component
-```
+Keep components copy-paste ready, run the listed commands before shipping, and default to clarity over cleverness.

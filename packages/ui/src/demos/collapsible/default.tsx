@@ -1,13 +1,13 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../components/collapsible';
+import { Collapsible } from '../../components/collapsible';
 
 export function Default() {
   return (
     <div className="space-y-3">
       <Collapsible variant="bordered" defaultOpen>
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">Prompt Engineering</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-3 pt-3">
             <p className="text-muted-foreground text-sm">
               Prompt engineering is the practice of creating clear and effective instructions so an
@@ -33,13 +33,13 @@ export function Default() {
               </code>
             </div>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
       <Collapsible variant="bordered">
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">RAG (Retrieval-Augmented Generation)</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-3 pt-3">
             <p className="text-muted-foreground text-sm">
               RAG combines a language model with an external knowledge base. The AI retrieves
@@ -51,13 +51,13 @@ export function Default() {
               <li>Perfect for documentation, support assistants, and intelligent search.</li>
             </ul>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
       <Collapsible variant="bordered">
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">AI SDKs & Model Providers</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-3 pt-3">
             <p className="text-muted-foreground text-sm">
               AI SDKs make it easy to connect your application with large language models. They
@@ -84,7 +84,7 @@ export function Default() {
               handling low-level API details.
             </p>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
     </div>
   );

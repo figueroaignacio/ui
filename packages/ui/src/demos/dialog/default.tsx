@@ -1,40 +1,31 @@
 'use client';
 
 import { Button } from '../../components/button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '../../components/dialog';
+import { Dialog } from '../../components/dialog';
 
 export function Default() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <Dialog.Trigger asChild>
         <Button>Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
+      </Dialog.Trigger>
+      <Dialog.Content>
+        <Dialog.Header>
+          <Dialog.Title>Are you absolutely sure?</Dialog.Title>
+          <Dialog.Description>
             This action cannot be undone. This will permanently delete your account and remove your
             data from our servers.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
+          </Dialog.Description>
+        </Dialog.Header>
+        <Dialog.Footer>
+          <Dialog.Close asChild>
             <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <DialogClose asChild>
+          </Dialog.Close>
+          <Dialog.Close asChild>
             <Button variant="destructive">Delete Account</Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
+          </Dialog.Close>
+        </Dialog.Footer>
+      </Dialog.Content>
     </Dialog>
   );
 }

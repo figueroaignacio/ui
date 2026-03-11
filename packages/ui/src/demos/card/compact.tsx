@@ -1,39 +1,32 @@
 import { Button } from '../../components/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../../components/card';
+import { Card } from '../../components/card';
 
 export function Compact() {
   return (
     <div className="grid gap-4">
       <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Regular Spacing</CardTitle>
-          <CardDescription>Default padding</CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Card.Header>
+          <Card.Title>Regular Spacing</Card.Title>
+          <Card.Description>Default padding</Card.Description>
+        </Card.Header>
+        <Card.Content>
           <p>This card uses the default padding for comfortable spacing.</p>
-        </CardContent>
-        <CardFooter>
+        </Card.Content>
+        <Card.Footer>
           <Button variant="secondary">Action</Button>
-        </CardFooter>
+        </Card.Footer>
       </Card>
       <Card className="w-full">
-        <CardHeader compact>
-          <CardTitle>Compact Spacing</CardTitle>
-          <CardDescription>Reduced padding</CardDescription>
-        </CardHeader>
-        <CardContent compact>
+        <Card.Header compact>
+          <Card.Title>Compact Spacing</Card.Title>
+          <Card.Description>Reduced padding</Card.Description>
+        </Card.Header>
+        <Card.Content compact>
           <p>This card uses compact padding for denser layouts.</p>
-        </CardContent>
-        <CardFooter compact>
+        </Card.Content>
+        <Card.Footer compact>
           <Button variant="secondary">Action</Button>
-        </CardFooter>
+        </Card.Footer>
       </Card>
     </div>
   );

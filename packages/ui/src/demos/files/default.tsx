@@ -1,47 +1,47 @@
 'use client';
 
-import { File, Files, Folder } from '../../components/files';
+import { Files } from '../../components/files';
 
 export function Default() {
   return (
     <Files defaultValue="src/components/ui">
-      <Folder name="src" status="modified">
-        <File name="main.tsx" />
-        <File name="App.tsx" status="modified" />
-        <File name="index.css" />
+      <Files.Folder name="src" status="modified">
+        <Files.File name="main.tsx" />
+        <Files.File name="App.tsx" status="modified" />
+        <Files.File name="index.css" />
 
-        <Folder name="components">
-          <Folder name="ui" status="modified">
-            <File name="button.tsx" />
-            <File name="card.tsx" status="modified" />
-            <File name="toast.tsx" status="added" />
-          </Folder>
+        <Files.Folder name="components">
+          <Files.Folder name="ui" status="modified">
+            <Files.File name="button.tsx" />
+            <Files.File name="card.tsx" status="modified" />
+            <Files.File name="toast.tsx" status="added" />
+          </Files.Folder>
 
-          <File name="header.tsx" />
-          <File name="footer.tsx" />
-        </Folder>
+          <Files.File name="header.tsx" />
+          <Files.File name="footer.tsx" />
+        </Files.Folder>
 
-        <Folder name="hooks" status="untracked">
-          <File name="use-auth.ts" status="untracked" />
-          <File name="use-toast.ts" status="untracked" />
-        </Folder>
+        <Files.Folder name="hooks" status="untracked">
+          <Files.File name="use-auth.ts" status="untracked" />
+          <Files.File name="use-toast.ts" status="untracked" />
+        </Files.Folder>
 
-        <Folder name="lib">
-          <File name="cn.ts" />
-          <File name="utils.ts" />
-        </Folder>
-      </Folder>
+        <Files.Folder name="lib">
+          <Files.File name="cn.ts" />
+          <Files.File name="utils.ts" />
+        </Files.Folder>
+      </Files.Folder>
 
-      <Folder name="public">
-        <File name="favicon.svg" />
-      </Folder>
+      <Files.Folder name="public">
+        <Files.File name="favicon.svg" />
+      </Files.Folder>
 
-      <File name=".env" status="ignored" />
-      <File name=".eslintrc.cjs" />
-      <File name="index.html" />
-      <File name="package.json" status="modified" />
-      <File name="tsconfig.json" />
-      <File name="vite.config.ts" />
+      <Files.File name=".env" status="ignored" />
+      <Files.File name=".eslintrc.cjs" />
+      <Files.File name="index.html" />
+      <Files.File name="package.json" status="modified" />
+      <Files.File name="tsconfig.json" />
+      <Files.File name="vite.config.ts" />
     </Files>
   );
 }

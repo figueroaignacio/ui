@@ -1,17 +1,17 @@
 'use client';
 
 import { Button } from '../../components/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../../components/tooltip';
+import { Tooltip } from '../../components/tooltip';
 
 export function Default() {
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
+      <Tooltip.Trigger asChild>
         <Button variant="outline">Hover me</Button>
-      </TooltipTrigger>
-      <TooltipContent>
+      </Tooltip.Trigger>
+      <Tooltip.Content>
         <p>Add to library</p>
-      </TooltipContent>
+      </Tooltip.Content>
     </Tooltip>
   );
 }

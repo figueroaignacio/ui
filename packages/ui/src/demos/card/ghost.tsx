@@ -1,18 +1,18 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/card';
+import { Card } from '../../components/card';
 
 export function Ghost() {
   return (
     <Card variant="ghost" className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Ghost Card</CardTitle>
-        <CardDescription>Subtle and unobtrusive</CardDescription>
-      </CardHeader>
-      <CardContent>
+      <Card.Header>
+        <Card.Title>Ghost Card</Card.Title>
+        <Card.Description>Subtle and unobtrusive</Card.Description>
+      </Card.Header>
+      <Card.Content>
         <p>
           Ghost cards are perfect for minimalist designs where you want grouping without visual
           weight.
         </p>
-      </CardContent>
+      </Card.Content>
     </Card>
   );
 }

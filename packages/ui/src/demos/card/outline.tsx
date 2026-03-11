@@ -1,15 +1,15 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/card';
+import { Card } from '../../components/card';
 
 export function Outline() {
   return (
     <Card variant="outline" className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Outline Card</CardTitle>
-        <CardDescription>Clean and defined with a bold border</CardDescription>
-      </CardHeader>
-      <CardContent>
+      <Card.Header>
+        <Card.Title>Outline Card</Card.Title>
+        <Card.Description>Clean and defined with a bold border</Card.Description>
+      </Card.Header>
+      <Card.Content>
         <p>Outline cards work great for forms, settings, and structured content.</p>
-      </CardContent>
+      </Card.Content>
     </Card>
   );
 }

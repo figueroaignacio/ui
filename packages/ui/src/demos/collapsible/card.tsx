@@ -1,13 +1,13 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../components/collapsible';
+import { Collapsible } from '../../components/collapsible';
 
 export function Card() {
   return (
     <div className="space-y-3">
       <Collapsible variant="card" defaultOpen>
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">🚀 Getting Started</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-2 pt-3">
             <p className="text-muted-foreground text-sm">
               Welcome to our platform! Here's everything you need to know to get started with your
@@ -20,14 +20,14 @@ export function Card() {
               <li>Start building!</li>
             </ul>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
 
       <Collapsible variant="card">
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">📚 Documentation</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-2 pt-3">
             <p className="text-muted-foreground text-sm">
               Explore our comprehensive documentation to learn about all features and capabilities.
@@ -38,20 +38,20 @@ export function Card() {
               <code className="bg-secondary rounded px-2 py-1 text-xs">Examples</code>
             </div>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
 
       <Collapsible variant="card">
-        <CollapsibleTrigger>
+        <Collapsible.Trigger>
           <span className="text-lg font-semibold">⚙️ Settings</span>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
+        </Collapsible.Trigger>
+        <Collapsible.Content>
           <div className="space-y-2 pt-3">
             <p className="text-muted-foreground text-sm">
               Customize your experience with our flexible settings and preferences.
             </p>
           </div>
-        </CollapsibleContent>
+        </Collapsible.Content>
       </Collapsible>
     </div>
   );
