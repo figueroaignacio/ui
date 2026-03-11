@@ -34,13 +34,13 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.24",
-    "ai": "^6.0.97",
+    "@ai-sdk/groq": "^3.0.29",
+    "ai": "^6.0.116",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20.0.0",
-    "typescript": "^5.0.0"
+    "@types/node": "^25.4.0",
+    "typescript": "^5.9.3"
   }
 }
