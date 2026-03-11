@@ -1,7 +1,9 @@
+'use client';
+
 import { Link } from '@/i18n/navigation';
 import { Home01Icon, Search02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Button, ButtonGroup } from '@repo/ui/components/button';
+import { Button } from '@repo/ui/components/button';
 import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
@@ -17,7 +19,7 @@ export default function NotFound() {
           {t('description')}
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonGroup>
+          <Button.Group>
             <Link href="/">
               <Button
                 size="sm"
@@ -46,7 +48,7 @@ export default function NotFound() {
                 {t('goDocs')}
               </Button>
             </Link>
-          </ButtonGroup>
+          </Button.Group>
         </div>
       </div>
     </div>

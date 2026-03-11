@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
 import { Layout01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { DialogClose } from '@repo/ui/components/dialog';
+import { Dialog } from '@repo/ui/components/dialog';
 import { useTranslations } from 'next-intl';
 
 const CATEGORY_ICONS: Record<string, any> = {
@@ -39,7 +39,7 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
               key={item.href}
               className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-sm px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
             >
-              <DialogClose className="h-full w-full">
+              <Dialog.Close className="h-full w-full">
                 <Link href={item.href} className="flex items-center gap-x-4">
                   {getCategoryIcon(item.category)}
                   <div className="flex w-full items-center justify-between">
@@ -47,7 +47,7 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
                     <span className="text-muted-foreground text-xs">{item.category}</span>
                   </div>
                 </Link>
-              </DialogClose>
+              </Dialog.Close>
             </li>
           ))}
         </ul>
@@ -68,12 +68,12 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
                   key={item.href}
                   className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
                 >
-                  <DialogClose className="h-full w-full">
+                  <Dialog.Close className="h-full w-full">
                     <Link href={item.href} className="flex items-center gap-x-4">
                       {getCategoryIcon(section.title)}
                       {item.title}
                     </Link>
-                  </DialogClose>
+                  </Dialog.Close>
                 </li>
               ))}
             </ul>

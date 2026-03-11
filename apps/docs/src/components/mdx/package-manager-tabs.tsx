@@ -1,4 +1,6 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
+'use client';
+
+import { Tabs } from '@repo/ui/components/tabs';
 import { CodeBlock } from './codeblock';
 import { PackageManagerIcons } from './package-manager-icons';
 
@@ -43,22 +45,22 @@ export function PackageManagerTabs({
 }: PackageManagerTabsProps) {
   return (
     <Tabs defaultValue={defaultManager} className="mt-5 w-full" size="sm">
-      <TabsList variant="default">
+      <Tabs.List variant="default">
         {managers.map((manager) => (
-          <TabsTrigger key={manager} value={manager} className="flex-row gap-2">
+          <Tabs.Trigger key={manager} value={manager} className="flex-row gap-2">
             {/* <div>{PACKAGE_MANAGERS[manager].icon}</div> */}
             <div>{PACKAGE_MANAGERS[manager].name}</div>
-          </TabsTrigger>
+          </Tabs.Trigger>
         ))}
-      </TabsList>
+      </Tabs.List>
       {managers.map((manager) => (
-        <TabsContent key={manager} value={manager} className="mt-0">
+        <Tabs.Content key={manager} value={manager} className="mt-0">
           <CodeBlock
             code={PACKAGE_MANAGER_COMMANDS[manager](command)}
             language="bash"
             showLineNumbers={showLineNumbers}
           />
-        </TabsContent>
+        </Tabs.Content>
       ))}
     </Tabs>
   );

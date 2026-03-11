@@ -1,3 +1,5 @@
+'use client';
+
 import { Accordion } from '../../components/accordion';
 
 export function Default() {

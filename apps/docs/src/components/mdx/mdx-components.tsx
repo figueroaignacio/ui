@@ -1,22 +1,6 @@
 import { Alert02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@repo/ui/components/accordion';
 import { Callout } from '@repo/ui/components/callout';
-import { File, Files, Folder } from '@repo/ui/components/files';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@repo/ui/components/table';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/components/tabs';
 import { cn } from '@repo/ui/lib/cn';
 import { isValidElement } from 'react';
 import { CodeBlockWrapper } from './code-block-wrapper';
@@ -24,6 +8,25 @@ import { CodeBlock } from './codeblock';
 import { ComponentPreview } from './component-preview';
 import { ComponentSource } from './component-source';
 import { ComponentsList } from './components-list';
+import {
+  MdxAccordion,
+  MdxAccordionContent,
+  MdxAccordionItem,
+  MdxAccordionTrigger,
+  MdxFile,
+  MdxFiles,
+  MdxFolder,
+  MdxTable,
+  MdxTableBody,
+  MdxTableCell,
+  MdxTableHead,
+  MdxTableHeader,
+  MdxTableRow,
+  MdxTabs,
+  MdxTabsContent,
+  MdxTabsList,
+  MdxTabsTrigger,
+} from './compound-components';
 import { InlineCode } from './inline-code';
 import { PackageManagerTabs } from './package-manager-tabs';
 
@@ -174,27 +177,27 @@ export const mdxComponents = {
   hr: HorizontalRule,
   blockquote: Blockquote,
   img: Image,
-  table: Table,
-  thead: TableHeader,
-  tbody: TableBody,
-  tr: TableRow,
-  th: TableHead,
-  td: TableCell,
+  table: MdxTable,
+  thead: MdxTableHeader,
+  tbody: MdxTableBody,
+  tr: MdxTableRow,
+  th: MdxTableHead,
+  td: MdxTableCell,
   CodeBlockWrapper,
-  Tabs,
-  TabsContent,
-  TabsTrigger,
-  TabsList,
+  Tabs: MdxTabs,
+  TabsContent: MdxTabsContent,
+  TabsTrigger: MdxTabsTrigger,
+  TabsList: MdxTabsList,
   ComponentPreview,
   ComponentsList,
   ComponentSource,
   PackageManagerTabs,
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  Accordion: MdxAccordion,
+  AccordionContent: MdxAccordionContent,
+  AccordionItem: MdxAccordionItem,
+  AccordionTrigger: MdxAccordionTrigger,
   Callout,
-  Files,
-  Folder,
-  File,
+  Files: MdxFiles,
+  Folder: MdxFolder,
+  File: MdxFile,
 };

@@ -1,7 +1,7 @@
 import { AiBeautifyIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@repo/ui/components/tooltip';
+import { Tooltip } from '@repo/ui/components/tooltip';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
@@ -29,7 +29,7 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
 
   return (
     <Tooltip open={shouldShowTooltip} onOpenChange={setIsHovered} delayDuration={0}>
-      <TooltipTrigger asChild>
+      <Tooltip.Trigger asChild>
         <Button
           onClick={onClick}
           variant="outline"
@@ -38,10 +38,10 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
         >
           {t('button.label')}
         </Button>
-      </TooltipTrigger>
-      <TooltipContent side="left" sideOffset={10}>
+      </Tooltip.Trigger>
+      <Tooltip.Content side="left" sideOffset={10}>
         {t('messages.tooltip')}
-      </TooltipContent>
+      </Tooltip.Content>
     </Tooltip>
   );
 }

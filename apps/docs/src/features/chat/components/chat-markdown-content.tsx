@@ -1,13 +1,8 @@
+'use client';
+
 import { CodeBlock } from '@/components/mdx/codeblock';
 import { InlineCode } from '@/components/mdx/inline-code';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@repo/ui/components/table';
+import { Table } from '@repo/ui/components/table';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -86,16 +81,16 @@ export function ChatMarkdownContent({ content }: MarkdownContentProps) {
               <Table>{children}</Table>
             </div>
           ),
-          thead: ({ children }) => <TableHeader>{children}</TableHeader>,
-          tbody: ({ children }) => <TableBody>{children}</TableBody>,
-          tr: ({ children }) => <TableRow className="hover:bg-muted/50">{children}</TableRow>,
+          thead: ({ children }) => <Table.Header>{children}</Table.Header>,
+          tbody: ({ children }) => <Table.Body>{children}</Table.Body>,
+          tr: ({ children }) => <Table.Row className="hover:bg-muted/50">{children}</Table.Row>,
           th: ({ children }) => (
-            <TableHead className="text-foreground px-4 py-3 text-left font-bold">
+            <Table.Head className="text-foreground px-4 py-3 text-left font-bold">
               {children}
-            </TableHead>
+            </Table.Head>
           ),
           td: ({ children }) => (
-            <TableCell className="px-4 py-3 align-top leading-6">{children}</TableCell>
+            <Table.Cell className="px-4 py-3 align-top leading-6">{children}</Table.Cell>
           ),
           pre: ({ children }) => {
             const child = (children as any)?.props;

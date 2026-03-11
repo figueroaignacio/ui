@@ -1,3 +1,5 @@
+'use client';
+
 import { Breadcrumb } from '../../components/breadcrumb';
 
 export function Default() {

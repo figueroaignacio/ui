@@ -1,7 +1,9 @@
+'use client';
+
 import { Link } from '@/i18n/navigation';
 import { ArrowRight02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@repo/ui/components/card';
+import { Card } from '@repo/ui/components/card';
 
 interface CardLinkProps {
   label: string;
@@ -13,17 +15,17 @@ export function CardLink({ label, href, description }: CardLinkProps) {
   return (
     <Link href={href}>
       <Card className="border-border hover:bg-secondary group bg-card flex flex-1 flex-col gap-2 rounded-xl border p-4 transition-all active:scale-95">
-        <CardHeader compact>
-          <CardTitle>{label}</CardTitle>
-        </CardHeader>
+        <Card.Header compact>
+          <Card.Title>{label}</Card.Title>
+        </Card.Header>
         {description && (
-          <CardContent compact>
+          <Card.Content compact>
             <p className="text-muted-foreground text-sm">{description}</p>
-          </CardContent>
+          </Card.Content>
         )}
-        <CardFooter align="end" compact>
+        <Card.Footer align="end" compact>
           <HugeiconsIcon icon={ArrowRight02Icon} size={16} />
-        </CardFooter>
+        </Card.Footer>
       </Card>
     </Link>
   );

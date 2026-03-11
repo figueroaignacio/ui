@@ -4,15 +4,8 @@ import { GitHubIcon } from '@/components/common/tech-icons';
 import { useChatContext } from '@/features/chat/context/chat-context';
 import { AiBeautifyIcon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Button, ButtonGroup } from '@repo/ui/components/button';
-import {
-  DropdownLabel,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownSeparator,
-} from '@repo/ui/components/dropdown-menu';
+import { Button } from '@repo/ui/components/button';
+import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
 import { useTranslations } from 'next-intl';
 import { useCallback, useMemo } from 'react';
 
@@ -56,7 +49,7 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
   const githubEditUrl = `https://github.com/figueroaignacio/ui/edit/main/apps/docs/src/content/${filePath}.mdx`;
 
   return (
-    <ButtonGroup attached>
+    <Button.Group attached>
       <Button
         variant="outline"
         size="sm"
@@ -67,15 +60,15 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
         <span>{t('explainButton.label')}</span>
       </Button>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenu.Trigger asChild>
           <Button variant="outline" size="sm" className="h-8 w-8 rounded-r-full p-0">
             <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-56">
-          <DropdownLabel>{t('openIn.label')}</DropdownLabel>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content align="start" className="w-56">
+          <DropdownMenu.Label>{t('openIn.label')}</DropdownMenu.Label>
           {openInLinks.map((link) => (
-            <DropdownMenuItem key={link.name} asChild className="gap-2">
+            <DropdownMenu.Item key={link.name} asChild className="gap-2">
               <a
                 href={link.href}
                 target="_blank"
@@ -85,10 +78,10 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
                 <link.icon />
                 <span>{link.name}</span>
               </a>
-            </DropdownMenuItem>
+            </DropdownMenu.Item>
           ))}
-          <DropdownSeparator />
-          <DropdownMenuItem asChild className="gap-2">
+          <DropdownMenu.Separator />
+          <DropdownMenu.Item asChild className="gap-2">
             <a
               href={githubEditUrl}
               target="_blank"
@@ -98,10 +91,10 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
               <GitHubIcon />
               <span>{t('editOnGithub.label')}</span>
             </a>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
       </DropdownMenu>
-    </ButtonGroup>
+    </Button.Group>
   );
 }
 

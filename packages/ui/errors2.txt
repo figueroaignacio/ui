@@ -1,0 +1,64 @@
+src/demos/accordion/collapsed.tsx(3,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionContent'. Did you mean 'AccordionContentProps'?
+src/demos/accordion/collapsed.tsx(4,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionItem'. Did you mean 'Accordion'?
+src/demos/accordion/collapsed.tsx(5,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionTrigger'. Did you mean 'AccordionTriggerProps'?
+src/demos/accordion/default.tsx(3,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionContent'. Did you mean 'AccordionContentProps'?
+src/demos/accordion/default.tsx(4,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionItem'. Did you mean 'Accordion'?
+src/demos/accordion/default.tsx(5,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionTrigger'. Did you mean 'AccordionTriggerProps'?
+src/demos/accordion/multiple.tsx(3,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionContent'. Did you mean 'AccordionContentProps'?
+src/demos/accordion/multiple.tsx(4,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionItem'. Did you mean 'Accordion'?
+src/demos/accordion/multiple.tsx(5,3): error TS2724: '"../../components/accordion"' has no exported member named 'AccordionTrigger'. Did you mean 'AccordionTriggerProps'?
+src/demos/breadcrumb/default.tsx(3,3): error TS2724: '"../../components/breadcrumb"' has no exported member named 'BreadcrumbItem'. Did you mean 'Breadcrumb'?
+src/demos/breadcrumb/default.tsx(4,3): error TS2724: '"../../components/breadcrumb"' has no exported member named 'BreadcrumbLink'. Did you mean 'Breadcrumb'?
+src/demos/breadcrumb/default.tsx(5,3): error TS2724: '"../../components/breadcrumb"' has no exported member named 'BreadcrumbList'. Did you mean 'Breadcrumb'?
+src/demos/breadcrumb/default.tsx(6,3): error TS2724: '"../../components/breadcrumb"' has no exported member named 'BreadcrumbPage'. Did you mean 'Breadcrumb'?
+src/demos/breadcrumb/default.tsx(7,3): error TS2459: Module '"../../components/breadcrumb"' declares 'BreadcrumbSeparator' locally, but it is not exported.
+src/demos/card/compact.tsx(4,3): error TS2459: Module '"../../components/card"' declares 'CardContent' locally, but it is not exported.
+src/demos/card/compact.tsx(5,3): error TS2724: '"../../components/card"' has no exported member named 'CardDescription'. Did you mean 'CardDescriptionProps'?
+src/demos/card/compact.tsx(6,3): error TS2459: Module '"../../components/card"' declares 'CardFooter' locally, but it is not exported.
+src/demos/card/compact.tsx(7,3): error TS2459: Module '"../../components/card"' declares 'CardHeader' locally, but it is not exported.
+src/demos/card/compact.tsx(8,3): error TS2459: Module '"../../components/card"' declares 'CardTitle' locally, but it is not exported.
+src/demos/card/default.tsx(4,3): error TS2459: Module '"../../components/card"' declares 'CardContent' locally, but it is not exported.
+src/demos/card/default.tsx(5,3): error TS2724: '"../../components/card"' has no exported member named 'CardDescription'. Did you mean 'CardDescriptionProps'?
+src/demos/card/default.tsx(6,3): error TS2459: Module '"../../components/card"' declares 'CardFooter' locally, but it is not exported.
+src/demos/card/default.tsx(7,3): error TS2459: Module '"../../components/card"' declares 'CardHeader' locally, but it is not exported.
+src/demos/card/default.tsx(8,3): error TS2459: Module '"../../components/card"' declares 'CardTitle' locally, but it is not exported.
+src/demos/card/ghost.tsx(1,16): error TS2459: Module '"../../components/card"' declares 'CardContent' locally, but it is not exported.
+src/demos/card/ghost.tsx(1,29): error TS2724: '"../../components/card"' has no exported member named 'CardDescription'. Did you mean 'CardDescriptionProps'?
+src/demos/card/ghost.tsx(1,46): error TS2459: Module '"../../components/card"' declares 'CardHeader' locally, but it is not exported.
+src/demos/card/ghost.tsx(1,58): error TS2459: Module '"../../components/card"' declares 'CardTitle' locally, but it is not exported.
+src/demos/card/outline.tsx(1,16): error TS2459: Module '"../../components/card"' declares 'CardContent' locally, but it is not exported.
+src/demos/card/outline.tsx(1,29): error TS2724: '"../../components/card"' has no exported member named 'CardDescription'. Did you mean 'CardDescriptionProps'?
+src/demos/card/outline.tsx(1,46): error TS2459: Module '"../../components/card"' declares 'CardHeader' locally, but it is not exported.
+src/demos/card/outline.tsx(1,58): error TS2459: Module '"../../components/card"' declares 'CardTitle' locally, but it is not exported.
+src/demos/collapsible/bordered.tsx(1,23): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleContent'. Did you mean 'CollapsibleContentProps'?
+src/demos/collapsible/bordered.tsx(1,43): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleTrigger'. Did you mean 'CollapsibleTriggerProps'?
+src/demos/collapsible/card.tsx(1,23): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleContent'. Did you mean 'CollapsibleContentProps'?
+src/demos/collapsible/card.tsx(1,43): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleTrigger'. Did you mean 'CollapsibleTriggerProps'?
+src/demos/collapsible/default.tsx(1,23): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleContent'. Did you mean 'CollapsibleContentProps'?
+src/demos/collapsible/default.tsx(1,43): error TS2724: '"../../components/collapsible"' has no exported member named 'CollapsibleTrigger'. Did you mean 'CollapsibleTriggerProps'?
+src/demos/dialog/default.tsx(6,3): error TS2459: Module '"../../components/dialog"' declares 'DialogClose' locally, but it is not exported.
+src/demos/dialog/default.tsx(7,3): error TS2459: Module '"../../components/dialog"' declares 'DialogContent' locally, but it is not exported.
+src/demos/dialog/default.tsx(8,3): error TS2459: Module '"../../components/dialog"' declares 'DialogDescription' locally, but it is not exported.
+src/demos/dialog/default.tsx(9,3): error TS2459: Module '"../../components/dialog"' declares 'DialogFooter' locally, but it is not exported.
+src/demos/dialog/default.tsx(10,3): error TS2459: Module '"../../components/dialog"' declares 'DialogHeader' locally, but it is not exported.
+src/demos/dialog/default.tsx(11,3): error TS2459: Module '"../../components/dialog"' declares 'DialogTitle' locally, but it is not exported.
+src/demos/dialog/default.tsx(12,3): error TS2459: Module '"../../components/dialog"' declares 'DialogTrigger' locally, but it is not exported.
+src/demos/dropdown-menu/default.tsx(7,3): error TS2459: Module '"../../components/dropdown-menu"' declares 'DropdownLabel' locally, but it is not exported.
+src/demos/dropdown-menu/default.tsx(9,3): error TS2724: '"../../components/dropdown-menu"' has no exported member named 'DropdownMenuContent'. Did you mean 'DropdownMenuContentProps'?
+src/demos/dropdown-menu/default.tsx(10,3): error TS2724: '"../../components/dropdown-menu"' has no exported member named 'DropdownMenuItem'. Did you mean 'DropdownMenu'?
+src/demos/dropdown-menu/default.tsx(11,3): error TS2724: '"../../components/dropdown-menu"' has no exported member named 'DropdownMenuTrigger'. Did you mean 'DropdownMenuTriggerProps'?
+src/demos/dropdown-menu/default.tsx(12,3): error TS2459: Module '"../../components/dropdown-menu"' declares 'DropdownSeparator' locally, but it is not exported.
+src/demos/files/default.tsx(3,10): error TS2724: '"../../components/files"' has no exported member named 'File'. Did you mean 'Files'?
+src/demos/files/default.tsx(3,23): error TS2459: Module '"../../components/files"' declares 'Folder' locally, but it is not exported.
+src/demos/sheet/default.tsx(4,17): error TS2459: Module '"../../components/sheet"' declares 'SheetClose' locally, but it is not exported.
+src/demos/sheet/default.tsx(4,29): error TS2459: Module '"../../components/sheet"' declares 'SheetContent' locally, but it is not exported.
+src/demos/sheet/default.tsx(4,43): error TS2459: Module '"../../components/sheet"' declares 'SheetTrigger' locally, but it is not exported.
+src/demos/tabs/default.tsx(4,16): error TS2459: Module '"../../components/card"' declares 'CardContent' locally, but it is not exported.
+src/demos/tabs/default.tsx(4,29): error TS2724: '"../../components/card"' has no exported member named 'CardDescription'. Did you mean 'CardDescriptionProps'?
+src/demos/tabs/default.tsx(4,46): error TS2459: Module '"../../components/card"' declares 'CardHeader' locally, but it is not exported.
+src/demos/tabs/default.tsx(4,58): error TS2459: Module '"../../components/card"' declares 'CardTitle' locally, but it is not exported.
+src/demos/tabs/default.tsx(5,16): error TS2459: Module '"../../components/tabs"' declares 'TabsContent' locally, but it is not exported.
+src/demos/tabs/default.tsx(5,29): error TS2459: Module '"../../components/tabs"' declares 'TabsList' locally, but it is not exported.
+src/demos/tabs/default.tsx(5,39): error TS2459: Module '"../../components/tabs"' declares 'TabsTrigger' locally, but it is not exported.
+src/demos/tooltip/default.tsx(4,19): error TS2459: Module '"../../components/tooltip"' declares 'TooltipContent' locally, but it is not exported.
+src/demos/tooltip/default.tsx(4,35): error TS2459: Module '"../../components/tooltip"' declares 'TooltipTrigger' locally, but it is not exported.

@@ -4,12 +4,7 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { locales } from '@/i18n/routing';
 import { LanguageSquareIcon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@repo/ui/components/dropdown-menu';
+import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
 
 import type { Locale } from 'next-intl';
 import { useLocale } from 'next-intl';
@@ -38,15 +33,15 @@ export function LocaleSwitcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="w-[140px] justify-between">
+      <DropdownMenu.Trigger className="w-[140px] justify-between">
         <div className="flex items-center gap-2">
           <HugeiconsIcon icon={LanguageSquareIcon} size={16} />
           <span className="text-xs">{getLocaleLabel(locale)}</span>
         </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-[140px]">
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content align="end" className="min-w-[140px]">
         {locales.map((localeOption) => (
-          <DropdownMenuItem
+          <DropdownMenu.Item
             key={localeOption}
             onClick={() => handleLocaleChange(localeOption as Locale)}
             disabled={isPending}
@@ -56,9 +51,9 @@ export function LocaleSwitcher() {
               {getLocaleLabel(localeOption)}
             </span>
             {locale === localeOption && <HugeiconsIcon icon={Tick02Icon} size={16} />}
-          </DropdownMenuItem>
+          </DropdownMenu.Item>
         ))}
-      </DropdownMenuContent>
+      </DropdownMenu.Content>
     </DropdownMenu>
   );
 }
