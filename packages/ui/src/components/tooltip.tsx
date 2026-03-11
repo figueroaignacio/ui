@@ -49,6 +49,7 @@ interface TooltipContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
   delayDuration: number;
+  id: string;
 }
 
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
@@ -92,8 +93,10 @@ const TooltipRoot = ({
     [isControlled, onOpenChange],
   );
 
+  const id = React.useId();
+
   return (
-    <TooltipContext.Provider value={{ open, setOpen, delayDuration }}>
+    <TooltipContext.Provider value={{ open, setOpen, delayDuration, id }}>
       <div className="relative flex h-fit w-fit items-center justify-center">{children}</div>
     </TooltipContext.Provider>
   );
@@ -104,7 +107,7 @@ interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function TooltipTrigger({ children, asChild = false, className, ...props }: TooltipTriggerProps) {
-  const { setOpen, delayDuration } = useTooltip();
+  const { setOpen, delayDuration, id } = useTooltip();
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMouseEnter = () => {
@@ -118,11 +121,20 @@ function TooltipTrigger({ children, asChild = false, className, ...props }: Tool
     setOpen(false);
   };
 
+  const handleFocus = () => {
+    setOpen(true);
+  };
+
+  const handleBlur = () => {
+    setOpen(false);
+  };
+
   if (asChild && React.isValidElement(children)) {
     const child = children as React.ReactElement<any>;
 
     return React.cloneElement(child, {
       ...props,
+      'aria-describedby': id,
       onMouseEnter: (e: React.MouseEvent) => {
         handleMouseEnter();
         child.props.onMouseEnter?.(e);
@@ -131,15 +143,26 @@ function TooltipTrigger({ children, asChild = false, className, ...props }: Tool
         handleMouseLeave();
         child.props.onMouseLeave?.(e);
       },
+      onFocus: (e: React.FocusEvent) => {
+        handleFocus();
+        child.props.onFocus?.(e);
+      },
+      onBlur: (e: React.FocusEvent) => {
+        handleBlur();
+        child.props.onBlur?.(e);
+      },
       className: cn(className, child.props.className),
     });
   }
 
   return (
     <div
+      aria-describedby={id}
       className={cn('cursor-pointer', className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       {...props}
     >
       {children}
@@ -160,7 +183,7 @@ const TooltipContent = ({
   children,
   ...props
 }: TooltipContentProps) => {
-  const { open } = useTooltip();
+  const { open, id } = useTooltip();
 
   const sideOffsetStyle = React.useMemo(
     () => ({
@@ -177,6 +200,8 @@ const TooltipContent = ({
     <AnimatePresence>
       {open && (
         <motion.div
+          id={id}
+          role="tooltip"
           initial={TOOLTIP_ANIMATION_VARIANTS[side].initial}
           animate={TOOLTIP_ANIMATION_VARIANTS[side].animate}
           exit={TOOLTIP_ANIMATION_VARIANTS[side].initial}

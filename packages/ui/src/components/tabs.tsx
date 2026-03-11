@@ -145,6 +145,8 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
     return (
       <div
         ref={ref}
+        role="tablist"
+        aria-orientation="horizontal"
         className={cn(tabsListVariants({ variant: finalVariant, size }), className)}
         {...props}
       >
@@ -195,7 +197,10 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         ref={buttonRef}
         type="button"
         role="tab"
+        id={`${layoutId}-trigger-${value}`}
         aria-selected={isActive}
+        aria-controls={`${layoutId}-content-${value}`}
+        tabIndex={isActive ? 0 : -1}
         data-state={isActive ? 'active' : 'inactive'}
         onClick={handleClick}
         className={cn(tabsTriggerVariants({ variant: finalVariant, size }), className)}
@@ -226,7 +231,7 @@ interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   ({ className, value, children, ...props }, ref) => {
-    const { activeTab } = useTabsContext();
+    const { activeTab, layoutId } = useTabsContext();
     const isActive = activeTab === value;
 
     if (!isActive) return null;
@@ -235,6 +240,9 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
       <div
         ref={ref}
         role="tabpanel"
+        id={`${layoutId}-content-${value}`}
+        aria-labelledby={`${layoutId}-trigger-${value}`}
+        tabIndex={0}
         className={cn(
           'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
           className,

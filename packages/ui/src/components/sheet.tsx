@@ -59,6 +59,7 @@ const SWIPE_CLOSE_THRESHOLD = 80;
 type SheetContextProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
 };
 
 const SheetContext = React.createContext<SheetContextProps | null>(null);
@@ -73,6 +74,7 @@ function useSheetContext() {
 
 const SheetRoot = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = React.useState(false);
+  const id = React.useId();
 
   React.useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
@@ -81,7 +83,7 @@ const SheetRoot = ({ children }: { children: React.ReactNode }) => {
     };
   }, [open]);
 
-  return <SheetContext.Provider value={{ open, setOpen }}>{children}</SheetContext.Provider>;
+  return <SheetContext.Provider value={{ open, setOpen, id }}>{children}</SheetContext.Provider>;
 };
 
 const SheetTrigger = ({
@@ -154,7 +156,7 @@ const SheetContent = ({
   showDragHandle = true,
   ...props
 }: SheetContentProps) => {
-  const { open, setOpen } = useSheetContext();
+  const { open, setOpen, id } = useSheetContext();
   const [mounted, setMounted] = React.useState(false);
 
   const dragY = useMotionValue(0);
@@ -164,6 +166,15 @@ const SheetContent = ({
   const overlayOpacityFromX = useTransform(dragX, [0, 200], [1, 0]);
 
   React.useEffect(() => setMounted(true), []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, setOpen]);
 
   const isVertical = side === 'bottom' || side === 'top';
   const isHorizontal = side === 'left' || side === 'right';
@@ -207,6 +218,10 @@ const SheetContent = ({
         <>
           <SheetOverlay className="z-300" />
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`${id}-title`}
+            aria-describedby={`${id}-description`}
             drag={dragAxis}
             dragMomentum={false}
             dragElastic={dragElastic}
@@ -273,7 +288,12 @@ const SheetHeader = ({
 };
 
 const SheetTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  return <h2 className={cn('text-xl font-semibold tracking-tight', className)}>{children}</h2>;
+  const { id } = useSheetContext();
+  return (
+    <h2 id={`${id}-title`} className={cn('text-xl font-semibold tracking-tight', className)}>
+      {children}
+    </h2>
+  );
 };
 
 const SheetDescription = ({
@@ -283,7 +303,12 @@ const SheetDescription = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <p className={cn('text-muted-foreground mt-1 text-sm', className)}>{children}</p>;
+  const { id } = useSheetContext();
+  return (
+    <p id={`${id}-description`} className={cn('text-muted-foreground mt-1 text-sm', className)}>
+      {children}
+    </p>
+  );
 };
 
 const Sheet = Object.assign(SheetRoot, {

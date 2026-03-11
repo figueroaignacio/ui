@@ -94,6 +94,7 @@ const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         disabled={isDisabled}
+        aria-busy={loading}
         className={cn(buttonVariants({ variant, size }), fullWidth && 'w-full', className)}
         whileTap={!isDisabled && !shouldReduceMotion ? { scale: 0.96 } : undefined}
         transition={BUTTON_SPRING}
@@ -110,6 +111,7 @@ const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
               exit="exit"
               transition={SWAP_TRANSITION}
               className="absolute flex items-center justify-center"
+              aria-hidden="true"
             >
               {loader ?? (
                 <HugeiconsIcon icon={Loading02Icon} className="size-4 animate-spin" size={16} />

@@ -54,7 +54,7 @@ CalloutContent.displayName = 'CalloutContent';
 
 const CalloutIcon = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('mt-0.5 shrink-0 text-base select-none', className)} {...props} />
+    <div ref={ref} aria-hidden="true" className={cn('mt-0.5 shrink-0 text-base select-none', className)} {...props} />
   ),
 );
 CalloutIcon.displayName = 'CalloutIcon';
@@ -79,9 +79,10 @@ const CalloutRoot = forwardRef<HTMLDivElement, CalloutProps>(
     };
 
     const calloutIcon = getIcon();
+    const role = variant === 'danger' || variant === 'warning' ? 'alert' : 'region';
 
     return (
-      <div ref={ref} className={cn(calloutVariants({ variant }), className)} {...props}>
+      <div ref={ref} role={role} className={cn(calloutVariants({ variant }), className)} {...props}>
         {calloutIcon ? <CalloutIcon>{calloutIcon}</CalloutIcon> : null}
         <div className="flex-1 space-y-1">
           {title ? <CalloutTitle>{title}</CalloutTitle> : null}

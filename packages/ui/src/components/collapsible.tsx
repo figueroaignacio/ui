@@ -100,6 +100,7 @@ interface CollapsibleContextValue {
   setIsOpen: (open: boolean) => void;
   disabled?: boolean;
   variant?: 'default' | 'bordered' | 'card';
+  id: string;
 }
 
 interface CollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -164,9 +165,11 @@ const CollapsibleRoot = React.forwardRef<HTMLDivElement, CollapsibleProps>(
       [disabled, isControlled, onOpenChange],
     );
 
+    const id = React.useId();
+
     const contextValue = React.useMemo<CollapsibleContextValue>(
-      () => ({ isOpen, setIsOpen, disabled, variant }),
-      [isOpen, setIsOpen, disabled, variant],
+      () => ({ isOpen, setIsOpen, disabled, variant, id }),
+      [isOpen, setIsOpen, disabled, variant, id],
     );
 
     return (
@@ -201,7 +204,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
     },
     ref,
   ) => {
-    const { isOpen, setIsOpen, disabled, variant } = useCollapsibleContext();
+    const { isOpen, setIsOpen, disabled, variant, id } = useCollapsibleContext();
     const shouldReduceMotion = useReducedMotion();
 
     const handleClick = React.useCallback(
@@ -223,6 +226,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
         onClick: handleClick,
         'data-state': isOpen ? 'open' : 'closed',
         'aria-expanded': isOpen,
+        'aria-controls': `${id}-content`,
         disabled,
       } as React.HTMLAttributes<HTMLElement>);
     }
@@ -235,6 +239,7 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
         disabled={disabled}
         data-state={isOpen ? 'open' : 'closed'}
         aria-expanded={isOpen}
+        aria-controls={`${id}-content`}
         whileHover={
           !disabled && !shouldReduceMotion
             ? { scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }
@@ -274,13 +279,14 @@ CollapsibleTrigger.displayName = 'CollapsibleTrigger';
 
 const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentProps>(
   ({ className, forceMount = false, children, ...props }, ref) => {
-    const { isOpen, variant } = useCollapsibleContext();
+    const { isOpen, variant, id } = useCollapsibleContext();
 
     return (
       <AnimatePresence initial={false} mode="sync">
         {(isOpen || forceMount) && (
           <motion.div
             ref={ref}
+            id={`${id}-content`}
             variants={COLLAPSIBLE_HEIGHT_VARIANTS}
             initial="closed"
             animate="open"

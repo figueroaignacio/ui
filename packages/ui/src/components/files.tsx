@@ -79,9 +79,19 @@ export type FileProps = {
 const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
   const statusConfig = status ? GIT_STATUS_STYLES[status] : undefined;
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       whileHover={FILE_HOVER}
       whileTap={FILE_TAP}
       transition={FILE_TRANSITION}
@@ -135,10 +145,21 @@ const Folder: React.FC<FolderProps> = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (hasChildren && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      toggleFolder(currentPath);
+    }
+  };
+
   return (
     <div className={className}>
       <motion.div
+        role="button"
+        tabIndex={0}
+        aria-expanded={hasChildren ? isOpen : undefined}
         onClick={handleToggle}
+        onKeyDown={handleKeyDown}
         whileHover={hasChildren ? { x: 2 } : {}}
         whileTap={hasChildren ? { scale: 0.98 } : {}}
         className={cn(

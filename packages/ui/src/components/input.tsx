@@ -31,6 +31,7 @@ const InputRoot = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, ...props }, ref) => {
     const generatedId = React.useId();
     const inputId = id ?? generatedId;
+    const errorId = `${inputId}-error`;
 
     return (
       <InputWrapper>
@@ -48,9 +49,10 @@ const InputRoot = React.forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           aria-invalid={!!error}
+          aria-describedby={error ? errorId : undefined}
           {...props}
         />
-        {error && <InputError>{error}</InputError>}
+        {error && <InputError id={errorId}>{error}</InputError>}
       </InputWrapper>
     );
   },

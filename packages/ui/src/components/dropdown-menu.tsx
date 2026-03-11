@@ -349,6 +349,28 @@ const DropdownMenuItem = ({
     [disabled, onClick, onSelect, closeMenu],
   );
 
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        onClick?.(e as any);
+        onSelect?.();
+        closeMenu();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = (e.currentTarget.nextElementSibling as HTMLElement);
+        if (next) next.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = (e.currentTarget.previousElementSibling as HTMLElement);
+        if (prev) prev.focus();
+      }
+    },
+    [disabled, onClick, onSelect, closeMenu],
+  );
+
   const style = {
     '--accent': variant === 'destructive' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(0,0,0, 0.04)',
   } as React.CSSProperties;
@@ -358,6 +380,7 @@ const DropdownMenuItem = ({
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       whileHover={!disabled ? { backgroundColor: 'var(--accent)', scale: 1 } : {}}
       whileTap={!disabled ? { scale: 0.98 } : {}}
       className={cn(
@@ -376,6 +399,9 @@ const DropdownMenuItem = ({
   if (asChild && React.isValidElement(children)) {
     return React.cloneElement(children, {
       onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: 'menuitem',
+      tabIndex: disabled ? -1 : 0,
       className: cn(
         'relative flex cursor-pointer items-center rounded-md px-3 py-2 text-sm outline-none select-none',
         'transition-colors duration-200',

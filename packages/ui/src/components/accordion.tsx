@@ -147,11 +147,16 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
     const { openItems, toggleItem } = useAccordionContext();
     const isOpen = openItems.includes(value);
     const shouldReduceMotion = useReducedMotion();
+    const triggerId = `accordion-trigger-${value.replace(/[^a-zA-Z0-9-]/gi, '')}`;
+    const contentId = `accordion-content-${value.replace(/[^a-zA-Z0-9-]/gi, '')}`;
 
     return (
       <motion.button
         ref={ref}
+        id={triggerId}
         type="button"
+        aria-controls={contentId}
+        aria-expanded={isOpen}
         onClick={() => toggleItem(value)}
         whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
         className={cn(
@@ -195,12 +200,17 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
   ({ children, value, className }, ref) => {
     const { openItems } = useAccordionContext();
     const isOpen = openItems.includes(value);
+    const triggerId = `accordion-trigger-${value.replace(/[^a-zA-Z0-9-]/gi, '')}`;
+    const contentId = `accordion-content-${value.replace(/[^a-zA-Z0-9-]/gi, '')}`;
 
     return (
       <AnimatePresence initial={false} mode="wait">
         {isOpen && (
           <motion.div
             ref={ref}
+            id={contentId}
+            role="region"
+            aria-labelledby={triggerId}
             key="content"
             variants={CONTENT_HEIGHT_VARIANTS}
             initial="closed"
