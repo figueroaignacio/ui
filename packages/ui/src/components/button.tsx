@@ -4,7 +4,7 @@ import { Loading02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { AnimatePresence, HTMLMotionProps, motion, useReducedMotion } from 'motion/react';
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { cn } from '../lib/cn';
 
 // --- CVA ---
@@ -68,75 +68,71 @@ interface ButtonProps extends HTMLMotionProps<'button'>, VariantProps<typeof but
   children?: React.ReactNode;
 }
 
-const ButtonRoot = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = 'default',
-      size = 'default',
-      loading = false,
-      loader,
-      leftIcon,
-      rightIcon,
-      fullWidth = false,
-      disabled,
-      children,
-      type = 'button',
-      ...props
-    },
-    ref,
-  ) => {
-    const isDisabled = disabled || loading;
-    const shouldReduceMotion = useReducedMotion();
+const ButtonRoot = ({
+  className,
+  variant = 'default',
+  size = 'default',
+  loading = false,
+  loader,
+  leftIcon,
+  rightIcon,
+  fullWidth = false,
+  disabled,
+  children,
+  type = 'button',
+  ref,
+  ...props
+}: ButtonProps) => {
+  const isDisabled = disabled || loading;
+  const shouldReduceMotion = useReducedMotion();
 
-    return (
-      <motion.button
-        ref={ref}
-        type={type}
-        disabled={isDisabled}
-        aria-busy={loading}
-        className={cn(buttonVariants({ variant, size }), fullWidth && 'w-full', className)}
-        whileTap={!isDisabled && !shouldReduceMotion ? { scale: 0.96 } : undefined}
-        transition={BUTTON_SPRING}
-        style={BUTTON_STYLE}
-        {...props}
-      >
-        <AnimatePresence mode="popLayout" initial={false}>
-          {loading ? (
-            <motion.span
-              key="loader"
-              variants={LOADER_VARIANTS}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={SWAP_TRANSITION}
-              className="absolute flex items-center justify-center"
-              aria-hidden="true"
-            >
-              {loader ?? (
-                <HugeiconsIcon icon={Loading02Icon} className="size-4 animate-spin" size={16} />
-              )}
-            </motion.span>
-          ) : (
-            <motion.div
-              key="content"
-              className="flex items-center gap-2"
-              variants={CONTENT_VARIANTS}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={SWAP_TRANSITION}
-            >
-              {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
-              <span>{children}</span>
-              {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.button>
-    );
-  },
-);
+  return (
+    <motion.button
+      ref={ref}
+      type={type}
+      disabled={isDisabled}
+      aria-busy={loading}
+      className={cn(buttonVariants({ variant, size }), fullWidth && 'w-full', className)}
+      whileTap={!isDisabled && !shouldReduceMotion ? { scale: 0.96 } : undefined}
+      transition={BUTTON_SPRING}
+      style={BUTTON_STYLE}
+      {...props}
+    >
+      <AnimatePresence mode="popLayout" initial={false}>
+        {loading ? (
+          <motion.span
+            key="loader"
+            variants={LOADER_VARIANTS}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={SWAP_TRANSITION}
+            className="absolute flex items-center justify-center"
+            aria-hidden="true"
+          >
+            {loader ?? (
+              <HugeiconsIcon icon={Loading02Icon} className="size-4 animate-spin" size={16} />
+            )}
+          </motion.span>
+        ) : (
+          <motion.div
+            key="content"
+            className="flex items-center gap-2"
+            variants={CONTENT_VARIANTS}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={SWAP_TRANSITION}
+          >
+            {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
+            <span>{children}</span>
+            {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  );
+};
 
 ButtonRoot.displayName = 'Button';
 
@@ -146,31 +142,37 @@ interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   orientation?: 'horizontal' | 'vertical';
   attached?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
-const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
-  ({ className, children, orientation = 'horizontal', attached = false, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        role="group"
-        className={cn(
-          'inline-flex',
-          orientation === 'horizontal' ? 'flex-row' : 'flex-col',
-          attached
-            ? orientation === 'horizontal'
-              ? '[&>button:not(:first-child)]:-ml-px [&>button:not(:first-child)]:rounded-l-none [&>button:not(:last-child)]:rounded-r-none'
-              : '[&>button:not(:first-child)]:-mt-px [&>button:not(:first-child)]:rounded-t-none [&>button:not(:last-child)]:rounded-b-none'
-            : 'gap-2',
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+const ButtonGroup = ({
+  className,
+  children,
+  orientation = 'horizontal',
+  attached = false,
+  ref,
+  ...props
+}: ButtonGroupProps) => {
+  return (
+    <div
+      ref={ref}
+      role="group"
+      className={cn(
+        'inline-flex',
+        orientation === 'horizontal' ? 'flex-row' : 'flex-col',
+        attached
+          ? orientation === 'horizontal'
+            ? '[&>button:not(:first-child)]:-ml-px [&>button:not(:first-child)]:rounded-l-none [&>button:not(:last-child)]:rounded-r-none'
+            : '[&>button:not(:first-child)]:-mt-px [&>button:not(:first-child)]:rounded-t-none [&>button:not(:last-child)]:rounded-b-none'
+          : 'gap-2',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 
 ButtonGroup.displayName = 'ButtonGroup';
 

@@ -65,7 +65,7 @@ type SheetContextProps = {
 const SheetContext = React.createContext<SheetContextProps | null>(null);
 
 function useSheetContext() {
-  const ctx = React.useContext(SheetContext);
+  const ctx = React.use(SheetContext);
   if (!ctx) throw new Error('Sheet components must be inside <Sheet>.');
   return ctx;
 }
@@ -83,7 +83,7 @@ const SheetRoot = ({ children }: { children: React.ReactNode }) => {
     };
   }, [open]);
 
-  return <SheetContext.Provider value={{ open, setOpen, id }}>{children}</SheetContext.Provider>;
+  return <SheetContext value={{ open, setOpen, id }}>{children}</SheetContext>;
 };
 
 const SheetTrigger = ({

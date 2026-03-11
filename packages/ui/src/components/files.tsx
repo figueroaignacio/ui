@@ -58,7 +58,7 @@ interface FilesContextValue {
 const FilesContext = React.createContext<FilesContextValue | null>(null);
 
 const useFiles = () => {
-  const context = React.useContext(FilesContext);
+  const context = React.use(FilesContext);
   if (!context) {
     throw new Error('File components must be used within Files');
   }
@@ -132,7 +132,7 @@ const Folder: React.FC<FolderProps> = ({
   status,
 }) => {
   const { openFolders, toggleFolder } = useFiles();
-  const parentPath = React.useContext(FolderPathContext);
+  const parentPath = React.use(FolderPathContext);
   const currentPath = externalPath || (parentPath ? `${parentPath}/${name}` : name);
   const isOpen = openFolders.has(currentPath);
   const hasChildren = React.Children.count(children) > 0;
@@ -215,9 +215,9 @@ const Folder: React.FC<FolderProps> = ({
             className="overflow-hidden"
           >
             <div className="border-border mt-1 ml-2 border-l pl-4">
-              <FolderPathContext.Provider value={currentPath}>
+              <FolderPathContext value={currentPath}>
                 {children}
-              </FolderPathContext.Provider>
+              </FolderPathContext>
             </div>
           </motion.div>
         )}
@@ -266,9 +266,9 @@ const FilesRoot: React.FC<FilesProps> = ({ children, defaultValue, className }) 
   );
 
   return (
-    <FilesContext.Provider value={contextValue}>
+    <FilesContext value={contextValue}>
       <div className={cn('w-full min-w-[250px]', className)}>{children}</div>
-    </FilesContext.Provider>
+    </FilesContext>
   );
 };
 

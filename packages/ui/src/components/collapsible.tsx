@@ -127,7 +127,7 @@ interface CollapsibleContentProps extends Omit<HTMLMotionProps<'div'>, 'children
 const CollapsibleContext = React.createContext<CollapsibleContextValue | null>(null);
 
 const useCollapsibleContext = (): CollapsibleContextValue => {
-  const context = React.useContext(CollapsibleContext);
+  const context = React.use(CollapsibleContext);
   if (!context) {
     throw new Error('Collapsible components must be used within Collapsible');
   }
@@ -136,179 +136,175 @@ const useCollapsibleContext = (): CollapsibleContextValue => {
 
 // --- Components ---
 
-const CollapsibleRoot = React.forwardRef<HTMLDivElement, CollapsibleProps>(
-  (
-    {
-      className,
-      defaultOpen = false,
-      open: controlledOpen,
-      onOpenChange,
-      disabled = false,
-      variant = 'default',
-      children,
-      ...props
+const CollapsibleRoot = ({
+  className,
+  defaultOpen = false,
+  open: controlledOpen,
+  onOpenChange,
+  disabled = false,
+  variant = 'default',
+  children,
+  ref,
+  ...props
+}: CollapsibleProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
+  const isControlled = controlledOpen !== undefined;
+  const isOpen = isControlled ? controlledOpen : internalOpen;
+
+  const setIsOpen = React.useCallback(
+    (open: boolean) => {
+      if (disabled) return;
+      if (!isControlled) {
+        setInternalOpen(open);
+      }
+      onOpenChange?.(open);
     },
-    ref,
-  ) => {
-    const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
-    const isControlled = controlledOpen !== undefined;
-    const isOpen = isControlled ? controlledOpen : internalOpen;
+    [disabled, isControlled, onOpenChange],
+  );
 
-    const setIsOpen = React.useCallback(
-      (open: boolean) => {
-        if (disabled) return;
-        if (!isControlled) {
-          setInternalOpen(open);
-        }
-        onOpenChange?.(open);
-      },
-      [disabled, isControlled, onOpenChange],
-    );
+  const id = React.useId();
 
-    const id = React.useId();
+  const contextValue = React.useMemo<CollapsibleContextValue>(
+    () => ({ isOpen, setIsOpen, disabled, variant, id }),
+    [isOpen, setIsOpen, disabled, variant, id],
+  );
 
-    const contextValue = React.useMemo<CollapsibleContextValue>(
-      () => ({ isOpen, setIsOpen, disabled, variant, id }),
-      [isOpen, setIsOpen, disabled, variant, id],
-    );
-
-    return (
-      <CollapsibleContext.Provider value={contextValue}>
-        <div
-          ref={ref}
-          data-state={isOpen ? 'open' : 'closed'}
-          data-disabled={disabled ? '' : undefined}
-          className={cn(collapsibleVariants({ variant }), className)}
-          {...props}
-        >
-          {children}
-        </div>
-      </CollapsibleContext.Provider>
-    );
-  },
-);
+  return (
+    <CollapsibleContext value={contextValue}>
+      <div
+        ref={ref}
+        data-state={isOpen ? 'open' : 'closed'}
+        data-disabled={disabled ? '' : undefined}
+        className={cn(collapsibleVariants({ variant }), className)}
+        {...props}
+      >
+        {children}
+      </div>
+    </CollapsibleContext>
+  );
+};
 
 CollapsibleRoot.displayName = 'Collapsible';
 
-const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTriggerProps>(
-  (
-    {
-      className,
-      showChevron = true,
-      chevronIcon,
-      chevronPosition = 'right',
-      asChild = false,
-      children,
-      onClick,
-      ...props
+const CollapsibleTrigger = ({
+  className,
+  showChevron = true,
+  chevronIcon,
+  chevronPosition = 'right',
+  asChild = false,
+  children,
+  onClick,
+  ref,
+  ...props
+}: CollapsibleTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  const { isOpen, setIsOpen, disabled, variant, id } = useCollapsibleContext();
+  const shouldReduceMotion = useReducedMotion();
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (!disabled) {
+        setIsOpen(!isOpen);
+        onClick?.(e);
+      }
     },
-    ref,
-  ) => {
-    const { isOpen, setIsOpen, disabled, variant, id } = useCollapsibleContext();
-    const shouldReduceMotion = useReducedMotion();
+    [disabled, isOpen, setIsOpen, onClick],
+  );
 
-    const handleClick = React.useCallback(
-      (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (!disabled) {
-          setIsOpen(!isOpen);
-          onClick?.(e);
-        }
-      },
-      [disabled, isOpen, setIsOpen, onClick],
-    );
+  const chevron = chevronIcon ?? (
+    <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4 shrink-0" size={16} />
+  );
 
-    const chevron = chevronIcon ?? (
-      <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4 shrink-0" size={16} />
-    );
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children, {
+      onClick: handleClick,
+      'data-state': isOpen ? 'open' : 'closed',
+      'aria-expanded': isOpen,
+      'aria-controls': `${id}-content`,
+      disabled,
+    } as React.HTMLAttributes<HTMLElement>);
+  }
 
-    if (asChild && React.isValidElement(children)) {
-      return React.cloneElement(children, {
-        onClick: handleClick,
-        'data-state': isOpen ? 'open' : 'closed',
-        'aria-expanded': isOpen,
-        'aria-controls': `${id}-content`,
-        disabled,
-      } as React.HTMLAttributes<HTMLElement>);
-    }
-
-    return (
-      <motion.button
-        ref={ref}
-        type="button"
-        onClick={handleClick}
-        disabled={disabled}
-        data-state={isOpen ? 'open' : 'closed'}
-        aria-expanded={isOpen}
-        aria-controls={`${id}-content`}
-        whileHover={
-          !disabled && !shouldReduceMotion
-            ? { scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }
-            : {}
-        }
-        whileTap={!disabled && !shouldReduceMotion ? { scale: 0.99 } : {}}
-        className={cn(collapsibleTriggerVariants({ variant }), className)}
-        {...props}
-      >
-        {showChevron && chevronPosition === 'left' && (
-          <motion.span
-            aria-hidden="true"
-            animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 90 : 0 }}
-            transition={COLLAPSIBLE_ICON_TRANSITION}
-            className="mr-2"
-          >
-            {chevron}
-          </motion.span>
-        )}
-        <span className="flex-1 text-left">{children}</span>
-        {showChevron && chevronPosition === 'right' && (
-          <motion.span
-            aria-hidden="true"
-            animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 180 : 0 }}
-            transition={COLLAPSIBLE_ICON_TRANSITION}
-            className="ml-2"
-          >
-            {chevron}
-          </motion.span>
-        )}
-      </motion.button>
-    );
-  },
-);
+  return (
+    <motion.button
+      ref={ref}
+      type="button"
+      onClick={handleClick}
+      disabled={disabled}
+      data-state={isOpen ? 'open' : 'closed'}
+      aria-expanded={isOpen}
+      aria-controls={`${id}-content`}
+      whileHover={
+        !disabled && !shouldReduceMotion
+          ? { scale: 1.005, backgroundColor: 'rgba(0,0,0,0.02)' }
+          : {}
+      }
+      whileTap={!disabled && !shouldReduceMotion ? { scale: 0.99 } : {}}
+      className={cn(collapsibleTriggerVariants({ variant }), className)}
+      {...props}
+    >
+      {showChevron && chevronPosition === 'left' && (
+        <motion.span
+          aria-hidden="true"
+          animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 90 : 0 }}
+          transition={COLLAPSIBLE_ICON_TRANSITION}
+          className="mr-2"
+        >
+          {chevron}
+        </motion.span>
+      )}
+      <span className="flex-1 text-left">{children}</span>
+      {showChevron && chevronPosition === 'right' && (
+        <motion.span
+          aria-hidden="true"
+          animate={shouldReduceMotion ? undefined : { rotate: isOpen ? 180 : 0 }}
+          transition={COLLAPSIBLE_ICON_TRANSITION}
+          className="ml-2"
+        >
+          {chevron}
+        </motion.span>
+      )}
+    </motion.button>
+  );
+};
 
 CollapsibleTrigger.displayName = 'CollapsibleTrigger';
 
-const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentProps>(
-  ({ className, forceMount = false, children, ...props }, ref) => {
-    const { isOpen, variant, id } = useCollapsibleContext();
+const CollapsibleContent = ({
+  className,
+  forceMount = false,
+  children,
+  ref,
+  ...props
+}: CollapsibleContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const { isOpen, variant, id } = useCollapsibleContext();
 
-    return (
-      <AnimatePresence initial={false} mode="sync">
-        {(isOpen || forceMount) && (
+  return (
+    <AnimatePresence initial={false} mode="sync">
+      {(isOpen || forceMount) && (
+        <motion.div
+          ref={ref}
+          id={`${id}-content`}
+          variants={COLLAPSIBLE_HEIGHT_VARIANTS}
+          initial="closed"
+          animate="open"
+          exit="closed"
+          style={COLLAPSIBLE_CONTENT_STYLE}
+          className={cn(collapsibleContentVariants({ variant }), className)}
+          {...props}
+        >
           <motion.div
-            ref={ref}
-            id={`${id}-content`}
-            variants={COLLAPSIBLE_HEIGHT_VARIANTS}
+            variants={COLLAPSIBLE_INNER_VARIANTS}
             initial="closed"
             animate="open"
             exit="closed"
-            style={COLLAPSIBLE_CONTENT_STYLE}
-            className={cn(collapsibleContentVariants({ variant }), className)}
-            {...props}
           >
-            <motion.div
-              variants={COLLAPSIBLE_INNER_VARIANTS}
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
-              {children}
-            </motion.div>
+            {children}
           </motion.div>
-        )}
-      </AnimatePresence>
-    );
-  },
-);
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 CollapsibleContent.displayName = 'CollapsibleContent';
 

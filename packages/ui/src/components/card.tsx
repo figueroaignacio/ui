@@ -1,7 +1,7 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef } from 'react';
+import React from 'react';
 import { cn } from '../lib/cn';
 
 const cardVariants = cva(
@@ -90,82 +90,101 @@ interface CardContentProps
 interface CardFooterProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardFooterVariants> {}
 
-const CardRoot = forwardRef<HTMLDivElement, CardProps>(
-  (
-    { className, variant = 'default', gradient = false, as: Component = 'div', children, ...props },
-    ref,
-  ) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(cardVariants({ variant, gradient }), className)}
-        {...props}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
+const CardRoot = ({
+  className,
+  variant = 'default',
+  gradient = false,
+  as: Component = 'div',
+  children,
+  ref,
+  ...props
+}: CardProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <Component ref={ref} className={cn(cardVariants({ variant, gradient }), className)} {...props}>
+      {children}
+    </Component>
+  );
+};
 
 CardRoot.displayName = 'Card';
 
-const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ className, compact, children, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(cardHeaderVariants({ compact }), className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
+const CardHeader = ({
+  className,
+  compact,
+  children,
+  ref,
+  ...props
+}: CardHeaderProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div ref={ref} className={cn(cardHeaderVariants({ compact }), className)} {...props}>
+      {children}
+    </div>
+  );
+};
 
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
-  ({ className, as: Component = 'h3', children, ...props }, ref) => {
-    return (
-      <Component ref={ref} className={cn(cardTitleVariants(), className)} {...props}>
-        {children}
-      </Component>
-    );
-  },
-);
+const CardTitle = ({
+  className,
+  as: Component = 'h3',
+  children,
+  ref,
+  ...props
+}: CardTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+  return (
+    <Component ref={ref} className={cn(cardTitleVariants(), className)} {...props}>
+      {children}
+    </Component>
+  );
+};
 
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <p ref={ref} className={cn(cardDescriptionVariants(), className)} {...props}>
-        {children}
-      </p>
-    );
-  },
-);
+const CardDescription = ({
+  className,
+  children,
+  ref,
+  ...props
+}: CardDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
+  return (
+    <p ref={ref} className={cn(cardDescriptionVariants(), className)} {...props}>
+      {children}
+    </p>
+  );
+};
 
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
-  ({ className, compact, children, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(cardContentVariants({ compact }), className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
+const CardContent = ({
+  className,
+  compact,
+  children,
+  ref,
+  ...props
+}: CardContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div ref={ref} className={cn(cardContentVariants({ compact }), className)} {...props}>
+      {children}
+    </div>
+  );
+};
 
 CardContent.displayName = 'CardContent';
 
-const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ className, align, compact, children, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(cardFooterVariants({ align, compact }), className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
+const CardFooter = ({
+  className,
+  align,
+  compact,
+  children,
+  ref,
+  ...props
+}: CardFooterProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div ref={ref} className={cn(cardFooterVariants({ align, compact }), className)} {...props}>
+      {children}
+    </div>
+  );
+};
 
 CardFooter.displayName = 'CardFooter';
 

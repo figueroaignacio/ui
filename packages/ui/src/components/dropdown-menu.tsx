@@ -145,9 +145,9 @@ const DropdownMenuRoot = ({
   );
 
   return (
-    <DropdownContext.Provider value={contextValue}>
+    <DropdownContext value={contextValue}>
       <div className={cn('relative inline-block text-left', className)}>{children}</div>
-    </DropdownContext.Provider>
+    </DropdownContext>
   );
 };
 

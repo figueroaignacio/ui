@@ -69,7 +69,7 @@ interface TabsContextValue {
 const TabsContext = React.createContext<TabsContextValue | null>(null);
 
 function useTabsContext() {
-  const context = React.useContext(TabsContext);
+  const context = React.use(TabsContext);
   if (!context) throw new Error('Tabs components must be used within Tabs');
   return context;
 }
@@ -84,77 +84,78 @@ interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'default' | 'sm' | 'lg';
 }
 
-const TabsRoot = React.forwardRef<HTMLDivElement, TabsProps>(
-  (
-    {
-      className,
-      defaultValue,
-      value: controlledValue,
-      onValueChange,
-      variant = 'default',
-      size = 'default',
-      children,
-      ...props
+const TabsRoot = ({
+  className,
+  defaultValue,
+  value: controlledValue,
+  onValueChange,
+  variant = 'default',
+  size = 'default',
+  children,
+  ref,
+  ...props
+}: TabsProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const [internalValue, setInternalValue] = React.useState(defaultValue || '');
+  const isControlled = controlledValue !== undefined;
+  const activeTab = isControlled ? controlledValue : internalValue;
+  const [direction, setDirection] = React.useState(0);
+  const layoutId = React.useId();
+
+  const setActiveTab = React.useCallback(
+    (newValue: string) => {
+      if (!isControlled) {
+        setInternalValue(newValue);
+      }
+      onValueChange?.(newValue);
     },
-    ref,
-  ) => {
-    const [internalValue, setInternalValue] = React.useState(defaultValue || '');
-    const isControlled = controlledValue !== undefined;
-    const activeTab = isControlled ? controlledValue : internalValue;
-    const [direction, setDirection] = React.useState(0);
-    const layoutId = React.useId();
+    [isControlled, onValueChange],
+  );
 
-    const setActiveTab = React.useCallback(
-      (newValue: string) => {
-        if (!isControlled) {
-          setInternalValue(newValue);
-        }
-        onValueChange?.(newValue);
-      },
-      [isControlled, onValueChange],
-    );
-
-    return (
-      <TabsContext.Provider
-        value={{
-          activeTab,
-          setActiveTab,
-          direction,
-          setDirection,
-          variant,
-          layoutId,
-        }}
-      >
-        <div ref={ref} className={cn('w-full', className)} {...props}>
-          {children}
-        </div>
-      </TabsContext.Provider>
-    );
-  },
-);
+  return (
+    <TabsContext
+      value={{
+        activeTab,
+        setActiveTab,
+        direction,
+        setDirection,
+        variant,
+        layoutId,
+      }}
+    >
+      <div ref={ref} className={cn('w-full', className)} {...props}>
+        {children}
+      </div>
+    </TabsContext>
+  );
+};
 TabsRoot.displayName = 'Tabs';
 
 interface TabsListProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tabsListVariants> {}
 
-const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
-  ({ className, variant, size, children, ...props }, ref) => {
-    const { variant: contextVariant } = useTabsContext();
-    const finalVariant = variant || contextVariant;
+const TabsList = ({
+  className,
+  variant,
+  size,
+  children,
+  ref,
+  ...props
+}: TabsListProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const { variant: contextVariant } = useTabsContext();
+  const finalVariant = variant || contextVariant;
 
-    return (
-      <div
-        ref={ref}
-        role="tablist"
-        aria-orientation="horizontal"
-        className={cn(tabsListVariants({ variant: finalVariant, size }), className)}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+  return (
+    <div
+      ref={ref}
+      role="tablist"
+      aria-orientation="horizontal"
+      className={cn(tabsListVariants({ variant: finalVariant, size }), className)}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 TabsList.displayName = 'TabsList';
 
 interface TabsTriggerProps
@@ -163,97 +164,111 @@ interface TabsTriggerProps
   children: React.ReactNode;
 }
 
-const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
-  ({ className, value, children, variant, size, ...props }, ref) => {
-    const {
-      activeTab,
-      setActiveTab,
-      setDirection,
-      variant: contextVariant,
-      layoutId,
-    } = useTabsContext();
-    const isActive = activeTab === value;
-    const finalVariant = variant || contextVariant;
-    const buttonRef = React.useRef<HTMLButtonElement>(null);
+const TabsTrigger = ({
+  className,
+  value,
+  children,
+  variant,
+  size,
+  ref,
+  ...props
+}: TabsTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  const { activeTab, setActiveTab, setDirection, variant: contextVariant, layoutId } = useTabsContext();
+  const isActive = activeTab === value;
+  const finalVariant = variant || contextVariant;
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      const parent = buttonRef.current?.parentElement;
-      if (parent) {
-        const childrenArray = Array.from(parent.children);
-        const newIndex = childrenArray.indexOf(buttonRef.current!);
-        const currentIndex = childrenArray.findIndex(
-          (child) => child.getAttribute('data-state') === 'active',
-        );
-        if (currentIndex !== -1 && newIndex !== currentIndex) {
-          setDirection(newIndex > currentIndex ? 1 : -1);
-        }
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const parent = buttonRef.current?.parentElement;
+    if (parent) {
+      const childrenArray = Array.from(parent.children);
+      const newIndex = childrenArray.indexOf(buttonRef.current!);
+      const currentIndex = childrenArray.findIndex(
+        (child) => child.getAttribute('data-state') === 'active',
+      );
+      if (currentIndex !== -1 && newIndex !== currentIndex) {
+        setDirection(newIndex > currentIndex ? 1 : -1);
       }
-      setActiveTab(value);
-      props.onClick?.(e);
-    };
+    }
+    setActiveTab(value);
+    props.onClick?.(e);
+  };
 
-    return (
-      <button
-        ref={buttonRef}
-        type="button"
-        role="tab"
-        id={`${layoutId}-trigger-${value}`}
-        aria-selected={isActive}
-        aria-controls={`${layoutId}-content-${value}`}
-        tabIndex={isActive ? 0 : -1}
-        data-state={isActive ? 'active' : 'inactive'}
-        onClick={handleClick}
-        className={cn(tabsTriggerVariants({ variant: finalVariant, size }), className)}
-        {...props}
-      >
-        <span className="inherit relative z-20">{children}</span>
-        {isActive && (
-          <motion.div
-            layoutId={`${layoutId}-indicator`}
-            className={cn(
-              'absolute inset-0 z-10',
-              finalVariant === 'underline'
-                ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
-                : 'bg-secondary border-border/50 rounded-sm border shadow-sm',
-            )}
-            transition={TABS_INDICATOR_TRANSITION}
-          />
-        )}
-      </button>
-    );
-  },
-);
+  // Merge the external ref with our internal buttonRef
+  React.useEffect(() => {
+    if (!ref) return;
+    if (typeof ref === 'function') {
+      ref(buttonRef.current);
+    } else {
+      (ref as any).current = buttonRef.current;
+    }
+  }, [ref]);
+
+  return (
+    <button
+      ref={buttonRef}
+      type="button"
+      role="tab"
+      id={`${layoutId}-trigger-${value}`}
+      aria-selected={isActive}
+      aria-controls={`${layoutId}-content-${value}`}
+      tabIndex={isActive ? 0 : -1}
+      data-state={isActive ? 'active' : 'inactive'}
+      onClick={handleClick}
+      className={cn(tabsTriggerVariants({ variant: finalVariant, size }), className)}
+      {...props}
+    >
+      <span className="inherit relative z-20">{children}</span>
+      {isActive && (
+        <motion.div
+          layoutId={`${layoutId}-indicator`}
+          className={cn(
+            'absolute inset-0 z-10',
+            finalVariant === 'underline'
+              ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
+              : 'bg-secondary border-border/50 rounded-sm border shadow-sm',
+          )}
+          transition={TABS_INDICATOR_TRANSITION}
+        />
+      )}
+    </button>
+  );
+};
 TabsTrigger.displayName = 'TabsTrigger';
 
 interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
 }
 
-const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
-  ({ className, value, children, ...props }, ref) => {
-    const { activeTab, layoutId } = useTabsContext();
-    const isActive = activeTab === value;
+const TabsContent = ({
+  className,
+  value,
+  children,
+  ref,
+  ...props
+}: TabsContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const { activeTab, layoutId } = useTabsContext();
+  const isActive = activeTab === value;
 
-    if (!isActive) return null;
+  if (!isActive) return null;
 
-    return (
-      <div
-        ref={ref}
-        role="tabpanel"
-        id={`${layoutId}-content-${value}`}
-        aria-labelledby={`${layoutId}-trigger-${value}`}
-        tabIndex={0}
-        className={cn(
-          'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  },
-);
+  return (
+    <div
+      ref={ref}
+      role="tabpanel"
+      id={`${layoutId}-content-${value}`}
+      aria-labelledby={`${layoutId}-trigger-${value}`}
+      tabIndex={0}
+      className={cn(
+        'ring-offset-background focus-visible:ring-ring mt-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 TabsContent.displayName = 'TabsContent';
 
 const Tabs = Object.assign(TabsRoot, {

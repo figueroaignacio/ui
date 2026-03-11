@@ -55,7 +55,7 @@ interface TooltipContextType {
 const TooltipContext = React.createContext<TooltipContextType | undefined>(undefined);
 
 const useTooltip = () => {
-  const context = React.useContext(TooltipContext);
+  const context = React.use(TooltipContext);
   if (!context) {
     throw new Error('useTooltip must be used within a TooltipProvider');
   }
@@ -96,9 +96,9 @@ const TooltipRoot = ({
   const id = React.useId();
 
   return (
-    <TooltipContext.Provider value={{ open, setOpen, delayDuration, id }}>
+    <TooltipContext value={{ open, setOpen, delayDuration, id }}>
       <div className="relative flex h-fit w-fit items-center justify-center">{children}</div>
-    </TooltipContext.Provider>
+    </TooltipContext>
   );
 };
 
