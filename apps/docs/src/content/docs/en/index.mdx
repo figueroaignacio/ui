@@ -46,6 +46,7 @@ The Design System is built on these fundamental principles:
 - **Open Source — Open Code**: Every line is transparent, editable, and auditable.
 - **Unified Design Language**: All components follow the same visual and compositional rules.
 - **Simple Distribution**: A CLI and a structured schema system make adding or creating components effortless.
+- **Compound Components**: Intuitive API design that gives you semantic control over every piece of a component via dot-notation (e.g., `<Card.Header>`).
 - **Production-Ready**: Modern, accessible, and cohesive values from day one.
 - **AI-Native**: Clear patterns, standardized code, and structured documentation built for AI tools.
 
@@ -77,6 +78,35 @@ Even external integrations follow the same design language, ensuring true cohesi
 Your team learns one system.  
 Your AI learns one pattern.  
 Everything works together.
+
+## Compound Components Pattern
+
+NachUI embraces the **Compound Component** pattern to provide maximum flexibility and highly readable, intuitive APIs.
+
+Instead of configuring components by passing endless boolean flags or objects into a single monolithic component, you compose your UI using semantic, interconnected elements nested beneath a parent component.
+
+```tsx
+// ❌ Monolithic approach (rigid, hard to override specific parts)
+<Card title="Hello" description="World" content="This is content" />
+
+// ✅ Compound Component approach (highly flexible and readable)
+<Card>
+  <Card.Header>
+    <Card.Title>Hello</Card.Title>
+    <Card.Description>World</Card.Description>
+  </Card.Header>
+  <Card.Content>
+    <p>This is content</p>
+  </Card.Content>
+</Card>
+```
+
+**Why Compound Components?**
+
+- **Intrusive-free Customization**: You can inject wrappers, adjust ordering, or add custom elements directly into the structure without needing complex `renderProp` overrides.
+- **Clear Code Structure**: Your JSX visually represents the exact DOM structure and hierarchy of the rendered component.
+- **Focused Typings**: Each sub-component has its own specific props, keeping your TypeScript autocomplete clean and relevant locally.
+- **Shared State without Prop Drilling**: The parent component implicitly shares state and context with its children, letting you focus on layout rather than state wiring.
 
 ## Simple Distribution
 

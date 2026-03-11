@@ -46,6 +46,7 @@ El Design System se sostiene sobre estos principios fundamentales:
 - **Open Source — Open Code**: Cada línea es transparente, modificable y auditable.
 - **Lenguaje de Diseño Unificado**: Todos los componentes siguen las mismas reglas visuales y de composición.
 - **Distribución Simple**: Un CLI y un sistema de esquemas facilitan agregar o crear componentes.
+- **Patrón 'Compound Components'**: API de diseño intuitiva que te da control semántico de cada pieza de un componente (ej. `<Card.Header>`).
 - **Listo para Producción**: Valores modernos, accesibles y coherentes desde el primer día.
 - **Nativo para IA**: Patrones claros, código estandarizado y documentación estructurada para herramientas de IA.
 
@@ -72,11 +73,40 @@ Esto garantiza:
 - accesibilidad uniforme
 - comportamientos previsibles
 
-InclAnatomía las integraciones externas se adaptan al mismo lenguaje visual, garantizando cohesión en toda tu interfaz.
+Incluso las integraciones externas se adaptan al mismo lenguaje visual, garantizando cohesión en toda tu interfaz.
 
 Tu equipo aprende un solo sistema.  
 Tu IA aprende un solo patrón.  
 Todo funciona en conjunto.
+
+## El Patrón 'Compound Components'
+
+NachUI adopta el patrón de **Compound Components** (Componentes Compuestos) para proporcionar la máxima flexibilidad y APIs altamente legibles e intuitivas.
+
+En lugar de configurar los componentes pasando infinitos flags booleanos u objetos a un solo componente monolítico, construyes tu interfaz componiendo elementos semánticos interconectados debajó de un componente principal a través de la notación de punto (`dot-notation`).
+
+```tsx
+// ❌ Enfoque monolítico (rígido, difícil de sobreescribir partes específicas)
+<Card title="Hola" description="Mundo" content="Este es el contenido" />
+
+// ✅ Enfoque Compound Component (altamente flexible y legible)
+<Card>
+  <Card.Header>
+    <Card.Title>Hola</Card.Title>
+    <Card.Description>Mundo</Card.Description>
+  </Card.Header>
+  <Card.Content>
+    <p>Este es el contenido</p>
+  </Card.Content>
+</Card>
+```
+
+**¿Por qué Compound Components?**
+
+- **Personalización sin intrusión**: Podés agregar wrappers, cambiar el orden o añadir elementos personalizados directamente en la estructura sin necesitar anulaciones complejas (como `renderProps`).
+- **Estructura de código clara**: Tu JSX representa visualmente la estructura exacta y la jerarquía que tendrá el DOM del componente.
+- **Tipado enfocado**: Cada sub-componente tiene sus propias props específicas, lo que mantiene el autocompletado de TypeScript limpio y localmente relevante.
+- **Estado compartido sin perforación de props (Prop Drilling)**: El componente principal comparte implícitamente estado y contexto con sus hijos, permitiéndote enfocarte en la diagramación en vez de en enlazar estados.
 
 ## Distribución Simple
 
