@@ -173,7 +173,13 @@ const TabsTrigger = ({
   ref,
   ...props
 }: TabsTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
-  const { activeTab, setActiveTab, setDirection, variant: contextVariant, layoutId } = useTabsContext();
+  const {
+    activeTab,
+    setActiveTab,
+    setDirection,
+    variant: contextVariant,
+    layoutId,
+  } = useTabsContext();
   const isActive = activeTab === value;
   const finalVariant = variant || contextVariant;
   const buttonRef = React.useRef<HTMLButtonElement>(null);

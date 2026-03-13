@@ -29,7 +29,9 @@ const TableBody = ({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement> & {
   ref?: React.Ref<HTMLTableSectionElement>;
-}) => <tbody ref={ref} className={cn('bg-card/30 [&_tr:last-child]:border-0', className)} {...props} />;
+}) => (
+  <tbody ref={ref} className={cn('bg-card/30 [&_tr:last-child]:border-0', className)} {...props} />
+);
 TableBody.displayName = 'TableBody';
 
 const TableFooter = ({

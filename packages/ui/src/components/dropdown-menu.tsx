@@ -360,11 +360,11 @@ const DropdownMenuItem = ({
         closeMenu();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const next = (e.currentTarget.nextElementSibling as HTMLElement);
+        const next = e.currentTarget.nextElementSibling as HTMLElement;
         if (next) next.focus();
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        const prev = (e.currentTarget.previousElementSibling as HTMLElement);
+        const prev = e.currentTarget.previousElementSibling as HTMLElement;
         if (prev) prev.focus();
       }
     },

@@ -215,9 +215,7 @@ const Folder: React.FC<FolderProps> = ({
             className="overflow-hidden"
           >
             <div className="border-border mt-1 ml-2 border-l pl-4">
-              <FolderPathContext value={currentPath}>
-                {children}
-              </FolderPathContext>
+              <FolderPathContext value={currentPath}>{children}</FolderPathContext>
             </div>
           </motion.div>
         )}
