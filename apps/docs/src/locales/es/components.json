@@ -30,7 +30,9 @@
       "error": "Lo siento, encontré un error. Por favor, intenta de nuevo.",
       "helperText": "Presiona Enter para enviar, Shift + Enter para nueva línea",
       "tooltip": "¿Puedo ayudarte?",
-      "thinking": "Pensando"
+      "thinking": "Pensando",
+      "copy": "Copiar",
+      "copied": "Copiado"
     },
     "suggestions": {
       "title": "Prueba con:",
