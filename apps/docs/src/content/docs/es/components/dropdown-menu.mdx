@@ -44,26 +44,20 @@ import { DropdownMenu } from '@/components/ui/dropdown-menu';
 
 ### DropdownMenu
 
-El componente raíz que gestiona el estado del menú.
-
 | Prop           | Tipo                      | Por defecto | Descripción                      |
 | -------------- | ------------------------- | ----------- | -------------------------------- |
 | `defaultOpen`  | `boolean`                 | `false`     | Estado abierto inicial           |
 | `onOpenChange` | `(open: boolean) => void` | -           | Callback cuando cambia el estado |
 | `className`    | `string`                  | -           | Clases CSS adicionales           |
 
-### DropdownMenuTrigger
-
-Botón que alterna el menú desplegable.
+### DropdownMenu.Trigger
 
 | Prop        | Tipo      | Por defecto | Descripción                   |
 | ----------- | --------- | ----------- | ----------------------------- |
 | `asChild`   | `boolean` | `false`     | Renderizar como elemento hijo |
 | `className` | `string`  | -           | Clases CSS adicionales        |
 
-### DropdownMenuContent
-
-Contenedor para elementos del menú con posicionamiento y animaciones.
+### DropdownMenu.Content
 
 | Prop         | Tipo                           | Por defecto | Descripción             |
 | ------------ | ------------------------------ | ----------- | ----------------------- |
@@ -71,9 +65,7 @@ Contenedor para elementos del menú con posicionamiento y animaciones.
 | `sideOffset` | `number`                       | `6`         | Distancia del activador |
 | `className`  | `string`                       | -           | Clases CSS adicionales  |
 
-### DropdownMenuItem
-
-Elemento de menú individual que se puede hacer clic.
+### DropdownMenu.Item
 
 | Prop        | Tipo                         | Por defecto | Descripción                   |
 | ----------- | ---------------------------- | ----------- | ----------------------------- |
@@ -82,15 +74,13 @@ Elemento de menú individual que se puede hacer clic.
 | `onSelect`  | `() => void`                 | -           | Callback cuando se selecciona |
 | `className` | `string`                     | -           | Clases CSS adicionales        |
 
-### DropdownLabel
-
-Etiqueta para agrupar elementos del menú.
+### DropdownMenu.Label
 
 | Prop       | Tipo        | Por defecto | Descripción          |
 | ---------- | ----------- | ----------- | -------------------- |
 | `children` | `ReactNode` | -           | Texto de la etiqueta |
 
-### DropdownSeparator
+### DropdownMenu.Separator
 
 Separador visual entre elementos del menú.
 

@@ -47,8 +47,6 @@ import { Tabs } from '@/components/ui/tabs';
 
 ### Tabs
 
-Root component that manages tab state.
-
 | Prop            | Type                                               | Default     | Description               |
 | --------------- | -------------------------------------------------- | ----------- | ------------------------- |
 | `defaultValue`  | `string`                                           | -           | Default active tab        |
@@ -58,9 +56,7 @@ Root component that manages tab state.
 | `size`          | `'default' \| 'sm' \| 'lg'`                        | `'default'` | Tab size                  |
 | `className`     | `string`                                           | -           | Additional CSS classes    |
 
-### TabsList
-
-Container for tab triggers.
+### Tabs.List
 
 | Prop        | Type                                               | Default  | Description            |
 | ----------- | -------------------------------------------------- | -------- | ---------------------- |
@@ -68,9 +64,7 @@ Container for tab triggers.
 | `size`      | `'default' \| 'sm' \| 'lg'`                        | Inherits | Override size          |
 | `className` | `string`                                           | -        | Additional CSS classes |
 
-### TabsTrigger
-
-Individual tab button.
+### Tabs.Trigger
 
 | Prop        | Type                                               | Default  | Description            |
 | ----------- | -------------------------------------------------- | -------- | ---------------------- |
@@ -79,29 +73,9 @@ Individual tab button.
 | `size`      | `'default' \| 'sm' \| 'lg'`                        | Inherits | Override size          |
 | `className` | `string`                                           | -        | Additional CSS classes |
 
-### TabsContent
-
-Content panel for each tab.
+### Tabs.Content
 
 | Prop        | Type     | Default | Description             |
 | ----------- | -------- | ------- | ----------------------- |
 | `value`     | `string` | -       | Matching tab identifier |
 | `className` | `string` | -       | Additional CSS classes  |
-
-## Variants
-
-### Default
-
-Tabs with a subtle background and border.
-
-### Outline
-
-Tabs with a border outline style.
-
-### Underline
-
-Tabs with an underline indicator for the active tab.
-
-### Ghost
-
-Minimal tabs with no background, just hover effects.

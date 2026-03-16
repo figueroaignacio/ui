@@ -49,67 +49,51 @@ import { Dialog } from '@/components/ui/dialog';
 
 ### Dialog
 
-El componente raíz que gestiona el estado del diálogo.
-
 | Prop           | Tipo                      | Por defecto | Descripción                      |
 | -------------- | ------------------------- | ----------- | -------------------------------- |
 | `defaultOpen`  | `boolean`                 | `false`     | Estado abierto inicial           |
 | `open`         | `boolean`                 | -           | Estado abierto controlado        |
 | `onOpenChange` | `(open: boolean) => void` | -           | Callback cuando cambia el estado |
 
-### DialogTrigger
-
-Botón que abre el diálogo.
+### Dialog.Trigger
 
 | Prop        | Tipo      | Por defecto | Descripción                   |
 | ----------- | --------- | ----------- | ----------------------------- |
 | `asChild`   | `boolean` | `false`     | Renderizar como elemento hijo |
 | `className` | `string`  | -           | Clases CSS adicionales        |
 
-### DialogContent
-
-El contenedor de contenido del diálogo con animaciones.
+### Dialog.Content
 
 | Prop        | Tipo        | Por defecto | Descripción            |
 | ----------- | ----------- | ----------- | ---------------------- |
 | `className` | `string`    | -           | Clases CSS adicionales |
 | `children`  | `ReactNode` | -           | Contenido del diálogo  |
 
-### DialogHeader
-
-Contenedor para título y descripción del diálogo.
+### Dialog.Header
 
 | Prop        | Tipo     | Por defecto | Descripción            |
 | ----------- | -------- | ----------- | ---------------------- |
 | `className` | `string` | -           | Clases CSS adicionales |
 
-### DialogTitle
-
-El título del diálogo (requerido para accesibilidad).
+### Dialog.Title
 
 | Prop        | Tipo     | Por defecto | Descripción            |
 | ----------- | -------- | ----------- | ---------------------- |
 | `className` | `string` | -           | Clases CSS adicionales |
 
-### DialogDescription
-
-Texto de descripción opcional para el diálogo.
+### Dialog.Description
 
 | Prop        | Tipo     | Por defecto | Descripción            |
 | ----------- | -------- | ----------- | ---------------------- |
 | `className` | `string` | -           | Clases CSS adicionales |
 
-### DialogFooter
-
-Contenedor para botones de acción del diálogo.
+### Dialog.Footer
 
 | Prop        | Tipo     | Por defecto | Descripción            |
 | ----------- | -------- | ----------- | ---------------------- |
 | `className` | `string` | -           | Clases CSS adicionales |
 
 ### DialogClose
-
-Botón que cierra el diálogo.
 
 | Prop        | Tipo      | Por defecto | Descripción                   |
 | ----------- | --------- | ----------- | ----------------------------- |

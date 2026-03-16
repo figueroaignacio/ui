@@ -47,26 +47,20 @@ import { Tooltip } from '@/components/ui/tooltip';
 
 ### Tooltip
 
-Componente raíz que gestiona el estado del tooltip.
-
 | Prop            | Tipo                      | Por defecto | Descripción                      |
 | --------------- | ------------------------- | ----------- | -------------------------------- |
 | `delayDuration` | `number`                  | `200`       | Retraso antes de mostrar (ms)    |
 | `open`          | `boolean`                 | -           | Estado abierto controlado        |
 | `onOpenChange`  | `(open: boolean) => void` | -           | Callback cuando cambia el estado |
 
-### TooltipTrigger
-
-Elemento que activa el tooltip al pasar el mouse.
+### Tooltip.Trigger
 
 | Prop        | Tipo      | Por defecto | Descripción                   |
 | ----------- | --------- | ----------- | ----------------------------- |
 | `asChild`   | `boolean` | `false`     | Renderizar como elemento hijo |
 | `className` | `string`  | -           | Clases CSS adicionales        |
 
-### TooltipContent
-
-El contenido del tooltip con posicionamiento y animaciones.
+### Tooltip.Content
 
 | Prop         | Tipo                                     | Por defecto | Descripción                  |
 | ------------ | ---------------------------------------- | ----------- | ---------------------------- |

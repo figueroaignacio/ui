@@ -49,67 +49,51 @@ import { Dialog } from '@/components/ui/dialog';
 
 ### Dialog
 
-The root component that manages dialog state.
-
 | Prop           | Type                      | Default | Description                      |
 | -------------- | ------------------------- | ------- | -------------------------------- |
 | `defaultOpen`  | `boolean`                 | `false` | Initial open state               |
 | `open`         | `boolean`                 | -       | Controlled open state            |
 | `onOpenChange` | `(open: boolean) => void` | -       | Callback when open state changes |
 
-### DialogTrigger
-
-Button that opens the dialog.
+### Dialog.Trigger
 
 | Prop        | Type      | Default | Description             |
 | ----------- | --------- | ------- | ----------------------- |
 | `asChild`   | `boolean` | `false` | Render as child element |
 | `className` | `string`  | -       | Additional CSS classes  |
 
-### DialogContent
-
-The dialog content container with animations.
+### Dialog.Content
 
 | Prop        | Type        | Default | Description            |
 | ----------- | ----------- | ------- | ---------------------- |
 | `className` | `string`    | -       | Additional CSS classes |
 | `children`  | `ReactNode` | -       | Dialog content         |
 
-### DialogHeader
-
-Container for dialog title and description.
+### Dialog.Header
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### DialogTitle
-
-The dialog title (required for accessibility).
+### Dialog.Title
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### DialogDescription
-
-Optional description text for the dialog.
+### Dialog.Description
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### DialogFooter
-
-Container for dialog action buttons.
+### Dialog.Footer
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### DialogClose
-
-Button that closes the dialog.
+### Dialog.Close
 
 | Prop        | Type      | Default | Description             |
 | ----------- | --------- | ------- | ----------------------- |

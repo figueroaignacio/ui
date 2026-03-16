@@ -51,24 +51,18 @@ import { Sheet } from '@/components/ui/sheet';
 
 ### Sheet
 
-Root component that manages sheet state.
-
 | Prop       | Type        | Default | Description               |
 | ---------- | ----------- | ------- | ------------------------- |
 | `children` | `ReactNode` | -       | Sheet trigger and content |
 
-### SheetTrigger
-
-Button that opens the sheet.
+### Sheet.Trigger
 
 | Prop        | Type        | Default | Description            |
 | ----------- | ----------- | ------- | ---------------------- |
 | `children`  | `ReactNode` | -       | Trigger button content |
 | `className` | `string`    | -       | Additional CSS classes |
 
-### SheetContent
-
-The sheet content container with slide animations.
+### Sheet.Content
 
 | Prop             | Type                                     | Default    | Description                  |
 | ---------------- | ---------------------------------------- | ---------- | ---------------------------- |
@@ -77,33 +71,25 @@ The sheet content container with slide animations.
 | `showDragHandle` | `boolean`                                | `true`     | Show drag handle for closing |
 | `className`      | `string`                                 | -          | Additional CSS classes       |
 
-### SheetHeader
-
-Container for sheet title and description.
+### Sheet.Header
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### SheetTitle
-
-The sheet title heading.
+### Sheet.Title
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### SheetDescription
-
-Optional description text for the sheet.
+### Sheet.Description
 
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
 
-### SheetClose
-
-Wrapper that closes the sheet when clicked.
+### Sheet.Close
 
 | Prop       | Type        | Default | Description       |
 | ---------- | ----------- | ------- | ----------------- |

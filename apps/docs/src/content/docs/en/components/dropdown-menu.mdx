@@ -44,26 +44,20 @@ import { DropdownMenu } from '@/components/ui/dropdown-menu';
 
 ### DropdownMenu
 
-The root component that manages menu state.
-
 | Prop           | Type                      | Default | Description                      |
 | -------------- | ------------------------- | ------- | -------------------------------- |
 | `defaultOpen`  | `boolean`                 | `false` | Initial open state               |
 | `onOpenChange` | `(open: boolean) => void` | -       | Callback when open state changes |
 | `className`    | `string`                  | -       | Additional CSS classes           |
 
-### DropdownMenuTrigger
-
-Button that toggles the dropdown menu.
+### DropdownMenu.Trigger
 
 | Prop        | Type      | Default | Description             |
 | ----------- | --------- | ------- | ----------------------- |
 | `asChild`   | `boolean` | `false` | Render as child element |
 | `className` | `string`  | -       | Additional CSS classes  |
 
-### DropdownMenuContent
-
-Container for menu items with positioning and animations.
+### DropdownMenu.Content
 
 | Prop         | Type                           | Default   | Description            |
 | ------------ | ------------------------------ | --------- | ---------------------- |
@@ -71,9 +65,7 @@ Container for menu items with positioning and animations.
 | `sideOffset` | `number`                       | `6`       | Distance from trigger  |
 | `className`  | `string`                       | -         | Additional CSS classes |
 
-### DropdownMenuItem
-
-Individual menu item that can be clicked.
+### DropdownMenu.Item
 
 | Prop        | Type                         | Default     | Description            |
 | ----------- | ---------------------------- | ----------- | ---------------------- |
@@ -82,9 +74,7 @@ Individual menu item that can be clicked.
 | `onSelect`  | `() => void`                 | -           | Callback when selected |
 | `className` | `string`                     | -           | Additional CSS classes |
 
-### DropdownLabel
-
-Label for grouping menu items.
+### DropdownMenu.Label
 
 | Prop       | Type        | Default | Description |
 | ---------- | ----------- | ------- | ----------- |
