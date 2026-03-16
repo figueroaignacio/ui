@@ -10,6 +10,7 @@ export const COMPONENT_REGISTRY = {
   files: 'packages/ui/src/components/files.tsx',
   sheet: 'packages/ui/src/components/sheet.tsx',
   tabs: 'packages/ui/src/components/tabs.tsx',
+  table: 'packages/ui/src/components/table.tsx',
   timeline: 'packages/ui/src/components/timeline.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
 } as const;
@@ -71,6 +72,10 @@ export const DEMO_REGISTRY = {
   // Tabs demos
   tabs: {
     default: 'packages/ui/src/demos/tabs/default.tsx',
+  },
+  // Table demos
+  table: {
+    default: 'packages/ui/src/demos/table/default.tsx',
   },
   // Tooltip demos
   tooltip: {

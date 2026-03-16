@@ -1,0 +1,97 @@
+---
+title: Table
+description: Un componente de tabla responsivo para mostrar datos tabulares.
+published: true
+date: 2025-10-22
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="table" demo="default" />
+
+## Instalación
+
+Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="table" />
+
+Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+## Anatomía
+
+```tsx
+import { Table } from '@/components/ui/table';
+```
+
+```tsx
+<Table>
+  <Table.Caption>A list of your recent invoices.</Table.Caption>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Head</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Cell</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+  <Table.Footer>
+    <Table.Row>
+      <Table.Cell>Footer</Table.Cell>
+    </Table.Row>
+  </Table.Footer>
+</Table>
+```
+
+## Referencia de API
+
+### Table
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Header
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Body
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Footer
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Row
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Head
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Cell
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |
+
+### Table.Caption
+
+| Prop        | Tipo     | Default | Descripción         |
+| ----------- | -------- | ------- | ------------------- |
+| `className` | `string` | —       | Clases adicionales. |

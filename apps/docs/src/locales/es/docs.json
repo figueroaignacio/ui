@@ -94,6 +94,11 @@
           "description": "Componente de hoja para mostrar contenido adicional."
         },
         {
+          "title": "Table",
+          "href": "/docs/components/table",
+          "description": "Un componente de tabla para mostrar datos tabulares."
+        },
+        {
           "title": "Tabs",
           "href": "/docs/components/tabs",
           "description": "Organiza contenido en pestañas intercambiables."

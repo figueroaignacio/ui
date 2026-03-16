@@ -95,6 +95,11 @@
           "description": "Sheet component to show additional content."
         },
         {
+          "title": "Table",
+          "href": "/docs/components/table",
+          "description": "A table component to display tabular data."
+        },
+        {
           "title": "Tabs",
           "href": "/docs/components/tabs",
           "description": "Switch between different content panels easily."

@@ -25,6 +25,7 @@ import { Default as DialogDefault } from '../../../../../packages/ui/src/demos/d
 import { Default as DropdownMenuDefault } from '../../../../../packages/ui/src/demos/dropdown-menu/default';
 import { Default as FilesDefault } from '../../../../../packages/ui/src/demos/files/default';
 import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
+import { Default as TableDefault } from '../../../../../packages/ui/src/demos/table/default';
 import { Default as TabsDefault } from '../../../../../packages/ui/src/demos/tabs/default';
 import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
 import { ComponentPreviewClient } from './component-preview-client';
@@ -75,6 +76,9 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   },
   tabs: {
     default: TabsDefault,
+  },
+  table: {
+    default: TableDefault,
   },
   tooltip: {
     default: TooltipDefault,

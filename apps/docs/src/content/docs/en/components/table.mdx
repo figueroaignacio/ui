@@ -1,0 +1,97 @@
+---
+title: Table
+description: A responsive table component for displaying tabular data.
+published: true
+date: 2025-10-22
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="table" demo="default" />
+
+## Installation
+
+Copy and paste the following code in your project.
+
+<ComponentSource component="table" />
+
+Make sure to update the import paths according to your project structure.
+
+## Anatomy
+
+```tsx
+import { Table } from '@/components/ui/table';
+```
+
+```tsx
+<Table>
+  <Table.Caption>A list of your recent invoices.</Table.Caption>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Head</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Cell</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+  <Table.Footer>
+    <Table.Row>
+      <Table.Cell>Footer</Table.Cell>
+    </Table.Row>
+  </Table.Footer>
+</Table>
+```
+
+## API Reference
+
+### Table
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Header
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Body
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Footer
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Row
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Head
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Cell
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
+
+### Table.Caption
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes |
