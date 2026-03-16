@@ -59,5 +59,9 @@
   "explainButton": {
     "label": "Explain this",
     "prompt": "Explain the content of this page: {page}. Context: {url}. Explain when to use it, why to use it, best practices, and alternatives based on the documentation provided. It could be a page about components, tools, libraries, concepts, etc. Do not provide unnecessary information. ALWAYS based on the documentation provided."
+  },
+  "copyMarkdown": {
+    "label": "Copy Markdown",
+    "copied": "Copied!"
   }
 }

@@ -2,7 +2,13 @@
 
 import { GitHubIcon } from '@/components/common/tech-icons';
 import { useChatContext } from '@/features/chat/context/chat-context';
-import { AiBeautifyIcon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
+import {
+  AiBeautifyIcon,
+  ArrowDown01Icon,
+  Copy01Icon,
+  Tick02Icon,
+} from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
@@ -13,11 +19,13 @@ type DocActionsProps = {
   page: string;
   url: string;
   filePath: string;
+  rawContent: string;
 };
 
-export function DocActions({ page, url, filePath }: DocActionsProps) {
+export function DocActions({ page, url, filePath, rawContent }: DocActionsProps) {
   const t = useTranslations('components');
   const { triggerExplanation } = useChatContext();
+  const { isCopied, copyToClipboard } = useCopyToClipboard(2000);
 
   const handleExplain = useCallback(() => {
     const prompt = t('explainButton.prompt', { page, url });
@@ -58,6 +66,15 @@ export function DocActions({ page, url, filePath }: DocActionsProps) {
         leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} className="text-primary" />}
       >
         <span>{t('explainButton.label')}</span>
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        className="h-8 gap-2 rounded-none border-r-0 px-4"
+        onClick={() => copyToClipboard(rawContent)}
+        leftIcon={<HugeiconsIcon icon={isCopied ? Tick02Icon : Copy01Icon} size={16} />}
+      >
+        <span>{isCopied ? t('copyMarkdown.copied') : t('copyMarkdown.label')}</span>
       </Button>
       <DropdownMenu>
         <DropdownMenu.Trigger asChild>

@@ -47,6 +47,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
             page={doc.title}
             url={`https://nach-ui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
             filePath={doc.sourceFilePath}
+            rawContent={doc.raw}
           />
         </div>
         <div className="min-w-0 flex-1">
