@@ -34,7 +34,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.29",
+    "@ai-sdk/google": "^3.0.43",
     "ai": "^6.0.116",
     "zod": "^4.3.6"
   },

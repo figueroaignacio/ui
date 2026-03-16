@@ -1,13 +1,13 @@
 import { stepCountIs, ToolLoopAgent } from 'ai';
 import { NACHUI_SYSTEM_PROMPT } from './prompts/system-prompt';
-import { groq, GROQ_MODELS } from './providers';
+import { google, GOOGLE_MODELS } from './providers';
 import { getComponentCodeTool } from './tools/get-component-code-tool';
 import { getDocsTool } from './tools/get-docs-tool';
 
 /*
 
 (•_•)
-<)   )╯  if works {
+<)   )╯  if (works) {
  /   \     dontTouchIt();
          } 
 
@@ -15,7 +15,7 @@ import { getDocsTool } from './tools/get-docs-tool';
 
 // Ladies and gentlemen, I introduce you... the damn NachUI agent.
 export const nachUIAgent = new ToolLoopAgent({
-  model: groq(GROQ_MODELS.llama318b),
+  model: google(GOOGLE_MODELS.gemini25Flash),
   instructions: NACHUI_SYSTEM_PROMPT,
   tools: {
     getDocs: getDocsTool,

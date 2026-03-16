@@ -1,20 +1,18 @@
-import { createGroq } from '@ai-sdk/groq';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
-export const groq = createGroq({
-  apiKey: process.env.GROQ_API_KEY,
+export const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
 });
 
-export const GROQ_MODELS = {
-  llama3370b: 'llama-3.3-70b-versatile',
-  llama318b: 'llama-3.1-8b-instant',
-  deepseekR1: 'deepseek-r1-distill-llama-70b',
-  gemma2: 'gemma2-9b-it',
+export const GOOGLE_MODELS = {
+  gemini25Flash: 'gemini-2.5-flash',
+  gemini25Pro: 'gemini-2.5-pro',
 } as const;
 
-export type GroqModel = (typeof GROQ_MODELS)[keyof typeof GROQ_MODELS];
+export type GoogleModel = (typeof GOOGLE_MODELS)[keyof typeof GOOGLE_MODELS];
 
-export const GROQ_CONFIG = {
-  model: GROQ_MODELS.llama3370b,
+export const GOOGLE_CONFIG = {
+  model: GOOGLE_MODELS.gemini25Flash,
   temperature: 0.1,
   maxTokens: 2048,
   topP: 0.9,
