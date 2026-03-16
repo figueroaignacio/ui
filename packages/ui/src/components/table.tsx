@@ -8,8 +8,8 @@ const TableRoot = ({
   ref,
   ...props
 }: React.HTMLAttributes<HTMLTableElement> & { ref?: React.Ref<HTMLTableElement> }) => (
-  <div className="border-border relative w-full overflow-auto rounded-md border">
-    <table ref={ref} className={cn('w-full caption-bottom text-sm', className)} {...props} />
+  <div className="border-border relative w-full overflow-auto rounded-sm border">
+    <table ref={ref} className={cn('w-full text-xs', className)} {...props} />
   </div>
 );
 TableRoot.displayName = 'Table';
@@ -20,7 +20,7 @@ const TableHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement> & {
   ref?: React.Ref<HTMLTableSectionElement>;
-}) => <thead ref={ref} className={cn('bg-card [&_tr]:border-b', className)} {...props} />;
+}) => <thead ref={ref} className={cn('[&_tr]:border-b', className)} {...props} />;
 TableHeader.displayName = 'TableHeader';
 
 const TableBody = ({
@@ -29,9 +29,7 @@ const TableBody = ({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement> & {
   ref?: React.Ref<HTMLTableSectionElement>;
-}) => (
-  <tbody ref={ref} className={cn('bg-card/30 [&_tr:last-child]:border-0', className)} {...props} />
-);
+}) => <tbody ref={ref} className={cn('[&_tr:last-child]:border-0', className)} {...props} />;
 TableBody.displayName = 'TableBody';
 
 const TableFooter = ({
@@ -43,7 +41,7 @@ const TableFooter = ({
 }) => (
   <tfoot
     ref={ref}
-    className={cn('bg-muted/50 border-t font-medium [&>tr]:last:border-b-0', className)}
+    className={cn('border-t font-medium [&>tr]:last:border-b-0', className)}
     {...props}
   />
 );
@@ -56,7 +54,10 @@ const TableRow = ({
 }: React.HTMLAttributes<HTMLTableRowElement> & { ref?: React.Ref<HTMLTableRowElement> }) => (
   <tr
     ref={ref}
-    className={cn('hover:bg-muted data-[state=selected]:bg-muted border-b', className)}
+    className={cn(
+      'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
+      className,
+    )}
     {...props}
   />
 );
@@ -70,7 +71,7 @@ const TableHead = ({
   <th
     ref={ref}
     className={cn(
-      'text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0',
+      'border-border text-muted-foreground h-10 border-r px-3 py-4 text-left align-middle font-medium last:border-r-0 [&:has([role=checkbox])]:pr-0',
       className,
     )}
     {...props}
@@ -85,7 +86,10 @@ const TableCell = ({
 }: React.TdHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) => (
   <td
     ref={ref}
-    className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', className)}
+    className={cn(
+      'border-border border-r px-3 py-4 align-middle last:border-r-0 [&:has([role=checkbox])]:pr-0',
+      className,
+    )}
     {...props}
   />
 );
