@@ -32,7 +32,7 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
       <Tooltip.Trigger asChild>
         <Button
           onClick={onClick}
-          variant="outline"
+          variant="secondary"
           className="relative z-50 shadow-lg"
           leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} />}
         >
