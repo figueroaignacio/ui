@@ -19,14 +19,16 @@ toc:
 
 ## Step-by-step installation
 
-### 1. Set up Tailwind CSS
+<Steps>
+
+### Set up Tailwind CSS
 
 If you don't have Tailwind CSS installed yet, follow the official guide:
 
 - [Install Tailwind CSS with Next.js](https://tailwindcss.com/docs/guides/nextjs)
 - [Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
 
-### 2. Install required dependencies
+### Install required dependencies
 
 NachUI requires the following libraries to work properly:
 
@@ -40,7 +42,7 @@ These libraries are used for:
 - **class-variance-authority**: Component variant management
 - **lucide-react**: Icons used in components
 
-### 3. Configure the `cn` function
+### Configure the `cn` function
 
 Create a utility file for the `cn` function that will combine CSS classes:
 
@@ -55,7 +57,7 @@ export function cn(...inputs: ClassValue[]) {
 
 This function is used by all NachUI components to intelligently merge Tailwind classes.
 
-### 4. Add CSS variables
+### Add CSS variables
 
 Add the color variables to your global CSS file (typically `globals.css` or `app.css`):
 
@@ -117,7 +119,7 @@ Add the color variables to your global CSS file (typically `globals.css` or `app
 }
 ```
 
-### 5. Add variables to `@theme`
+### Add variables to `@theme`
 
 ```css
 @theme inline {
@@ -148,7 +150,7 @@ Add the color variables to your global CSS file (typically `globals.css` or `app
 }
 ```
 
-### 6. Recommended Project Structure
+### Recommended Project Structure
 
 Here's the recommended folder structure for organizing NachUI components in your project:
 
@@ -185,6 +187,8 @@ Here's the recommended folder structure for organizing NachUI components in your
 
 - `components/ui/` - NachUI components (copied from docs)
 - `lib/` - Utility functions like `cn`
+
+</Steps>
 
 ## How to use components
 

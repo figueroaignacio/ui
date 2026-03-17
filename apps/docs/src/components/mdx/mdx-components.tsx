@@ -1,6 +1,7 @@
 import { Alert02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Callout } from '@repo/ui/components/callout';
+import { Steps } from '@repo/ui/components/steps';
 import { cn } from '@repo/ui/lib/cn';
 import { isValidElement } from 'react';
 import { CodeBlockWrapper } from './code-block-wrapper';
@@ -33,7 +34,7 @@ import { PackageManagerTabs } from './package-manager-tabs';
 const headingStyles = {
   h1: 'font-heading mt-2 scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl',
   h2: 'font-heading mt-12 scroll-m-20 text-xl md:text-2xl font-semibold tracking-tight first:mt-0 border-b border-border pb-2',
-  h3: 'font-heading mt-12 mb-5 scroll-m-20 text-lg font-semibold tracking-tight',
+  h3: 'font-heading mt-12 mb-5 scroll-m-20 text-md font-semibold tracking-tight',
   h4: 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
   h5: 'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
   h6: 'font-heading mt-8 scroll-m-20 text-base font-semibold tracking-tight',
@@ -200,4 +201,5 @@ export const mdxComponents = {
   Files: MdxFiles,
   Folder: MdxFolder,
   File: MdxFile,
+  Steps,
 };
