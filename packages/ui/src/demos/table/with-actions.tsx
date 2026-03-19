@@ -4,9 +4,19 @@ import { Button } from '../../components/button';
 import { Table } from '../../components/table';
 
 const invoices = [
-  { invoice: 'INV001', paymentStatus: 'Paid', totalAmount: '$250.00', paymentMethod: 'Credit Card' },
+  {
+    invoice: 'INV001',
+    paymentStatus: 'Paid',
+    totalAmount: '$250.00',
+    paymentMethod: 'Credit Card',
+  },
   { invoice: 'INV002', paymentStatus: 'Pending', totalAmount: '$150.00', paymentMethod: 'PayPal' },
-  { invoice: 'INV003', paymentStatus: 'Unpaid', totalAmount: '$350.00', paymentMethod: 'Bank Transfer' },
+  {
+    invoice: 'INV003',
+    paymentStatus: 'Unpaid',
+    totalAmount: '$350.00',
+    paymentMethod: 'Bank Transfer',
+  },
 ];
 
 export function WithActions() {
@@ -34,7 +44,10 @@ export function WithActions() {
                 <Button variant="ghost" className="h-8 px-2 text-xs">
                   Edit
                 </Button>
-                <Button variant="ghost" className="h-8 px-2 text-xs text-destructive hover:text-destructive">
+                <Button
+                  variant="ghost"
+                  className="text-destructive hover:text-destructive h-8 px-2 text-xs"
+                >
                   Delete
                 </Button>
               </div>

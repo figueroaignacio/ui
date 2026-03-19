@@ -1,0 +1,62 @@
+---
+title: Progress
+description: Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="progress" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="progress" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Progress } from '@/components/ui/progress';
+```
+
+```tsx
+<Progress value={33} />
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="progress" demo="default" />
+
+### Indeterminate
+
+When the progress `value` is missing or undefined, the bar animates infinitely to show an unknown duration process.
+
+<ComponentPreview component="progress" demo="indeterminate" />
+
+### With Value Display
+
+Combine the component with custom value labels.
+
+<ComponentPreview component="progress" demo="with-value" />
+
+## API Reference
+
+### Progress
+
+| Prop        | Type             | Default | Description                                              |
+| ----------- | ---------------- | ------- | -------------------------------------------------------- |
+| `value`     | `number \| null` | -       | The progress value (shows indeterminate if null/missing) |
+| `max`       | `number`         | `100`   | The maximum value of the progress bar                    |
+| `className` | `string`         | -       | Additional CSS classes                                   |

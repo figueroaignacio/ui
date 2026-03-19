@@ -5,6 +5,15 @@ import { Callout } from '@repo/ui/components/callout';
 import { Collapsed as AccordionCollapsed } from '../../../../../packages/ui/src/demos/accordion/collapsed';
 import { Default as AccordionDefault } from '../../../../../packages/ui/src/demos/accordion/default';
 import { Multiple as AccordionMultiple } from '../../../../../packages/ui/src/demos/accordion/multiple';
+import { Default as AvatarDefault } from '../../../../../packages/ui/src/demos/avatar/default';
+import { AvatarGroup as AvatarGroupDemo } from '../../../../../packages/ui/src/demos/avatar/avatar-group';
+import { Sizes as AvatarSizes } from '../../../../../packages/ui/src/demos/avatar/sizes';
+import { WithFallback as AvatarWithFallback } from '../../../../../packages/ui/src/demos/avatar/with-fallback';
+import { Default as BadgeDefault } from '../../../../../packages/ui/src/demos/badge/default';
+import { Destructive as BadgeDestructive } from '../../../../../packages/ui/src/demos/badge/destructive';
+import { Outline as BadgeOutline } from '../../../../../packages/ui/src/demos/badge/outline';
+import { Secondary as BadgeSecondary } from '../../../../../packages/ui/src/demos/badge/secondary';
+import { WithIcon as BadgeWithIcon } from '../../../../../packages/ui/src/demos/badge/with-icon';
 import { Collapsed as BreadcrumbCollapsed } from '../../../../../packages/ui/src/demos/breadcrumb/collapsed';
 import { CustomSeparator as BreadcrumbCustomSeparator } from '../../../../../packages/ui/src/demos/breadcrumb/custom-separator';
 import { Default as BreadcrumbDefault } from '../../../../../packages/ui/src/demos/breadcrumb/default';
@@ -24,6 +33,9 @@ import { Compact as CardCompact } from '../../../../../packages/ui/src/demos/car
 import { Default as CardDefault } from '../../../../../packages/ui/src/demos/card/default';
 import { Ghost as CardGhost } from '../../../../../packages/ui/src/demos/card/ghost';
 import { Outline as CardOutline } from '../../../../../packages/ui/src/demos/card/outline';
+import { Default as CheckboxDefault } from '../../../../../packages/ui/src/demos/checkbox/default';
+import { Disabled as CheckboxDisabled } from '../../../../../packages/ui/src/demos/checkbox/disabled';
+import { WithLabel as CheckboxWithLabel } from '../../../../../packages/ui/src/demos/checkbox/with-label';
 import { Bordered as CollapsibleBordered } from '../../../../../packages/ui/src/demos/collapsible/bordered';
 import { Card as CollapsibleCard } from '../../../../../packages/ui/src/demos/collapsible/card';
 import { Default as CollapsibleDefault } from '../../../../../packages/ui/src/demos/collapsible/default';
@@ -33,9 +45,17 @@ import { Checkboxes as DropdownMenuCheckboxes } from '../../../../../packages/ui
 import { Default as DropdownMenuDefault } from '../../../../../packages/ui/src/demos/dropdown-menu/default';
 import { RadioGroup as DropdownMenuRadioGroup } from '../../../../../packages/ui/src/demos/dropdown-menu/radio-group';
 import { Default as FilesDefault } from '../../../../../packages/ui/src/demos/files/default';
+import { Default as ProgressDefault } from '../../../../../packages/ui/src/demos/progress/default';
+import { Indeterminate as ProgressIndeterminate } from '../../../../../packages/ui/src/demos/progress/indeterminate';
+import { WithValue as ProgressWithValue } from '../../../../../packages/ui/src/demos/progress/with-value';
+import { Default as SelectDefault } from '../../../../../packages/ui/src/demos/select/default';
+import { GroupedItems as SelectGroupedItems } from '../../../../../packages/ui/src/demos/select/grouped-items';
 import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
 import { Positions as SheetPositions } from '../../../../../packages/ui/src/demos/sheet/positions';
 import { Sizes as SheetSizes } from '../../../../../packages/ui/src/demos/sheet/sizes';
+import { Default as SwitchDefault } from '../../../../../packages/ui/src/demos/switch/default';
+import { Disabled as SwitchDisabled } from '../../../../../packages/ui/src/demos/switch/disabled';
+import { WithLabel as SwitchWithLabel } from '../../../../../packages/ui/src/demos/switch/with-label';
 import { Compact as TableCompact } from '../../../../../packages/ui/src/demos/table/compact';
 import { Default as TableDefault } from '../../../../../packages/ui/src/demos/table/default';
 import { Striped as TableStriped } from '../../../../../packages/ui/src/demos/table/striped';
@@ -61,11 +81,29 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
     collapsed: AccordionCollapsed,
     multiple: AccordionMultiple,
   },
+  avatar: {
+    default: AvatarDefault,
+    sizes: AvatarSizes,
+    'with-fallback': AvatarWithFallback,
+    'avatar-group': AvatarGroupDemo,
+  },
+  badge: {
+    default: BadgeDefault,
+    secondary: BadgeSecondary,
+    destructive: BadgeDestructive,
+    outline: BadgeOutline,
+    'with-icon': BadgeWithIcon,
+  },
   card: {
     default: CardDefault,
     outline: CardOutline,
     ghost: CardGhost,
     compact: CardCompact,
+  },
+  checkbox: {
+    default: CheckboxDefault,
+    'with-label': CheckboxWithLabel,
+    disabled: CheckboxDisabled,
   },
   collapsible: {
     default: CollapsibleDefault,
@@ -96,10 +134,24 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   files: {
     default: FilesDefault,
   },
+  progress: {
+    default: ProgressDefault,
+    indeterminate: ProgressIndeterminate,
+    'with-value': ProgressWithValue,
+  },
+  select: {
+    default: SelectDefault,
+    'grouped-items': SelectGroupedItems,
+  },
   sheet: {
     default: SheetDefault,
     positions: SheetPositions,
     sizes: SheetSizes,
+  },
+  switch: {
+    default: SwitchDefault,
+    'with-label': SwitchWithLabel,
+    disabled: SwitchDisabled,
   },
   tabs: {
     default: TabsDefault,

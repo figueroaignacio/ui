@@ -1,0 +1,70 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="avatar" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="avatar" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Avatar } from '@/components/ui/avatar';
+```
+
+```tsx
+<Avatar>
+  <Avatar.Image src="https://github.com/shadcn.png" />
+  <Avatar.Fallback>CN</Avatar.Fallback>
+</Avatar>
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="avatar" demo="default" />
+
+### Sizes
+
+You can change the size via the `size` prop.
+
+<ComponentPreview component="avatar" demo="sizes" />
+
+### With Fallback
+
+If the image takes time to load or fails, the fallback text (usually initials) will be displayed.
+
+<ComponentPreview component="avatar" demo="with-fallback" />
+
+### Avatar Group
+
+Display multiple avatars overlapping using `Avatar.Group`.
+
+<ComponentPreview component="avatar" demo="avatar-group" />
+
+## API Reference
+
+### Avatar
+
+| Prop        |          Type          | Default | Description            |
+| ----------- | :--------------------: | ------: | ---------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg'` |  `'md'` | Visual size of avatar  |
+| `className` |        `string`        |     `-` | Additional CSS classes |

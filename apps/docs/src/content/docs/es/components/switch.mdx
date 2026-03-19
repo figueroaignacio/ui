@@ -1,0 +1,61 @@
+---
+title: Switch
+description: Un control que permite al usuario alternar entre encendido y apagado.
+published: true
+date: 2026-03-19
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="switch" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="switch" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Switch } from '@/components/ui/switch';
+```
+
+```tsx
+<Switch id="airplane-mode" />
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="switch" demo="default" />
+
+### Con Etiqueta (With Label)
+
+Acompañado de una etiqueta (Label) para proveer contexto extra.
+
+<ComponentPreview component="switch" demo="with-label" />
+
+### Deshabilitado (Disabled)
+
+Estado en el que el usuario no puede interactuar con él.
+
+<ComponentPreview component="switch" demo="disabled" />
+
+## Referencia de API
+
+### Switch
+
+| Prop              | Tipo                         | Por defecto | Descripción                         |
+| ----------------- | ---------------------------- | ----------- | ----------------------------------- |
+| `onCheckedChange` | `(checked: boolean) => void` | -           | Handler cuando el estado cambia     |
+| `disabled`        | `boolean`                    | -           | Evita interacción y reduce opacidad |

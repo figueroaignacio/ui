@@ -49,6 +49,16 @@
           "description": "Expandable and collapsible content panels."
         },
         {
+          "title": "Avatar",
+          "href": "/docs/components/avatar",
+          "description": "An image element with a fallback for representing the user."
+        },
+        {
+          "title": "Badge",
+          "href": "/docs/components/badge",
+          "description": "Displays a badge or a component that looks like a badge."
+        },
+        {
           "title": "Breadcrumb",
           "href": "/docs/components/breadcrumb",
           "description": "Indicates the location within the site through a sequence of links."
@@ -59,14 +69,19 @@
           "description": "Interactive buttons for user actions."
         },
         {
+          "title": "Callout",
+          "href": "/docs/components/callout",
+          "description": "Callout component to show additional content."
+        },
+        {
           "title": "Card",
           "href": "/docs/components/card",
           "description": "Flexible container with header, content, and footer."
         },
         {
-          "title": "Callout",
-          "href": "/docs/components/callout",
-          "description": "Callout component to show additional content."
+          "title": "Checkbox",
+          "href": "/docs/components/checkbox",
+          "description": "A control that allows the user to toggle between checked and not checked."
         },
         {
           "title": "Collapsible",
@@ -88,11 +103,25 @@
           "href": "/docs/components/files",
           "description": ""
         },
-
+        {
+          "title": "Progress",
+          "href": "/docs/components/progress",
+          "description": "Displays an indicator showing the completion progress of a task."
+        },
+        {
+          "title": "Select",
+          "href": "/docs/components/select",
+          "description": "Displays a list of options for the user to pick from."
+        },
         {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Sheet component to show additional content."
+        },
+        {
+          "title": "Switch",
+          "href": "/docs/components/switch",
+          "description": "A control that allows the user to toggle between checked and not checked."
         },
         {
           "title": "Table",

@@ -17,7 +17,7 @@ export function Sizes() {
               <Sheet.Description>This sheet uses the {size} size variant.</Sheet.Description>
             </Sheet.Header>
             <div className="py-4">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Notice how the width changes based on the size prop.
               </p>
             </div>

@@ -13,7 +13,7 @@ export function Collapsed() {
         <Breadcrumb.Separator />
         <Breadcrumb.Item>
           <DropdownMenu>
-            <DropdownMenu.Trigger className="flex items-center gap-1 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+            <DropdownMenu.Trigger className="focus-visible:ring-ring flex items-center gap-1 focus-visible:ring-2 focus-visible:outline-none">
               <Breadcrumb.Ellipsis className="h-4 w-4" />
               <span className="sr-only">Toggle menu</span>
             </DropdownMenu.Trigger>

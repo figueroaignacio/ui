@@ -41,9 +41,7 @@ export function Vertical() {
             </Card.Header>
             <Card.Content>
               <div className="space-y-4">
-                <p className="text-muted-foreground text-sm">
-                  This is the password tab content.
-                </p>
+                <p className="text-muted-foreground text-sm">This is the password tab content.</p>
               </div>
             </Card.Content>
           </Card>

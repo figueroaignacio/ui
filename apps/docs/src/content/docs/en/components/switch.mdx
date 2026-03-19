@@ -1,0 +1,61 @@
+---
+title: Switch
+description: A control that allows the user to toggle between checked and not checked.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="switch" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="switch" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Switch } from '@/components/ui/switch';
+```
+
+```tsx
+<Switch id="airplane-mode" />
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="switch" demo="default" />
+
+### With Label
+
+Switch component alongside a label for context.
+
+<ComponentPreview component="switch" demo="with-label" />
+
+### Disabled
+
+A disabled state stops interactions.
+
+<ComponentPreview component="switch" demo="disabled" />
+
+## API Reference
+
+### Switch
+
+| Prop              | Type                         | Default | Description                         |
+| ----------------- | ---------------------------- | ------- | ----------------------------------- |
+| `onCheckedChange` | `(checked: boolean) => void` | -       | Callback when checked state changes |
+| `disabled`        | `boolean`                    | -       | Disables the switch                 |

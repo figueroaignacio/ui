@@ -1,14 +1,20 @@
 export const COMPONENT_REGISTRY = {
   button: 'packages/ui/src/components/button.tsx',
   accordion: 'packages/ui/src/components/accordion.tsx',
+  avatar: 'packages/ui/src/components/avatar.tsx',
+  badge: 'packages/ui/src/components/badge.tsx',
   card: 'packages/ui/src/components/card.tsx',
+  checkbox: 'packages/ui/src/components/checkbox.tsx',
   collapsible: 'packages/ui/src/components/collapsible.tsx',
   callout: 'packages/ui/src/components/callout.tsx',
   breadcrumb: 'packages/ui/src/components/breadcrumb.tsx',
   dialog: 'packages/ui/src/components/dialog.tsx',
   'dropdown-menu': 'packages/ui/src/components/dropdown-menu.tsx',
   files: 'packages/ui/src/components/files.tsx',
+  progress: 'packages/ui/src/components/progress.tsx',
+  select: 'packages/ui/src/components/select.tsx',
   sheet: 'packages/ui/src/components/sheet.tsx',
+  switch: 'packages/ui/src/components/switch.tsx',
   tabs: 'packages/ui/src/components/tabs.tsx',
   table: 'packages/ui/src/components/table.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
@@ -52,11 +58,32 @@ export const DEMO_REGISTRY = {
     danger: 'packages/ui/src/demos/callout/danger.tsx',
     success: 'packages/ui/src/demos/callout/success.tsx',
   },
+  // Avatar demos
+  avatar: {
+    default: 'packages/ui/src/demos/avatar/default.tsx',
+    sizes: 'packages/ui/src/demos/avatar/sizes.tsx',
+    'with-fallback': 'packages/ui/src/demos/avatar/with-fallback.tsx',
+    'avatar-group': 'packages/ui/src/demos/avatar/avatar-group.tsx',
+  },
+  // Badge demos
+  badge: {
+    default: 'packages/ui/src/demos/badge/default.tsx',
+    secondary: 'packages/ui/src/demos/badge/secondary.tsx',
+    destructive: 'packages/ui/src/demos/badge/destructive.tsx',
+    outline: 'packages/ui/src/demos/badge/outline.tsx',
+    'with-icon': 'packages/ui/src/demos/badge/with-icon.tsx',
+  },
   // Breadcrumb demos
   breadcrumb: {
     default: 'packages/ui/src/demos/breadcrumb/default.tsx',
     collapsed: 'packages/ui/src/demos/breadcrumb/collapsed.tsx',
     'custom-separator': 'packages/ui/src/demos/breadcrumb/custom-separator.tsx',
+  },
+  // Checkbox demos
+  checkbox: {
+    default: 'packages/ui/src/demos/checkbox/default.tsx',
+    'with-label': 'packages/ui/src/demos/checkbox/with-label.tsx',
+    disabled: 'packages/ui/src/demos/checkbox/disabled.tsx',
   },
   // Dialog demos
   dialog: {
@@ -73,6 +100,17 @@ export const DEMO_REGISTRY = {
   files: {
     default: 'packages/ui/src/demos/files/default.tsx',
   },
+  // Progress demos
+  progress: {
+    default: 'packages/ui/src/demos/progress/default.tsx',
+    indeterminate: 'packages/ui/src/demos/progress/indeterminate.tsx',
+    'with-value': 'packages/ui/src/demos/progress/with-value.tsx',
+  },
+  // Select demos
+  select: {
+    default: 'packages/ui/src/demos/select/default.tsx',
+    'grouped-items': 'packages/ui/src/demos/select/grouped-items.tsx',
+  },
   // Sheet demos
   sheet: {
     default: 'packages/ui/src/demos/sheet/default.tsx',
@@ -83,6 +121,12 @@ export const DEMO_REGISTRY = {
   tabs: {
     default: 'packages/ui/src/demos/tabs/default.tsx',
     vertical: 'packages/ui/src/demos/tabs/vertical.tsx',
+  },
+  // Switch demos
+  switch: {
+    default: 'packages/ui/src/demos/switch/default.tsx',
+    'with-label': 'packages/ui/src/demos/switch/with-label.tsx',
+    disabled: 'packages/ui/src/demos/switch/disabled.tsx',
   },
   // Table demos
   table: {

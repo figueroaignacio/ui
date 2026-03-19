@@ -1,0 +1,65 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="badge" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="badge" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Badge } from '@/components/ui/badge';
+```
+
+```tsx
+<Badge variant="outline">Badge</Badge>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview component="badge" demo="default" />
+
+### Secondary
+
+<ComponentPreview component="badge" demo="secondary" />
+
+### Destructive
+
+<ComponentPreview component="badge" demo="destructive" />
+
+### Outline
+
+<ComponentPreview component="badge" demo="outline" />
+
+### With Icon
+
+<ComponentPreview component="badge" demo="with-icon" />
+
+## API Reference
+
+### Badge
+
+| Prop        | Type                                                     | Default     | Description            |
+| ----------- | -------------------------------------------------------- | ----------- | ---------------------- |
+| `variant`   | `'default' \| 'secondary' \| 'destructive' \| 'outline'` | `'default'` | Visual style           |
+| `className` | `string`                                                 | -           | Additional CSS classes |

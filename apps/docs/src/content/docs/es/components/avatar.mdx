@@ -1,0 +1,70 @@
+---
+title: Avatar
+description: Un elemento de imagen con respaldo (fallback) para representar a un usuario.
+published: true
+date: 2026-03-19
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="avatar" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="avatar" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Avatar } from '@/components/ui/avatar';
+```
+
+```tsx
+<Avatar>
+  <Avatar.Image src="https://github.com/shadcn.png" />
+  <Avatar.Fallback>CN</Avatar.Fallback>
+</Avatar>
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="avatar" demo="default" />
+
+### Tamaños (Sizes)
+
+Puedes cambiar el tamaño del componente mediante la prop `size`.
+
+<ComponentPreview component="avatar" demo="sizes" />
+
+### Con Respaldo (With Fallback)
+
+Si la imagen no carga o da error, se mostrará el texto de fallback.
+
+<ComponentPreview component="avatar" demo="with-fallback" />
+
+### Grupo de Avatares (Avatar Group)
+
+Muestra varios avatares solapados agrupándolos con `Avatar.Group`.
+
+<ComponentPreview component="avatar" demo="avatar-group" />
+
+## Referencia de API
+
+### Avatar
+
+| Prop        | Tipo                   | Por defecto | Descripción              |
+| ----------- | ---------------------- | ----------- | ------------------------ |
+| `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`      | Tamaño visual del avatar |
+| `className` | `string`               | -           | Clases CSS adicionales   |

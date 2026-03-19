@@ -1,0 +1,58 @@
+---
+title: Select
+description: Muestra una lista de opciones para que el usuario elija, activada por un botón.
+published: true
+date: 2026-03-19
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="select" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="select" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Select } from '@/components/ui/select';
+```
+
+```tsx
+<Select>
+  <option value="1">Option 1</option>
+</Select>
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="select" demo="default" />
+
+### Opciones Agrupadas (Grouped Items)
+
+Utiliza la etiqueta `optgroup` para agrupar opciones relacionadas lógicamente.
+
+<ComponentPreview component="select" demo="grouped-items" />
+
+## Referencia de API
+
+### Select
+
+| Prop               | Tipo      | Por defecto | Descripción                                      |
+| ------------------ | --------- | ----------- | ------------------------------------------------ |
+| `wrapperClassName` | `string`  | -           | Clases CSS adicionales para el contenedor `div`  |
+| `className`        | `string`  | -           | Clases CSS adicionales para el elemento `select` |
+| `disabled`         | `boolean` | -           | Deshabilita el menú desplegable                  |

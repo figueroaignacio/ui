@@ -1,0 +1,65 @@
+---
+title: Badge
+description: Muestra una insignia o un componente que parece a una insignia.
+published: true
+date: 2026-03-19
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="badge" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="badge" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Badge } from '@/components/ui/badge';
+```
+
+```tsx
+<Badge variant="outline">Insignia</Badge>
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="badge" demo="default" />
+
+### Secundario (Secondary)
+
+<ComponentPreview component="badge" demo="secondary" />
+
+### Destructivo (Destructive)
+
+<ComponentPreview component="badge" demo="destructive" />
+
+### Contorno (Outline)
+
+<ComponentPreview component="badge" demo="outline" />
+
+### Con Icono (With Icon)
+
+<ComponentPreview component="badge" demo="with-icon" />
+
+## Referencia de API
+
+### Badge
+
+| Prop        | Tipo                                                     | Por defecto | Descripción            |
+| ----------- | -------------------------------------------------------- | ----------- | ---------------------- |
+| `variant`   | `'default' \| 'secondary' \| 'destructive' \| 'outline'` | `'default'` | Estilo visual          |
+| `className` | `string`                                                 | -           | Clases CSS adicionales |

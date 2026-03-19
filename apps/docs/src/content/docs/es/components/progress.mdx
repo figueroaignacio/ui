@@ -1,0 +1,62 @@
+---
+title: Progress
+description: Muestra un indicador del progreso de finalización de una tarea, típicamente de forma visual en una barra de progreso.
+published: true
+date: 2026-03-19
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="progress" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="progress" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Progress } from '@/components/ui/progress';
+```
+
+```tsx
+<Progress value={33} />
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="progress" demo="default" />
+
+### Indeterminado (Indeterminate)
+
+Cuando el `value` es nulo o no se proporciona, la barra se anima infinitamente para mostrar un proceso de duración desconocida.
+
+<ComponentPreview component="progress" demo="indeterminate" />
+
+### Con Valor (With Value Display)
+
+Combina este componente con etiquetas personalizadas que marquen el porcentaje.
+
+<ComponentPreview component="progress" demo="with-value" />
+
+## Referencia de API
+
+### Progress
+
+| Prop        | Tipo             | Por defecto | Descripción                                             |
+| ----------- | ---------------- | ----------- | ------------------------------------------------------- |
+| `value`     | `number \| null` | -           | Porcentaje del progreso (animación infinita si es null) |
+| `max`       | `number`         | `100`       | El valor máximo para 100% de progreso                   |
+| `className` | `string`         | -           | Clases CSS adicionales                                  |

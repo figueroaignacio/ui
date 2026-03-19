@@ -49,6 +49,16 @@
           "description": "Muestra y oculta contenido expandible."
         },
         {
+          "title": "Avatar",
+          "href": "/docs/components/avatar",
+          "description": "Un elemento de imagen con respaldo (fallback) para representar a un usuario."
+        },
+        {
+          "title": "Badge",
+          "href": "/docs/components/badge",
+          "description": "Muestra una insignia o un componente visual tipo etiqueta."
+        },
+        {
           "title": "Breadcrumb",
           "href": "/docs/components/breadcrumb",
           "description": "Indica la ubicación actual dentro del sitio a través de una secuencia de enlaces."
@@ -59,14 +69,19 @@
           "description": "Botones interactivos con distintos estilos y tamaños."
         },
         {
+          "title": "Callout",
+          "href": "/docs/components/callout",
+          "description": "Componente para mostrar contenido adicional."
+        },
+        {
           "title": "Card",
           "href": "/docs/components/card",
           "description": "Tarjetas minimalistas para agrupar contenido"
         },
         {
-          "title": "Callout",
-          "href": "/docs/components/callout",
-          "description": "Componente para mostrar contenido adicional."
+          "title": "Checkbox",
+          "href": "/docs/components/checkbox",
+          "description": "Un control que permite al usuario alternar entre marcado y no marcado."
         },
         {
           "title": "Collapsible",
@@ -89,9 +104,24 @@
           "description": "Un componente de árbol de archivos interactivo para mostrar estructuras jerárquicas de carpetas y archivos."
         },
         {
+          "title": "Progress",
+          "href": "/docs/components/progress",
+          "description": "Muestra un indicador del progreso de finalización de una tarea."
+        },
+        {
+          "title": "Select",
+          "href": "/docs/components/select",
+          "description": "Muestra una lista de opciones para que el usuario elija."
+        },
+        {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Componente de hoja para mostrar contenido adicional."
+        },
+        {
+          "title": "Switch",
+          "href": "/docs/components/switch",
+          "description": "Un control que permite al usuario alternar entre encendido y apagado."
         },
         {
           "title": "Table",
@@ -106,7 +136,7 @@
         {
           "title": "Tooltip",
           "href": "/docs/components/tooltip",
-          "description": "Un popup que muestra información contextual asociada a un elemento cuando este recibe foco mediante el teclado o cuando el usuario pasa el cursor por encima."
+          "description": "Un popup que muestra información contextual asociada a un elemento."
         }
       ]
     }

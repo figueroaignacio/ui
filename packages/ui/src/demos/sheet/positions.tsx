@@ -20,7 +20,7 @@ export function Positions() {
               </Sheet.Description>
             </Sheet.Header>
             <div className="py-4">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 This sheet is appearing from the {side}.
               </p>
             </div>

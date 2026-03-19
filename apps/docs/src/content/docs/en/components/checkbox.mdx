@@ -1,0 +1,61 @@
+---
+title: Checkbox
+description: A control that allows the user to toggle between checked and not checked.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="checkbox" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="checkbox" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Checkbox } from '@/components/ui/checkbox';
+```
+
+```tsx
+<Checkbox id="terms" />
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="checkbox" demo="default" />
+
+### With Label
+
+Checkbox component alongside a label for context.
+
+<ComponentPreview component="checkbox" demo="with-label" />
+
+### Disabled
+
+A disabled state stops interactions.
+
+<ComponentPreview component="checkbox" demo="disabled" />
+
+## API Reference
+
+### Checkbox
+
+| Prop              | Type                         | Default | Description                         |
+| ----------------- | ---------------------------- | ------- | ----------------------------------- |
+| `onCheckedChange` | `(checked: boolean) => void` | -       | Callback when checked state changes |
+| `disabled`        | `boolean`                    | -       | Disables the checkbox               |

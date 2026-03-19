@@ -1,0 +1,58 @@
+---
+title: Select
+description: Displays a list of options for the user to pick from—triggered by a button.
+published: true
+date: 2026-03-19
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="select" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="select" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Select } from '@/components/ui/select';
+```
+
+```tsx
+<Select>
+  <option value="1">Option 1</option>
+</Select>
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="select" demo="default" />
+
+### Grouped Items
+
+Use `optgroup` to group related options together.
+
+<ComponentPreview component="select" demo="grouped-items" />
+
+## API Reference
+
+### Select
+
+| Prop               | Type      | Default | Description                                     |
+| ------------------ | --------- | ------- | ----------------------------------------------- |
+| `wrapperClassName` | `string`  | -       | Additional CSS classes for the container `div`  |
+| `className`        | `string`  | -       | Additional CSS classes for the `select` element |
+| `disabled`         | `boolean` | -       | Disables the select menu                        |

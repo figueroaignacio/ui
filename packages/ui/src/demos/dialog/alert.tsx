@@ -13,8 +13,8 @@ export function Alert() {
         <Dialog.Header>
           <Dialog.Title>Are you absolutely sure?</Dialog.Title>
           <Dialog.Description>
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
           </Dialog.Description>
         </Dialog.Header>
         <Dialog.Footer>
