@@ -3,12 +3,7 @@
 import { GitHubIcon } from '@/components/common/tech-icons';
 import { useChatContext } from '@/features/chat/context/chat-context';
 import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
-import {
-  AiBeautifyIcon,
-  ArrowDown01Icon,
-  Copy01Icon,
-  Tick02Icon,
-} from '@hugeicons/core-free-icons';
+import { ArrowDown01Icon, Copy01Icon, Robot01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
@@ -63,7 +58,7 @@ export function DocActions({ page, url, filePath, rawContent }: DocActionsProps)
         size="sm"
         className="h-8 gap-2 rounded-l-full border-r-0 px-4"
         onClick={handleExplain}
-        leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} />}
+        leftIcon={<HugeiconsIcon icon={Robot01Icon} size={16} />}
       >
         <span>{t('explainButton.label')}</span>
       </Button>

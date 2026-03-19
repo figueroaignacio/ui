@@ -1,4 +1,4 @@
-import { AiBeautifyIcon } from '@hugeicons/core-free-icons';
+import { Robot01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { Tooltip } from '@repo/ui/components/tooltip';
@@ -34,7 +34,7 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
           onClick={onClick}
           variant="secondary"
           className="relative z-50 shadow-lg"
-          leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} />}
+          leftIcon={<HugeiconsIcon icon={Robot01Icon} size={16} />}
         >
           {t('button.label')}
         </Button>
