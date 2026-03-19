@@ -5,6 +5,8 @@ import { Callout } from '@repo/ui/components/callout';
 import { Collapsed as AccordionCollapsed } from '../../../../../packages/ui/src/demos/accordion/collapsed';
 import { Default as AccordionDefault } from '../../../../../packages/ui/src/demos/accordion/default';
 import { Multiple as AccordionMultiple } from '../../../../../packages/ui/src/demos/accordion/multiple';
+import { Collapsed as BreadcrumbCollapsed } from '../../../../../packages/ui/src/demos/breadcrumb/collapsed';
+import { CustomSeparator as BreadcrumbCustomSeparator } from '../../../../../packages/ui/src/demos/breadcrumb/custom-separator';
 import { Default as BreadcrumbDefault } from '../../../../../packages/ui/src/demos/breadcrumb/default';
 import { Default as ButtonDefault } from '../../../../../packages/ui/src/demos/button/default';
 import { Destructive as ButtonDestructive } from '../../../../../packages/ui/src/demos/button/destructive';
@@ -25,13 +27,23 @@ import { Outline as CardOutline } from '../../../../../packages/ui/src/demos/car
 import { Bordered as CollapsibleBordered } from '../../../../../packages/ui/src/demos/collapsible/bordered';
 import { Card as CollapsibleCard } from '../../../../../packages/ui/src/demos/collapsible/card';
 import { Default as CollapsibleDefault } from '../../../../../packages/ui/src/demos/collapsible/default';
+import { Alert as DialogAlert } from '../../../../../packages/ui/src/demos/dialog/alert';
 import { Default as DialogDefault } from '../../../../../packages/ui/src/demos/dialog/default';
+import { Checkboxes as DropdownMenuCheckboxes } from '../../../../../packages/ui/src/demos/dropdown-menu/checkboxes';
 import { Default as DropdownMenuDefault } from '../../../../../packages/ui/src/demos/dropdown-menu/default';
+import { RadioGroup as DropdownMenuRadioGroup } from '../../../../../packages/ui/src/demos/dropdown-menu/radio-group';
 import { Default as FilesDefault } from '../../../../../packages/ui/src/demos/files/default';
 import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
+import { Positions as SheetPositions } from '../../../../../packages/ui/src/demos/sheet/positions';
+import { Sizes as SheetSizes } from '../../../../../packages/ui/src/demos/sheet/sizes';
+import { Compact as TableCompact } from '../../../../../packages/ui/src/demos/table/compact';
 import { Default as TableDefault } from '../../../../../packages/ui/src/demos/table/default';
+import { Striped as TableStriped } from '../../../../../packages/ui/src/demos/table/striped';
+import { WithActions as TableWithActions } from '../../../../../packages/ui/src/demos/table/with-actions';
 import { Default as TabsDefault } from '../../../../../packages/ui/src/demos/tabs/default';
+import { Vertical as TabsVertical } from '../../../../../packages/ui/src/demos/tabs/vertical';
 import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
+import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
 import { ComponentPreviewClient } from './component-preview-client';
 
 const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
@@ -69,27 +81,39 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   },
   breadcrumb: {
     default: BreadcrumbDefault,
+    collapsed: BreadcrumbCollapsed,
+    'custom-separator': BreadcrumbCustomSeparator,
   },
   dialog: {
     default: DialogDefault,
+    alert: DialogAlert,
   },
   'dropdown-menu': {
     default: DropdownMenuDefault,
+    checkboxes: DropdownMenuCheckboxes,
+    'radio-group': DropdownMenuRadioGroup,
   },
   files: {
     default: FilesDefault,
   },
   sheet: {
     default: SheetDefault,
+    positions: SheetPositions,
+    sizes: SheetSizes,
   },
   tabs: {
     default: TabsDefault,
+    vertical: TabsVertical,
   },
   table: {
     default: TableDefault,
+    'with-actions': TableWithActions,
+    striped: TableStriped,
+    compact: TableCompact,
   },
   tooltip: {
     default: TooltipDefault,
+    positions: TooltipPositions,
   },
 };
 

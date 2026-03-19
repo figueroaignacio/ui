@@ -11,7 +11,6 @@ export const COMPONENT_REGISTRY = {
   sheet: 'packages/ui/src/components/sheet.tsx',
   tabs: 'packages/ui/src/components/tabs.tsx',
   table: 'packages/ui/src/components/table.tsx',
-  timeline: 'packages/ui/src/components/timeline.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
 } as const;
 
@@ -56,14 +55,19 @@ export const DEMO_REGISTRY = {
   // Breadcrumb demos
   breadcrumb: {
     default: 'packages/ui/src/demos/breadcrumb/default.tsx',
+    collapsed: 'packages/ui/src/demos/breadcrumb/collapsed.tsx',
+    'custom-separator': 'packages/ui/src/demos/breadcrumb/custom-separator.tsx',
   },
   // Dialog demos
   dialog: {
     default: 'packages/ui/src/demos/dialog/default.tsx',
+    alert: 'packages/ui/src/demos/dialog/alert.tsx',
   },
   // Dropdown Menu demos
   'dropdown-menu': {
     default: 'packages/ui/src/demos/dropdown-menu/default.tsx',
+    checkboxes: 'packages/ui/src/demos/dropdown-menu/checkboxes.tsx',
+    'radio-group': 'packages/ui/src/demos/dropdown-menu/radio-group.tsx',
   },
   // Files demos
   files: {
@@ -72,18 +76,25 @@ export const DEMO_REGISTRY = {
   // Sheet demos
   sheet: {
     default: 'packages/ui/src/demos/sheet/default.tsx',
+    positions: 'packages/ui/src/demos/sheet/positions.tsx',
+    sizes: 'packages/ui/src/demos/sheet/sizes.tsx',
   },
   // Tabs demos
   tabs: {
     default: 'packages/ui/src/demos/tabs/default.tsx',
+    vertical: 'packages/ui/src/demos/tabs/vertical.tsx',
   },
   // Table demos
   table: {
     default: 'packages/ui/src/demos/table/default.tsx',
+    'with-actions': 'packages/ui/src/demos/table/with-actions.tsx',
+    striped: 'packages/ui/src/demos/table/striped.tsx',
+    compact: 'packages/ui/src/demos/table/compact.tsx',
   },
   // Tooltip demos
   tooltip: {
     default: 'packages/ui/src/demos/tooltip/default.tsx',
+    positions: 'packages/ui/src/demos/tooltip/positions.tsx',
   },
 } as const;
 
