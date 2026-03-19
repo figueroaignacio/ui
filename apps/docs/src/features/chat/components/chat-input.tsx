@@ -33,7 +33,6 @@ export function ChatInput(props: ChatInputProps) {
           onKeyPress={onKeyPress}
           placeholder={t('input.placeholder')}
           className="flex-1 bg-transparent px-4 py-2.5 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
-          autoFocus
         />
         <motion.button
           type="submit"
