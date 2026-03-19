@@ -5,7 +5,7 @@ import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { DocSection, Navigation } from '@/lib/definitions';
 import { getIcon } from '@/lib/get-icon';
-import { Cancel01Icon, PanelLeftCloseIcon } from '@hugeicons/core-free-icons';
+import { Cancel01Icon, PanelLeftIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from '@repo/ui/lib/cn';
 import { useTranslations } from 'next-intl';
@@ -35,7 +35,7 @@ export function MobileMenu() {
         aria-label="menu"
         type="button"
       >
-        <HugeiconsIcon icon={PanelLeftCloseIcon} />
+        <HugeiconsIcon icon={PanelLeftIcon} />
         Menu
       </button>
       <div className="flex items-center gap-x-3">
