@@ -48,6 +48,10 @@ export const DEMO_REGISTRY = {
   // Callout demos
   callout: {
     default: 'packages/ui/src/demos/callout/default.tsx',
+    info: 'packages/ui/src/demos/callout/info.tsx',
+    warning: 'packages/ui/src/demos/callout/warning.tsx',
+    danger: 'packages/ui/src/demos/callout/danger.tsx',
+    success: 'packages/ui/src/demos/callout/success.tsx',
   },
   // Breadcrumb demos
   breadcrumb: {

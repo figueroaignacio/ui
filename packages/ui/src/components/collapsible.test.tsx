@@ -7,15 +7,84 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      button: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <button ref={ref} {...props}>{children}</button>
-      )),
-      div: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
-      )),
-      span: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <span ref={ref} {...props}>{children}</span>
-      )),
+      button: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <button ref={ref} {...props}>
+            {children}
+          </button>
+        ),
+      ),
+      div: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <div ref={ref} {...props}>
+            {children}
+          </div>
+        ),
+      ),
+      span: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <span ref={ref} {...props}>
+            {children}
+          </span>
+        ),
+      ),
     },
     useReducedMotion: () => false,
     AnimatePresence: ({ children }: any) => <>{children}</>,
@@ -28,7 +97,7 @@ describe('Collapsible', () => {
       <Collapsible>
         <Collapsible.Trigger>Toggle</Collapsible.Trigger>
         <Collapsible.Content>Content inside</Collapsible.Content>
-      </Collapsible>
+      </Collapsible>,
     );
 
     const trigger = screen.getByRole('button', { name: /Toggle/i });
@@ -41,20 +110,20 @@ describe('Collapsible', () => {
       <Collapsible>
         <Collapsible.Trigger>Toggle</Collapsible.Trigger>
         <Collapsible.Content>Content inside</Collapsible.Content>
-      </Collapsible>
+      </Collapsible>,
     );
 
     const trigger = screen.getByRole('button', { name: /Toggle/i });
-    
+
     await userEvent.click(trigger);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Content inside')).toBeInTheDocument();
       expect(trigger).toHaveAttribute('aria-expanded', 'true');
     });
 
     await userEvent.click(trigger);
-    
+
     await waitFor(() => {
       expect(screen.queryByText('Content inside')).not.toBeInTheDocument();
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -66,7 +135,7 @@ describe('Collapsible', () => {
       <Collapsible defaultOpen>
         <Collapsible.Trigger>Toggle</Collapsible.Trigger>
         <Collapsible.Content>Content inside</Collapsible.Content>
-      </Collapsible>
+      </Collapsible>,
     );
 
     expect(screen.getByText('Content inside')).toBeInTheDocument();

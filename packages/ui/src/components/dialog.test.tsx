@@ -8,9 +8,32 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      div: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
-      )),
+      div: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <div ref={ref} {...props}>
+            {children}
+          </div>
+        ),
+      ),
     },
     useReducedMotion: () => false,
     AnimatePresence: ({ children }: any) => <>{children}</>,
@@ -29,17 +52,17 @@ describe('Dialog', () => {
           </Dialog.Header>
           <div>Dialog Content Body</div>
         </Dialog.Content>
-      </Dialog>
+      </Dialog>,
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Dialog' });
-    
+
     // initially hidden
     expect(screen.queryByText('Dialog Title')).not.toBeInTheDocument();
 
     // click trigger
     await userEvent.click(trigger);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Dialog Title')).toBeInTheDocument();
       expect(screen.getByText('Dialog Description')).toBeInTheDocument();

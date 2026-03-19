@@ -15,7 +15,7 @@ describe('Breadcrumb', () => {
             <Breadcrumb.Page>Components</Breadcrumb.Page>
           </Breadcrumb.Item>
         </Breadcrumb.List>
-      </Breadcrumb>
+      </Breadcrumb>,
     );
 
     const nav = screen.getByRole('navigation', { name: 'breadcrumb' });

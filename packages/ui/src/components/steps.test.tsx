@@ -10,14 +10,14 @@ describe('Steps', () => {
         <p>Description 1</p>
         <h3>Step 2</h3>
         <p>Description 2</p>
-      </Steps>
+      </Steps>,
     );
 
     expect(screen.getByText('Step 1')).toBeInTheDocument();
     expect(screen.getByText('Description 1')).toBeInTheDocument();
     expect(screen.getByText('Step 2')).toBeInTheDocument();
     expect(screen.getByText('Description 2')).toBeInTheDocument();
-    
+
     // Ensure the container has the 'steps' class
     expect(screen.getByText('Step 1').parentElement).toHaveClass('steps');
   });

@@ -9,13 +9,19 @@ vi.mock('motion/react', async () => {
   return {
     motion: {
       button: React.forwardRef(({ children, whileTap, ...props }: any, ref: any) => (
-        <button ref={ref} {...props}>{children}</button>
+        <button ref={ref} {...props}>
+          {children}
+        </button>
       )),
       div: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
+        <div ref={ref} {...props}>
+          {children}
+        </div>
       )),
       svg: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <svg ref={ref} {...props}>{children}</svg>
+        <svg ref={ref} {...props}>
+          {children}
+        </svg>
       )),
     },
     useReducedMotion: () => false,
@@ -29,15 +35,17 @@ describe('Accordion', () => {
       <Accordion type="single">
         <Accordion.Item value="item-1">
           <Accordion.Trigger value="item-1">Is it accessible?</Accordion.Trigger>
-          <Accordion.Content value="item-1">Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
+          <Accordion.Content value="item-1">
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </Accordion.Content>
         </Accordion.Item>
-      </Accordion>
+      </Accordion>,
     );
 
     const trigger = screen.getByRole('button', { name: /Is it accessible?/i });
     expect(trigger).toBeInTheDocument();
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
-    
+
     const content = screen.queryByText('Yes. It adheres to the WAI-ARIA design pattern.');
     expect(content).not.toBeInTheDocument();
   });
@@ -53,14 +61,14 @@ describe('Accordion', () => {
           <Accordion.Trigger value="item-2">Is it unstyled?</Accordion.Trigger>
           <Accordion.Content value="item-2">No.</Accordion.Content>
         </Accordion.Item>
-      </Accordion>
+      </Accordion>,
     );
 
     const trigger1 = screen.getByRole('button', { name: /Is it accessible?/i });
     const trigger2 = screen.getByRole('button', { name: /Is it unstyled?/i });
-    
+
     await userEvent.click(trigger1);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Yes.')).toBeInTheDocument();
       expect(trigger1).toHaveAttribute('aria-expanded', 'true');
@@ -68,7 +76,7 @@ describe('Accordion', () => {
 
     // Click second item
     await userEvent.click(trigger2);
-    
+
     await waitFor(() => {
       expect(screen.queryByText('Yes.')).not.toBeInTheDocument();
       expect(screen.getByText('No.')).toBeInTheDocument();
@@ -88,15 +96,15 @@ describe('Accordion', () => {
           <Accordion.Trigger value="item-2">Is it unstyled?</Accordion.Trigger>
           <Accordion.Content value="item-2">No.</Accordion.Content>
         </Accordion.Item>
-      </Accordion>
+      </Accordion>,
     );
 
     const trigger1 = screen.getByRole('button', { name: /Is it accessible?/i });
     const trigger2 = screen.getByRole('button', { name: /Is it unstyled?/i });
-    
+
     await userEvent.click(trigger1);
     await userEvent.click(trigger2);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Yes.')).toBeInTheDocument();
       expect(screen.getByText('No.')).toBeInTheDocument();

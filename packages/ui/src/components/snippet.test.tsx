@@ -7,7 +7,7 @@ describe('Snippet', () => {
     render(
       <Snippet>
         <code>npm install something</code>
-      </Snippet>
+      </Snippet>,
     );
 
     expect(screen.getByText('npm install something')).toBeInTheDocument();

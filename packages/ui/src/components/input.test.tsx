@@ -22,7 +22,7 @@ describe('Input', () => {
     render(<Input error="Invalid email" />);
     const input = screen.getByRole('textbox');
     const errorMessage = screen.getByText('Invalid email');
-    
+
     expect(errorMessage).toBeInTheDocument();
     expect(input).toHaveAttribute('aria-invalid', 'true');
     expect(input).toHaveAttribute('aria-describedby');
@@ -31,7 +31,7 @@ describe('Input', () => {
   it('handles user input', async () => {
     render(<Input />);
     const input = screen.getByRole('textbox');
-    
+
     await userEvent.type(input, 'Hello World');
     expect(input).toHaveValue('Hello World');
   });

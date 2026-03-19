@@ -8,12 +8,58 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      button: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <button ref={ref} {...props}>{children}</button>
-      )),
-      div: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
-      )),
+      button: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <button ref={ref} {...props}>
+            {children}
+          </button>
+        ),
+      ),
+      div: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <div ref={ref} {...props}>
+            {children}
+          </div>
+        ),
+      ),
     },
     useMotionValue: () => ({ set: vi.fn(), get: () => 0 }),
     useTransform: () => ({ set: vi.fn(), get: () => 0 }),
@@ -35,17 +81,17 @@ describe('Sheet', () => {
           <div>Sheet Content Body</div>
           <Sheet.Close>Close Custom</Sheet.Close>
         </Sheet.Content>
-      </Sheet>
+      </Sheet>,
     );
 
     const trigger = screen.getByRole('button', { name: 'Open Sheet' });
-    
+
     // initially hidden
     expect(screen.queryByText('Sheet Title')).not.toBeInTheDocument();
 
     // click trigger
     await userEvent.click(trigger);
-    
+
     await waitFor(() => {
       expect(screen.getByText('Sheet Title')).toBeInTheDocument();
       expect(screen.getByText('Sheet Description')).toBeInTheDocument();

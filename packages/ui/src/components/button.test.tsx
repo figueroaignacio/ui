@@ -15,7 +15,7 @@ describe('Button', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
     const button = screen.getByRole('button', { name: 'Click me' });
-    
+
     await userEvent.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -35,9 +35,12 @@ describe('Button', () => {
 
   it('renders left and right icons', () => {
     render(
-      <Button leftIcon={<span data-testid="left">Left</span>} rightIcon={<span data-testid="right">Right</span>}>
+      <Button
+        leftIcon={<span data-testid="left">Left</span>}
+        rightIcon={<span data-testid="right">Right</span>}
+      >
         Icon Button
-      </Button>
+      </Button>,
     );
     expect(screen.getByTestId('left')).toBeInTheDocument();
     expect(screen.getByTestId('right')).toBeInTheDocument();

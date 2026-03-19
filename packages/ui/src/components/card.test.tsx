@@ -12,7 +12,7 @@ describe('Card', () => {
         </Card.Header>
         <Card.Content>Content</Card.Content>
         <Card.Footer>Footer</Card.Footer>
-      </Card>
+      </Card>,
     );
 
     expect(screen.getByText('Title')).toBeInTheDocument();
@@ -22,14 +22,22 @@ describe('Card', () => {
   });
 
   it('renders correctly with outline variant', () => {
-    render(<Card variant="outline" data-testid="card-root">Content</Card>);
+    render(
+      <Card variant="outline" data-testid="card-root">
+        Content
+      </Card>,
+    );
     const card = screen.getByTestId('card-root');
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass('border-2'); // Outline variant
   });
 
   it('renders correctly with gradient prop', () => {
-    render(<Card gradient data-testid="card-root">Content</Card>);
+    render(
+      <Card gradient data-testid="card-root">
+        Content
+      </Card>,
+    );
     const card = screen.getByTestId('card-root');
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass('bg-gradient-to-br'); // Gradient prop class

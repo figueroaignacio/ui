@@ -4,11 +4,7 @@ import { Callout } from './callout';
 
 describe('Callout', () => {
   it('renders default variant correctly', () => {
-    render(
-      <Callout title="Note">
-        This is a callout.
-      </Callout>
-    );
+    render(<Callout title="Note">This is a callout.</Callout>);
     expect(screen.getByText('Note')).toBeInTheDocument();
     expect(screen.getByText('This is a callout.')).toBeInTheDocument();
     // Default callouts have role="region"
@@ -19,7 +15,7 @@ describe('Callout', () => {
     render(
       <Callout variant="danger" title="Error">
         Something went wrong.
-      </Callout>
+      </Callout>,
     );
     // Danger variant uses role="alert"
     expect(screen.getByRole('alert')).toBeInTheDocument();
@@ -30,7 +26,7 @@ describe('Callout', () => {
     render(
       <Callout title="Custom" icon={<span data-testid="custom-icon">Icon</span>}>
         Has a custom icon.
-      </Callout>
+      </Callout>,
     );
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
   });

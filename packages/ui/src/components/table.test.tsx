@@ -25,7 +25,7 @@ describe('Table', () => {
             <Table.Cell>$250.00</Table.Cell>
           </Table.Row>
         </Table.Footer>
-      </Table>
+      </Table>,
     );
 
     expect(screen.getByRole('table')).toBeInTheDocument();

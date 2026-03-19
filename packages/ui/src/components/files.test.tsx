@@ -9,7 +9,9 @@ vi.mock('motion/react', async () => {
   return {
     motion: {
       div: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
+        <div ref={ref} {...props}>
+          {children}
+        </div>
       )),
     },
     AnimatePresence: ({ children }: any) => <>{children}</>,
@@ -22,12 +24,12 @@ describe('Files', () => {
     render(
       <Files>
         <Files.File name="index.ts" onClick={handleClick} />
-      </Files>
+      </Files>,
     );
-    
+
     const file = screen.getByText('index.ts');
     expect(file).toBeInTheDocument();
-    
+
     await userEvent.click(file);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -38,12 +40,12 @@ describe('Files', () => {
         <Files.Folder name="src">
           <Files.File name="utils.ts" />
         </Files.Folder>
-      </Files>
+      </Files>,
     );
-    
+
     const folder = screen.getByText('src');
     expect(folder).toBeInTheDocument();
-    
+
     // File inside folder should mostly be hidden initially (rendered but unexpanded)
     // Toggling the folder shouldn't crash
     await userEvent.click(folder);
@@ -57,12 +59,12 @@ describe('Files', () => {
         <Files.File name="modified.ts" status="modified" />
         <Files.File name="deleted.ts" status="deleted" />
         <Files.Folder name="added" status="added" />
-      </Files>
+      </Files>,
     );
-    
+
     expect(screen.getByText('modified.ts')).toBeInTheDocument();
     expect(screen.getByText('M')).toBeInTheDocument();
-    
+
     expect(screen.getByText('deleted.ts')).toBeInTheDocument();
     expect(screen.getByText('D')).toBeInTheDocument();
 

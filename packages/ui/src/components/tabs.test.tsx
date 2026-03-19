@@ -7,9 +7,32 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      div: React.forwardRef(({ children, style, initial, animate, exit, variants, transition, drag, dragConstraints, dragElastic, onDragEnd, whileTap, whileHover, layoutId, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>{children}</div>
-      )),
+      div: React.forwardRef(
+        (
+          {
+            children,
+            style,
+            initial,
+            animate,
+            exit,
+            variants,
+            transition,
+            drag,
+            dragConstraints,
+            dragElastic,
+            onDragEnd,
+            whileTap,
+            whileHover,
+            layoutId,
+            ...props
+          }: any,
+          ref: any,
+        ) => (
+          <div ref={ref} {...props}>
+            {children}
+          </div>
+        ),
+      ),
     },
     useReducedMotion: () => false,
   };
@@ -25,7 +48,7 @@ describe('Tabs', () => {
         </Tabs.List>
         <Tabs.Content value="tab1">Content 1</Tabs.Content>
         <Tabs.Content value="tab2">Content 2</Tabs.Content>
-      </Tabs>
+      </Tabs>,
     );
 
     const tab1Trigger = screen.getByRole('tab', { name: 'Tab 1' });

@@ -13,7 +13,11 @@ import { Link as ButtonLink } from '../../../../../packages/ui/src/demos/button/
 import { Outline as ButtonOutline } from '../../../../../packages/ui/src/demos/button/outline';
 import { Secondary as ButtonSecondary } from '../../../../../packages/ui/src/demos/button/secondary';
 import { Sizes as ButtonSizes } from '../../../../../packages/ui/src/demos/button/sizes';
+import { Danger as CalloutDanger } from '../../../../../packages/ui/src/demos/callout/danger';
 import { Default as CalloutDefault } from '../../../../../packages/ui/src/demos/callout/default';
+import { Info as CalloutInfo } from '../../../../../packages/ui/src/demos/callout/info';
+import { Success as CalloutSuccess } from '../../../../../packages/ui/src/demos/callout/success';
+import { Warning as CalloutWarning } from '../../../../../packages/ui/src/demos/callout/warning';
 import { Compact as CardCompact } from '../../../../../packages/ui/src/demos/card/compact';
 import { Default as CardDefault } from '../../../../../packages/ui/src/demos/card/default';
 import { Ghost as CardGhost } from '../../../../../packages/ui/src/demos/card/ghost';
@@ -58,6 +62,10 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   },
   callout: {
     default: CalloutDefault,
+    info: CalloutInfo,
+    warning: CalloutWarning,
+    danger: CalloutDanger,
+    success: CalloutSuccess,
   },
   breadcrumb: {
     default: BreadcrumbDefault,
