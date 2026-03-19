@@ -15,7 +15,6 @@ interface TocProps {
   toc: TocEntry[];
 }
 
-// Hoisted — stable observer options object (rendering-hoist-jsx)
 const OBSERVER_OPTIONS: IntersectionObserverInit = { rootMargin: '0% 0% -60% 0%' };
 
 export function Toc({ toc }: TocProps) {
@@ -72,7 +71,6 @@ export function Toc({ toc }: TocProps) {
 function useActiveItem(itemIds: (string | undefined)[]) {
   const [activeId, setActiveId] = useState<string>('');
 
-  // useCallback — stable ref so the useEffect dep doesn't change every render (rerender-dependencies)
   const handleIntersect = useCallback((entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -121,12 +119,12 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               className={cn(
                 'group relative inline-block py-1 text-xs leading-relaxed no-underline transition-all duration-200',
                 isActive
-                  ? 'text-primary font-semibold'
+                  ? 'text-foreground font-semibold'
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
               {isActive && (
-                <span className="bg-primary absolute top-1/2 -left-4.5 h-4 w-0.5 -translate-y-1/2 rounded-full transition-all" />
+                <span className="bg-foreground absolute top-1/2 -left-4.5 h-4 w-0.5 -translate-y-1/2 rounded-full transition-all" />
               )}
               {item.title}
             </a>
