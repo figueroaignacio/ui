@@ -1,6 +1,6 @@
 import {
-  Alert01Icon,
   Alert02Icon,
+  AlertCircleIcon,
   CheckmarkCircle01Icon,
   InformationCircleIcon,
 } from '@hugeicons/core-free-icons';
@@ -88,7 +88,7 @@ const CalloutRoot = ({
       case 'warning':
         return <HugeiconsIcon icon={Alert02Icon} size={18} />;
       case 'danger':
-        return <HugeiconsIcon icon={Alert01Icon} size={18} />;
+        return <HugeiconsIcon icon={AlertCircleIcon} size={18} />;
       case 'success':
         return <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />;
       default:
