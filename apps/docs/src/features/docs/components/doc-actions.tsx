@@ -63,7 +63,7 @@ export function DocActions({ page, url, filePath, rawContent }: DocActionsProps)
         size="sm"
         className="h-8 gap-2 rounded-l-full border-r-0 px-4"
         onClick={handleExplain}
-        leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} className="text-primary" />}
+        leftIcon={<HugeiconsIcon icon={AiBeautifyIcon} size={16} />}
       >
         <span>{t('explainButton.label')}</span>
       </Button>
@@ -82,7 +82,7 @@ export function DocActions({ page, url, filePath, rawContent }: DocActionsProps)
             <HugeiconsIcon icon={ArrowDown01Icon} size={16} />
           </Button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content align="start" className="w-56">
+        <DropdownMenu.Content align="end" className="w-56">
           <DropdownMenu.Label>{t('openIn.label')}</DropdownMenu.Label>
           {openInLinks.map((link) => (
             <DropdownMenu.Item key={link.name} asChild className="gap-2">
