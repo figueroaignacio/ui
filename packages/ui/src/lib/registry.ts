@@ -11,6 +11,8 @@ export const COMPONENT_REGISTRY = {
   dialog: 'packages/ui/src/components/dialog.tsx',
   'dropdown-menu': 'packages/ui/src/components/dropdown-menu.tsx',
   files: 'packages/ui/src/components/files.tsx',
+  input: 'packages/ui/src/components/input.tsx',
+  label: 'packages/ui/src/components/label.tsx',
   progress: 'packages/ui/src/components/progress.tsx',
   select: 'packages/ui/src/components/select.tsx',
   sheet: 'packages/ui/src/components/sheet.tsx',
@@ -99,6 +101,20 @@ export const DEMO_REGISTRY = {
   // Files demos
   files: {
     default: 'packages/ui/src/demos/files/default.tsx',
+  },
+  // Input demos
+  input: {
+    default: 'packages/ui/src/demos/input/default.tsx',
+    'with-label': 'packages/ui/src/demos/input/with-label.tsx',
+    'with-error': 'packages/ui/src/demos/input/with-error.tsx',
+    'with-icon': 'packages/ui/src/demos/input/with-icon.tsx',
+    sizes: 'packages/ui/src/demos/input/sizes.tsx',
+    disabled: 'packages/ui/src/demos/input/disabled.tsx',
+  },
+  // Label demos
+  label: {
+    default: 'packages/ui/src/demos/label/default.tsx',
+    required: 'packages/ui/src/demos/label/required.tsx',
   },
   // Progress demos
   progress: {

@@ -1,19 +1,39 @@
-'use client';
-
 import * as React from 'react';
 import { cn } from '../lib/cn';
 
-type LabelProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+type LabelProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
+  ref?: React.Ref<HTMLLabelElement>;
+  required?: boolean;
+  optional?: boolean;
+  description?: string;
+};
 
-export function Label({ className, ...props }: LabelProps) {
+function Label({ className, required, optional, description, children, ref, ...props }: LabelProps) {
   return (
-    <label
-      data-slot="label"
-      className={cn(
-        'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
-        className,
+    <div className="flex flex-col gap-1">
+      <label
+        ref={ref}
+        data-slot="label"
+        className={cn(
+          'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+        {required && <span className="text-destructive text-sm">*</span>}
+        {optional && (
+          <span className="text-muted-foreground text-xs font-normal">(optional)</span>
+        )}
+      </label>
+      {description && (
+        <span className="text-muted-foreground text-xs">{description}</span>
       )}
-      {...props}
-    />
+    </div>
   );
 }
+
+Label.displayName = 'Label';
+
+export { Label };
+export type { LabelProps };

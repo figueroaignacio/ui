@@ -20,4 +20,30 @@ describe('Label', () => {
     const label = screen.getByText('Test Label');
     expect(label).toHaveClass('custom-class');
   });
+
+  it('renders required indicator', () => {
+    render(<Label required>Name</Label>);
+    expect(screen.getByText('*')).toBeInTheDocument();
+  });
+
+  it('renders optional text', () => {
+    render(<Label optional>Bio</Label>);
+    expect(screen.getByText('(optional)')).toBeInTheDocument();
+  });
+
+  it('renders description text', () => {
+    render(<Label description="Helper text goes here">Name</Label>);
+    expect(screen.getByText('Helper text goes here')).toBeInTheDocument();
+  });
+
+  it('renders required and description together', () => {
+    render(
+      <Label required description="This field is required">
+        Email
+      </Label>,
+    );
+    expect(screen.getByText('*')).toBeInTheDocument();
+    expect(screen.getByText('This field is required')).toBeInTheDocument();
+    expect(screen.getByText('Email')).toBeInTheDocument();
+  });
 });

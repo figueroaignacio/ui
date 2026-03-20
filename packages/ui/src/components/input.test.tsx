@@ -41,4 +41,59 @@ describe('Input', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
   });
+
+  it('renders with description text', () => {
+    render(<Input description="We'll never share your email" />);
+    const description = screen.getByText("We'll never share your email");
+    expect(description).toBeInTheDocument();
+  });
+
+  it('renders description and error with proper aria-describedby', () => {
+    render(
+      <Input
+        id="test"
+        description="Helper text"
+        error="Error text"
+      />,
+    );
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('aria-describedby', 'test-description test-error');
+    expect(screen.getByText('Helper text')).toBeInTheDocument();
+    expect(screen.getByText('Error text')).toBeInTheDocument();
+  });
+
+  it('renders with left icon', () => {
+    render(
+      <Input
+        leftIcon={<span data-testid="left-icon">🔍</span>}
+        placeholder="Search..."
+      />,
+    );
+    expect(screen.getByTestId('left-icon')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
+  });
+
+  it('renders with right icon', () => {
+    render(
+      <Input
+        rightIcon={<span data-testid="right-icon">👁</span>}
+        placeholder="Password"
+      />,
+    );
+    expect(screen.getByTestId('right-icon')).toBeInTheDocument();
+  });
+
+  it('applies size variant classes', () => {
+    const { rerender } = render(<Input size="sm" placeholder="sm" />);
+    let input = screen.getByPlaceholderText('sm');
+    expect(input.className).toContain('h-8');
+
+    rerender(<Input size="default" placeholder="default" />);
+    input = screen.getByPlaceholderText('default');
+    expect(input.className).toContain('h-9');
+
+    rerender(<Input size="lg" placeholder="lg" />);
+    input = screen.getByPlaceholderText('lg');
+    expect(input.className).toContain('h-11');
+  });
 });

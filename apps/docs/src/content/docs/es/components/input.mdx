@@ -1,0 +1,127 @@
+---
+title: Input
+description: Un campo de texto con label integrado, manejo de errores, slots de íconos y variantes de tamaño.
+published: true
+date: 2026-03-20
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="input" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="input" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Input } from '@/components/ui/input';
+```
+
+```tsx
+<Input label="Email" placeholder="tu@ejemplo.com" />
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="input" demo="default" />
+
+### Con Label
+
+Input con label integrado usando la prop `label`.
+
+<ComponentPreview component="input" demo="with-label" />
+
+### Con Error
+
+Estado de error de validación con mensajes accesibles.
+
+<ComponentPreview component="input" demo="with-error" />
+
+### Con Íconos
+
+Input con slots de íconos a la izquierda y/o derecha.
+
+<ComponentPreview component="input" demo="with-icon" />
+
+### Tamaños
+
+Tres variantes de tamaño: `sm`, `default` y `lg`.
+
+<ComponentPreview component="input" demo="sizes" />
+
+### Deshabilitado (Disabled)
+
+Un estado deshabilitado previene toda interacción.
+
+<ComponentPreview component="input" demo="disabled" />
+
+## Componentes Compuestos
+
+El Input también expone sub-componentes para layouts personalizados:
+
+```tsx
+<Input.Wrapper>
+  <Input.Label htmlFor="custom">Layout personalizado</Input.Label>
+  <Input.Description>Texto de ayuda va aquí.</Input.Description>
+  <input id="custom" />
+  <Input.Error>Algo salió mal.</Input.Error>
+</Input.Wrapper>
+```
+
+## Referencia de API
+
+### Input
+
+| Prop          | Tipo                                  | Por defecto | Descripción                                                |
+| ------------- | ------------------------------------- | ----------- | ---------------------------------------------------------- |
+| `label`       | `string`                              | —           | Texto del label renderizado arriba del input.              |
+| `error`       | `string`                              | —           | Mensaje de error mostrado debajo del input.                |
+| `description` | `string`                              | —           | Texto de ayuda mostrado entre el label y el input.         |
+| `size`        | `"sm"` \| `"default"` \| `"lg"`       | `"default"` | El tamaño del campo de entrada.                            |
+| `leftIcon`    | `React.ReactNode`                     | —           | Ícono mostrado a la izquierda del input.                   |
+| `rightIcon`   | `React.ReactNode`                     | —           | Ícono mostrado a la derecha del input.                     |
+| `disabled`    | `boolean`                             | —           | Deshabilita el input.                                      |
+| `className`   | `string`                              | —           | Clases CSS adicionales.                                    |
+| `type`        | `string`                              | `"text"`    | El tipo del elemento input.                                |
+
+### Input.Wrapper
+
+| Prop        | Tipo              | Por defecto | Descripción             |
+| ----------- | ----------------- | ----------- | ----------------------- |
+| `className` | `string`          | —           | Clases CSS adicionales. |
+| `children`  | `React.ReactNode` | —           | El contenido.           |
+
+### Input.Label
+
+| Prop        | Tipo     | Por defecto | Descripción                    |
+| ----------- | -------- | ----------- | ------------------------------ |
+| `htmlFor`   | `string` | —           | Asocia con un elemento input.  |
+| `className` | `string` | —           | Clases CSS adicionales.        |
+
+### Input.Description
+
+| Prop        | Tipo              | Por defecto | Descripción                |
+| ----------- | ----------------- | ----------- | -------------------------- |
+| `className` | `string`          | —           | Clases CSS adicionales.    |
+| `children`  | `React.ReactNode` | —           | El texto de la descripción.|
+
+### Input.Error
+
+| Prop        | Tipo              | Por defecto | Descripción             |
+| ----------- | ----------------- | ----------- | ----------------------- |
+| `className` | `string`          | —           | Clases CSS adicionales. |
+| `children`  | `React.ReactNode` | —           | El mensaje de error.    |

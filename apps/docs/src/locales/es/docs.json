@@ -104,6 +104,16 @@
           "description": "Un componente de árbol de archivos interactivo para mostrar estructuras jerárquicas de carpetas y archivos."
         },
         {
+          "title": "Input",
+          "href": "/docs/components/input",
+          "description": "Un campo de texto con label, manejo de errores, slots de íconos y variantes de tamaño."
+        },
+        {
+          "title": "Label",
+          "href": "/docs/components/label",
+          "description": "Un componente label con indicador de obligatoriedad, texto opcional y descripción."
+        },
+        {
           "title": "Progress",
           "href": "/docs/components/progress",
           "description": "Muestra un indicador del progreso de finalización de una tarea."

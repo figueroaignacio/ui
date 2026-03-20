@@ -104,6 +104,16 @@
           "description": ""
         },
         {
+          "title": "Input",
+          "href": "/docs/components/input",
+          "description": "A text input field with label, error handling, icon slots, and size variants."
+        },
+        {
+          "title": "Label",
+          "href": "/docs/components/label",
+          "description": "A label component with required indicator, optional text, and description support."
+        },
+        {
           "title": "Progress",
           "href": "/docs/components/progress",
           "description": "Displays an indicator showing the completion progress of a task."

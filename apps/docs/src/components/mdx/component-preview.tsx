@@ -45,6 +45,14 @@ import { Checkboxes as DropdownMenuCheckboxes } from '../../../../../packages/ui
 import { Default as DropdownMenuDefault } from '../../../../../packages/ui/src/demos/dropdown-menu/default';
 import { RadioGroup as DropdownMenuRadioGroup } from '../../../../../packages/ui/src/demos/dropdown-menu/radio-group';
 import { Default as FilesDefault } from '../../../../../packages/ui/src/demos/files/default';
+import { Default as InputDefault } from '../../../../../packages/ui/src/demos/input/default';
+import { Disabled as InputDisabled } from '../../../../../packages/ui/src/demos/input/disabled';
+import { Sizes as InputSizes } from '../../../../../packages/ui/src/demos/input/sizes';
+import { WithError as InputWithError } from '../../../../../packages/ui/src/demos/input/with-error';
+import { WithIcon as InputWithIcon } from '../../../../../packages/ui/src/demos/input/with-icon';
+import { WithLabel as InputWithLabel } from '../../../../../packages/ui/src/demos/input/with-label';
+import { Default as LabelDefault } from '../../../../../packages/ui/src/demos/label/default';
+import { Required as LabelRequired } from '../../../../../packages/ui/src/demos/label/required';
 import { Default as ProgressDefault } from '../../../../../packages/ui/src/demos/progress/default';
 import { Indeterminate as ProgressIndeterminate } from '../../../../../packages/ui/src/demos/progress/indeterminate';
 import { WithValue as ProgressWithValue } from '../../../../../packages/ui/src/demos/progress/with-value';
@@ -133,6 +141,18 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   },
   files: {
     default: FilesDefault,
+  },
+  input: {
+    default: InputDefault,
+    'with-label': InputWithLabel,
+    'with-error': InputWithError,
+    'with-icon': InputWithIcon,
+    sizes: InputSizes,
+    disabled: InputDisabled,
+  },
+  label: {
+    default: LabelDefault,
+    required: LabelRequired,
   },
   progress: {
     default: ProgressDefault,
