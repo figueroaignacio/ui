@@ -5,8 +5,8 @@ import { Callout } from '@repo/ui/components/callout';
 import { Collapsed as AccordionCollapsed } from '../../../../../packages/ui/src/demos/accordion/collapsed';
 import { Default as AccordionDefault } from '../../../../../packages/ui/src/demos/accordion/default';
 import { Multiple as AccordionMultiple } from '../../../../../packages/ui/src/demos/accordion/multiple';
-import { Default as AvatarDefault } from '../../../../../packages/ui/src/demos/avatar/default';
 import { AvatarGroup as AvatarGroupDemo } from '../../../../../packages/ui/src/demos/avatar/avatar-group';
+import { Default as AvatarDefault } from '../../../../../packages/ui/src/demos/avatar/default';
 import { Sizes as AvatarSizes } from '../../../../../packages/ui/src/demos/avatar/sizes';
 import { WithFallback as AvatarWithFallback } from '../../../../../packages/ui/src/demos/avatar/with-fallback';
 import { Default as BadgeDefault } from '../../../../../packages/ui/src/demos/badge/default';
@@ -59,11 +59,11 @@ import { Indeterminate as ProgressIndeterminate } from '../../../../../packages/
 import { WithValue as ProgressWithValue } from '../../../../../packages/ui/src/demos/progress/with-value';
 import { Default as SelectDefault } from '../../../../../packages/ui/src/demos/select/default';
 import { GroupedItems as SelectGroupedItems } from '../../../../../packages/ui/src/demos/select/grouped-items';
+import { Default as SeparatorDefault } from '../../../../../packages/ui/src/demos/separator/default';
+import { WithLabel as SeparatorWithLabel } from '../../../../../packages/ui/src/demos/separator/with-label';
 import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
 import { Positions as SheetPositions } from '../../../../../packages/ui/src/demos/sheet/positions';
 import { Sizes as SheetSizes } from '../../../../../packages/ui/src/demos/sheet/sizes';
-import { Default as SeparatorDefault } from '../../../../../packages/ui/src/demos/separator/default';
-import { WithLabel as SeparatorWithLabel } from '../../../../../packages/ui/src/demos/separator/with-label';
 import { Card as SkeletonCard } from '../../../../../packages/ui/src/demos/skeleton/card';
 import { Default as SkeletonDefault } from '../../../../../packages/ui/src/demos/skeleton/default';
 import { Default as SwitchDefault } from '../../../../../packages/ui/src/demos/switch/default';
@@ -75,16 +75,12 @@ import { Striped as TableStriped } from '../../../../../packages/ui/src/demos/ta
 import { WithActions as TableWithActions } from '../../../../../packages/ui/src/demos/table/with-actions';
 import { Default as TabsDefault } from '../../../../../packages/ui/src/demos/tabs/default';
 import { Vertical as TabsVertical } from '../../../../../packages/ui/src/demos/tabs/vertical';
-import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
-import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
-import { AutoResize as TextareaAutoResize } from '../../../../../packages/ui/src/demos/textarea/auto-resize';
-import { Default as TextareaDefault } from '../../../../../packages/ui/src/demos/textarea/default';
-import { Disabled as TextareaDisabled } from '../../../../../packages/ui/src/demos/textarea/disabled';
-import { WithLabel as TextareaWithLabel } from '../../../../../packages/ui/src/demos/textarea/with-label';
 import { Default as ToastDefault } from '../../../../../packages/ui/src/demos/toast/default';
 import { Positions as ToastPositions } from '../../../../../packages/ui/src/demos/toast/positions';
 import { Variants as ToastVariants } from '../../../../../packages/ui/src/demos/toast/variants';
 import { WithAction as ToastWithAction } from '../../../../../packages/ui/src/demos/toast/with-action';
+import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
+import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
 import { ComponentPreviewClient } from './component-preview-client';
 
 const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
@@ -210,12 +206,6 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   tooltip: {
     default: TooltipDefault,
     positions: TooltipPositions,
-  },
-  textarea: {
-    default: TextareaDefault,
-    'with-label': TextareaWithLabel,
-    'auto-resize': TextareaAutoResize,
-    disabled: TextareaDisabled,
   },
   toast: {
     default: ToastDefault,
