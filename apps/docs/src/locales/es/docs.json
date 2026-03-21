@@ -159,11 +159,6 @@
           "description": "Organiza contenido en pestañas intercambiables."
         },
         {
-          "title": "Textarea",
-          "href": "/docs/components/textarea",
-          "description": "Un campo de texto multilínea con label, manejo de errores, variantes de tamaño y auto-resize."
-        },
-        {
           "title": "Toast",
           "href": "/docs/components/toast",
           "description": "Un sistema de notificaciones apilables con variantes y auto-dismiss."

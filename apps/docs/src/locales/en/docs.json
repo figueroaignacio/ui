@@ -159,11 +159,6 @@
           "description": "Switch between different content panels easily."
         },
         {
-          "title": "Textarea",
-          "href": "/docs/components/textarea",
-          "description": "A multi-line text input with label, error handling, size variants, and auto-resize."
-        },
-        {
           "title": "Toast",
           "href": "/docs/components/toast",
           "description": "A notification system with stackable toasts, variants, and auto-dismiss."
