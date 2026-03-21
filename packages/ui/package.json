@@ -44,6 +44,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.2",
     "@testing-library/jest-dom": "^6.9.1",
