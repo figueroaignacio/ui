@@ -1,0 +1,54 @@
+---
+title: Skeleton
+description: Un componente de carga placeholder con animación de pulso.
+published: true
+date: 2026-03-20
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="skeleton" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="skeleton" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Skeleton } from '@/components/ui/skeleton';
+```
+
+```tsx
+<Skeleton className="h-4 w-[200px]" />
+```
+
+## Ejemplos
+
+### Predeterminado (Default)
+
+<ComponentPreview component="skeleton" demo="default" />
+
+### Card
+
+Un skeleton de card completo para estados de carga.
+
+<ComponentPreview component="skeleton" demo="card" />
+
+## Referencia de API
+
+### Skeleton
+
+| Prop        | Tipo     | Por defecto | Descripción                                                      |
+| ----------- | -------- | ----------- | ---------------------------------------------------------------- |
+| `className` | `string` | —           | Clases CSS adicionales — usá para definir ancho, alto y bordes.  |

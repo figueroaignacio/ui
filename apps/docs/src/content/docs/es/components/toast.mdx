@@ -1,0 +1,105 @@
+---
+title: Toast
+description: Un sistema de notificaciones apilables con variantes, auto-dismiss y animaciones con spring.
+published: true
+date: 2026-03-20
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="toast" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="toast" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Toast, useToast } from '@/components/ui/toast';
+```
+
+Envolvé tu app con `Toast.Provider`, después usá `useToast()` en donde quieras:
+
+```tsx
+function App() {
+  return (
+    <Toast.Provider>
+      <MiComponente />
+    </Toast.Provider>
+  );
+}
+
+function MiComponente() {
+  const { toast } = useToast();
+
+  return (
+    <button onClick={() => toast({ title: '¡Hola!' })}>
+      Mostrar Toast
+    </button>
+  );
+}
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="toast" demo="default" />
+
+### Todas las Variantes
+
+Cinco variantes: `default`, `success`, `error`, `info` y `warning`.
+
+<ComponentPreview component="toast" demo="variants" />
+
+### Con Acción
+
+Toast con un botón de acción.
+
+<ComponentPreview component="toast" demo="with-action" />
+
+### Posiciones
+
+Elegí dónde aparecen los toasts en pantalla. Hacé click en una posición para seleccionarla y después disparar un toast.
+
+<ComponentPreview component="toast" demo="positions" />
+
+## Referencia de API
+
+### Toast.Provider
+
+| Prop        | Tipo              | Por defecto      | Descripción                              |
+| ----------- | ----------------- | ---------------- | ---------------------------------------- |
+| `children`  | `React.ReactNode` | —                | El contenido de la app.                  |
+| `maxToasts` | `number`          | `5`              | Número máximo de toasts visibles.        |
+| `position`  | `"top-left"` \| `"top-right"` \| `"bottom-left"` \| `"bottom-right"` | `"bottom-right"` | Dónde aparecen los toasts en pantalla. |
+
+### useToast()
+
+Devuelve un objeto con:
+
+| Método    | Tipo                               | Descripción                          |
+| --------- | ---------------------------------- | ------------------------------------ |
+| `toast`   | `(options: ToastOptions) => string`| Muestra un toast, devuelve su ID.    |
+| `dismiss` | `(id: string) => void`             | Cierra un toast por su ID.           |
+
+### ToastOptions
+
+| Prop          | Tipo                                                    | Por defecto | Descripción                                   |
+| ------------- | ------------------------------------------------------- | ----------- | --------------------------------------------- |
+| `title`       | `string`                                                | —           | Título del toast (requerido).                 |
+| `description` | `string`                                                | —           | Descripción opcional.                         |
+| `variant`     | `"default"` \| `"success"` \| `"error"` \| `"info"` \| `"warning"` | `"default"` | Variante visual.                              |
+| `duration`    | `number`                                                | `5000`      | Delay de auto-cierre en ms. Usá `0` para desactivar. |
+| `action`      | `{ label: string; onClick: () => void }`                | —           | Botón de acción opcional.                     |

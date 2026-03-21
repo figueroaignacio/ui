@@ -53,6 +53,7 @@ import { WithIcon as InputWithIcon } from '../../../../../packages/ui/src/demos/
 import { WithLabel as InputWithLabel } from '../../../../../packages/ui/src/demos/input/with-label';
 import { Default as LabelDefault } from '../../../../../packages/ui/src/demos/label/default';
 import { Required as LabelRequired } from '../../../../../packages/ui/src/demos/label/required';
+import { Default as PopoverDefault } from '../../../../../packages/ui/src/demos/popover/default';
 import { Default as ProgressDefault } from '../../../../../packages/ui/src/demos/progress/default';
 import { Indeterminate as ProgressIndeterminate } from '../../../../../packages/ui/src/demos/progress/indeterminate';
 import { WithValue as ProgressWithValue } from '../../../../../packages/ui/src/demos/progress/with-value';
@@ -61,6 +62,10 @@ import { GroupedItems as SelectGroupedItems } from '../../../../../packages/ui/s
 import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
 import { Positions as SheetPositions } from '../../../../../packages/ui/src/demos/sheet/positions';
 import { Sizes as SheetSizes } from '../../../../../packages/ui/src/demos/sheet/sizes';
+import { Default as SeparatorDefault } from '../../../../../packages/ui/src/demos/separator/default';
+import { WithLabel as SeparatorWithLabel } from '../../../../../packages/ui/src/demos/separator/with-label';
+import { Card as SkeletonCard } from '../../../../../packages/ui/src/demos/skeleton/card';
+import { Default as SkeletonDefault } from '../../../../../packages/ui/src/demos/skeleton/default';
 import { Default as SwitchDefault } from '../../../../../packages/ui/src/demos/switch/default';
 import { Disabled as SwitchDisabled } from '../../../../../packages/ui/src/demos/switch/disabled';
 import { WithLabel as SwitchWithLabel } from '../../../../../packages/ui/src/demos/switch/with-label';
@@ -72,6 +77,14 @@ import { Default as TabsDefault } from '../../../../../packages/ui/src/demos/tab
 import { Vertical as TabsVertical } from '../../../../../packages/ui/src/demos/tabs/vertical';
 import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
 import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
+import { AutoResize as TextareaAutoResize } from '../../../../../packages/ui/src/demos/textarea/auto-resize';
+import { Default as TextareaDefault } from '../../../../../packages/ui/src/demos/textarea/default';
+import { Disabled as TextareaDisabled } from '../../../../../packages/ui/src/demos/textarea/disabled';
+import { WithLabel as TextareaWithLabel } from '../../../../../packages/ui/src/demos/textarea/with-label';
+import { Default as ToastDefault } from '../../../../../packages/ui/src/demos/toast/default';
+import { Positions as ToastPositions } from '../../../../../packages/ui/src/demos/toast/positions';
+import { Variants as ToastVariants } from '../../../../../packages/ui/src/demos/toast/variants';
+import { WithAction as ToastWithAction } from '../../../../../packages/ui/src/demos/toast/with-action';
 import { ComponentPreviewClient } from './component-preview-client';
 
 const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
@@ -154,6 +167,9 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
     default: LabelDefault,
     required: LabelRequired,
   },
+  popover: {
+    default: PopoverDefault,
+  },
   progress: {
     default: ProgressDefault,
     indeterminate: ProgressIndeterminate,
@@ -167,6 +183,14 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
     default: SheetDefault,
     positions: SheetPositions,
     sizes: SheetSizes,
+  },
+  separator: {
+    default: SeparatorDefault,
+    'with-label': SeparatorWithLabel,
+  },
+  skeleton: {
+    default: SkeletonDefault,
+    card: SkeletonCard,
   },
   switch: {
     default: SwitchDefault,
@@ -186,6 +210,18 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   tooltip: {
     default: TooltipDefault,
     positions: TooltipPositions,
+  },
+  textarea: {
+    default: TextareaDefault,
+    'with-label': TextareaWithLabel,
+    'auto-resize': TextareaAutoResize,
+    disabled: TextareaDisabled,
+  },
+  toast: {
+    default: ToastDefault,
+    variants: ToastVariants,
+    positions: ToastPositions,
+    'with-action': ToastWithAction,
   },
 };
 

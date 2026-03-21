@@ -1,0 +1,76 @@
+---
+title: Popover
+description: A floating panel with interactive content, triggered by click.
+published: true
+date: 2026-03-20
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="popover" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="popover" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Popover } from '@/components/ui/popover';
+```
+
+```tsx
+<Popover>
+  <Popover.Trigger>Open</Popover.Trigger>
+  <Popover.Content>
+    <p>Interactive content here.</p>
+  </Popover.Content>
+</Popover>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview component="popover" demo="default" />
+
+## API Reference
+
+### Popover
+
+| Prop           | Type                      | Default | Description                      |
+| -------------- | ------------------------- | ------- | -------------------------------- |
+| `defaultOpen`  | `boolean`                 | `false` | Initial open state.              |
+| `open`         | `boolean`                 | —       | Controlled open state.           |
+| `onOpenChange` | `(open: boolean) => void` | —       | Callback when open state changes.|
+
+### Popover.Trigger
+
+| Prop      | Type      | Default | Description             |
+| --------- | --------- | ------- | ----------------------- |
+| `asChild` | `boolean` | `false` | Render as child element.|
+
+### Popover.Content
+
+| Prop         | Type                                       | Default    | Description                  |
+| ------------ | ------------------------------------------ | ---------- | ---------------------------- |
+| `side`       | `"top"` \| `"bottom"` \| `"left"` \| `"right"` | `"bottom"` | Placement relative to trigger.|
+| `sideOffset` | `number`                                   | `4`        | Offset from the trigger.     |
+| `showClose`  | `boolean`                                  | `false`    | Shows a close button.        |
+| `className`  | `string`                                   | —          | Additional CSS classes.      |
+
+### Popover.Close
+
+| Prop      | Type      | Default | Description             |
+| --------- | --------- | ------- | ----------------------- |
+| `asChild` | `boolean` | `false` | Render as child element.|

@@ -1,0 +1,105 @@
+---
+title: Toast
+description: A notification system with stackable toasts, variants, auto-dismiss, and spring animations.
+published: true
+date: 2026-03-20
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="toast" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="toast" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Toast, useToast } from '@/components/ui/toast';
+```
+
+Wrap your app with `Toast.Provider`, then use `useToast()` anywhere:
+
+```tsx
+function App() {
+  return (
+    <Toast.Provider>
+      <MyComponent />
+    </Toast.Provider>
+  );
+}
+
+function MyComponent() {
+  const { toast } = useToast();
+
+  return (
+    <button onClick={() => toast({ title: 'Hello!' })}>
+      Show Toast
+    </button>
+  );
+}
+```
+
+## Variants
+
+### Default
+
+<ComponentPreview component="toast" demo="default" />
+
+### All Variants
+
+Five built-in variants: `default`, `success`, `error`, `info`, and `warning`.
+
+<ComponentPreview component="toast" demo="variants" />
+
+### With Action
+
+Toast with an action button.
+
+<ComponentPreview component="toast" demo="with-action" />
+
+### Positions
+
+Choose where toasts appear on screen. Click a position to select it, then trigger a toast.
+
+<ComponentPreview component="toast" demo="positions" />
+
+## API Reference
+
+### Toast.Provider
+
+| Prop        | Type              | Default          | Description                           |
+| ----------- | ----------------- | ---------------- | ------------------------------------- |
+| `children`  | `React.ReactNode` | —                | The app content.                      |
+| `maxToasts` | `number`          | `5`              | Maximum number of visible toasts.     |
+| `position`  | `"top-left"` \| `"top-right"` \| `"bottom-left"` \| `"bottom-right"` | `"bottom-right"` | Where toasts appear on screen. |
+
+### useToast()
+
+Returns an object with:
+
+| Method    | Type                               | Description                     |
+| --------- | ---------------------------------- | ------------------------------- |
+| `toast`   | `(options: ToastOptions) => string`| Shows a toast, returns its ID.  |
+| `dismiss` | `(id: string) => void`             | Dismisses a toast by ID.        |
+
+### ToastOptions
+
+| Prop          | Type                                                    | Default     | Description                           |
+| ------------- | ------------------------------------------------------- | ----------- | ------------------------------------- |
+| `title`       | `string`                                                | —           | Toast title (required).               |
+| `description` | `string`                                                | —           | Optional description text.            |
+| `variant`     | `"default"` \| `"success"` \| `"error"` \| `"info"` \| `"warning"` | `"default"` | Visual variant.                       |
+| `duration`    | `number`                                                | `5000`      | Auto-dismiss delay in ms. Set `0` for no auto-dismiss. |
+| `action`      | `{ label: string; onClick: () => void }`                | —           | Optional action button.               |

@@ -1,0 +1,59 @@
+---
+title: Separator
+description: A visual divider for separating content sections with optional label.
+published: true
+date: 2026-03-20
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="separator" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="separator" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Separator } from '@/components/ui/separator';
+```
+
+```tsx
+<Separator />
+```
+
+## Variants
+
+### Default
+
+Horizontal and vertical separators.
+
+<ComponentPreview component="separator" demo="default" />
+
+### With Label
+
+Separator with centered inline text.
+
+<ComponentPreview component="separator" demo="with-label" />
+
+## API Reference
+
+### Separator
+
+| Prop          | Type                              | Default        | Description                                      |
+| ------------- | --------------------------------- | -------------- | ------------------------------------------------ |
+| `orientation` | `"horizontal"` \| `"vertical"`    | `"horizontal"` | The direction of the separator.                  |
+| `decorative`  | `boolean`                         | `true`         | If `true`, uses `role="none"` for accessibility. |
+| `label`       | `string`                          | —              | Optional text displayed within the separator.    |
+| `className`   | `string`                          | —              | Additional CSS class names.                      |

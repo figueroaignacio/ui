@@ -1,0 +1,260 @@
+'use client';
+
+import {
+  Alert02Icon,
+  AlertCircleIcon,
+  Cancel01Icon,
+  CheckmarkCircle01Icon,
+  InformationCircleIcon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { AnimatePresence, motion } from 'motion/react';
+import * as React from 'react';
+import { createPortal } from 'react-dom';
+import { cn } from '../lib/cn';
+
+// --- Position ---
+
+type ToastPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+const POSITION_CLASSES: Record<ToastPosition, string> = {
+  'top-left': 'top-0 left-0 flex-col',
+  'top-right': 'top-0 right-0 flex-col items-end',
+  'bottom-left': 'bottom-0 left-0 flex-col',
+  'bottom-right': 'bottom-0 right-0 flex-col items-end',
+} as const;
+
+// --- Animation constants ---
+
+const TOAST_ENTER = {
+  initial: { opacity: 0, y: 20, scale: 0.95, filter: 'blur(4px)' },
+  animate: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' },
+} as const;
+
+const TOAST_EXIT_BY_POSITION: Record<ToastPosition, Record<string, number | string>> = {
+  'top-left': { opacity: 0, x: -100, scale: 0.95, filter: 'blur(4px)' },
+  'top-right': { opacity: 0, x: 100, scale: 0.95, filter: 'blur(4px)' },
+  'bottom-left': { opacity: 0, x: -100, scale: 0.95, filter: 'blur(4px)' },
+  'bottom-right': { opacity: 0, x: 100, scale: 0.95, filter: 'blur(4px)' },
+} as const;
+
+const TOAST_TRANSITION = {
+  type: 'spring',
+  damping: 25,
+  stiffness: 350,
+  mass: 0.5,
+} as const;
+
+const TOAST_EXIT_TRANSITION = { duration: 0.2, ease: 'easeIn' } as const;
+
+// --- CVA variants ---
+
+const toastVariants = cva(
+  'pointer-events-auto relative flex w-full items-center gap-3 overflow-hidden rounded-lg border p-4 bg-background',
+  {
+    variants: {
+      variant: {
+        default: 'text-foreground border-border',
+        success: 'text-success border-success/20',
+        error: 'text-destructive border-destructive/20',
+        info: 'text-info border-info/20',
+        warning: 'text-warning border-warning/20',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+);
+
+type ToastVariant = VariantProps<typeof toastVariants>['variant'];
+
+// --- Variant icons ---
+
+const VARIANT_ICONS: Record<string, typeof CheckmarkCircle01Icon | undefined> = {
+  default: undefined,
+  success: CheckmarkCircle01Icon,
+  error: AlertCircleIcon,
+  info: InformationCircleIcon,
+  warning: Alert02Icon,
+};
+
+// --- Types ---
+
+interface ToastData {
+  id: string;
+  title: string;
+  description?: string;
+  variant?: ToastVariant;
+  duration?: number;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+}
+
+type ToastOptions = Omit<ToastData, 'id'>;
+
+interface ToastContextType {
+  toast: (options: ToastOptions) => string;
+  dismiss: (id: string) => void;
+}
+
+// --- Context ---
+
+const ToastContext = React.createContext<ToastContextType | undefined>(undefined);
+
+const useToast = () => {
+  const context = React.use(ToastContext);
+  if (!context) {
+    throw new Error('useToast must be used within a Toast.Provider');
+  }
+  return context;
+};
+
+// --- Toast Item ---
+
+interface ToastItemProps {
+  toast: ToastData;
+  onDismiss: (id: string) => void;
+  position: ToastPosition;
+}
+
+function ToastItem({ toast: t, onDismiss, position }: ToastItemProps) {
+  React.useEffect(() => {
+    const duration = t.duration ?? 5000;
+    if (duration <= 0) return;
+
+    const timer = setTimeout(() => {
+      onDismiss(t.id);
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [t.id, t.duration, onDismiss]);
+
+  const variantIcon = VARIANT_ICONS[t.variant ?? 'default'];
+
+  return (
+    <motion.div
+      layout
+      initial={TOAST_ENTER.initial}
+      animate={TOAST_ENTER.animate}
+      exit={{ ...TOAST_EXIT_BY_POSITION[position], transition: TOAST_EXIT_TRANSITION }}
+      transition={TOAST_TRANSITION}
+      className={cn(toastVariants({ variant: t.variant }), 'flex-col')}
+    >
+      <div className="flex w-full items-center gap-2">
+        {variantIcon && <HugeiconsIcon icon={variantIcon} className="shrink-0" size={18} />}
+        <p className="flex-1 text-sm font-semibold">{t.title}</p>
+        <button
+          type="button"
+          onClick={() => onDismiss(t.id)}
+          className="shrink-0 opacity-50 transition-opacity hover:opacity-100"
+        >
+          <HugeiconsIcon icon={Cancel01Icon} size={14} />
+          <span className="sr-only">Close</span>
+        </button>
+      </div>
+      {(t.description || t.action) && (
+        <>
+          <div className="text-muted-foreground w-full">
+            {t.description && <p className="text-sm">{t.description}</p>}
+            {t.action && (
+              <button
+                type="button"
+                onClick={() => {
+                  t.action?.onClick();
+                  onDismiss(t.id);
+                }}
+                className="mt-2 shrink-0 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
+              >
+                {t.action.label}
+              </button>
+            )}
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
+// --- Provider ---
+
+const DEFAULT_MAX_TOASTS = 5;
+
+interface ToastProviderProps {
+  children: React.ReactNode;
+  maxToasts?: number;
+  position?: ToastPosition;
+}
+
+function ToastProvider({
+  children,
+  maxToasts = DEFAULT_MAX_TOASTS,
+  position = 'bottom-right',
+}: ToastProviderProps) {
+  const [toasts, setToasts] = React.useState<ToastData[]>([]);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const dismiss = React.useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const toast = React.useCallback(
+    (options: ToastOptions): string => {
+      const id = `toast-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      const newToast: ToastData = { ...options, id };
+
+      setToasts((prev) => {
+        const next = [...prev, newToast];
+        if (next.length > maxToasts) {
+          return next.slice(-maxToasts);
+        }
+        return next;
+      });
+
+      return id;
+    },
+    [maxToasts],
+  );
+
+  const contextValue = React.useMemo(() => ({ toast, dismiss }), [toast, dismiss]);
+
+  return (
+    <ToastContext value={contextValue}>
+      {children}
+      {mounted &&
+        createPortal(
+          <div
+            className={cn(
+              'pointer-events-none fixed z-9999 flex max-h-screen gap-2 p-4',
+              POSITION_CLASSES[position],
+            )}
+          >
+            <AnimatePresence mode="popLayout">
+              {toasts.map((t) => (
+                <ToastItem key={t.id} toast={t} onDismiss={dismiss} position={position} />
+              ))}
+            </AnimatePresence>
+          </div>,
+          document.body,
+        )}
+    </ToastContext>
+  );
+}
+
+ToastProvider.displayName = 'ToastProvider';
+
+// --- Exports ---
+
+const Toast = {
+  Provider: ToastProvider,
+};
+
+export { Toast, toastVariants, useToast };
+export type { ToastData, ToastOptions, ToastPosition, ToastVariant };

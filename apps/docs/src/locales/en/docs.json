@@ -114,6 +114,11 @@
           "description": "A label component with required indicator, optional text, and description support."
         },
         {
+          "title": "Popover",
+          "href": "/docs/components/popover",
+          "description": "A floating panel with interactive content, triggered by click."
+        },
+        {
           "title": "Progress",
           "href": "/docs/components/progress",
           "description": "Displays an indicator showing the completion progress of a task."
@@ -124,9 +129,19 @@
           "description": "Displays a list of options for the user to pick from."
         },
         {
+          "title": "Separator",
+          "href": "/docs/components/separator",
+          "description": "A visual divider for separating content with optional label."
+        },
+        {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Sheet component to show additional content."
+        },
+        {
+          "title": "Skeleton",
+          "href": "/docs/components/skeleton",
+          "description": "A placeholder loading component with pulse animation."
         },
         {
           "title": "Switch",
@@ -142,6 +157,16 @@
           "title": "Tabs",
           "href": "/docs/components/tabs",
           "description": "Switch between different content panels easily."
+        },
+        {
+          "title": "Textarea",
+          "href": "/docs/components/textarea",
+          "description": "A multi-line text input with label, error handling, size variants, and auto-resize."
+        },
+        {
+          "title": "Toast",
+          "href": "/docs/components/toast",
+          "description": "A notification system with stackable toasts, variants, and auto-dismiss."
         },
         {
           "title": "Tooltip",

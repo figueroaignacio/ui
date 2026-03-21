@@ -1,0 +1,22 @@
+'use client';
+
+import { Separator } from '../../components/separator';
+
+export function Default() {
+  return (
+    <div className="w-full max-w-sm space-y-4">
+      <div>
+        <h4 className="text-sm font-medium">NachUI</h4>
+        <p className="text-muted-foreground text-sm">An open-source UI component library.</p>
+      </div>
+      <Separator />
+      <div className="flex h-5 items-center gap-4 text-sm">
+        <span>Docs</span>
+        <Separator orientation="vertical" />
+        <span>Components</span>
+        <Separator orientation="vertical" />
+        <span>Blog</span>
+      </div>
+    </div>
+  );
+}

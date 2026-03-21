@@ -1,0 +1,76 @@
+---
+title: Popover
+description: Un panel flotante con contenido interactivo, activado por click.
+published: true
+date: 2026-03-20
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="popover" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="popover" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Popover } from '@/components/ui/popover';
+```
+
+```tsx
+<Popover>
+  <Popover.Trigger>Abrir</Popover.Trigger>
+  <Popover.Content>
+    <p>Contenido interactivo acá.</p>
+  </Popover.Content>
+</Popover>
+```
+
+## Ejemplos
+
+### Predeterminado (Default)
+
+<ComponentPreview component="popover" demo="default" />
+
+## Referencia de API
+
+### Popover
+
+| Prop           | Tipo                      | Por defecto | Descripción                                 |
+| -------------- | ------------------------- | ----------- | ------------------------------------------- |
+| `defaultOpen`  | `boolean`                 | `false`     | Estado inicial de apertura.                 |
+| `open`         | `boolean`                 | —           | Estado controlado.                          |
+| `onOpenChange` | `(open: boolean) => void` | —           | Callback cuando cambia el estado de apertura.|
+
+### Popover.Trigger
+
+| Prop      | Tipo      | Por defecto | Descripción                 |
+| --------- | --------- | ----------- | --------------------------- |
+| `asChild` | `boolean` | `false`     | Renderizar como hijo.       |
+
+### Popover.Content
+
+| Prop         | Tipo                                                  | Por defecto | Descripción                         |
+| ------------ | ----------------------------------------------------- | ----------- | ----------------------------------- |
+| `side`       | `"top"` \| `"bottom"` \| `"left"` \| `"right"`       | `"bottom"`  | Posición relativa al trigger.       |
+| `sideOffset` | `number`                                              | `4`         | Distancia desde el trigger.         |
+| `showClose`  | `boolean`                                             | `false`     | Muestra un botón de cerrar.         |
+| `className`  | `string`                                              | —           | Clases CSS adicionales.             |
+
+### Popover.Close
+
+| Prop      | Tipo      | Por defecto | Descripción                 |
+| --------- | --------- | ----------- | --------------------------- |
+| `asChild` | `boolean` | `false`     | Renderizar como hijo.       |

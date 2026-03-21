@@ -114,6 +114,11 @@
           "description": "Un componente label con indicador de obligatoriedad, texto opcional y descripción."
         },
         {
+          "title": "Popover",
+          "href": "/docs/components/popover",
+          "description": "Un panel flotante con contenido interactivo, activado por click."
+        },
+        {
           "title": "Progress",
           "href": "/docs/components/progress",
           "description": "Muestra un indicador del progreso de finalización de una tarea."
@@ -124,9 +129,19 @@
           "description": "Muestra una lista de opciones para que el usuario elija."
         },
         {
+          "title": "Separator",
+          "href": "/docs/components/separator",
+          "description": "Un divisor visual para separar secciones de contenido con label opcional."
+        },
+        {
           "title": "Sheet",
           "href": "/docs/components/sheet",
           "description": "Componente de hoja para mostrar contenido adicional."
+        },
+        {
+          "title": "Skeleton",
+          "href": "/docs/components/skeleton",
+          "description": "Un componente de carga placeholder con animación de pulso."
         },
         {
           "title": "Switch",
@@ -142,6 +157,16 @@
           "title": "Tabs",
           "href": "/docs/components/tabs",
           "description": "Organiza contenido en pestañas intercambiables."
+        },
+        {
+          "title": "Textarea",
+          "href": "/docs/components/textarea",
+          "description": "Un campo de texto multilínea con label, manejo de errores, variantes de tamaño y auto-resize."
+        },
+        {
+          "title": "Toast",
+          "href": "/docs/components/toast",
+          "description": "Un sistema de notificaciones apilables con variantes y auto-dismiss."
         },
         {
           "title": "Tooltip",

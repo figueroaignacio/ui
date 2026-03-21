@@ -1,0 +1,54 @@
+---
+title: Skeleton
+description: A placeholder loading component with pulse animation.
+published: true
+date: 2026-03-20
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="skeleton" demo="default" />
+
+## Installation
+
+<Steps>
+
+### Copy and paste the following code into your project.
+
+<ComponentSource component="skeleton" />
+
+### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Skeleton } from '@/components/ui/skeleton';
+```
+
+```tsx
+<Skeleton className="h-4 w-[200px]" />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview component="skeleton" demo="default" />
+
+### Card
+
+A full card loading state skeleton.
+
+<ComponentPreview component="skeleton" demo="card" />
+
+## API Reference
+
+### Skeleton
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | —       | Additional CSS classes — use to set width, height, and border-radius. |
