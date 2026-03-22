@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
+import { AiChat } from '@/features/chat/components/ai-chat';
 import { routing } from '@/i18n/routing';
 import { fontHeading, fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
@@ -41,7 +42,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
             <Header />
             <main className="px-4">{children}</main>
             <Footer />
-            {/* <AiChat /> */}
+            <AiChat />
           </Providers>
         </NextIntlClientProvider>
       </body>
