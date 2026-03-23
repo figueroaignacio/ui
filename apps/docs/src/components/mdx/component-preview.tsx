@@ -81,6 +81,9 @@ import { Variants as ToastVariants } from '../../../../../packages/ui/src/demos/
 import { WithAction as ToastWithAction } from '../../../../../packages/ui/src/demos/toast/with-action';
 import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
 import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
+import SpinnerDefault from '../../../../../packages/ui/src/demos/spinner/default';
+import SpinnerSizes from '../../../../../packages/ui/src/demos/spinner/sizes';
+import SpinnerVariants from '../../../../../packages/ui/src/demos/spinner/variants';
 import { ComponentPreviewClient } from './component-preview-client';
 
 const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
@@ -212,6 +215,11 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
     variants: ToastVariants,
     positions: ToastPositions,
     'with-action': ToastWithAction,
+  },
+  spinner: {
+    default: SpinnerDefault,
+    sizes: SpinnerSizes,
+    variants: SpinnerVariants,
   },
 };
 

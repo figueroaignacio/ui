@@ -25,6 +25,7 @@ export const COMPONENT_REGISTRY = {
   textarea: 'packages/ui/src/components/textarea.tsx',
   toast: 'packages/ui/src/components/toast.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
+  spinner: 'packages/ui/src/components/spinner.tsx',
 } as const;
 
 export const DEMO_REGISTRY = {
@@ -188,6 +189,12 @@ export const DEMO_REGISTRY = {
     variants: 'packages/ui/src/demos/toast/variants.tsx',
     positions: 'packages/ui/src/demos/toast/positions.tsx',
     'with-action': 'packages/ui/src/demos/toast/with-action.tsx',
+  },
+  // Spinner demos
+  spinner: {
+    default: 'packages/ui/src/demos/spinner/default.tsx',
+    sizes: 'packages/ui/src/demos/spinner/sizes.tsx',
+    variants: 'packages/ui/src/demos/spinner/variants.tsx',
   },
 } as const;
 

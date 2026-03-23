@@ -1,0 +1,62 @@
+---
+title: Spinner
+description: Un elemento en rotación continua indicando estado de carga.
+published: true
+date: 2026-03-23
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="spinner" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="spinner" />
+
+### Actualiza las rutas de importación para que coincidan con la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Spinner } from '@/components/ui/spinner';
+```
+
+```tsx
+<Spinner />
+```
+
+## Ejemplos
+
+### Por defecto
+
+<ComponentPreview component="spinner" demo="default" />
+
+### Tamaños
+
+Puedes cambiar el tamaño del spinner usando la propiedad `size`.
+
+<ComponentPreview component="spinner" demo="sizes" />
+
+### Variantes
+
+Puedes cambiar el color del spinner usando la propiedad `variant`.
+
+<ComponentPreview component="spinner" demo="variants" />
+
+## Referencia de API
+
+### Spinner
+
+| Prop        | Tipo                                                                                     | Por defecto | Descripción            |
+| ----------- | ---------------------------------------------------------------------------------------- | ----------- | ---------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'`                                                           | `'md'`      | El tamaño del spinner  |
+| `variant`   | `'default' \| 'primary' \| 'muted' \| 'success' \| 'destructive' \| 'warning' \| 'info'` | `'default'` | Estilo visual          |
+| `className` | `string`                                                                                 | -           | Clases CSS adicionales |

@@ -141,7 +141,12 @@
         {
           "title": "Skeleton",
           "href": "/docs/components/skeleton",
-          "description": "Un componente de carga placeholder con animación de pulso."
+          "description": "Un componente de carga de marcador de posición con animación de pulso."
+        },
+        {
+          "title": "Spinner",
+          "href": "/docs/components/spinner",
+          "description": "Un elemento en rotación continua indicando estado de carga."
         },
         {
           "title": "Switch",

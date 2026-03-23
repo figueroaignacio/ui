@@ -144,6 +144,11 @@
           "description": "A placeholder loading component with pulse animation."
         },
         {
+          "title": "Spinner",
+          "href": "/docs/components/spinner",
+          "description": "A continuously rotating element indicating loading state."
+        },
+        {
           "title": "Switch",
           "href": "/docs/components/switch",
           "description": "A control that allows the user to toggle between checked and not checked."
