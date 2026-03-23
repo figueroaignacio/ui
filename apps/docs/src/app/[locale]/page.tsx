@@ -1,5 +1,4 @@
 import { LandingHero } from '@/features/landing/components/landing-hero';
-import { LandingTechSection } from '@/features/landing/components/landing-tech-section';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
@@ -11,12 +10,7 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return (
-    <>
-      <LandingHero />
-      <LandingTechSection />
-    </>
-  );
+  return <LandingHero />;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
