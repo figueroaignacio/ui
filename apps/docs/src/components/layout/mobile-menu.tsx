@@ -1,5 +1,6 @@
 'use client';
 
+import { AiChat } from '@/features/chat/components/ai-chat';
 import { Searcher } from '@/features/docs/components/searcher';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { Link, usePathname } from '@/i18n/navigation';
@@ -36,10 +37,10 @@ export function MobileMenu() {
         type="button"
       >
         <HugeiconsIcon icon={PanelLeftIcon} />
-        Menu
       </button>
       <div className="flex items-center gap-x-3">
-        <LocaleSwitcher />
+        <AiChat />
+
         <Searcher />
       </div>
       <div
@@ -68,6 +69,7 @@ export function MobileMenu() {
           </button>
           <div className="flex items-center gap-x-3">
             <ThemeToggle />
+            <LocaleSwitcher />
             <button
               onClick={toggleMenu}
               title="close menu"

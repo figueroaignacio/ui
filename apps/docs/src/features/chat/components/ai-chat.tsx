@@ -30,7 +30,7 @@ export function AiChat() {
   );
 
   return (
-    <div className="fixed right-6 bottom-6 z-100000 lg:right-8 lg:bottom-8">
+    <div>
       <ChatToggleButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
       <ChatWindow
         isOpen={isOpen}

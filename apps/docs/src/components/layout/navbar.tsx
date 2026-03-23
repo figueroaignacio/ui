@@ -3,6 +3,7 @@ import { Link } from '@/i18n/navigation';
 import type { Navigation } from '@/lib/definitions';
 import { useTranslations } from 'next-intl';
 import { Logo } from '../common/logo';
+import { AiChat } from '@/features/chat/components/ai-chat';
 
 export function Navbar() {
   const t = useTranslations('ui');
@@ -24,7 +25,8 @@ export function Navbar() {
           ))}
         </nav>
       </div>
-      <div className="flex space-x-4">
+      <div className="flex items-center space-x-4">
+        <AiChat />
         <Searcher />
       </div>
     </div>

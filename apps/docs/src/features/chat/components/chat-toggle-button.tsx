@@ -32,14 +32,14 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
       <Tooltip.Trigger asChild>
         <Button
           onClick={onClick}
-          variant="secondary"
-          className="relative z-50 shadow-lg"
+          variant="ghost"
+          size="sm"
           leftIcon={<HugeiconsIcon icon={Robot01Icon} size={16} />}
         >
           {t('button.label')}
         </Button>
       </Tooltip.Trigger>
-      <Tooltip.Content side="left" sideOffset={10}>
+      <Tooltip.Content side="bottom" sideOffset={10}>
         {t('messages.tooltip')}
       </Tooltip.Content>
     </Tooltip>

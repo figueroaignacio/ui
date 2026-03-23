@@ -4,7 +4,6 @@ import { useSearch } from '@/features/docs/hooks/use-search';
 import { useDialogFocus } from '@/hooks/use-dialog-focus';
 import { Search02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Button } from '@repo/ui/components/button';
 import { Dialog } from '@repo/ui/components/dialog';
 import { useTranslations } from 'next-intl';
 import { SearchInput } from './search-input';
@@ -18,12 +17,13 @@ export function Searcher() {
   return (
     <Dialog onOpenChange={(open) => handleOpenChange(open, clearQuery)}>
       <Dialog.Trigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
+        <button
+          className="border-border/50 bg-secondary/50 text-muted-foreground hover:bg-secondary/80 hover:text-foreground flex h-9 w-full items-center gap-2 rounded-full border px-4 text-sm transition-colors sm:w-44"
           title={t('label')}
-          leftIcon={<HugeiconsIcon icon={Search02Icon} size={16} />}
-        />
+        >
+          <HugeiconsIcon icon={Search02Icon} size={18} />
+          <span>{t('placeholder')}</span>
+        </button>
       </Dialog.Trigger>
       <Dialog.Content className="max-w-xl rounded-xl">
         <Dialog.Header>
