@@ -10,7 +10,7 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: 'bg-card text-card-foreground border border-border shadow-sm',
-        outline: 'bg-card text-card-foreground border-2 border-border shadow-none',
+        outline: 'text-card-foreground border border-border shadow-none',
         ghost: 'bg-transparent text-card-foreground border-0 shadow-none',
       },
       gradient: {
@@ -82,7 +82,7 @@ interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+type CardDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
 
 interface CardContentProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardContentVariants> {}
