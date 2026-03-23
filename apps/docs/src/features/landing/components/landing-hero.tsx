@@ -1,12 +1,9 @@
-import { CardLink } from '@/components/common/card-link';
-import {
-  MotionIcon,
-  NextJSIcon,
-  ReactIcon,
-  TailwindIcon,
-  TypescriptIcon,
-} from '@/components/common/tech-icons';
+import { GitHubIcon } from '@/components/common/tech-icons';
+import { ArrowRight02Icon, SourceCodeIcon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Button } from '@repo/ui/components/button';
 import { useTranslations } from 'next-intl';
+import { HeroComponentPreview } from './hero-component-preview';
 
 interface HomePageActions {
   href: string;
@@ -20,30 +17,37 @@ export function LandingHero() {
   const actions: HomePageActions[] = t.raw('actions');
 
   return (
-    <div className="relative flex min-h-svh items-center justify-center overflow-hidden">
-      <section className="relative z-10 mx-auto max-w-3xl flex-col space-y-4 py-16 md:px-0">
-        <div className="flex items-center gap-4">
-          <ReactIcon />
-          <MotionIcon />
-          <TailwindIcon />
-          <TypescriptIcon />
-          <NextJSIcon />
+    <div className="bg-background relative flex min-h-svh flex-col items-center justify-start overflow-hidden pt-24 pb-16">
+      <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-3 px-4 md:px-6">
+        <div className="space-y-2 text-center">
+          <h1 className="text-foreground text-4xl font-extrabold tracking-tight lg:text-5xl">
+            {t('subheading1')}
+          </h1>
+          <h1 className="text-muted-foreground text-4xl font-extrabold tracking-tight lg:text-5xl">
+            {t('subheading2')}
+          </h1>
         </div>
-        <h1 className="gradient-text text-4xl md:text-5xl">{t('subheading')}</h1>
-        <p className="text-muted-foreground max-w-3xl text-base leading-relaxed text-pretty md:text-xl">
+        <p className="text-muted-foreground mx-auto max-w-2xl text-center text-lg">
           {t('description')}
         </p>
-        <div className="z-50 flex flex-col gap-4 pt-4 sm:flex-row">
-          {actions.map((action) => {
-            return (
-              <CardLink
-                key={action.href}
-                label={action.label}
-                description={action.description}
-                href={action.href}
-              />
-            );
-          })}
+        <div className="flex items-center gap-4">
+          <Button size="sm" rightIcon={<HugeiconsIcon icon={ArrowRight02Icon} size={14} />}>
+            {actions[0]?.label || 'Get started'}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            leftIcon={<HugeiconsIcon icon={SourceCodeIcon} size={14} />}
+          >
+            {actions[1]?.label || 'View components'}
+          </Button>
+        </div>
+        <div className="text-muted-foreground hover:text-foreground mt-2 flex cursor-pointer items-center gap-2 text-sm transition-colors">
+          <GitHubIcon />
+          <span>{t('github')}</span>
+        </div>
+        <div className="w-full">
+          <HeroComponentPreview />
         </div>
       </section>
     </div>

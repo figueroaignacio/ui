@@ -1,8 +1,10 @@
 {
   "home": {
-    "badge": "Sistema de Diseño Open Source",
-    "subheading": "Open Source. UI Limpia. Creado con Intención.",
-    "description": "Un sistema de diseño moderno, accesible y escalable para construir interfaces web consistentes y profesionales.",
+    "badge": "Presentando NachUI v1",
+    "subheading1": "Crea interfaces excepcionales.",
+    "subheading2": "Hermoso. Rápido. Accesible.",
+    "description": "Construye aplicaciones React accesibles y de alto rendimiento con una biblioteca de componentes de élite diseñada para ofrecer gran potencia y flexibilidad sin igual.",
+    "github": "Código abierto, el código es tuyo",
     "actions": [
       {
         "label": "Comenzar",
@@ -11,7 +13,7 @@
         "variant": "default"
       },
       {
-        "label": "Ver Componentes",
+        "label": "Ver componentes",
         "href": "/docs/components",
         "description": "Explora todos los componentes disponibles y aprende cómo aplicarlos efectivamente.",
         "variant": "secondary"
