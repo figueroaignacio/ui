@@ -1,4 +1,5 @@
 import { GitHubIcon } from '@/components/common/tech-icons';
+import { Link } from '@/i18n/navigation';
 import { ArrowRight02Icon, SourceCodeIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
@@ -31,15 +32,16 @@ export function LandingHero() {
           {t('description')}
         </p>
         <div className="flex items-center gap-4">
-          <Button size="sm" rightIcon={<HugeiconsIcon icon={ArrowRight02Icon} size={14} />}>
-            {actions[0]?.label || 'Get started'}
+          <Button size="sm" rightIcon={<HugeiconsIcon icon={ArrowRight02Icon} size={14} />} asChild>
+            <Link href="/docs">{actions[0]?.label || 'Get started'}</Link>
           </Button>
           <Button
             variant="outline"
             size="sm"
             leftIcon={<HugeiconsIcon icon={SourceCodeIcon} size={14} />}
+            asChild
           >
-            {actions[1]?.label || 'View components'}
+            <Link href="/docs/components">{actions[1]?.label || 'View components'}</Link>
           </Button>
         </div>
         <div className="text-muted-foreground hover:text-foreground mt-2 flex cursor-pointer items-center gap-2 text-sm transition-colors">
