@@ -1,7 +1,10 @@
 'use client';
 
+import { PreviewAccordion } from './preview-cards/preview-accordion';
+import { PreviewBadges } from './preview-cards/preview-badges';
 import { PreviewControls } from './preview-cards/preview-controls';
 import { PreviewDeploy } from './preview-cards/preview-deploy';
+import { PreviewMenu } from './preview-cards/preview-menu';
 import { PreviewMfa } from './preview-cards/preview-mfa';
 import { PreviewNotifications } from './preview-cards/preview-notifications';
 import { PreviewProfile } from './preview-cards/preview-profile';
@@ -24,22 +27,24 @@ export function HeroComponentPreview() {
             <div className="bg-success size-3 rounded-full" />
           </div>
         </div>
-
         <div className="relative grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-6">
             <PreviewWorkspace />
             <PreviewProjectActions />
+            <PreviewAccordion />
             <PreviewTasks />
             <PreviewNotifications />
           </div>
           <div className="flex flex-col gap-6">
             <PreviewMfa />
+            <PreviewMenu />
             <PreviewControls />
             <PreviewProfile />
             <PreviewUpgrade />
           </div>
           <div className="flex flex-col gap-6">
             <PreviewDeploy />
+            <PreviewBadges />
             <PreviewTeam />
             <PreviewStatus />
             <PreviewSchema />
