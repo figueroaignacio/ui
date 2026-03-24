@@ -26,15 +26,14 @@ export function PreviewMfa() {
           <Avatar.Fallback>+3</Avatar.Fallback>
         </Avatar>
       </Avatar.Group>
-
-      <div className="w-full space-y-4 px-6 text-left">
+      <div className="flex w-full flex-col items-center space-y-4 px-6 text-center">
         <div>
           <h3 className="text-foreground text-lg font-bold">MFA Required</h3>
           <p className="text-muted-foreground text-sm">
             Enter the 6-digit code from your authenticator app.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex justify-center gap-2">
           <Input
             className="bg-background text-foreground h-12 w-12 text-center text-xl font-bold"
             defaultValue="3"
@@ -51,6 +50,10 @@ export function PreviewMfa() {
           <Input
             className="bg-background text-foreground h-12 w-12 text-center text-xl font-bold"
             defaultValue="1"
+          />
+          <Input
+            className="bg-background text-foreground h-12 w-12 text-center text-xl font-bold"
+            placeholder="0"
           />
           <Input
             className="bg-background text-foreground h-12 w-12 text-center text-xl font-bold"
