@@ -1,0 +1,62 @@
+---
+title: Radio
+description: Un control que permite al usuario seleccionar una opción entre varias posibilidades mutuamente exclusivas.
+published: true
+date: 2026-03-24
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="radio" demo="default" />
+
+## Instalación
+
+<Steps>
+
+### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="radio" />
+
+### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Radio } from '@/components/ui/radio';
+```
+
+```tsx
+<Radio id="option-one" name="radio-group" />
+```
+
+## Variantes
+
+### Predeterminado (Default)
+
+<ComponentPreview component="radio" demo="default" />
+
+### Con Etiqueta (With Label)
+
+Acompañado de una etiqueta (Label) para proveer contexto extra. El atributo `name` se usa para agrupar las opciones de radio.
+
+<ComponentPreview component="radio" demo="with-label" />
+
+### Deshabilitado (Disabled)
+
+Estado en el que el usuario no puede interactuar con él.
+
+<ComponentPreview component="radio" demo="disabled" />
+
+## Referencia de API
+
+### Radio
+
+| Prop              | Tipo                         | Por defecto | Descripción                         |
+| ----------------- | ---------------------------- | ----------- | ----------------------------------- |
+| `onCheckedChange` | `(checked: boolean) => void` | -           | Handler cuando el estado cambia     |
+| `disabled`        | `boolean`                    | -           | Evita interacción y reduce opacidad |
+| `name`            | `string`                     | -           | Nombre del grupo de opciones        |

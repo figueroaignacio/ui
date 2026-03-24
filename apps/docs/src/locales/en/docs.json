@@ -124,6 +124,11 @@
           "description": "Displays an indicator showing the completion progress of a task."
         },
         {
+          "title": "Radio",
+          "href": "/docs/components/radio",
+          "description": "A control that allows the user to select one option from a set of mutually exclusive options."
+        },
+        {
           "title": "Select",
           "href": "/docs/components/select",
           "description": "Displays a list of options for the user to pick from."

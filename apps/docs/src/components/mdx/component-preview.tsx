@@ -81,6 +81,9 @@ import { Variants as ToastVariants } from '../../../../../packages/ui/src/demos/
 import { WithAction as ToastWithAction } from '../../../../../packages/ui/src/demos/toast/with-action';
 import { Default as TooltipDefault } from '../../../../../packages/ui/src/demos/tooltip/default';
 import { Positions as TooltipPositions } from '../../../../../packages/ui/src/demos/tooltip/positions';
+import { Default as RadioDefault } from '../../../../../packages/ui/src/demos/radio/default';
+import { WithLabel as RadioWithLabel } from '../../../../../packages/ui/src/demos/radio/with-label';
+import { Disabled as RadioDisabled } from '../../../../../packages/ui/src/demos/radio/disabled';
 import SpinnerDefault from '../../../../../packages/ui/src/demos/spinner/default';
 import SpinnerSizes from '../../../../../packages/ui/src/demos/spinner/sizes';
 import SpinnerVariants from '../../../../../packages/ui/src/demos/spinner/variants';
@@ -124,6 +127,11 @@ const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
     default: CheckboxDefault,
     'with-label': CheckboxWithLabel,
     disabled: CheckboxDisabled,
+  },
+  radio: {
+    default: RadioDefault,
+    'with-label': RadioWithLabel,
+    disabled: RadioDisabled,
   },
   collapsible: {
     default: CollapsibleDefault,

@@ -5,6 +5,7 @@ export const COMPONENT_REGISTRY = {
   badge: 'packages/ui/src/components/badge.tsx',
   card: 'packages/ui/src/components/card.tsx',
   checkbox: 'packages/ui/src/components/checkbox.tsx',
+  radio: 'packages/ui/src/components/radio.tsx',
   collapsible: 'packages/ui/src/components/collapsible.tsx',
   callout: 'packages/ui/src/components/callout.tsx',
   breadcrumb: 'packages/ui/src/components/breadcrumb.tsx',
@@ -92,6 +93,12 @@ export const DEMO_REGISTRY = {
     default: 'packages/ui/src/demos/checkbox/default.tsx',
     'with-label': 'packages/ui/src/demos/checkbox/with-label.tsx',
     disabled: 'packages/ui/src/demos/checkbox/disabled.tsx',
+  },
+  // Radio demos
+  radio: {
+    default: 'packages/ui/src/demos/radio/default.tsx',
+    'with-label': 'packages/ui/src/demos/radio/with-label.tsx',
+    disabled: 'packages/ui/src/demos/radio/disabled.tsx',
   },
   // Dialog demos
   dialog: {
