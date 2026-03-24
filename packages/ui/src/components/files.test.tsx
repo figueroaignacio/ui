@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+import type * as React from 'react';
 import { Files } from './files';
 
 // Mock motion to display AnimatePresence correctly in simple tests
@@ -8,13 +9,13 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      div: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>
+      div: ({ children, ref, ...props }: React.ComponentProps<'div'> & Record<string, unknown>) => (
+        <div ref={ref as React.Ref<HTMLDivElement>} {...(props as React.ComponentProps<'div'>)}>
           {children}
         </div>
-      )),
+      ),
     },
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
   };
 });
 

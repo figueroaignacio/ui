@@ -1,8 +1,8 @@
+import { Loading03Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../lib/cn';
-import { Loading03Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 
 const spinnerVariants = cva('animate-spin inline-flex items-center justify-center', {
   variants: {
@@ -31,21 +31,25 @@ const spinnerVariants = cva('animate-spin inline-flex items-center justify-cente
 export interface SpinnerProps
   extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof spinnerVariants> {}
 
-const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ className, size, variant, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        role="status"
-        aria-label="Loading"
-        className={cn(spinnerVariants({ size, variant }), className)}
-        {...props}
-      >
-        <HugeiconsIcon icon={Loading03Icon} className="h-full w-full" />
-      </div>
-    );
-  },
-);
+function Spinner({
+  className,
+  size,
+  variant,
+  ref,
+  ...props
+}: SpinnerProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      role="status"
+      aria-label="Loading"
+      className={cn(spinnerVariants({ size, variant }), className)}
+      {...props}
+    >
+      <HugeiconsIcon icon={Loading03Icon} className="h-full w-full" />
+    </div>
+  );
+}
 Spinner.displayName = 'Spinner';
 
 export { Spinner, spinnerVariants };

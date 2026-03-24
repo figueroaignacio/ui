@@ -1,37 +1,34 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+import type * as React from 'react';
 import { Tabs } from './tabs';
 
 vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      div: React.forwardRef(
-        (
-          {
-            children,
-            style,
-            initial,
-            animate,
-            exit,
-            variants,
-            transition,
-            drag,
-            dragConstraints,
-            dragElastic,
-            onDragEnd,
-            whileTap,
-            whileHover,
-            layoutId,
-            ...props
-          }: any,
-          ref: any,
-        ) => (
-          <div ref={ref} {...props}>
-            {children}
-          </div>
-        ),
+      div: ({
+        children,
+        _style,
+        _initial,
+        _animate,
+        _exit,
+        _variants,
+        _transition,
+        _drag,
+        _dragConstraints,
+        _dragElastic,
+        _onDragEnd,
+        _whileTap,
+        _whileHover,
+        _layoutId,
+        ref,
+        ...props
+      }: React.ComponentProps<'div'> & Record<string, unknown>) => (
+        <div ref={ref as React.Ref<HTMLDivElement>} {...(props as React.ComponentProps<'div'>)}>
+          {children}
+        </div>
       ),
     },
     useReducedMotion: () => false,

@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+import type * as React from 'react';
 import { Accordion } from './accordion';
 
 // Mock motion to display AnimatePresence correctly in tests
@@ -8,24 +9,32 @@ vi.mock('motion/react', async () => {
   const React = await import('react');
   return {
     motion: {
-      button: React.forwardRef(({ children, whileTap, ...props }: any, ref: any) => (
-        <button ref={ref} {...props}>
+      button: ({
+        children,
+        whileTap: _whileTap,
+        ref,
+        ...props
+      }: React.ComponentProps<'button'> & Record<string, unknown>) => (
+        <button
+          ref={ref as React.Ref<HTMLButtonElement>}
+          {...(props as React.ComponentProps<'button'>)}
+        >
           {children}
         </button>
-      )),
-      div: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <div ref={ref} {...props}>
+      ),
+      div: ({ children, ref, ...props }: React.ComponentProps<'div'> & Record<string, unknown>) => (
+        <div ref={ref as React.Ref<HTMLDivElement>} {...(props as React.ComponentProps<'div'>)}>
           {children}
         </div>
-      )),
-      svg: React.forwardRef(({ children, ...props }: any, ref: any) => (
-        <svg ref={ref} {...props}>
+      ),
+      svg: ({ children, ref, ...props }: React.ComponentProps<'svg'> & Record<string, unknown>) => (
+        <svg ref={ref as React.Ref<SVGSVGElement>} {...(props as React.ComponentProps<'svg'>)}>
           {children}
         </svg>
-      )),
+      ),
     },
     useReducedMotion: () => false,
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
   };
 });
 
