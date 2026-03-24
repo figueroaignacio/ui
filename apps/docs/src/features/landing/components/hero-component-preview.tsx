@@ -15,8 +15,8 @@ import { PreviewWorkspace } from './preview-cards/preview-workspace';
 
 export function HeroComponentPreview() {
   return (
-    <div className="mx-auto mt-16 w-full max-w-6xl">
-      <div className="border-border bg-background relative overflow-hidden border backdrop-blur-xl">
+    <div className="mx-auto mt-16 w-full">
+      <div className="border-border bg-background relative overflow-hidden rounded-sm border backdrop-blur-xl">
         <div className="border-border bg-muted/50 flex items-center justify-between border-b px-4 py-3">
           <div className="flex gap-2">
             <div className="bg-destructive size-3 rounded-full" />
