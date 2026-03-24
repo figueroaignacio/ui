@@ -1,22 +1,24 @@
 'use client';
 
-import { useChat } from '@/features/chat/hooks/use-chat';
 import { useChatInput } from '@/features/chat/hooks/use-chat-input';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
-import { useCallback, useEffect, type RefObject } from 'react';
+import { useCallback, type RefObject } from 'react';
 import { useChatContext } from '../context/chat-context';
 import { ChatToggleButton } from './chat-toggle-button';
 import { ChatWindow } from './chat-window';
 
 export function AiChat() {
-  const { isOpen, setIsOpen, setExternalSendMessage } = useChatContext();
-  const { messages, isLoading, isStreaming, messagesEndRef, sendMessage, handleSuggestionClick } =
-    useChat();
+  const {
+    isOpen,
+    setIsOpen,
+    messages,
+    isLoading,
+    isStreaming,
+    messagesEndRef,
+    sendMessage,
+    handleSuggestionClick,
+  } = useChatContext();
   const { message, setMessage, handleSubmit, handleKeyPress } = useChatInput(sendMessage);
-
-  useEffect(() => {
-    setExternalSendMessage(sendMessage);
-  }, [sendMessage, setExternalSendMessage]);
 
   const handleClose = () => setIsOpen(false);
   useLockBodyScroll(isOpen);

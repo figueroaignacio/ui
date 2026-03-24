@@ -1,6 +1,8 @@
 'use client';
 
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState, type RefObject } from 'react';
+import { useChat } from '../hooks/use-chat';
+import { type Message } from '@/lib/definitions';
 
 interface ChatContextType {
   isOpen: boolean;
@@ -8,36 +10,41 @@ interface ChatContextType {
   openChat: () => void;
   closeChat: () => void;
   triggerExplanation: (componentName: string, promptTemplate: string) => void;
-  externalSendMessage: ((content: string) => void) | null;
-  setExternalSendMessage: (fn: (content: string) => void) => void;
+  messages: Message[];
+  isLoading: boolean;
+  isStreaming: boolean;
+  sendMessage: (content: string) => Promise<void>;
+  handleSuggestionClick: (text: string) => void;
+  messagesEndRef: RefObject<HTMLDivElement | null>;
+  stop: () => void;
+  error: Error | undefined;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [externalSendMessage, setExternalSendMessageInternal] = useState<
-    ((content: string) => void) | null
-  >(null);
+  const {
+    messages,
+    isLoading,
+    isStreaming,
+    sendMessage,
+    handleSuggestionClick,
+    messagesEndRef,
+    stop,
+    error,
+  } = useChat();
 
   const openChat = useCallback(() => setIsOpen(true), []);
   const closeChat = useCallback(() => setIsOpen(false), []);
-
-  const setExternalSendMessage = useCallback((fn: (content: string) => void) => {
-    setExternalSendMessageInternal(() => fn);
-  }, []);
 
   const triggerExplanation = useCallback(
     (componentName: string, promptTemplate: string) => {
       const prompt = promptTemplate.replace('{component}', componentName);
       setIsOpen(true);
-      if (externalSendMessage) {
-        externalSendMessage(prompt);
-      } else {
-        console.warn('Chat not ready to receive external messages');
-      }
+      void sendMessage(prompt);
     },
-    [externalSendMessage],
+    [sendMessage],
   );
 
   return (
@@ -48,8 +55,14 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         openChat,
         closeChat,
         triggerExplanation,
-        externalSendMessage,
-        setExternalSendMessage,
+        messages,
+        isLoading,
+        isStreaming,
+        sendMessage,
+        handleSuggestionClick,
+        messagesEndRef,
+        stop,
+        error,
       }}
     >
       {children}
