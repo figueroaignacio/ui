@@ -1,0 +1,47 @@
+'use client';
+
+import { Link } from '@/i18n/navigation';
+import { COMPONENT_LIST_PREVIEWS } from './component-list-previews';
+import { DEMO_COMPONENTS } from './demo-registry';
+
+interface ComponentCardProps {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+export function ComponentCard({ label, href, description }: ComponentCardProps) {
+  const componentName = href.split('/').pop() || '';
+
+  const PreviewComponent =
+    COMPONENT_LIST_PREVIEWS[componentName] || DEMO_COMPONENTS[componentName]?.default;
+
+  return (
+    <Link href={href} className="group block">
+      <div className="border-border bg-card hover:bg-secondary/50 flex flex-col gap-3 overflow-hidden rounded-xl border transition-all duration-200 active:scale-[0.98]">
+        <div className="relative flex aspect-video items-center justify-center overflow-hidden p-6 sm:p-8">
+          <div className="absolute inset-0 z-0 mask-[linear-gradient(to_bottom,white,transparent)] opacity-[0.03] dark:opacity-[0.07]">
+            <div className="absolute h-full w-full bg-[radial-gradient(#000_1px,transparent_1px)] bg-size-[16px_16px] dark:bg-[radial-gradient(#fff_1px,transparent_1px)]" />
+          </div>
+          <div className="pointer-events-none z-10 scale-90 transition-transform duration-300 select-none group-hover:scale-100 sm:scale-100">
+            {PreviewComponent ? (
+              <PreviewComponent />
+            ) : (
+              <div className="text-muted-foreground/50 text-xs font-medium tracking-widest uppercase">
+                Preview Not Available
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="border-border border-t px-4 py-5">
+          <h3 className="font-heading text-sm font-semibold tracking-tight">{label}</h3>
+          {description && (
+            <p className="text-muted-foreground mt-1 line-clamp-2 text-xs leading-relaxed">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+}

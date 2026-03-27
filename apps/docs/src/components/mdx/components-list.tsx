@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { CardLink } from '../common/card-link';
+import { ComponentCard } from './component-card';
 
 type DocsNavigationItem = {
   href: string;
@@ -28,10 +28,10 @@ export function ComponentsList() {
 
   return (
     <div className="space-y-2">
-      <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {componentsSection.items.map((component) => (
+      <ul className="sm mt-5 grid grid-cols-1 gap-6">
+        {componentsSection.items.map((component: DocsNavigationItem) => (
           <li key={component.href} className="animate-show">
-            <CardLink
+            <ComponentCard
               href={component.href}
               label={component.title}
               description={component.description}
