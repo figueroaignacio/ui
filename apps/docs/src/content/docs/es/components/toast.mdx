@@ -15,11 +15,11 @@ toc:
 
 <Steps>
 
-### Copia y pega el siguiente código en tu proyecto.
+#### Copia y pega el siguiente código en tu proyecto.
 
 <ComponentSource component="toast" />
 
-### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+#### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
 
 </Steps>
 
@@ -43,11 +43,7 @@ function App() {
 function MiComponente() {
   const { toast } = useToast();
 
-  return (
-    <button onClick={() => toast({ title: '¡Hola!' })}>
-      Mostrar Toast
-    </button>
-  );
+  return <button onClick={() => toast({ title: '¡Hola!' })}>Mostrar Toast</button>;
 }
 ```
 
@@ -79,27 +75,27 @@ Elegí dónde aparecen los toasts en pantalla. Hacé click en una posición para
 
 ### Toast.Provider
 
-| Prop        | Tipo              | Por defecto      | Descripción                              |
-| ----------- | ----------------- | ---------------- | ---------------------------------------- |
-| `children`  | `React.ReactNode` | —                | El contenido de la app.                  |
-| `maxToasts` | `number`          | `5`              | Número máximo de toasts visibles.        |
+| Prop        | Tipo                                                                 | Por defecto      | Descripción                            |
+| ----------- | -------------------------------------------------------------------- | ---------------- | -------------------------------------- |
+| `children`  | `React.ReactNode`                                                    | —                | El contenido de la app.                |
+| `maxToasts` | `number`                                                             | `5`              | Número máximo de toasts visibles.      |
 | `position`  | `"top-left"` \| `"top-right"` \| `"bottom-left"` \| `"bottom-right"` | `"bottom-right"` | Dónde aparecen los toasts en pantalla. |
 
 ### useToast()
 
 Devuelve un objeto con:
 
-| Método    | Tipo                               | Descripción                          |
-| --------- | ---------------------------------- | ------------------------------------ |
-| `toast`   | `(options: ToastOptions) => string`| Muestra un toast, devuelve su ID.    |
-| `dismiss` | `(id: string) => void`             | Cierra un toast por su ID.           |
+| Método    | Tipo                                | Descripción                       |
+| --------- | ----------------------------------- | --------------------------------- |
+| `toast`   | `(options: ToastOptions) => string` | Muestra un toast, devuelve su ID. |
+| `dismiss` | `(id: string) => void`              | Cierra un toast por su ID.        |
 
 ### ToastOptions
 
-| Prop          | Tipo                                                    | Por defecto | Descripción                                   |
-| ------------- | ------------------------------------------------------- | ----------- | --------------------------------------------- |
-| `title`       | `string`                                                | —           | Título del toast (requerido).                 |
-| `description` | `string`                                                | —           | Descripción opcional.                         |
-| `variant`     | `"default"` \| `"success"` \| `"error"` \| `"info"` \| `"warning"` | `"default"` | Variante visual.                              |
-| `duration`    | `number`                                                | `5000`      | Delay de auto-cierre en ms. Usá `0` para desactivar. |
-| `action`      | `{ label: string; onClick: () => void }`                | —           | Botón de acción opcional.                     |
+| Prop          | Tipo                                                               | Por defecto | Descripción                                          |
+| ------------- | ------------------------------------------------------------------ | ----------- | ---------------------------------------------------- |
+| `title`       | `string`                                                           | —           | Título del toast (requerido).                        |
+| `description` | `string`                                                           | —           | Descripción opcional.                                |
+| `variant`     | `"default"` \| `"success"` \| `"error"` \| `"info"` \| `"warning"` | `"default"` | Variante visual.                                     |
+| `duration`    | `number`                                                           | `5000`      | Delay de auto-cierre en ms. Usá `0` para desactivar. |
+| `action`      | `{ label: string; onClick: () => void }`                           | —           | Botón de acción opcional.                            |
