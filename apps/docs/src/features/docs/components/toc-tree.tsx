@@ -108,17 +108,7 @@ export function Tree({ tree, level = 1, activeItem, onItemClick }: TreeProps) {
                       transition={{ duration: 0.2, ease: 'backOut' }}
                       style={{ width: level === 1 ? 5 : 3.5, height: level === 1 ? 5 : 3.5 }}
                     />
-                  ) : (
-                    <motion.span
-                      key="inactive"
-                      className="bg-border group-hover:bg-muted-foreground/50 block rounded-full transition-colors"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      style={{ width: level === 1 ? 3 : 2, height: level === 1 ? 3 : 2 }}
-                    />
-                  )}
+                  ) : null}
                 </AnimatePresence>
               </span>
 

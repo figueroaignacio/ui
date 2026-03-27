@@ -6,6 +6,45 @@ import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 import { TocProps, Tree, useActiveItem } from './toc-tree';
 
+function SkeletonItem({ width, subitems }: { width: number; subitems?: number[] }) {
+  return (
+    <li>
+      <div className="flex items-center gap-2.5 px-2 py-1.5">
+        <div className="bg-secondary animate-pulse rounded-full" style={{ height: 9, width }} />
+      </div>
+      {subitems && (
+        <ul className="m-0 mt-0.5 ml-3 list-none space-y-0.5">
+          {subitems.map((subWidth, i) => (
+            <li key={i}>
+              <div className="flex items-center gap-2.5 px-2 py-1.5">
+                <div
+                  className="bg-secondary animate-pulse rounded-full"
+                  style={{ height: 8, width: subWidth }}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
+function TocSkeleton() {
+  return (
+    <div className="sticky top-24 h-[calc(100vh-5rem)] space-y-4">
+      <div className="bg-secondary h-2 w-14 animate-pulse rounded-full" />
+      <ul className="m-0 list-none space-y-0.5">
+        <SkeletonItem width={88} />
+        <SkeletonItem width={72} subitems={[96, 80]} />
+        <SkeletonItem width={64} />
+        <SkeletonItem width={104} subitems={[72, 88, 64, 80, 112]} />
+        <SkeletonItem width={80} subitems={[96]} />
+      </ul>
+    </div>
+  );
+}
+
 export function Toc({ toc }: TocProps) {
   const itemIds = useMemo(
     () =>
@@ -27,20 +66,7 @@ export function Toc({ toc }: TocProps) {
   }
 
   if (!mounted) {
-    return (
-      <div className="sticky top-24 h-[calc(100vh-5rem)] space-y-4">
-        <div className="bg-secondary h-2.5 w-16 animate-pulse rounded-full" />
-        <div className="space-y-2.5">
-          {[32, 28, 24, 36, 28, 20].map((w, i) => (
-            <div
-              key={i}
-              className="bg-secondary animate-pulse rounded-full"
-              style={{ height: 10, width: w * 4 }}
-            />
-          ))}
-        </div>
-      </div>
-    );
+    return <TocSkeleton />;
   }
 
   return (
