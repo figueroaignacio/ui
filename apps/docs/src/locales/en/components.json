@@ -10,6 +10,9 @@
   "toc": {
     "label": "On this page"
   },
+  "mobileToc": {
+    "label": "Table of contents"
+  },
   "footer": {
     "copyright": "All rights reserved",
     "headline": "Fullstack Developer & Pogramming Student"

@@ -3,6 +3,7 @@ import { docs } from '@/content';
 import { DocActions } from '@/features/docs/components/doc-actions';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
+import { MobileToc } from '@/features/docs/components/mobile-toc';
 import { Toc } from '@/features/docs/components/toc';
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
 import type { Metadata } from 'next';
@@ -35,7 +36,10 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   return (
     <>
       <article className="flex w-full min-w-0 flex-col lg:px-26">
-        <div className="my-9 flex flex-col gap-6">
+        <div className="my-6 flex flex-col gap-6">
+          <div className="bg-background sticky top-0 z-10 block lg:hidden">
+            <MobileToc toc={tocContent} />
+          </div>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h1 className="text-2xl font-bold lg:text-4xl">{doc.title}</h1>
             <div className="flex items-center gap-2">

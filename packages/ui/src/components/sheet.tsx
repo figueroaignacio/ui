@@ -3,17 +3,11 @@
 import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import {
-  AnimatePresence,
-  HTMLMotionProps,
-  motion,
-  useMotionValue,
-  useTransform,
-} from 'motion/react';
+import { AnimatePresence, HTMLMotionProps, motion, useMotionValue } from 'motion/react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
-import { Button } from './button';
+import { Button, ButtonProps } from './button';
 
 // --- Animation constants (module level) ---
 
@@ -72,9 +66,38 @@ function useSheetContext() {
 
 // --- Components ---
 
-const SheetRoot = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = React.useState(false);
+interface SheetProps {
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const SheetRoot = ({
+  children,
+  defaultOpen = false,
+  open: controlledOpen,
+  onOpenChange,
+}: SheetProps) => {
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
   const id = React.useId();
+
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : uncontrolledOpen;
+
+  const setOpen = React.useCallback(
+    (value: boolean | ((prev: boolean) => boolean)) => {
+      if (!isControlled) {
+        setUncontrolledOpen(value);
+      }
+
+      if (onOpenChange) {
+        const newValue = typeof value === 'function' ? value(open) : value;
+        onOpenChange(newValue);
+      }
+    },
+    [isControlled, onOpenChange, open],
+  );
 
   React.useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
@@ -89,14 +112,19 @@ const SheetRoot = ({ children }: { children: React.ReactNode }) => {
 const SheetTrigger = ({
   children,
   className,
+  variant,
+  size,
 }: {
   children: React.ReactNode;
   className?: string;
+  variant?: ButtonProps['variant'];
+  size?: ButtonProps['size'];
+  icon?: boolean;
 }) => {
   const { setOpen } = useSheetContext();
 
   return (
-    <Button className={className} onClick={() => setOpen(true)}>
+    <Button className={cn(className)} onClick={() => setOpen(true)} variant={variant} size={size}>
       {children}
     </Button>
   );
@@ -161,9 +189,6 @@ const SheetContent = ({
 
   const dragY = useMotionValue(0);
   const dragX = useMotionValue(0);
-
-  const overlayOpacityFromY = useTransform(dragY, [0, 200], [1, 0]);
-  const overlayOpacityFromX = useTransform(dragX, [0, 200], [1, 0]);
 
   React.useEffect(() => setMounted(true), []);
 

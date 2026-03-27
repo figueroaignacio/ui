@@ -10,6 +10,9 @@
   "toc": {
     "label": "En esta página"
   },
+  "mobileToc": {
+    "label": "Tabla de contenido"
+  },
   "footer": {
     "copyright": "Todos los derechos reservados",
     "headline": "Desarrollador Fullstack & Estudiante de Programación"
