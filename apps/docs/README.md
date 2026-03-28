@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NachUI Documentation (Web)
+
+The primary interface and Neural Documentation Portal for the NachUI ecosystem. A high-performance **Next.js 16** application serving as an interactive component gallery and developer engine.
+
+---
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Server Components).
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) for lightning-fast, variable-driven UI.
+- **Content Engine**: [Velite](https://velite.js.org/) — Type-safe MDX transformation layer.
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) (via the `motion` package).
+- **AI Integration**: [@ai-sdk/react](https://sdk.vercel.ai/) for the interactive Gemini agent.
+- **Localization**: [next-intl](https://next-intl-docs.vercel.app/) for multi-language architecture.
+
+---
+
+## Key Features
+
+### 1. Neural Technical Support
+
+An integrated AI assistant (connected to **Gemini 2.5**) providing real-time technical guidance on component usage, React architectural best practices, and deep customization.
+
+### 2. High-Performance Simulation
+
+Each component in NachUI is rendered within a simulated environment, allowing developers to interact, test, and extract source code in milliseconds.
+
+### 3. Type-Safe MDX Integration
+
+Powered by Velite, every documentation page is fully validated at build time, ensuring 100% type safety and zero-runtime overhead for content delivery.
+
+### 4. Hyper-Fast Local Iteration
+
+Built on **Turbo**, the development experience is optimized for instant Hot Module Replacement (HMR) and rapid build cycles.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+From the root of the monorepo, run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Start the docs platform
+pnpm --filter docs dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The documentation is served at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+The app follows a domain-driven Next.js structure:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app`: Unified routing and layout logic.
+- `src/features`: Modular domain logic (Docs Engine, AI Chat, UI Gallery).
+- `src/components`: UI primitives and documentation-specific components.
+- `velite.config.ts`: Schema-first content definitions.

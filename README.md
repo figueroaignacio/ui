@@ -1,88 +1,75 @@
 # NachUI
 
-## NachUI is an independent, open-source collection of clean, minimal, and professional UI components — created by Ignacio Figueroa.
+### High-Performance, Architectural Ecosystem for Modern Developers.
 
-It’s not a library, not a package, and nothing needs to be installed.
-Every component is designed to be copy-paste, dependency-free, and easy to customize.
+**NachUI** is a elite collection of **copy-paste, dependency-free** UI components engineered with **React 19**, **Next.js 16**, and **Tailwind CSS v4**. It represents a shift from bloated libraries to high-ownership, maintainable codebases.
 
-## 🚀 What is NachUI?
+---
 
-NachUI is a curated set of UI components built with:
+## The Vision
 
-- React
-- Next.js
-- TypeScript
-- Tailwind CSS
-- Framer Motion (for subtle and elegant animations)
+Standard development often sacrifices ownership for speed. **NachUI** provides the best of both worlds:
 
-The goal is simple:
+- **Full Code Ownership**: No `node_modules` lock-in. You own the primitives.
+- **Architectural Excellence**: Optimized with **Framer Motion** and **Tailwind CSS v4** for cutting-edge performance.
+- **Zero-Bloat Strategy**: Each component is independent, readable, and ready for senior-level customization.
 
-- Give developers fast, beautiful UI components without adding new dependencies or installing anything.
-- Each component is handcrafted with a focus on:
-- Simplicity
-- Readability
-- Accessibility
-- Great developer experience
-- Just open the component, copy the code, and paste it into your project.
+---
 
-## 🤖 AI-Powered Chatbot (Groq SDK)
+## The Tech Stack (2026 Edition)
 
-### NachUI includes an integrated AI-powered chatbot inside the documentation site.
+This monorepo leverages industry-standard tooling to ensure scalability and developer efficiency.
 
-It is built using the official Groq SDK, offering ultra-fast inference and a smooth developer experience.
-The chatbot’s purpose is to:
+| Technology       | Purpose                                                           | Rationale                                                            |
+| :--------------- | :---------------------------------------------------------------- | :------------------------------------------------------------------- |
+| **Workspace**    | [Turbo](https://turbo.build/) + [pnpm](https://pnpm.io/)          | Hyper-fast execution and efficient shared caching.                   |
+| **Core Engine**  | [Next.js 16](https://nextjs.org/)                                 | Advanced React 19 patterns with full App Router and RSC support.     |
+| **Visual Layer** | [Tailwind CSS v4](https://tailwindcss.com/)                       | Pure CSS variables architecture with zero runtime overhead.          |
+| **Content Rail** | [Velite](https://velite.js.org/)                                  | Type-safe content transformation for a unified documentation schema. |
+| **Neural Logic** | [Google Gemini 2.5](https://deepmind.google/technologies/gemini/) | Advanced reasoning via the [Vercel AI SDK](https://sdk.vercel.ai/).  |
+| **Motion**       | [Motion](https://motion.dev/)                                     | High-fidelity, physics-based interactions.                           |
 
-- Assist users with questions about NachUI
-- Provide guidance on how to copy, use, and customize components
-- Offer quick help related to React, Next.js, TypeScript, Tailwind CSS, and Framer Motion
-- Explain best practices and usage patterns
-- Deliver clean, concise answers based on the project’s philosophy
-- The assistant runs entirely client-side within the docs UI and serves as an example of how developers can integrate AI tooling into modern user interfaces using NachUI components.
-- This makes NachUI not only a component collection, but also a practical reference for building real-world AI-driven features with the Groq SDK.
+---
 
-## 🛠️ Tech Stack
+## Repository Structure
 
-Docs app (docs/)
+The project is structured as a **Turborepo monorepo**, ensuring modularity and clean architectural boundaries:
 
-- Next.js 16
-- Velite
-- next-intl
-- Tailwind CSS
-- Framer Motion
-- Lucide React + Radix Icons
-- MDX (react-markdown, remark/rehype plugins)
-- Monorepo root
-- pnpm
-- Turbo
-- Prettier + Tailwind plugin
+### Applications
 
-## 🎨 Philosophy
+- **[apps/docs](apps/docs)**: The Neural Documentation Portal. Featuring real-time component simulations and AI technical assistance.
 
-NachUI exists for developers who want:
+### Core Logic & Packages
 
-- Modern UI
-- Zero installation
-- Zero vendor lock-in
-- 100% readable, editable code
-- Full control over design
-- Every component is:
-- Written with TypeScript
-- Styled with Tailwind
-- Accessible by default
-- Simple to customize
-- Free forever
+- **[packages/ui](packages/ui)**: The Primitive Layer. High-fidelity React components styled with the latest Tailwind v4 standards.
+- **[packages/ai](packages/ai)**: The Neural Core. Orchestrates LLM interactions, agentic behaviors, and context-aware responses.
+- **[packages/typescript-config](packages/typescript-config)** & **[packages/eslint-config](packages/eslint-config)**: Unified strict-mode defaults and styling enforcement across the entire workspace.
 
-## 📚 How to Use NachUI
+---
 
-- Open the component in the documentation
-- Copy the full code
-- Paste it into your React/Next.js project
-- Customize freely
-- No npm install.
-- No config changes.
-- No hidden dependencies.
+## Neural Documentation Engine
 
-## ✨ Created by Ignacio Figueroa
+NachUI features an integrated **Gemini-powered agent**. Built with the Vercel AI SDK, it offers context-aware guidance, providing a technical pair-programming experience focused on NachUI's architectural principles and component customization.
 
-If you enjoy NachUI, consider starring the repository ❤️
-Your support helps keep this project growing.
+---
+
+## Quick Start
+
+Ensure you have [pnpm](https://pnpm.io/) installed, then:
+
+```bash
+# Initialize the workspace
+pnpm install
+
+# Launch the unified development environment
+pnpm dev
+
+# Generate production-ready bundles
+pnpm build
+```
+
+---
+
+## Developed by Ignacio Figueroa
+
+If NachUI accelerates your workflow, consider supporting the project with a ⭐ on GitHub.
