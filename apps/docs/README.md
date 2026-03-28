@@ -2,18 +2,14 @@
 
 The primary interface and Neural Documentation Portal for the NachUI ecosystem. A high-performance **Next.js 16** application serving as an interactive component gallery and developer engine.
 
----
-
 ## Tech Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Server Components).
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) for lightning-fast, variable-driven UI.
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, Server Components).
+- **Styling**: [Tailwind](https://tailwindcss.com/) for lightning-fast, variable-driven UI.
 - **Content Engine**: [Velite](https://velite.js.org/) — Type-safe MDX transformation layer.
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) (via the `motion` package).
+- **Animations**: [Motion](https://motion.dev) (via the `motion` package).
 - **AI Integration**: [@ai-sdk/react](https://sdk.vercel.ai/) for the interactive Gemini agent.
 - **Localization**: [next-intl](https://next-intl-docs.vercel.app/) for multi-language architecture.
-
----
 
 ## Key Features
 
@@ -33,8 +29,6 @@ Powered by Velite, every documentation page is fully validated at build time, en
 
 Built on **Turbo**, the development experience is optimized for instant Hot Module Replacement (HMR) and rapid build cycles.
 
----
-
 ## Getting Started
 
 From the root of the monorepo, run:
@@ -45,8 +39,6 @@ pnpm --filter docs dev
 ```
 
 The documentation is served at `http://localhost:3000`.
-
----
 
 ## Architecture
 

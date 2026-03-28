@@ -2,8 +2,6 @@
 
 Shared TypeScript configurations used across the NachUI monorepo to ensure strict type checking and consistent compiler behaviors.
 
----
-
 ## Usage
 
 Each workspace can extend the base configuration in its `tsconfig.json`:
@@ -16,8 +14,6 @@ Each workspace can extend the base configuration in its `tsconfig.json`:
   }
 }
 ```
-
----
 
 ## Features
 

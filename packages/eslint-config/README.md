@@ -2,8 +2,6 @@
 
 Unified linting rules and code style enforcement across all NachUI packages and applications.
 
----
-
 ## Usage
 
 To use in a workspace, create an `eslint.config.mjs` file:
@@ -13,8 +11,6 @@ import { nextJsConfig } from '@repo/eslint-config/next-js';
 
 export default nextJsConfig;
 ```
-
----
 
 ## Features
 

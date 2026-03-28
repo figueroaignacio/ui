@@ -2,16 +2,12 @@
 
 The intelligence layer for the NachUI ecosystem. Designed to orchestrate AI-powered assistants and agentic workflows using the latest Large Language Models (LLMs).
 
----
-
 ## Tech Stack
 
-- **Model Engine**: [Google Gemini 2.5](https://deepmind.google/technologies/gemini/) (via [Google Generative AI](https://github.com/google-gemini/generative-ai-js)).
+- **Model Engine**: [Google Gemini](https://deepmind.google/technologies/gemini/) (via [Google Generative AI](https://github.com/google-gemini/generative-ai-js)).
 - **SDK**: [Vercel AI SDK](https://sdk.vercel.ai/) for high-fidelity streaming and provider-agnostic logic.
 - **Tools & Actions**: Leveraging the latest Function Calling capabilities for autonomous agent tasks.
 - **Validation Engine**: [Zod](https://zod.dev/) for type-safe schema validation and structured outputs.
-
----
 
 ## Key Features
 
@@ -31,8 +27,6 @@ Designed for flexibility, the package supports multiple providers (Google, OpenA
 
 All AI interactions are validated using Zod schemas, ensuring that the documentation platform always receives valid data for UI rendering and component simulations.
 
----
-
 ## Usage
 
 As a workspace dependency:
@@ -46,8 +40,6 @@ const result = await generateText({
   prompt: 'Analyze the architectural benefits of Tailwind CSS v4',
 });
 ```
-
----
 
 ## Architecture
 
