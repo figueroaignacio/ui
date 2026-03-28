@@ -1,8 +1,10 @@
 # NachUI
 
+[English] | [Español](./README.es.md)
+
 ### High-Performance, Architectural Ecosystem for Modern Developers.
 
-**NachUI** is a elite collection of **copy-paste, dependency-free** UI components engineered with **React**, **Next.js**, and **Tailwind** and **Morion** for the animations. It represents a shift from bloated libraries to high-ownership, maintainable codebases.
+**NachUI** is a elite collection of **copy-paste, dependency-free** UI components engineered with **React**, **Next.js**, **Tailwind**, and **Motion** for the animations . It represents a shift from bloated libraries to high-ownership, maintainable codebases.
 
 ## The Vision
 
@@ -16,14 +18,14 @@ Standard development often sacrifices ownership for speed. **NachUI** provides t
 
 This monorepo leverages industry-standard tooling to ensure scalability and developer efficiency.
 
-| Technology       | Purpose                                                       | Rationale                                                            |
-| :--------------- | :------------------------------------------------------------ | :------------------------------------------------------------------- |
-| **Workspace**    | [Turbo](https://turbo.build/) + [pnpm](https://pnpm.io/)      | Hyper-fast execution and efficient shared caching.                   |
-| **Core Engine**  | [Next.js](https://nextjs.org/)                                | Advanced React 19 patterns with full App Router and RSC support.     |
-| **Visual Layer** | [Tailwind](https://tailwindcss.com/)                          | Pure CSS variables architecture with zero runtime overhead.          |
-| **Content Rail** | [Velite](https://velite.js.org/)                              | Type-safe content transformation for a unified documentation schema. |
-| **Neural Logic** | [Google Gemini](https://deepmind.google/technologies/gemini/) | Advanced reasoning via the [Vercel AI SDK](https://sdk.vercel.ai/).  |
-| **Motion**       | [Motion](https://motion.dev/)                                 | High-fidelity, physics-based interactions.                           |
+| Technology       | Purpose                                                           | Rationale                                                            |
+| :--------------- | :---------------------------------------------------------------- | :------------------------------------------------------------------- |
+| **Workspace**    | [Turbo](https://turbo.build/) + [pnpm](https://pnpm.io/)          | Hyper-fast execution and efficient shared caching.                   |
+| **Core Engine**  | [Next.js 16](https://nextjs.org/)                                 | Advanced React 19 patterns with full App Router and RSC support.     |
+| **Visual Layer** | [Tailwind CSS v4](https://tailwindcss.com/)                       | Pure CSS variables architecture with zero runtime overhead.          |
+| **Content Rail** | [Velite](https://velite.js.org/)                                  | Type-safe content transformation for a unified documentation schema. |
+| **Neural Logic** | [Google Gemini 2.5](https://deepmind.google/technologies/gemini/) | Advanced reasoning via the [Vercel AI SDK](https://sdk.vercel.ai/).  |
+| **Motion**       | [Framer Motion](https://www.framer.com/motion/)                   | High-fidelity, physics-based interactions.                           |
 
 ## Repository Structure
 

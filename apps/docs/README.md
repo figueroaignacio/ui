@@ -1,5 +1,7 @@
 # NachUI Documentation (Web)
 
+[English] | [Español](./README.es.md)
+
 The primary interface and Neural Documentation Portal for the NachUI ecosystem. A high-performance **Next.js 16** application serving as an interactive component gallery and developer engine.
 
 ## Tech Stack
@@ -15,7 +17,7 @@ The primary interface and Neural Documentation Portal for the NachUI ecosystem. 
 
 ### 1. Neural Technical Support
 
-An integrated AI assistant (connected to **Gemini 2.5**) providing real-time technical guidance on component usage, React architectural best practices, and deep customization.
+An integrated AI assistant (connected to **Gemini**) providing real-time technical guidance on component usage, React architectural best practices, and deep customization.
 
 ### 2. High-Performance Simulation
 

@@ -1,5 +1,7 @@
 # ESLint Configuration (@repo/eslint-config)
 
+[English] | [Español](./README.es.md)
+
 Unified linting rules and code style enforcement across all NachUI packages and applications.
 
 ## Usage

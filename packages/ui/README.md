@@ -1,6 +1,8 @@
 # NachUI Primitive Layer (UI)
 
-The core UI engine of the NachUI ecosystem. Built for **React 19**, **Tailwind CSS v4**, and is optimized for the highest performance standards.
+[English] | [Español](./README.es.md)
+
+The core UI engine of the NachUI ecosystem. Built for **React**, **Tailwind**, and is optimized for the highest performance standards.
 
 ## Tech Stack
 

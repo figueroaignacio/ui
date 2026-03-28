@@ -1,5 +1,7 @@
 # NachUI Neural Core (API)
 
+[English] | [Español](./README.es.md)
+
 The intelligence layer for the NachUI ecosystem. Designed to orchestrate AI-powered assistants and agentic workflows using the latest Large Language Models (LLMs).
 
 ## Tech Stack
@@ -13,7 +15,7 @@ The intelligence layer for the NachUI ecosystem. Designed to orchestrate AI-powe
 
 ### 1. Neural Real-Time Streaming
 
-Provides low-latency, real-time responses using Gemini 2.5 Flash, ensuring a smooth and responsive technical chat experience for developers.
+Provides low-latency, real-time responses using Gemini, ensuring a smooth and responsive technical chat experience for developers.
 
 ### 2. Context-Aware Knowledge Layer
 

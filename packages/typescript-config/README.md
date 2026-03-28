@@ -1,5 +1,7 @@
 # TypeScript Configuration (@repo/typescript-config)
 
+[English] | [Español](./README.es.md)
+
 Shared TypeScript configurations used across the NachUI monorepo to ensure strict type checking and consistent compiler behaviors.
 
 ## Usage
