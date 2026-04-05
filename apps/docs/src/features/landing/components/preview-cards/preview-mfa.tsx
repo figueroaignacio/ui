@@ -7,20 +7,20 @@ export function PreviewMfa() {
     <div className="flex flex-col items-center gap-6">
       <Avatar.Group className="mb-2">
         <Avatar>
-          <Avatar.Image src="https://github.com/figueroaignacio.png" />
-          <Avatar.Fallback>A</Avatar.Fallback>
+          <Avatar.Image src="https://github.com/figueroaignacio.png" alt="@figueroaignacio" />
+          <Avatar.Fallback>FI</Avatar.Fallback>
         </Avatar>
         <Avatar>
-          <Avatar.Image src="https://github.com/shadcn.png" />
-          <Avatar.Fallback>B</Avatar.Fallback>
+          <Avatar.Image src="https://github.com/nicvazquezdev.png" alt="@nicvazquezdev" />
+          <Avatar.Fallback>NV</Avatar.Fallback>
         </Avatar>
         <Avatar>
-          <Avatar.Image src="https://github.com/midudev.png" />
-          <Avatar.Fallback>C</Avatar.Fallback>
+          <Avatar.Image src="https://github.com/ManuZarraga.png" alt="@ManuZarraga" />
+          <Avatar.Fallback>MZ</Avatar.Fallback>
         </Avatar>
         <Avatar>
-          <Avatar.Image src="https://github.com/vercel.png" />
-          <Avatar.Fallback>D</Avatar.Fallback>
+          <Avatar.Image src="https://github.com/torvalds.png" alt="@torvarls" />
+          <Avatar.Fallback>TV</Avatar.Fallback>
         </Avatar>
         <Avatar>
           <Avatar.Fallback>+3</Avatar.Fallback>
