@@ -8,6 +8,7 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "start": "turbo start",
+    "test": "turbo test",
     "format": "prettier --write .",
     "prepare": "husky"
   },

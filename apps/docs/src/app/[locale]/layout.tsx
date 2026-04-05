@@ -7,6 +7,7 @@ import '@repo/ui/globals.css';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -15,9 +16,23 @@ interface LocaleLayoutProps {
   }>;
 }
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: {
+    default: 'NachUI',
     template: `NachUI - %s`,
+  },
+  description: 'Next-generation React components built for performance.',
+  openGraph: {
+    title: 'NachUI',
+    description: 'Next-generation React components built for performance.',
+    siteName: 'NachUI',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NachUI',
+    description: 'Next-generation React components built for performance.',
   },
 };
 
