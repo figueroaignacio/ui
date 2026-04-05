@@ -1,6 +1,8 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
+import { LinkSquare02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { COMPONENT_LIST_PREVIEWS } from './component-list-previews';
 import { DEMO_COMPONENTS } from './demo-registry';
 
@@ -18,7 +20,7 @@ export function ComponentCard({ label, href, description }: ComponentCardProps) 
 
   return (
     <Link href={href} className="group block">
-      <div className="border-border bg-card hover:bg-secondary/50 flex flex-col gap-3 overflow-hidden rounded-xl border transition-all duration-200 active:scale-[0.98]">
+      <div className="border-border flex flex-col gap-3 overflow-hidden rounded-xl border transition-all duration-200 active:scale-[0.98]">
         <div className="relative flex aspect-video items-center justify-center overflow-hidden p-6 sm:p-8">
           <div className="absolute inset-0 z-0 mask-[linear-gradient(to_bottom,white,transparent)] opacity-[0.03] dark:opacity-[0.07]">
             <div className="absolute h-full w-full bg-[radial-gradient(#000_1px,transparent_1px)] bg-size-[16px_16px] dark:bg-[radial-gradient(#fff_1px,transparent_1px)]" />
@@ -33,13 +35,18 @@ export function ComponentCard({ label, href, description }: ComponentCardProps) 
             )}
           </div>
         </div>
-        <div className="border-border border-t px-4 py-5">
-          <h3 className="font-heading text-sm font-semibold tracking-tight">{label}</h3>
-          {description && (
-            <p className="text-muted-foreground mt-1 line-clamp-2 text-xs leading-relaxed">
-              {description}
-            </p>
-          )}
+        <div className="border-border bg-secondary/50 flex justify-between border-t px-4 py-12">
+          <div>
+            <h3 className="font-heading font-semibold tracking-tight">{label}</h3>
+            {description && (
+              <p className="text-muted-foreground mt-1 line-clamp-2 text-xs leading-relaxed">
+                {description}
+              </p>
+            )}
+          </div>
+          <div>
+            <HugeiconsIcon icon={LinkSquare02Icon} />
+          </div>
         </div>
       </div>
     </Link>
