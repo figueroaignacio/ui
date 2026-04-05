@@ -34,6 +34,21 @@ export const metadata: Metadata = {
     title: 'NachUI',
     description: 'Next-generation React components built for performance.',
   },
+  other: {
+    'application/ld+json': JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'NachUI',
+      description: 'Next-generation React components built for performance.',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+    }),
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export function generateStaticParams() {
@@ -51,10 +66,18 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`relative ${fontSans.variable} ${fontHeading.variable}`}>
+        <a
+          href="#main-content"
+          className="focus:bg-background focus:ring-ring sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:shadow-lg focus:ring-2 focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <NextIntlClientProvider>
           <Providers>
             <Header />
-            <main className="container mx-auto px-4">{children}</main>
+            <main id="main-content" className="container mx-auto px-4">
+              {children}
+            </main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>

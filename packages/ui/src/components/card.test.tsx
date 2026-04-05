@@ -29,7 +29,7 @@ describe('Card', () => {
     );
     const card = screen.getByTestId('card-root');
     expect(card).toBeInTheDocument();
-    expect(card).toHaveClass('border-2'); // Outline variant
+    expect(card).toHaveClass('border', 'border-border'); // Outline variant
   });
 
   it('renders correctly with gradient prop', () => {

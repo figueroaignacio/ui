@@ -109,7 +109,7 @@ const DialogTrigger = ({
   };
 
   if (asChild) {
-    return cloneElement(props.children as React.ReactElement<any>, {
+    return cloneElement(props.children as React.ReactElement<Record<string, unknown>>, {
       onClick: handleClick,
     });
   }
@@ -152,7 +152,7 @@ const DialogClose = ({
   };
 
   if (asChild) {
-    return cloneElement(props.children as React.ReactElement<any>, {
+    return cloneElement(props.children as React.ReactElement<Record<string, unknown>>, {
       onClick: handleClick,
     });
   }
@@ -199,7 +199,70 @@ const DialogContent = ({
   children,
   ref,
 }: DialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  const { id, open } = useDialogContext();
+  const { id, open, setOpen } = useDialogContext();
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    if (!open) return;
+
+    triggerRef.current = document.activeElement as HTMLElement;
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(', ');
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const content = contentRef.current;
+      if (!content) return;
+
+      const focusable = Array.from(content.querySelectorAll<HTMLElement>(focusableSelector));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+
+    document.addEventListener('keydown', trapFocus);
+    document.addEventListener('keydown', handleEscape);
+
+    requestAnimationFrame(() => {
+      const content = contentRef.current;
+      if (content) {
+        const focusable = content.querySelector<HTMLElement>(focusableSelector);
+        focusable?.focus();
+      }
+    });
+
+    return () => {
+      document.removeEventListener('keydown', trapFocus);
+      document.removeEventListener('keydown', handleEscape);
+      triggerRef.current?.focus();
+    };
+  }, [open, setOpen]);
 
   return (
     <AnimatePresence mode="wait">
@@ -207,11 +270,14 @@ const DialogContent = ({
         <DialogPortal>
           <DialogOverlay />
           <motion.div
-            ref={ref}
+            ref={(node) => {
+              contentRef.current = node;
+              if (typeof ref === 'function') ref(node);
+              else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+            }}
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${id}-title`}
-            aria-describedby={`${id}-description`}
             onClick={(e) => e.stopPropagation()}
             variants={DIALOG_VARIANTS}
             initial="initial"
@@ -237,7 +303,7 @@ const DialogContent = ({
 };
 DialogContent.displayName = 'DialogContent';
 
-interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+type DialogHeaderProps = React.HTMLAttributes<HTMLDivElement>;
 
 const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
   return (
@@ -249,7 +315,7 @@ const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
 };
 DialogHeader.displayName = 'DialogHeader';
 
-interface DialogFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
 const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
   return (
@@ -261,10 +327,11 @@ const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
 };
 DialogFooter.displayName = 'DialogFooter';
 
-interface DialogTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+type DialogTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 const DialogTitle = ({
   className,
+  children,
   ref,
   ...props
 }: DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
@@ -276,12 +343,14 @@ const DialogTitle = ({
       ref={ref}
       className={cn('text-lg leading-none font-semibold tracking-tight', className)}
       {...props}
-    />
+    >
+      {children}
+    </h2>
   );
 };
 DialogTitle.displayName = 'DialogTitle';
 
-interface DialogDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+type DialogDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
 
 const DialogDescription = ({
   className,

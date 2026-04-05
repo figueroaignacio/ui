@@ -43,6 +43,7 @@ function Spinner({
       ref={ref}
       role="status"
       aria-label="Loading"
+      aria-live="polite"
       className={cn(spinnerVariants({ size, variant }), className)}
       {...props}
     >

@@ -84,7 +84,8 @@ export async function generateMetadata({
 
   const metaTitle = doc.title;
   const metaDescription = doc.description;
-  const url = `https://i7a-ui.vercel.app/${locale}/docs/${slugPath}`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nach-ui.vercel.app';
+  const url = `${baseUrl}/${locale}/docs/${slugPath}`;
 
   return {
     title: metaTitle,
@@ -95,10 +96,10 @@ export async function generateMetadata({
       type: 'article',
       locale: locale,
       url: url,
-      siteName: 'i7a-ui',
+      siteName: 'NachUI',
       images: [
         {
-          url: `/${locale}/docs/${slugPath}/opengraph-image`,
+          url: `${baseUrl}/${locale}/docs/${slugPath}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -109,13 +110,13 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDescription,
-      images: [`/${locale}/docs/${slugPath}/opengraph-image`],
+      images: [`${baseUrl}/${locale}/docs/${slugPath}/opengraph-image`],
     },
     alternates: {
       canonical: url,
       languages: {
-        es: `https://i7a-ui.vercel.app/es/docs/${slugPath}`,
-        en: `https://i7a-ui.vercel.app/en/docs/${slugPath}`,
+        es: `${baseUrl}/es/docs/${slugPath}`,
+        en: `${baseUrl}/en/docs/${slugPath}`,
       },
     },
     robots: {
@@ -144,3 +145,5 @@ export async function generateStaticParams(): Promise<{ slug: string[]; locale: 
       locale: doc.locale || 'en',
     }));
 }
+
+export const revalidate = 3600;

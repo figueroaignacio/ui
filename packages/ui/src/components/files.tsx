@@ -89,6 +89,7 @@ const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
   return (
     <motion.div
       role="button"
+      aria-label={name}
       tabIndex={0}
       onClick={onClick}
       onKeyDown={handleKeyDown}

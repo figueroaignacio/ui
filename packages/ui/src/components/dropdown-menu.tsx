@@ -225,14 +225,21 @@ const DropdownMenuContent = ({
   React.useLayoutEffect(() => {
     if (!isOpen || !triggerRef.current) return;
 
-    const updatePosition = () => {
-      const triggerRect = triggerRef.current!.getBoundingClientRect();
-      const contentHeight = contentRef.current?.offsetHeight || 200;
-      const windowHeight = window.innerHeight;
-      const spaceBelow = windowHeight - triggerRect.bottom;
+    let ticking = false;
 
-      const newPosition = spaceBelow < contentHeight + 20 ? 'top' : 'bottom';
-      setPosition(newPosition);
+    const updatePosition = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const triggerRect = triggerRef.current!.getBoundingClientRect();
+        const contentHeight = contentRef.current?.offsetHeight || 200;
+        const windowHeight = window.innerHeight;
+        const spaceBelow = windowHeight - triggerRect.bottom;
+
+        const newPosition = spaceBelow < contentHeight + 20 ? 'top' : 'bottom';
+        setPosition(newPosition);
+        ticking = false;
+      });
     };
 
     updatePosition();
@@ -342,7 +349,7 @@ const DropdownMenuItem = ({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (disabled) return;
       e.stopPropagation();
-      onClick?.(e as any);
+      onClick?.(e);
       onSelect?.();
       closeMenu();
     },
@@ -355,7 +362,7 @@ const DropdownMenuItem = ({
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         e.stopPropagation();
-        onClick?.(e as any);
+        onClick?.(e as unknown as React.MouseEvent<HTMLDivElement>);
         onSelect?.();
         closeMenu();
       } else if (e.key === 'ArrowDown') {
@@ -408,10 +415,13 @@ const DropdownMenuItem = ({
         disabled && 'pointer-events-none opacity-50',
         variant === 'destructive' && 'text-destructive focus:text-destructive',
         className,
-        (children.props as any).className,
+        (children.props as Record<string, unknown>)?.className as string | undefined,
       ),
-      style: { ...style, ...(children.props as any).style },
-    } as any);
+      style: {
+        ...style,
+        ...((children.props as Record<string, unknown>)?.style as React.CSSProperties | undefined),
+      },
+    } as React.ComponentProps<'div'>);
   }
 
   return content;

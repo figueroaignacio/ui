@@ -2,6 +2,7 @@
 
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
+import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
 
 // --- Animation constants (module level) ---
@@ -130,28 +131,34 @@ function TooltipTrigger({ children, asChild = false, className, ...props }: Tool
   };
 
   if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<any>;
+    const childProps = children.props as {
+      onMouseEnter?: (e: React.MouseEvent) => void;
+      onMouseLeave?: (e: React.MouseEvent) => void;
+      onFocus?: (e: React.FocusEvent) => void;
+      onBlur?: (e: React.FocusEvent) => void;
+      className?: string;
+    };
 
-    return React.cloneElement(child, {
+    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
       ...props,
       'aria-describedby': id,
       onMouseEnter: (e: React.MouseEvent) => {
         handleMouseEnter();
-        child.props.onMouseEnter?.(e);
+        childProps.onMouseEnter?.(e);
       },
       onMouseLeave: (e: React.MouseEvent) => {
         handleMouseLeave();
-        child.props.onMouseLeave?.(e);
+        childProps.onMouseLeave?.(e);
       },
       onFocus: (e: React.FocusEvent) => {
         handleFocus();
-        child.props.onFocus?.(e);
+        childProps.onFocus?.(e);
       },
       onBlur: (e: React.FocusEvent) => {
         handleBlur();
-        child.props.onBlur?.(e);
+        childProps.onBlur?.(e);
       },
-      className: cn(className, child.props.className),
+      className: cn(className, childProps.className),
     });
   }
 
@@ -184,6 +191,9 @@ const TooltipContent = ({
   ...props
 }: TooltipContentProps) => {
   const { open, id } = useTooltip();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => setMounted(true), []);
 
   const sideOffsetStyle = React.useMemo(
     () => ({
@@ -196,7 +206,7 @@ const TooltipContent = ({
     [side, sideOffset],
   );
 
-  return (
+  const content = (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -208,7 +218,7 @@ const TooltipContent = ({
           transition={TOOLTIP_TRANSITION}
           style={sideOffsetStyle}
           className={cn(
-            'bg-foreground text-background absolute z-50 rounded-xl px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
+            'bg-foreground text-background fixed z-50 rounded-xl px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
             TOOLTIP_POSITION_CLASSES[side],
             className,
           )}
@@ -222,6 +232,9 @@ const TooltipContent = ({
       )}
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+  return createPortal(content, document.body);
 };
 
 const Tooltip = Object.assign(TooltipRoot, {

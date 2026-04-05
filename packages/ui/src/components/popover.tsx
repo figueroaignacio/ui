@@ -4,6 +4,7 @@ import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, type HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
+import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
 
 // --- Animation constants ---
@@ -129,7 +130,7 @@ const PopoverTrigger = ({
   ref,
   ...props
 }: PopoverTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
-  const { open, setOpen } = usePopoverContext();
+  const { open, setOpen, id } = usePopoverContext();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setOpen(!open);
@@ -137,12 +138,25 @@ const PopoverTrigger = ({
   };
 
   if (asChild) {
-    return React.cloneElement(props.children as React.ReactElement<any>, {
+    return React.cloneElement(props.children as React.ReactElement<Record<string, unknown>>, {
       onClick: handleClick,
+      'aria-expanded': open,
+      'aria-haspopup': 'dialog',
+      'aria-controls': id,
     });
   }
 
-  return <button type="button" onClick={handleClick} ref={ref} {...props} />;
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      ref={ref}
+      aria-expanded={open}
+      aria-haspopup="dialog"
+      aria-controls={id}
+      {...props}
+    />
+  );
 };
 PopoverTrigger.displayName = 'PopoverTrigger';
 
@@ -163,7 +177,7 @@ const PopoverClose = ({
   };
 
   if (asChild) {
-    return React.cloneElement(props.children as React.ReactElement<any>, {
+    return React.cloneElement(props.children as React.ReactElement<Record<string, unknown>>, {
       onClick: handleClick,
     });
   }
@@ -188,6 +202,9 @@ const PopoverContent = ({
   ...props
 }: PopoverContentProps) => {
   const { open, id, setOpen } = usePopoverContext();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => setMounted(true), []);
 
   const sideOffsetStyle = React.useMemo(
     () => ({
@@ -200,7 +217,7 @@ const PopoverContent = ({
     [side, sideOffset],
   );
 
-  return (
+  const content = (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -212,7 +229,7 @@ const PopoverContent = ({
           transition={POPOVER_TRANSITION}
           style={sideOffsetStyle}
           className={cn(
-            'bg-popover text-popover-foreground absolute z-50 w-72 rounded-xl border p-4 shadow-md outline-none',
+            'bg-popover text-popover-foreground fixed z-50 w-72 rounded-xl border p-4 shadow-md outline-none',
             POPOVER_POSITION_CLASSES[side],
             className,
           )}
@@ -233,6 +250,9 @@ const PopoverContent = ({
       )}
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+  return createPortal(content, document.body);
 };
 PopoverContent.displayName = 'PopoverContent';
 

@@ -23,7 +23,6 @@ export const COMPONENT_REGISTRY = {
   switch: 'packages/ui/src/components/switch.tsx',
   tabs: 'packages/ui/src/components/tabs.tsx',
   table: 'packages/ui/src/components/table.tsx',
-  textarea: 'packages/ui/src/components/textarea.tsx',
   toast: 'packages/ui/src/components/toast.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
   spinner: 'packages/ui/src/components/spinner.tsx',

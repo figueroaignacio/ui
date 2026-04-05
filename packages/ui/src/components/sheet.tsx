@@ -186,6 +186,8 @@ const SheetContent = ({
 }: SheetContentProps) => {
   const { open, setOpen, id } = useSheetContext();
   const [mounted, setMounted] = React.useState(false);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLElement | null>(null);
 
   const dragY = useMotionValue(0);
   const dragX = useMotionValue(0);
@@ -194,11 +196,63 @@ const SheetContent = ({
 
   React.useEffect(() => {
     if (!open) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
+
+    triggerRef.current = document.activeElement as HTMLElement;
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(', ');
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const content = contentRef.current;
+      if (!content) return;
+
+      const focusable = Array.from(content.querySelectorAll<HTMLElement>(focusableSelector));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
     };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+
+    document.addEventListener('keydown', trapFocus);
+    document.addEventListener('keydown', handleEscape);
+
+    requestAnimationFrame(() => {
+      const content = contentRef.current;
+      if (content) {
+        const focusable = content.querySelector<HTMLElement>(focusableSelector);
+        focusable?.focus();
+      }
+    });
+
+    return () => {
+      document.removeEventListener('keydown', trapFocus);
+      document.removeEventListener('keydown', handleEscape);
+      triggerRef.current?.focus();
+    };
   }, [open, setOpen]);
 
   const isVertical = side === 'bottom' || side === 'top';
@@ -235,7 +289,6 @@ const SheetContent = ({
   };
 
   if (!mounted) return null;
-  if (!side) return null;
 
   const sheet = (
     <AnimatePresence>
@@ -243,10 +296,10 @@ const SheetContent = ({
         <>
           <SheetOverlay className="z-300" />
           <motion.div
+            ref={contentRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${id}-title`}
-            aria-describedby={`${id}-description`}
             drag={dragAxis}
             dragMomentum={false}
             dragElastic={dragElastic}
@@ -256,9 +309,9 @@ const SheetContent = ({
               ...(isVertical ? { y: dragY } : { x: dragX }),
               ...SHEET_CONTENT_STYLE,
             }}
-            initial={slideVariants[side].initial}
-            animate={slideVariants[side].animate}
-            exit={slideVariants[side].exit}
+            initial={slideVariants[side as keyof typeof slideVariants].initial}
+            animate={slideVariants[side as keyof typeof slideVariants].animate}
+            exit={slideVariants[side as keyof typeof slideVariants].exit}
             transition={SHEET_SPRING}
             className={cn(sheetVariants({ side, size }), className)}
             {...props}

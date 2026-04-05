@@ -45,13 +45,7 @@ const BreadcrumbLink = ({ className, children, ...props }: BreadcrumbLinkProps) 
 
 const BreadcrumbPage = ({ className, ...props }: React.ComponentProps<'span'>) => {
   return (
-    <span
-      role="link"
-      aria-disabled="true"
-      aria-current="page"
-      className={cn('text-foreground font-normal', className)}
-      {...props}
-    />
+    <span aria-current="page" className={cn('text-foreground font-normal', className)} {...props} />
   );
 };
 

@@ -59,6 +59,7 @@ const AvatarImage = ({ className, src, ...props }: AvatarImageProps) => {
   return (
     <img
       src={src}
+      alt=""
       className={cn('aspect-square h-full w-full object-cover', className)}
       onLoad={() => setStatus('loaded')}
       onError={() => setStatus('error')}

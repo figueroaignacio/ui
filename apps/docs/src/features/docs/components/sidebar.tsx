@@ -67,7 +67,7 @@ export function Sidebar() {
                     animate="animate"
                     exit="exit"
                     transition={shouldReduceMotion ? { duration: 0 } : sectionTransition}
-                    className="ml-1.5 space-y-1 overflow-hidden border-l pl-3"
+                    className="ml-1.5 space-y-1 overflow-hidden pl-3"
                   >
                     {section.items.map((item: DocItem) => {
                       const isActive = pathname === item.href;

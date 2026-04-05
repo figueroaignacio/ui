@@ -90,7 +90,7 @@ const TabsRoot = ({
   value: controlledValue,
   onValueChange,
   variant = 'default',
-  size = 'default',
+  size: _size = 'default',
   children,
   ref,
   ...props
@@ -200,13 +200,41 @@ const TabsTrigger = ({
     props.onClick?.(e);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const parent = buttonRef.current?.parentElement;
+    if (!parent) return;
+
+    const triggers = Array.from(parent.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const currentIndex = triggers.indexOf(buttonRef.current!);
+
+    let newIndex = currentIndex;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      newIndex = (currentIndex + 1) % triggers.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      newIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      newIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      newIndex = triggers.length - 1;
+    }
+
+    if (newIndex !== currentIndex) {
+      triggers[newIndex]?.focus();
+      triggers[newIndex]?.click();
+    }
+  };
+
   // Merge the external ref with our internal buttonRef
   React.useEffect(() => {
     if (!ref) return;
     if (typeof ref === 'function') {
       ref(buttonRef.current);
     } else {
-      (ref as any).current = buttonRef.current;
+      (ref as React.MutableRefObject<HTMLButtonElement | null>).current = buttonRef.current;
     }
   }, [ref]);
 
@@ -221,6 +249,7 @@ const TabsTrigger = ({
       tabIndex={isActive ? 0 : -1}
       data-state={isActive ? 'active' : 'inactive'}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className={cn(tabsTriggerVariants({ variant: finalVariant, size }), className)}
       {...props}
     >

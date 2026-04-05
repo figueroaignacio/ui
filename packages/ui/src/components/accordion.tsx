@@ -127,7 +127,7 @@ interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const AccordionItem = ({
-  value,
+  value: _value,
   children,
   className,
   ref,
