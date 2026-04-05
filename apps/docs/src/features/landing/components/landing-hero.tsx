@@ -46,7 +46,14 @@ export function LandingHero() {
         </div>
         <div className="text-muted-foreground hover:text-foreground mt-2 flex cursor-pointer items-center gap-2 text-sm transition-colors">
           <GitHubIcon />
-          <span>{t('github')}</span>
+          <a
+            href="https://github.com/figueroaignacio/ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            {t('github')}
+          </a>
         </div>
         <div className="w-full">
           <HeroComponentPreview />
