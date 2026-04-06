@@ -1,0 +1,115 @@
+---
+title: Drawer
+description: A panel that slides in from the edge of the screen to display supplementary content.
+published: true
+date: 2025-10-22
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="drawer" demo="default" />
+
+## Installation
+
+<Steps>
+
+#### Copy and paste the following code into your project.
+
+<ComponentSource component="drawer" />
+
+#### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Drawer } from '@/components/ui/drawer';
+```
+
+```tsx
+<Drawer>
+  <Drawer.Trigger>
+    <Button>Open Drawer</Button>
+  </Drawer.Trigger>
+  <Drawer.Content>
+    <Drawer.Header>
+      <Drawer.Title>Drawer Title</Drawer.Title>
+      <Drawer.Description>This is a drawer component.</Drawer.Description>
+    </Drawer.Header>
+    <div>Your content here</div>
+  </Drawer.Content>
+</Drawer>
+```
+
+## Features
+
+- **Multiple sides** - Slide from bottom, top, left, or right
+- **Drag to close** - Swipe to dismiss in any direction
+- **Responsive** - Adapts to different screen sizes
+- **Smooth animations** - Spring-based slide transitions
+- **Focus trap** - Keyboard navigation stays within the drawer
+- **Body scroll lock** - Prevents background scrolling when open
+
+## Variants
+
+### Positions
+
+<ComponentPreview component="drawer" demo="positions" />
+
+### Form
+
+<ComponentPreview component="drawer" demo="form" />
+
+## API Reference
+
+### Drawer
+
+| Prop           | Type                      | Default | Description                |
+| -------------- | ------------------------- | ------- | -------------------------- |
+| `children`     | `ReactNode`               | -       | Drawer trigger and content |
+| `defaultOpen`  | `boolean`                 | `false` | Initial open state         |
+| `open`         | `boolean`                 | -       | Controlled open state      |
+| `onOpenChange` | `(open: boolean) => void` | -       | Callback when open changes |
+
+### Drawer.Trigger
+
+| Prop        | Type                     | Default | Description            |
+| ----------- | ------------------------ | ------- | ---------------------- |
+| `children`  | `ReactNode`              | -       | Trigger button content |
+| `className` | `string`                 | -       | Additional CSS classes |
+| `variant`   | `ButtonProps['variant']` | -       | Button variant         |
+| `size`      | `ButtonProps['size']`    | -       | Button size            |
+
+### Drawer.Content
+
+| Prop             | Type                                     | Default    | Description                  |
+| ---------------- | ---------------------------------------- | ---------- | ---------------------------- |
+| `side`           | `'bottom' \| 'top' \| 'left' \| 'right'` | `'bottom'` | Side to slide from           |
+| `showDragHandle` | `boolean`                                | `true`     | Show drag handle for closing |
+| `className`      | `string`                                 | -          | Additional CSS classes       |
+
+### Drawer.Header
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### Drawer.Title
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### Drawer.Description
+
+| Prop        | Type     | Default | Description            |
+| ----------- | -------- | ------- | ---------------------- |
+| `className` | `string` | -       | Additional CSS classes |
+
+### Drawer.Close
+
+| Prop       | Type        | Default | Description       |
+| ---------- | ----------- | ------- | ----------------- |
+| `children` | `ReactNode` | -       | Clickable content |

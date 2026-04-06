@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import type * as React from 'react';
-import { Sheet } from './sheet';
+import { Drawer } from './drawer';
 
 // Mock motion to disable AnimatePresence delay for Portals
 vi.mock('motion/react', async () => {
@@ -64,34 +64,34 @@ vi.mock('motion/react', async () => {
   };
 });
 
-describe('Sheet', () => {
+describe('Drawer', () => {
   it('opens and closes appropriately', async () => {
     render(
-      <Sheet>
-        <Sheet.Trigger>Open Sheet</Sheet.Trigger>
-        <Sheet.Content side="right">
-          <Sheet.Header>
-            <Sheet.Title>Sheet Title</Sheet.Title>
-            <Sheet.Description>Sheet Description</Sheet.Description>
-          </Sheet.Header>
-          <div>Sheet Content Body</div>
-          <Sheet.Close>Close Custom</Sheet.Close>
-        </Sheet.Content>
-      </Sheet>,
+      <Drawer>
+        <Drawer.Trigger>Open Drawer</Drawer.Trigger>
+        <Drawer.Content side="right">
+          <Drawer.Header>
+            <Drawer.Title>Drawer Title</Drawer.Title>
+            <Drawer.Description>Drawer Description</Drawer.Description>
+          </Drawer.Header>
+          <div>Drawer Content Body</div>
+          <Drawer.Close>Close Custom</Drawer.Close>
+        </Drawer.Content>
+      </Drawer>,
     );
 
-    const trigger = screen.getByRole('button', { name: 'Open Sheet' });
+    const trigger = screen.getByRole('button', { name: 'Open Drawer' });
 
     // initially hidden
-    expect(screen.queryByText('Sheet Title')).not.toBeInTheDocument();
+    expect(screen.queryByText('Drawer Title')).not.toBeInTheDocument();
 
     // click trigger
     await userEvent.click(trigger);
 
     await waitFor(() => {
-      expect(screen.getByText('Sheet Title')).toBeInTheDocument();
-      expect(screen.getByText('Sheet Description')).toBeInTheDocument();
-      expect(screen.getByText('Sheet Content Body')).toBeInTheDocument();
+      expect(screen.getByText('Drawer Title')).toBeInTheDocument();
+      expect(screen.getByText('Drawer Description')).toBeInTheDocument();
+      expect(screen.getByText('Drawer Content Body')).toBeInTheDocument();
     });
 
     // click close button (default one with X icon, or our custom one)
@@ -99,7 +99,7 @@ describe('Sheet', () => {
     await userEvent.click(closeBtn);
 
     await waitFor(() => {
-      expect(screen.queryByText('Sheet Title')).not.toBeInTheDocument();
+      expect(screen.queryByText('Drawer Title')).not.toBeInTheDocument();
     });
   });
 });

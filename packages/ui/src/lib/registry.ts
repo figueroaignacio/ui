@@ -18,7 +18,7 @@ export const COMPONENT_REGISTRY = {
   progress: 'packages/ui/src/components/progress.tsx',
   select: 'packages/ui/src/components/select.tsx',
   separator: 'packages/ui/src/components/separator.tsx',
-  sheet: 'packages/ui/src/components/sheet.tsx',
+  drawer: 'packages/ui/src/components/drawer.tsx',
   skeleton: 'packages/ui/src/components/skeleton.tsx',
   switch: 'packages/ui/src/components/switch.tsx',
   tabs: 'packages/ui/src/components/tabs.tsx',
@@ -143,11 +143,11 @@ export const DEMO_REGISTRY = {
     default: 'packages/ui/src/demos/select/default.tsx',
     'grouped-items': 'packages/ui/src/demos/select/grouped-items.tsx',
   },
-  // Sheet demos
-  sheet: {
-    default: 'packages/ui/src/demos/sheet/default.tsx',
-    positions: 'packages/ui/src/demos/sheet/positions.tsx',
-    sizes: 'packages/ui/src/demos/sheet/sizes.tsx',
+  // Drawer demos
+  drawer: {
+    default: 'packages/ui/src/demos/drawer/default.tsx',
+    positions: 'packages/ui/src/demos/drawer/positions.tsx',
+    form: 'packages/ui/src/demos/drawer/form.tsx',
   },
   // Separator demos
   separator: {

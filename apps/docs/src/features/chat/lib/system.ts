@@ -73,7 +73,7 @@ function requiresTechnicalContext(message: string): boolean {
     'breadcrumb',
     'collapsible',
     'dialog',
-    'sheet',
+    'drawer',
     'timeline',
     'tooltip',
     'dark mode',

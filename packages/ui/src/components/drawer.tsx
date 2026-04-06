@@ -3,11 +3,11 @@
 import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AnimatePresence, HTMLMotionProps, motion, useMotionValue } from 'motion/react';
+import { AnimatePresence, type HTMLMotionProps, motion, useMotionValue } from 'motion/react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
-import { Button, ButtonProps } from './button';
+import { Button, type ButtonProps } from './button';
 
 // --- Animation constants (module level) ---
 
@@ -34,51 +34,51 @@ const slideVariants = {
   },
 } as const;
 
-const SHEET_SPRING = { type: 'spring', damping: 32, stiffness: 320 } as const;
+const DRAWER_SPRING = { type: 'spring', damping: 32, stiffness: 320 } as const;
 
-const SHEET_OVERLAY_VARIANTS = {
+const DRAWER_OVERLAY_VARIANTS = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
 } as const;
 
-const SHEET_OVERLAY_TRANSITION = { duration: 0.2 } as const;
-const SHEET_OVERLAY_STYLE = { willChange: 'opacity' } as const;
-const SHEET_CONTENT_STYLE = { willChange: 'transform' } as const;
+const DRAWER_OVERLAY_TRANSITION = { duration: 0.2 } as const;
+const DRAWER_OVERLAY_STYLE = { willChange: 'opacity' } as const;
+const DRAWER_CONTENT_STYLE = { willChange: 'transform' } as const;
 const CLOSE_BUTTON_TAP = { scale: 0.9 } as const;
 const SWIPE_CLOSE_THRESHOLD = 80;
 
 // --- Context ---
 
-type SheetContextProps = {
+type DrawerContextProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
 };
 
-const SheetContext = React.createContext<SheetContextProps | null>(null);
+const DrawerContext = React.createContext<DrawerContextProps | null>(null);
 
-function useSheetContext() {
-  const ctx = React.use(SheetContext);
-  if (!ctx) throw new Error('Sheet components must be inside <Sheet>.');
+function useDrawerContext() {
+  const ctx = React.use(DrawerContext);
+  if (!ctx) throw new Error('Drawer components must be inside <Drawer>.');
   return ctx;
 }
 
 // --- Components ---
 
-interface SheetProps {
+interface DrawerProps {
   children: React.ReactNode;
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
 
-const SheetRoot = ({
+const DrawerRoot = ({
   children,
   defaultOpen = false,
   open: controlledOpen,
   onOpenChange,
-}: SheetProps) => {
+}: DrawerProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
   const id = React.useId();
 
@@ -106,10 +106,10 @@ const SheetRoot = ({
     };
   }, [open]);
 
-  return <SheetContext value={{ open, setOpen, id }}>{children}</SheetContext>;
+  return <DrawerContext value={{ open, setOpen, id }}>{children}</DrawerContext>;
 };
 
-const SheetTrigger = ({
+const DrawerTrigger = ({
   children,
   className,
   variant,
@@ -121,7 +121,7 @@ const SheetTrigger = ({
   size?: ButtonProps['size'];
   icon?: boolean;
 }) => {
-  const { setOpen } = useSheetContext();
+  const { setOpen } = useDrawerContext();
 
   return (
     <Button className={cn(className)} onClick={() => setOpen(true)} variant={variant} size={size}>
@@ -130,17 +130,17 @@ const SheetTrigger = ({
   );
 };
 
-const SheetOverlay = ({ className }: { className?: string }) => {
-  const { setOpen } = useSheetContext();
+const DrawerOverlay = ({ className }: { className?: string }) => {
+  const { setOpen } = useDrawerContext();
 
   return (
     <motion.div
-      variants={SHEET_OVERLAY_VARIANTS}
+      variants={DRAWER_OVERLAY_VARIANTS}
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={SHEET_OVERLAY_TRANSITION}
-      style={SHEET_OVERLAY_STYLE}
+      transition={DRAWER_OVERLAY_TRANSITION}
+      style={DRAWER_OVERLAY_STYLE}
       className={cn('fixed inset-0 z-300 bg-black/50 backdrop-blur-xs', className)}
       onClick={() => setOpen(false)}
     />
@@ -149,42 +149,37 @@ const SheetOverlay = ({ className }: { className?: string }) => {
 
 // --- CVA ---
 
-const sheetVariants = cva('fixed z-300 bg-background border shadow-2xl overflow-auto rounded-2xl', {
-  variants: {
-    side: {
-      bottom: 'bottom-3 left-3 right-3',
-      top: 'top-3 left-3 right-3',
-      left: 'left-3 top-3 bottom-3',
-      right: 'right-3 top-3 bottom-3',
+const drawerVariants = cva(
+  'fixed z-300 bg-background border shadow-2xl overflow-auto rounded-2xl',
+  {
+    variants: {
+      side: {
+        bottom: 'bottom-3 left-3 right-3',
+        top: 'top-3 left-3 right-3',
+        left: 'left-3 top-3 bottom-3 w-[85vw] sm:w-96',
+        right: 'right-3 top-3 bottom-3 w-[85vw] sm:w-96',
+      },
     },
-    size: {
-      sm: 'sm:left-auto sm:w-80',
-      md: 'sm:left-auto sm:w-96',
-      lg: 'sm:left-auto sm:w-[28rem]',
-      full: 'w-full h-full !rounded-none !inset-0',
+    defaultVariants: {
+      side: 'bottom',
     },
   },
-  defaultVariants: {
-    side: 'bottom',
-    size: 'md',
-  },
-});
+);
 
-interface SheetContentProps
-  extends Omit<HTMLMotionProps<'div'>, 'children'>, VariantProps<typeof sheetVariants> {
+interface DrawerContentProps
+  extends Omit<HTMLMotionProps<'div'>, 'children'>, VariantProps<typeof drawerVariants> {
   children: React.ReactNode;
   showDragHandle?: boolean;
 }
 
-const SheetContent = ({
+const DrawerContent = ({
   children,
   className,
   side = 'bottom',
-  size,
   showDragHandle = true,
   ...props
-}: SheetContentProps) => {
-  const { open, setOpen, id } = useSheetContext();
+}: DrawerContentProps) => {
+  const { open, setOpen, id } = useDrawerContext();
   const [mounted, setMounted] = React.useState(false);
   const contentRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLElement | null>(null);
@@ -290,11 +285,11 @@ const SheetContent = ({
 
   if (!mounted) return null;
 
-  const sheet = (
+  const drawer = (
     <AnimatePresence>
       {open && (
         <>
-          <SheetOverlay className="z-300" />
+          <DrawerOverlay className="z-300" />
           <motion.div
             ref={contentRef}
             role="dialog"
@@ -307,13 +302,13 @@ const SheetContent = ({
             onDragEnd={handleDragEnd}
             style={{
               ...(isVertical ? { y: dragY } : { x: dragX }),
-              ...SHEET_CONTENT_STYLE,
+              ...DRAWER_CONTENT_STYLE,
             }}
             initial={slideVariants[side as keyof typeof slideVariants].initial}
             animate={slideVariants[side as keyof typeof slideVariants].animate}
             exit={slideVariants[side as keyof typeof slideVariants].exit}
-            transition={SHEET_SPRING}
-            className={cn(sheetVariants({ side, size }), className)}
+            transition={DRAWER_SPRING}
+            className={cn(drawerVariants({ side }), className)}
             {...props}
           >
             {showDragHandle && (
@@ -322,31 +317,33 @@ const SheetContent = ({
               </div>
             )}
 
-            {/* Close button */}
-            <div className="flex justify-end px-4 pt-2 pb-0">
-              <motion.button
-                whileTap={CLOSE_BUTTON_TAP}
-                onClick={() => setOpen(false)}
-                className="hover:bg-muted rounded-full p-2 transition-colors"
-                aria-label="Close"
-              >
-                <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" size={16} />
-              </motion.button>
-            </div>
+            <div className={cn(isVertical && 'mx-auto w-full max-w-lg')}>
+              {/* Close button */}
+              <div className="flex justify-end px-4 pt-2 pb-0">
+                <motion.button
+                  whileTap={CLOSE_BUTTON_TAP}
+                  onClick={() => setOpen(false)}
+                  className="hover:bg-muted rounded-full p-2 transition-colors"
+                  aria-label="Close"
+                >
+                  <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" size={16} />
+                </motion.button>
+              </div>
 
-            {/* Content */}
-            <div className="px-5 pt-2 pb-5">{children}</div>
+              {/* Content */}
+              <div className="px-5 pt-2 pb-5">{children}</div>
+            </div>
           </motion.div>
         </>
       )}
     </AnimatePresence>
   );
 
-  return createPortal(sheet, document.body);
+  return createPortal(drawer, document.body);
 };
 
-const SheetClose = ({ children }: { children: React.ReactNode }) => {
-  const { setOpen } = useSheetContext();
+const DrawerClose = ({ children }: { children: React.ReactNode }) => {
+  const { setOpen } = useDrawerContext();
 
   return (
     <button type="button" onClick={() => setOpen(false)}>
@@ -355,7 +352,7 @@ const SheetClose = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const SheetHeader = ({
+const DrawerHeader = ({
   children,
   className,
 }: {
@@ -365,8 +362,14 @@ const SheetHeader = ({
   return <div className={cn('mb-4', className)}>{children}</div>;
 };
 
-const SheetTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const { id } = useSheetContext();
+const DrawerTitle = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const { id } = useDrawerContext();
   return (
     <h2 id={`${id}-title`} className={cn('text-xl font-semibold tracking-tight', className)}>
       {children}
@@ -374,14 +377,14 @@ const SheetTitle = ({ children, className }: { children: React.ReactNode; classN
   );
 };
 
-const SheetDescription = ({
+const DrawerDescription = ({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
 }) => {
-  const { id } = useSheetContext();
+  const { id } = useDrawerContext();
   return (
     <p id={`${id}-description`} className={cn('text-muted-foreground mt-1 text-sm', className)}>
       {children}
@@ -389,13 +392,13 @@ const SheetDescription = ({
   );
 };
 
-const Sheet = Object.assign(SheetRoot, {
-  Trigger: SheetTrigger,
-  Content: SheetContent,
-  Header: SheetHeader,
-  Title: SheetTitle,
-  Description: SheetDescription,
-  Close: SheetClose,
+const Drawer = Object.assign(DrawerRoot, {
+  Trigger: DrawerTrigger,
+  Content: DrawerContent,
+  Header: DrawerHeader,
+  Title: DrawerTitle,
+  Description: DrawerDescription,
+  Close: DrawerClose,
 });
 
-export { Sheet };
+export { Drawer };

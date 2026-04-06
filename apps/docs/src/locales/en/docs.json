@@ -139,9 +139,9 @@
           "description": "A visual divider for separating content with optional label."
         },
         {
-          "title": "Sheet",
-          "href": "/docs/components/sheet",
-          "description": "Sheet component to show additional content."
+          "title": "Drawer",
+          "href": "/docs/components/drawer",
+          "description": "A panel that slides in from the edge of the screen to display supplementary content."
         },
         {
           "title": "Skeleton",

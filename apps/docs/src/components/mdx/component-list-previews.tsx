@@ -451,7 +451,7 @@ export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
       </div>
     </div>
   ),
-  sheet: () => (
+  drawer: () => (
     <div className="bg-background border-border relative h-36 w-52 overflow-hidden rounded-md border shadow-2xl">
       <div className="pointer-events-none absolute inset-0 space-y-2 p-4 opacity-10">
         <MockBar className="w-full" />
@@ -507,16 +507,16 @@ export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
   switch: () => (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <label className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full">
+        <div className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full">
           <div className="bg-primary/60 pointer-events-none absolute inset-x-0 h-full w-full rounded-full" />
           <span className="bg-secondary-foreground pointer-events-none z-10 block h-5 w-5 translate-x-5 rounded-full shadow-sm" />
-        </label>
+        </div>
       </div>
       <div className="flex items-center justify-between">
-        <label className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full">
+        <div className="relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full">
           <div className="bg-input pointer-events-none absolute inset-x-0 h-full w-full rounded-full" />
           <span className="bg-secondary-foreground/60 pointer-events-none z-10 block h-5 w-5 translate-x-0 rounded-full shadow-sm" />
-        </label>
+        </div>
       </div>
     </div>
   ),

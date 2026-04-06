@@ -139,9 +139,9 @@
           "description": "Un divisor visual para separar secciones de contenido con label opcional."
         },
         {
-          "title": "Sheet",
-          "href": "/docs/components/sheet",
-          "description": "Componente de hoja para mostrar contenido adicional."
+          "title": "Drawer",
+          "href": "/docs/components/drawer",
+          "description": "Un panel que se desliza desde el borde de la pantalla para mostrar contenido complementario."
         },
         {
           "title": "Skeleton",

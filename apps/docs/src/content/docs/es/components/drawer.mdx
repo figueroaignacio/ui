@@ -1,0 +1,115 @@
+---
+title: Drawer
+description: Un panel que se desliza desde el borde de la pantalla para mostrar contenido complementario.
+published: true
+date: 2025-10-22
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="drawer" demo="default" />
+
+## Instalación
+
+<Steps>
+
+#### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="drawer" />
+
+#### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Drawer } from '@/components/ui/drawer';
+```
+
+```tsx
+<Drawer>
+  <Drawer.Trigger>
+    <Button>Abrir Drawer</Button>
+  </Drawer.Trigger>
+  <Drawer.Content>
+    <Drawer.Header>
+      <Drawer.Title>Título del Drawer</Drawer.Title>
+      <Drawer.Description>Este es un componente drawer.</Drawer.Description>
+    </Drawer.Header>
+    <div>Tu contenido aquí</div>
+  </Drawer.Content>
+</Drawer>
+```
+
+## Características
+
+- **Múltiples lados** - Desliza desde abajo, arriba, izquierda o derecha
+- **Arrastrar para cerrar** - Desliza para descartar en cualquier dirección
+- **Responsivo** - Se adapta a diferentes tamaños de pantalla
+- **Animaciones suaves** - Transiciones de deslizamiento basadas en resorte
+- **Trampa de foco** - La navegación por teclado se mantiene dentro del drawer
+- **Bloqueo de scroll** - Evita el desplazamiento del fondo cuando está abierto
+
+## Variantes
+
+### Posiciones (Positions)
+
+<ComponentPreview component="drawer" demo="positions" />
+
+### Formulario (Form)
+
+<ComponentPreview component="drawer" demo="form" />
+
+## Referencia de API
+
+### Drawer
+
+| Prop           | Tipo                      | Por defecto | Descripción                      |
+| -------------- | ------------------------- | ----------- | -------------------------------- |
+| `children`     | `ReactNode`               | -           | Activador y contenido del drawer |
+| `defaultOpen`  | `boolean`                 | `false`     | Estado abierto inicial           |
+| `open`         | `boolean`                 | -           | Estado abierto controlado        |
+| `onOpenChange` | `(open: boolean) => void` | -           | Callback cuando cambia el estado |
+
+### Drawer.Trigger
+
+| Prop        | Tipo                     | Por defecto | Descripción                   |
+| ----------- | ------------------------ | ----------- | ----------------------------- |
+| `children`  | `ReactNode`              | -           | Contenido del botón activador |
+| `className` | `string`                 | -           | Clases CSS adicionales        |
+| `variant`   | `ButtonProps['variant']` | -           | Variante del botón            |
+| `size`      | `ButtonProps['size']`    | -           | Tamaño del botón              |
+
+### Drawer.Content
+
+| Prop             | Tipo                                     | Por defecto | Descripción                         |
+| ---------------- | ---------------------------------------- | ----------- | ----------------------------------- |
+| `side`           | `'bottom' \| 'top' \| 'left' \| 'right'` | `'bottom'`  | Lado desde el que deslizar          |
+| `showDragHandle` | `boolean`                                | `true`      | Mostrar asa de arrastre para cerrar |
+| `className`      | `string`                                 | -           | Clases CSS adicionales              |
+
+### Drawer.Header
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### Drawer.Title
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### Drawer.Description
+
+| Prop        | Tipo     | Por defecto | Descripción            |
+| ----------- | -------- | ----------- | ---------------------- |
+| `className` | `string` | -           | Clases CSS adicionales |
+
+### Drawer.Close
+
+| Prop       | Tipo        | Por defecto | Descripción        |
+| ---------- | ----------- | ----------- | ------------------ |
+| `children` | `ReactNode` | -           | Contenido clicable |

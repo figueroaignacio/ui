@@ -58,9 +58,9 @@ import { Default as SelectDefault } from '../../../../../packages/ui/src/demos/s
 import { GroupedItems as SelectGroupedItems } from '../../../../../packages/ui/src/demos/select/grouped-items';
 import { Default as SeparatorDefault } from '../../../../../packages/ui/src/demos/separator/default';
 import { WithLabel as SeparatorWithLabel } from '../../../../../packages/ui/src/demos/separator/with-label';
-import { Default as SheetDefault } from '../../../../../packages/ui/src/demos/sheet/default';
-import { Positions as SheetPositions } from '../../../../../packages/ui/src/demos/sheet/positions';
-import { Sizes as SheetSizes } from '../../../../../packages/ui/src/demos/sheet/sizes';
+import { Default as DrawerDefault } from '../../../../../packages/ui/src/demos/drawer/default';
+import { Positions as DrawerPositions } from '../../../../../packages/ui/src/demos/drawer/positions';
+import { Form as DrawerForm } from '../../../../../packages/ui/src/demos/drawer/form';
 import { Card as SkeletonCard } from '../../../../../packages/ui/src/demos/skeleton/card';
 import { Default as SkeletonDefault } from '../../../../../packages/ui/src/demos/skeleton/default';
 import { Default as SwitchDefault } from '../../../../../packages/ui/src/demos/switch/default';
@@ -182,10 +182,10 @@ export const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>
     default: SelectDefault,
     'grouped-items': SelectGroupedItems,
   },
-  sheet: {
-    default: SheetDefault,
-    positions: SheetPositions,
-    sizes: SheetSizes,
+  drawer: {
+    default: DrawerDefault,
+    positions: DrawerPositions,
+    form: DrawerForm,
   },
   separator: {
     default: SeparatorDefault,

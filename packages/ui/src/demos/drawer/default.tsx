@@ -1,13 +1,13 @@
 'use client';
 
 import { Button } from '../../components/button';
-import { Sheet } from '../../components/sheet';
+import { Drawer } from '../../components/drawer';
 
 export function Default() {
   return (
-    <Sheet>
-      <Sheet.Trigger>Open Sheet</Sheet.Trigger>
-      <Sheet.Content side="right" size="sm">
+    <Drawer>
+      <Drawer.Trigger variant="outline">Open Drawer</Drawer.Trigger>
+      <Drawer.Content side="right">
         <div className="flex flex-col gap-4">
           <h2 className="text-lg font-semibold">Notifications</h2>
           <p className="text-muted-foreground text-sm">
@@ -27,13 +27,11 @@ export function Default() {
           </div>
 
           <div className="mt-4 flex justify-end gap-2">
-            <Sheet.Close>
-              <Button variant="outline">Dismiss All</Button>
-            </Sheet.Close>
+            <Drawer.Close>Dismiss All</Drawer.Close>
             <Button>View Details</Button>
           </div>
         </div>
-      </Sheet.Content>
-    </Sheet>
+      </Drawer.Content>
+    </Drawer>
   );
 }
