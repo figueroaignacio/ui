@@ -14,13 +14,10 @@ export function PreviewStatus() {
           <div className="text-muted-foreground text-xs">45s</div>
         </div>
         <Callout variant="info" className="bg-info/10 text-info border-info/20 px-3 py-2.5 text-xs">
-          <Callout.Icon />
-          <Callout.Text>
-            <Callout.Content>
-              Building serverless functions in region us-east-1. This usually takes around 2
-              minutes.
-            </Callout.Content>
-          </Callout.Text>
+          <Callout.Title>Info</Callout.Title>
+          <Callout.Content>
+            Building serverless functions in region us-east-1. This usually takes around 2 minutes.
+          </Callout.Content>
         </Callout>
       </Card.Content>
     </Card>
