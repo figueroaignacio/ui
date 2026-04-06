@@ -59,6 +59,11 @@
           "description": "Displays a badge or a component that looks like a badge."
         },
         {
+          "title": "Banner",
+          "href": "/docs/components/banner",
+          "description": "A banner to show important information to the user."
+        },
+        {
           "title": "Breadcrumb",
           "href": "/docs/components/breadcrumb",
           "description": "Indicates the location within the site through a sequence of links."
@@ -92,6 +97,11 @@
           "title": "Dialog",
           "href": "/docs/components/dialog",
           "description": "Modal windows for user notifications and interactions."
+        },
+        {
+          "title": "Drawer",
+          "href": "/docs/components/drawer",
+          "description": "A panel that slides in from the edge of the screen to display supplementary content."
         },
         {
           "title": "Dropdown Menu",
@@ -138,11 +148,7 @@
           "href": "/docs/components/separator",
           "description": "A visual divider for separating content with optional label."
         },
-        {
-          "title": "Drawer",
-          "href": "/docs/components/drawer",
-          "description": "A panel that slides in from the edge of the screen to display supplementary content."
-        },
+
         {
           "title": "Skeleton",
           "href": "/docs/components/skeleton",

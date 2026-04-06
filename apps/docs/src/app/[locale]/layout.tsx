@@ -4,10 +4,10 @@ import { Providers } from '@/components/providers';
 import { routing } from '@/i18n/routing';
 import { fontHeading, fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
+import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;

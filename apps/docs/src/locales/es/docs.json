@@ -59,6 +59,11 @@
           "description": "Muestra una insignia o un componente visual tipo etiqueta."
         },
         {
+          "title": "Banner",
+          "href": "/docs/components/banner",
+          "description": "Un banner para mostrar información importante al usuario."
+        },
+        {
           "title": "Breadcrumb",
           "href": "/docs/components/breadcrumb",
           "description": "Indica la ubicación actual dentro del sitio a través de una secuencia de enlaces."
@@ -92,6 +97,11 @@
           "title": "Dialog",
           "href": "/docs/components/dialog",
           "description": "Ventanas modales para interacción con el usuario."
+        },
+        {
+          "title": "Drawer",
+          "href": "/docs/components/drawer",
+          "description": "Un panel que se desliza desde el borde de la pantalla para mostrar contenido complementario."
         },
         {
           "title": "Dropdown Menu",
@@ -137,11 +147,6 @@
           "title": "Separator",
           "href": "/docs/components/separator",
           "description": "Un divisor visual para separar secciones de contenido con label opcional."
-        },
-        {
-          "title": "Drawer",
-          "href": "/docs/components/drawer",
-          "description": "Un panel que se desliza desde el borde de la pantalla para mostrar contenido complementario."
         },
         {
           "title": "Skeleton",

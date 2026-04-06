@@ -18,6 +18,32 @@ const MockBar = ({ className }: { className?: string }) => (
 );
 
 export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
+  banner: () => (
+    <div className="flex w-[220px] items-center gap-2.5 border-b px-3 py-2 text-sm">
+      <HugeiconsIcon icon={InformationCircleIcon} size={13} className="shrink-0 opacity-80" />
+      <div className="flex flex-1 items-center gap-2">
+        <div className="flex-1 space-y-1">
+          <MockBar className="h-1.5 w-20 bg-current opacity-60" />
+          <MockBar className="h-1 w-full bg-current opacity-25" />
+        </div>
+        <div className="flex h-5 items-center rounded border border-current/20 px-1.5">
+          <MockBar className="h-1 w-6 bg-current opacity-40" />
+        </div>
+      </div>
+      <div className="shrink-0 opacity-40">
+        <svg
+          width="9"
+          height="9"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </div>
+    </div>
+  ),
   button: () => (
     <div className="flex items-center gap-2">
       <div className="bg-primary/80 inline-flex h-9 items-center rounded-xl px-4 shadow-md">
@@ -487,7 +513,6 @@ export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
       </div>
     </div>
   ),
-
   skeleton: () => (
     <div className="w-[205px] space-y-3.5">
       <div className="flex items-center gap-3">

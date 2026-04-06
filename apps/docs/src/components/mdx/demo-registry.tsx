@@ -1,4 +1,10 @@
 import React from 'react';
+import { Default as BannerDefault } from '../../../../../packages/ui/src/demos/banner/default';
+import { Dismissible as BannerDismissible } from '../../../../../packages/ui/src/demos/banner/dismissible';
+import { Info as BannerInfo } from '../../../../../packages/ui/src/demos/banner/info';
+import { Warning as BannerWarning } from '../../../../../packages/ui/src/demos/banner/warning';
+import { Danger as BannerDanger } from '../../../../../packages/ui/src/demos/banner/danger';
+import { Success as BannerSuccess } from '../../../../../packages/ui/src/demos/banner/success';
 import { Collapsed as AccordionCollapsed } from '../../../../../packages/ui/src/demos/accordion/collapsed';
 import { Default as AccordionDefault } from '../../../../../packages/ui/src/demos/accordion/default';
 import { Multiple as AccordionMultiple } from '../../../../../packages/ui/src/demos/accordion/multiple';
@@ -86,6 +92,14 @@ import SpinnerSizes from '../../../../../packages/ui/src/demos/spinner/sizes';
 import SpinnerVariants from '../../../../../packages/ui/src/demos/spinner/variants';
 
 export const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
+  banner: {
+    default: BannerDefault,
+    info: BannerInfo,
+    warning: BannerWarning,
+    danger: BannerDanger,
+    success: BannerSuccess,
+    dismissible: BannerDismissible,
+  },
   button: {
     default: ButtonDefault,
     sizes: ButtonSizes,

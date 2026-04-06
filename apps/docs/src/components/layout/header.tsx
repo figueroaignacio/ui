@@ -3,7 +3,7 @@ import { Navbar } from './navbar';
 
 export function Header() {
   return (
-    <header className="border-border bg-background sticky top-0 z-100 border-b">
+    <header className="border-border bg-background sticky top-0 z-100 flex flex-col border-b">
       <Navbar />
       <MobileMenu />
     </header>

@@ -66,5 +66,8 @@
   "copyMarkdown": {
     "label": "Copy Markdown",
     "copied": "Copied!"
+  },
+  "banner": {
+    "title": "Still cooking. But it works, I promise - Nacho"
   }
 }

@@ -1,0 +1,104 @@
+---
+title: Banner
+description: A full-width notification strip for page-level announcements.
+published: true
+date: 2024-03-24
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="banner" demo="default" />
+
+## Installation
+
+<Steps>
+
+#### Copy and paste the following code into your project.
+
+<ComponentSource component="banner" />
+
+#### Update the import paths to match your project structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Banner } from '@/components/ui/banner';
+```
+
+```tsx
+<Banner variant="info">
+  <Banner.Content>
+    <Banner.Title>Announcement</Banner.Title>
+    <Banner.Description>Something important happened.</Banner.Description>
+  </Banner.Content>
+  <Banner.Action href="/changelog">Learn more</Banner.Action>
+</Banner>
+```
+
+## Variants
+
+### info
+
+<ComponentPreview component="banner" demo="info" />
+
+### warning
+
+<ComponentPreview component="banner" demo="warning" />
+
+### danger
+
+<ComponentPreview component="banner" demo="danger" />
+
+### success
+
+<ComponentPreview component="banner" demo="success" />
+
+### Dismissible
+
+<ComponentPreview component="banner" demo="dismissible" />
+
+## API Reference
+
+### Banner
+
+| Prop        | Type                                                                | Default     | Description                                         |
+| ----------- | ------------------------------------------------------------------- | ----------- | --------------------------------------------------- |
+| `variant`   | `"default"` \| `"info"` \| `"warning"` \| `"danger"` \| `"success"` | `"default"` | Controls the visual treatment and surface colors.   |
+| `icon`      | `React.ReactNode`                                                   | —           | Optional custom icon overriding the variant icon.   |
+| `onClose`   | `() => void`                                                        | —           | Callback fired when the banner is dismissed.        |
+| `sticky`    | `boolean`                                                           | `false`     | Sticks the banner to the top of the viewport.       |
+| `className` | `string`                                                            | —           | Additional CSS class names.                         |
+| `children`  | `React.ReactNode`                                                   | —           | Compose the banner with Content, Title, and Action. |
+
+### Banner.Content
+
+| Prop        | Type              | Default | Description                  |
+| ----------- | ----------------- | ------- | ---------------------------- |
+| `children`  | `React.ReactNode` | —       | Wraps Title and Description. |
+| `className` | `string`          | —       | Additional CSS class names.  |
+
+### Banner.Title
+
+| Prop        | Type              | Default | Description                  |
+| ----------- | ----------------- | ------- | ---------------------------- |
+| `children`  | `React.ReactNode` | —       | Heading text for the banner. |
+| `className` | `string`          | —       | Additional CSS class names.  |
+
+### Banner.Description
+
+| Prop        | Type              | Default | Description                     |
+| ----------- | ----------------- | ------- | ------------------------------- |
+| `children`  | `React.ReactNode` | —       | Supporting text for the banner. |
+| `className` | `string`          | —       | Additional CSS class names.     |
+
+### Banner.Action
+
+| Prop        | Type              | Default | Description                 |
+| ----------- | ----------------- | ------- | --------------------------- |
+| `href`      | `string`          | —       | Link destination.           |
+| `children`  | `React.ReactNode` | —       | Action label text.          |
+| `className` | `string`          | —       | Additional CSS class names. |

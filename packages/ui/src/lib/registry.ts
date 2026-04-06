@@ -1,4 +1,5 @@
 export const COMPONENT_REGISTRY = {
+  banner: 'packages/ui/src/components/banner.tsx',
   button: 'packages/ui/src/components/button.tsx',
   accordion: 'packages/ui/src/components/accordion.tsx',
   avatar: 'packages/ui/src/components/avatar.tsx',
@@ -29,6 +30,15 @@ export const COMPONENT_REGISTRY = {
 } as const;
 
 export const DEMO_REGISTRY = {
+  // Banner demos
+  banner: {
+    default: 'packages/ui/src/demos/banner/default.tsx',
+    info: 'packages/ui/src/demos/banner/info.tsx',
+    warning: 'packages/ui/src/demos/banner/warning.tsx',
+    danger: 'packages/ui/src/demos/banner/danger.tsx',
+    success: 'packages/ui/src/demos/banner/success.tsx',
+    dismissible: 'packages/ui/src/demos/banner/dismissible.tsx',
+  },
   // Button demos
   button: {
     default: 'packages/ui/src/demos/button/default.tsx',
