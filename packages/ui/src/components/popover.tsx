@@ -4,7 +4,6 @@ import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { AnimatePresence, type HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
 
 // --- Animation constants ---
@@ -202,9 +201,6 @@ const PopoverContent = ({
   ...props
 }: PopoverContentProps) => {
   const { open, id, setOpen } = usePopoverContext();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => setMounted(true), []);
 
   const sideOffsetStyle = React.useMemo(
     () => ({
@@ -217,7 +213,7 @@ const PopoverContent = ({
     [side, sideOffset],
   );
 
-  const content = (
+  return (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -229,7 +225,7 @@ const PopoverContent = ({
           transition={POPOVER_TRANSITION}
           style={sideOffsetStyle}
           className={cn(
-            'bg-popover text-popover-foreground fixed z-50 w-72 rounded-xl border p-4 shadow-md outline-none',
+            'bg-popover text-popover-foreground absolute z-50 w-72 rounded-xl border p-4 shadow-md outline-none',
             POPOVER_POSITION_CLASSES[side],
             className,
           )}
@@ -250,9 +246,6 @@ const PopoverContent = ({
       )}
     </AnimatePresence>
   );
-
-  if (!mounted) return null;
-  return createPortal(content, document.body);
 };
 PopoverContent.displayName = 'PopoverContent';
 

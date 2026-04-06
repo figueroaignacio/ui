@@ -1,8 +1,7 @@
 'use client';
 
-import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
+import { AnimatePresence, type HTMLMotionProps, motion } from 'motion/react';
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { cn } from '../lib/cn';
 
 // --- Animation constants (module level) ---
@@ -191,9 +190,6 @@ const TooltipContent = ({
   ...props
 }: TooltipContentProps) => {
   const { open, id } = useTooltip();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => setMounted(true), []);
 
   const sideOffsetStyle = React.useMemo(
     () => ({
@@ -206,7 +202,7 @@ const TooltipContent = ({
     [side, sideOffset],
   );
 
-  const content = (
+  return (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -218,7 +214,7 @@ const TooltipContent = ({
           transition={TOOLTIP_TRANSITION}
           style={sideOffsetStyle}
           className={cn(
-            'bg-foreground text-background fixed z-50 rounded-xl px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
+            'bg-foreground text-background absolute z-50 rounded-xl px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
             TOOLTIP_POSITION_CLASSES[side],
             className,
           )}
@@ -232,9 +228,6 @@ const TooltipContent = ({
       )}
     </AnimatePresence>
   );
-
-  if (!mounted) return null;
-  return createPortal(content, document.body);
 };
 
 const Tooltip = Object.assign(TooltipRoot, {
