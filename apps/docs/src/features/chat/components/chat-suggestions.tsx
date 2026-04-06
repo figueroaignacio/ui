@@ -47,7 +47,7 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
               onClick={() => onSuggestionClick(suggestion.text)}
               className="transition-all duration-300 hover:-translate-y-0.5"
             >
-              <div className="bg-secondary border-border flex cursor-pointer items-center gap-1 rounded-2xl border px-4 py-2">
+              <div className="bg-foreground text-background border-border flex cursor-pointer items-center gap-1 rounded-2xl border px-4 py-2">
                 <div>
                   <HugeiconsIcon icon={suggestion.icon} size={16} />
                 </div>
