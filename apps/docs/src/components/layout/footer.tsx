@@ -118,7 +118,7 @@ export function Footer() {
           </div>
         </div>
         <p className="text-muted-foreground text-center text-xs lg:text-left">
-          I was told to keep it simple. I listened. - Nacho
+          I was told to keep it simple. So I did. - Nacho
         </p>
       </div>
     </footer>
