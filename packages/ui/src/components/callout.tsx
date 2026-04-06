@@ -24,17 +24,64 @@ const calloutVariants = cva('flex w-full items-start gap-3 rounded-md border p-4
   },
 });
 
-interface CalloutProps
-  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof calloutVariants> {
-  icon?: React.ReactNode;
-  title?: string;
-}
+type CalloutProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof calloutVariants> & {
+    ref?: React.Ref<HTMLDivElement>;
+    icon?: React.ReactNode;
+  };
 
-const CalloutTitle = ({
+type CalloutVariant = NonNullable<CalloutProps['variant']>;
+
+const getDefaultIcon = (variant: CalloutVariant) => {
+  switch (variant) {
+    case 'info':
+      return <HugeiconsIcon icon={InformationCircleIcon} size={18} />;
+    case 'warning':
+      return <HugeiconsIcon icon={Alert02Icon} size={18} />;
+    case 'danger':
+      return <HugeiconsIcon icon={AlertCircleIcon} size={18} />;
+    case 'success':
+      return <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />;
+    default:
+      return null;
+  }
+};
+
+type DivWithRefProps = React.HTMLAttributes<HTMLDivElement> & {
+  ref?: React.Ref<HTMLDivElement>;
+};
+
+const CalloutRoot = ({
   className,
+  variant = 'default',
+  icon,
+  children,
   ref,
   ...props
-}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => (
+}: CalloutProps) => {
+  const resolvedVariant: CalloutVariant = variant ?? 'default';
+  const role = resolvedVariant === 'danger' || resolvedVariant === 'warning' ? 'alert' : 'region';
+  const resolvedIcon = icon ?? getDefaultIcon(resolvedVariant);
+
+  return (
+    <div
+      ref={ref}
+      role={role}
+      className={cn(calloutVariants({ variant: resolvedVariant }), className)}
+      {...props}
+    >
+      {resolvedIcon && (
+        <div aria-hidden="true" className="mt-0.5 shrink-0 text-base select-none">
+          {resolvedIcon}
+        </div>
+      )}
+      <div className="flex-1 space-y-1">{children}</div>
+    </div>
+  );
+};
+CalloutRoot.displayName = 'Callout';
+
+const CalloutTitle = ({ className, ref, ...props }: DivWithRefProps) => (
   <div
     ref={ref}
     className={cn('leading-none font-semibold tracking-tight', className)}
@@ -43,11 +90,7 @@ const CalloutTitle = ({
 );
 CalloutTitle.displayName = 'CalloutTitle';
 
-const CalloutContent = ({
-  className,
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => (
+const CalloutContent = ({ className, ref, ...props }: DivWithRefProps) => (
   <div
     ref={ref}
     className={cn('text-muted-foreground/90 [&_p]:leading-relaxed', className)}
@@ -56,66 +99,9 @@ const CalloutContent = ({
 );
 CalloutContent.displayName = 'CalloutContent';
 
-const CalloutIcon = ({
-  className,
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => (
-  <div
-    ref={ref}
-    aria-hidden="true"
-    className={cn('mt-0.5 shrink-0 text-base select-none', className)}
-    {...props}
-  />
-);
-CalloutIcon.displayName = 'CalloutIcon';
-
-const CalloutRoot = ({
-  className,
-  variant,
-  icon,
-  title,
-  children,
-  ref,
-  ...props
-}: CalloutProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  const getIcon = () => {
-    if (icon) return icon;
-
-    switch (variant) {
-      case 'info':
-        return <HugeiconsIcon icon={InformationCircleIcon} size={18} />;
-      case 'warning':
-        return <HugeiconsIcon icon={Alert02Icon} size={18} />;
-      case 'danger':
-        return <HugeiconsIcon icon={AlertCircleIcon} size={18} />;
-      case 'success':
-        return <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />;
-      default:
-        return null;
-    }
-  };
-
-  const calloutIcon = getIcon();
-  const role = variant === 'danger' || variant === 'warning' ? 'alert' : 'region';
-
-  return (
-    <div ref={ref} role={role} className={cn(calloutVariants({ variant }), className)} {...props}>
-      {calloutIcon ? <CalloutIcon>{calloutIcon}</CalloutIcon> : null}
-      <div className="flex-1 space-y-1">
-        {title ? <CalloutTitle>{title}</CalloutTitle> : null}
-        <CalloutContent>{children}</CalloutContent>
-      </div>
-    </div>
-  );
-};
-
-CalloutRoot.displayName = 'Callout';
-
 const Callout = Object.assign(CalloutRoot, {
   Title: CalloutTitle,
   Content: CalloutContent,
-  Icon: CalloutIcon,
 });
 
 export { Callout, calloutVariants };

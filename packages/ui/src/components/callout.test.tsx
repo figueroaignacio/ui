@@ -3,31 +3,49 @@ import { describe, expect, it } from 'vitest';
 import { Callout } from './callout';
 
 describe('Callout', () => {
-  it('renders default variant correctly', () => {
-    render(<Callout title="Note">This is a callout.</Callout>);
+  it('renders the default variant with structured children', () => {
+    render(
+      <Callout>
+        <Callout.Text>
+          <Callout.Title>Note</Callout.Title>
+          <Callout.Content>This is a callout.</Callout.Content>
+        </Callout.Text>
+      </Callout>,
+    );
+
     expect(screen.getByText('Note')).toBeInTheDocument();
     expect(screen.getByText('This is a callout.')).toBeInTheDocument();
-    // Default callouts have role="region"
     expect(screen.getByRole('region')).toBeInTheDocument();
   });
 
-  it('renders specific variant (danger) as an alert', () => {
+  it('renders danger variant as an alert with default icon', () => {
     render(
-      <Callout variant="danger" title="Error">
-        Something went wrong.
+      <Callout variant="danger">
+        <Callout.Icon data-testid="callout-icon" />
+        <Callout.Text>
+          <Callout.Title>Error</Callout.Title>
+          <Callout.Content>Something went wrong.</Callout.Content>
+        </Callout.Text>
       </Callout>,
     );
-    // Danger variant uses role="alert"
+
     expect(screen.getByRole('alert')).toBeInTheDocument();
-    expect(screen.getByText('Error')).toBeInTheDocument();
+    expect(screen.getByTestId('callout-icon').innerHTML).not.toEqual('');
   });
 
-  it('allows custom icons', () => {
+  it('allows custom icons through Callout.Icon children', () => {
     render(
-      <Callout title="Custom" icon={<span data-testid="custom-icon">Icon</span>}>
-        Has a custom icon.
+      <Callout>
+        <Callout.Icon>
+          <span data-testid="custom-icon">Icon</span>
+        </Callout.Icon>
+        <Callout.Text>
+          <Callout.Title>Custom</Callout.Title>
+          <Callout.Content>Has a custom icon.</Callout.Content>
+        </Callout.Text>
       </Callout>,
     );
+
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
   });
 });

@@ -25,7 +25,10 @@ export async function ComponentPreview({
   if (error) {
     return (
       <Callout variant="danger" className="my-4">
-        {error ?? `Error: Demo "${demo}" not found for component "${component}".`}
+        <Callout.Title>Unable to load demo</Callout.Title>
+        <Callout.Content>
+          {error ?? `Error: Demo "${demo}" not found for component "${component}".`}
+        </Callout.Content>
       </Callout>
     );
   }
@@ -35,7 +38,10 @@ export async function ComponentPreview({
   if (!DemoComponent) {
     return (
       <Callout variant="danger" className="my-4">
-        Error: Demo component not imported for &quot;{component}/{demo}&quot;.
+        <Callout.Title>Missing demo import</Callout.Title>
+        <Callout.Content>
+          Error: Demo component not imported for &quot;{component}/{demo}&quot;.
+        </Callout.Content>
       </Callout>
     );
   }
