@@ -2,8 +2,19 @@
   "name": "@repo/db",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "pnpm exec tsx --env-file=.env src/migrate.ts",
     "db:push": "drizzle-kit push",
@@ -20,6 +31,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^25.5.2",
     "drizzle-kit": "^0.31.10",
+    "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }
