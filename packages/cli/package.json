@@ -16,6 +16,7 @@
     "dev": "tsx src/index.ts",
     "build": "tsup",
     "prepublishOnly": "pnpm build",
+    "release": "npm publish --access public",
     "release:patch": "npm version patch && npm publish --access public",
     "release:minor": "npm version minor && npm publish --access public"
   },
