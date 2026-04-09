@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:3001/api/v1';
+const API_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api-nach-ui.vercel.app/api/v1'
+    : 'http://localhost:3001/api/v1';
 
 export interface RegistryComponent {
   name: string;
