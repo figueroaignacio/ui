@@ -20,4 +20,14 @@ export const api = {
 
     return response.json() as Promise<RegistryComponent>;
   },
+
+  async getComponents(): Promise<RegistryComponent[]> {
+    const response = await fetch(`${API_URL}/registry`);
+
+    if (!response.ok) {
+      throw new Error('Error connecting to the API.');
+    }
+
+    return response.json() as Promise<RegistryComponent[]>;
+  },
 };
