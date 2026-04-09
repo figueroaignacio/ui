@@ -10,7 +10,8 @@
     "start": "turbo start",
     "test": "turbo test",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "registry:sync": "tsx --env-file=packages/db/.env scripts/sync-registry.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -29,12 +30,14 @@
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@commitlint/types": "^20.5.0",
+    "@repo/db": "workspace:*",
     "eslint": "^10.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "turbo": "^2.9.3",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.0"

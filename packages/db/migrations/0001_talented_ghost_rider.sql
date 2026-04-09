@@ -1,0 +1,1 @@
+ALTER TABLE "components" ADD COLUMN "dependencies" jsonb DEFAULT '[]'::jsonb;

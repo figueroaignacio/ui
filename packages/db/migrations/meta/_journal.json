@@ -8,6 +8,13 @@
       "when": 1775684191354,
       "tag": "0000_graceful_steel_serpent",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1775688998584,
+      "tag": "0001_talented_ghost_rider",
+      "breakpoints": true
     }
   ]
 }

@@ -5,6 +5,7 @@ export const components = pgTable('components', {
   name: text('name').notNull(),
   slug: text('slug').unique().notNull(),
   code: text('code').notNull(),
+  dependencies: jsonb('dependencies').$type<string[]>().default([]),
   registryDependencies: jsonb('registry_dependencies').$type<string[]>().default([]),
   type: text('type').$type<'ui' | 'hook' | 'utils'>().default('ui'),
   createdAt: timestamp('created_at').defaultNow(),

@@ -9,6 +9,7 @@ export class RegistryRepository {
         name: components.name,
         slug: components.slug,
         type: components.type,
+        dependencies: components.dependencies,
       })
       .from(components);
   }
