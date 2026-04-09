@@ -27,6 +27,7 @@ export const COMPONENT_REGISTRY = {
   toast: 'packages/ui/src/components/toast.tsx',
   tooltip: 'packages/ui/src/components/tooltip.tsx',
   spinner: 'packages/ui/src/components/spinner.tsx',
+  kbd: 'packages/ui/src/components/kbd.tsx',
 } as const;
 
 export const DEMO_REGISTRY = {
@@ -211,6 +212,13 @@ export const DEMO_REGISTRY = {
     default: 'packages/ui/src/demos/spinner/default.tsx',
     sizes: 'packages/ui/src/demos/spinner/sizes.tsx',
     variants: 'packages/ui/src/demos/spinner/variants.tsx',
+  },
+  // Kbd demos
+  kbd: {
+    default: 'packages/ui/src/demos/kbd/default.tsx',
+    sizes: 'packages/ui/src/demos/kbd/sizes.tsx',
+    variants: 'packages/ui/src/demos/kbd/variants.tsx',
+    'with-group': 'packages/ui/src/demos/kbd/with-group.tsx',
   },
 } as const;
 

@@ -8,7 +8,15 @@ type LabelProps = React.LabelHTMLAttributes<HTMLLabelElement> & {
   description?: string;
 };
 
-function Label({ className, required, optional, description, children, ref, ...props }: LabelProps) {
+function Label({
+  className,
+  required,
+  optional,
+  description,
+  children,
+  ref,
+  ...props
+}: LabelProps) {
   return (
     <div className="flex flex-col gap-1">
       <label
@@ -22,13 +30,9 @@ function Label({ className, required, optional, description, children, ref, ...p
       >
         {children}
         {required && <span className="text-destructive text-sm">*</span>}
-        {optional && (
-          <span className="text-muted-foreground text-xs font-normal">(optional)</span>
-        )}
+        {optional && <span className="text-muted-foreground text-xs font-normal">(optional)</span>}
       </label>
-      {description && (
-        <span className="text-muted-foreground text-xs">{description}</span>
-      )}
+      {description && <span className="text-muted-foreground text-xs">{description}</span>}
     </div>
   );
 }

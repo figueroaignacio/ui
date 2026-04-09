@@ -14,7 +14,7 @@ export function Default() {
       <Popover.Content showClose>
         <div className="grid gap-4">
           <div className="space-y-2">
-            <h4 className="font-medium leading-none">Dimensions</h4>
+            <h4 className="leading-none font-medium">Dimensions</h4>
             <p className="text-muted-foreground text-sm">Set the dimensions for the layer.</p>
           </div>
           <div className="grid gap-2">

@@ -49,13 +49,7 @@ describe('Input', () => {
   });
 
   it('renders description and error with proper aria-describedby', () => {
-    render(
-      <Input
-        id="test"
-        description="Helper text"
-        error="Error text"
-      />,
-    );
+    render(<Input id="test" description="Helper text" error="Error text" />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('aria-describedby', 'test-description test-error');
     expect(screen.getByText('Helper text')).toBeInTheDocument();
@@ -63,23 +57,13 @@ describe('Input', () => {
   });
 
   it('renders with left icon', () => {
-    render(
-      <Input
-        leftIcon={<span data-testid="left-icon">🔍</span>}
-        placeholder="Search..."
-      />,
-    );
+    render(<Input leftIcon={<span data-testid="left-icon">🔍</span>} placeholder="Search..." />);
     expect(screen.getByTestId('left-icon')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
   });
 
   it('renders with right icon', () => {
-    render(
-      <Input
-        rightIcon={<span data-testid="right-icon">👁</span>}
-        placeholder="Password"
-      />,
-    );
+    render(<Input rightIcon={<span data-testid="right-icon">👁</span>} placeholder="Password" />);
     expect(screen.getByTestId('right-icon')).toBeInTheDocument();
   });
 

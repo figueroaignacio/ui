@@ -119,6 +119,11 @@
           "description": "Un campo de texto con label, manejo de errores, slots de íconos y variantes de tamaño."
         },
         {
+          "title": "Kbd",
+          "href": "/docs/components/kbd",
+          "description": "Un componente para mostrar atajos de teclado."
+        },
+        {
           "title": "Label",
           "href": "/docs/components/label",
           "description": "Un componente label con indicador de obligatoriedad, texto opcional y descripción."

@@ -1,0 +1,76 @@
+---
+title: Kbd
+description: Displays which key or combination of keys to press on the keyboard.
+published: true
+date: 2026-04-09
+label: New
+locale: en
+toc:
+  visible: true
+---
+
+<ComponentPreview component="kbd" demo="default" />
+
+## Installation
+
+<Steps>
+
+#### Copy and paste the following code into your project.
+
+<ComponentSource component="kbd" />
+
+#### Ensure you update the import paths according to your project's structure.
+
+</Steps>
+
+## Anatomy
+
+```tsx
+import { Kbd, KbdGroup } from '@/components/ui/kbd';
+```
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+```tsx
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <span>+</span>
+  <Kbd>K</Kbd>
+</KbdGroup>
+```
+
+## Sizes
+
+Use the `size` property to control the size of the `<Kbd>` component.
+
+<ComponentPreview component="kbd" demo="sizes" />
+
+## Variants
+
+You can toggle the keyboard styles by providing a `variant`.
+
+<ComponentPreview component="kbd" demo="variants" />
+
+## Key Groups
+
+Use the `<KbdGroup>` component to wrap multiple `<Kbd>` tags or group logically related commands with consistent spacing.
+
+<ComponentPreview component="kbd" demo="with-group" />
+
+## API Reference
+
+### Kbd
+
+Additional HTML properties like `className` are spread directly to the `<kbd>` element.
+
+| Prop        | Type                        | Default     | Description                                      |
+| ----------- | --------------------------- | ----------- | ------------------------------------------------ |
+| `size`      | `'default' \| 'sm' \| 'lg'` | `'default'` | Adjusts the interactive component's dimensions   |
+| `variant`   | `'default' \| 'outline'`    | `'default'` | Visual style of the element                      |
+| `abbrTitle` | `string`                    | -           | Adds a title attribute, useful for abbreviations |
+
+### KbdGroup
+
+Container for styling keyboard tags. Accepts common HTML properties (`HTMLAttributes<HTMLSpanElement>`).

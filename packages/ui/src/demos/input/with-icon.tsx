@@ -7,10 +7,7 @@ import { Input } from '../../components/input';
 export function WithIcon() {
   return (
     <div className="flex flex-col gap-4">
-      <Input
-        placeholder="Search..."
-        leftIcon={<HugeiconsIcon icon={Search01Icon} size={16} />}
-      />
+      <Input placeholder="Search..." leftIcon={<HugeiconsIcon icon={Search01Icon} size={16} />} />
       <Input
         label="Password"
         type="password"

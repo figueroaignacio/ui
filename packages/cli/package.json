@@ -6,7 +6,6 @@
     "nachui": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsx src/index.ts",
     "build": "tsc"
   },
   "dependencies": {

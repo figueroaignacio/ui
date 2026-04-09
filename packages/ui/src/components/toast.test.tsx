@@ -3,7 +3,11 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { Toast, useToast } from './toast';
 
-function TestComponent({ variant }: { variant?: 'default' | 'success' | 'error' | 'info' | 'warning' }) {
+function TestComponent({
+  variant,
+}: {
+  variant?: 'default' | 'success' | 'error' | 'info' | 'warning';
+}) {
   const { toast } = useToast();
   return (
     <button

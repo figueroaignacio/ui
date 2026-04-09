@@ -119,6 +119,11 @@
           "description": "A text input field with label, error handling, icon slots, and size variants."
         },
         {
+          "title": "Kbd",
+          "href": "/docs/components/kbd",
+          "description": "A component to display keyboard shortcuts."
+        },
+        {
           "title": "Label",
           "href": "/docs/components/label",
           "description": "A label component with required indicator, optional text, and description support."

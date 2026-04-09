@@ -1,0 +1,76 @@
+---
+title: Kbd
+description: Muestra qué tecla o combinación de teclas presionar en el teclado.
+published: true
+date: 2026-04-09
+label: New
+locale: es
+toc:
+  visible: true
+---
+
+<ComponentPreview component="kbd" demo="default" />
+
+## Instalación
+
+<Steps>
+
+#### Copia y pega el siguiente código en tu proyecto.
+
+<ComponentSource component="kbd" />
+
+#### Asegúrate de actualizar las rutas de importación según la estructura de tu proyecto.
+
+</Steps>
+
+## Anatomía
+
+```tsx
+import { Kbd, KbdGroup } from '@/components/ui/kbd';
+```
+
+```tsx
+<Kbd>Ctrl</Kbd>
+```
+
+```tsx
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <span>+</span>
+  <Kbd>K</Kbd>
+</KbdGroup>
+```
+
+## Tamaños
+
+Usa la propiedad `size` para controlar el tamaño del componente `<Kbd>`.
+
+<ComponentPreview component="kbd" demo="sizes" />
+
+## Variantes
+
+Puedes alternar los estilos del teclado proporcionando un `variant`.
+
+<ComponentPreview component="kbd" demo="variants" />
+
+## Grupos de teclas
+
+Usa el componente `<KbdGroup>` para envolver múltiples etiquetas `<Kbd>` o agrupar comandos lógicamente con un espaciado consistente.
+
+<ComponentPreview component="kbd" demo="with-group" />
+
+## Referencia de API
+
+### Kbd
+
+Las propiedades adicionales como `className` u otras de HTML se extienden directamente hacia el elemento `<kbd>`.
+
+| Prop        | Tipo                        | Por defecto | Descripción                                               |
+| ----------- | --------------------------- | ----------- | --------------------------------------------------------- |
+| `size`      | `'default' \| 'sm' \| 'lg'` | `'default'` | Ajusta las dimensiones del componente interactivo         |
+| `variant`   | `'default' \| 'outline'`    | `'default'` | Estilo visual del elemento                                |
+| `abbrTitle` | `string`                    | -           | Añade un atributo title al elemento, útil en abreviaturas |
+
+### KbdGroup
+
+Contenedor para agrupar las teclas. Recibe propiedades comunes de HTML (`HTMLAttributes<HTMLSpanElement>`).

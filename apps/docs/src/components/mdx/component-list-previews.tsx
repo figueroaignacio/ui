@@ -350,14 +350,13 @@ export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
       </div>
     </div>
   ),
-
   input: () => (
     <div className="flex w-[200px] flex-col gap-1.5">
       <div className="flex flex-col gap-1">
         <MockBar className="bg-muted-foreground/50 h-1.5 w-16" />
         <MockBar className="h-1 w-32 opacity-25" />
       </div>
-      <div className="border-input relative flex h-9 w-full items-center gap-2 rounded-md border bg-transparent px-3 shadow-xs">
+      <div className="border-input relative flex h-9 w-full items-center gap-2 rounded-sm border bg-transparent px-3 shadow-xs">
         <HugeiconsIcon
           icon={User02FreeIcons}
           size={14}
@@ -370,7 +369,17 @@ export const COMPONENT_LIST_PREVIEWS: Record<string, React.ComponentType> = {
       </div>
     </div>
   ),
-
+  kbd: () => (
+    <div className="flex items-center gap-1.5">
+      <div className="bg-muted/50 border-border/80 border-b-border text-muted-foreground rounded-md border border-b-2 px-1.5 py-0.5 font-mono text-[11px] font-medium">
+        Ctrl
+      </div>
+      <span className="text-muted-foreground/60 text-[10px]">+</span>
+      <div className="bg-muted/50 border-border/80 border-b-border text-muted-foreground rounded-md border border-b-2 px-1.5 py-0.5 font-mono text-[11px] font-medium">
+        K
+      </div>
+    </div>
+  ),
   label: () => (
     <div className="w-[185px] space-y-3">
       <div className="flex flex-col gap-1">

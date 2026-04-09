@@ -90,6 +90,10 @@ import { Disabled as RadioDisabled } from '../../../../../packages/ui/src/demos/
 import SpinnerDefault from '../../../../../packages/ui/src/demos/spinner/default';
 import SpinnerSizes from '../../../../../packages/ui/src/demos/spinner/sizes';
 import SpinnerVariants from '../../../../../packages/ui/src/demos/spinner/variants';
+import { Default as KbdDefault } from '../../../../../packages/ui/src/demos/kbd/default';
+import { Sizes as KbdSizes } from '../../../../../packages/ui/src/demos/kbd/sizes';
+import { Variants as KbdVariants } from '../../../../../packages/ui/src/demos/kbd/variants';
+import { WithGroup as KbdWithGroup } from '../../../../../packages/ui/src/demos/kbd/with-group';
 
 export const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>> = {
   banner: {
@@ -238,5 +242,11 @@ export const DEMO_COMPONENTS: Record<string, Record<string, React.ComponentType>
     default: SpinnerDefault,
     sizes: SpinnerSizes,
     variants: SpinnerVariants,
+  },
+  kbd: {
+    default: KbdDefault,
+    sizes: KbdSizes,
+    variants: KbdVariants,
+    'with-group': KbdWithGroup,
   },
 };
