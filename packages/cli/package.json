@@ -1,12 +1,23 @@
 {
-  "name": "@repo/cli",
+  "name": "nachui",
   "version": "0.0.1",
   "type": "module",
+  "description": "Official CLI for NachUI",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "nachui": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc"
+    "dev": "tsx src/index.ts",
+    "build": "tsup",
+    "prepublishOnly": "pnpm build",
+    "release:patch": "npm version patch && npm publish --access public",
+    "release:minor": "npm version minor && npm publish --access public"
   },
   "dependencies": {
     "@clack/prompts": "^0.9.1",
@@ -16,6 +27,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
+    "tsup": "^8.3.5",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
