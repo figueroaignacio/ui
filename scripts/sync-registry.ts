@@ -1,8 +1,6 @@
-// scripts/sync-registry.ts
+import { components, db } from '@repo/db';
 import fs from 'node:fs';
 import path from 'node:path';
-// Importamos lo que ya tenés en tu paquete de base de datos
-import { components, db } from '@repo/db';
 
 const UI_COMPONENTS_ROOT = path.resolve(process.cwd(), 'packages/ui/src/components');
 
@@ -12,7 +10,7 @@ function extractDependencies(code: string): string[] {
   let match;
   while ((match = importRegex.exec(code)) !== null) {
     const dep = match[1];
-    if (!dep.startsWith('.') && !dep.startsWith('@repo/')) {
+    if (dep && !dep.startsWith('.') && !dep.startsWith('@repo/')) {
       dependencies.push(dep);
     }
   }
@@ -20,7 +18,7 @@ function extractDependencies(code: string): string[] {
 }
 
 async function syncRegistry() {
-  console.log('🚀 Iniciando sincronización con el Schema de @repo/db...');
+  console.log('Starting sync registry...');
 
   const items = fs.readdirSync(UI_COMPONENTS_ROOT);
 
@@ -34,7 +32,7 @@ async function syncRegistry() {
 
     if (stats.isDirectory()) {
       const files = fs.readdirSync(itemPath);
-      const componentFile = files.find((f) => f.endsWith('.tsx') && !f.includes('.test.'));
+      const componentFile = files.find((f: string) => f.endsWith('.tsx') && !f.includes('.test.'));
       if (!componentFile) continue;
       code = fs.readFileSync(path.join(itemPath, componentFile), 'utf8');
       name = item;
@@ -46,7 +44,7 @@ async function syncRegistry() {
     } else continue;
 
     const deps = extractDependencies(code);
-    console.log(`📦 Sincronizando: ${name}`);
+    console.log(`Syncing: ${name}`);
 
     try {
       await db
@@ -56,7 +54,7 @@ async function syncRegistry() {
           slug,
           code,
           type: 'ui',
-          dependencies: deps, // Ahora que la agregaste al schema, esto NO va a fallar
+          dependencies: deps,
           registryDependencies: [],
         })
         .onConflictDoUpdate({
@@ -64,9 +62,12 @@ async function syncRegistry() {
           set: { code, dependencies: deps, updatedAt: new Date() },
         });
 
-      console.log(`✅ ${name} listo.`);
+      console.log(`✅ ${name} ready.`);
+      console.log(`Dependencies: ${deps.join(', ')}`);
     } catch (error) {
-      console.error(`❌ Error en ${name}:`, error);
+      console.error(`❌ Error syncing ${name}:`, error);
+    } finally {
+      console.log('Syncing successfully...');
     }
   }
   process.exit(0);

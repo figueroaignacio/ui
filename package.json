@@ -31,6 +31,7 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@commitlint/types": "^20.5.0",
     "@repo/db": "workspace:*",
+    "@types/node": "^25.5.2",
     "eslint": "^10.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
