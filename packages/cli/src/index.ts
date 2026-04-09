@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import * as p from '@clack/prompts';
 import { Command } from 'commander';
 import kleur from 'kleur';
