@@ -1,6 +1,6 @@
 {
   "name": "nachui",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "description": "Official CLI for NachUI",
   "main": "./dist/index.js",
@@ -12,13 +12,16 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsup",
     "prepublishOnly": "pnpm build",
-    "release": "npm publish --access public",
-    "release:patch": "npm version patch && npm publish --access public",
-    "release:minor": "npm version minor && npm publish --access public"
+    "release": "pnpm build && npm publish",
+    "release:patch": "npm version patch && pnpm release",
+    "release:minor": "npm version minor && pnpm release"
   },
   "dependencies": {
     "@clack/prompts": "^0.9.1",
