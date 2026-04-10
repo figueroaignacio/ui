@@ -8,17 +8,39 @@ function extractDependencies(code: string): string[] {
   const dependencies: string[] = [];
   const importRegex = /from\s+['"]([^'"]+)['"]/g;
   let match;
+
   while ((match = importRegex.exec(code)) !== null) {
-    const dep = match[1];
+    let dep = match[1];
+
     if (dep && !dep.startsWith('.') && !dep.startsWith('@repo/')) {
-      dependencies.push(dep);
+      const parts = dep.split('/');
+
+      if (dep.startsWith('@')) {
+        if (parts.length >= 2) {
+          dep = `${parts[0]}/${parts[1]}`;
+        }
+      } else {
+        dep = parts[0] as string;
+      }
+
+      if (dep === 'motion') {
+        dependencies.push('motion');
+      } else {
+        dependencies.push(dep);
+      }
     }
   }
+
   return [...new Set(dependencies)];
 }
 
 async function syncRegistry() {
-  console.log('Starting sync registry...');
+  console.log('🚀 Starting sync registry...');
+
+  if (!fs.existsSync(UI_COMPONENTS_ROOT)) {
+    console.error(`❌ Error: Root path not found: ${UI_COMPONENTS_ROOT}`);
+    process.exit(1);
+  }
 
   const items = fs.readdirSync(UI_COMPONENTS_ROOT);
 
@@ -44,7 +66,7 @@ async function syncRegistry() {
     } else continue;
 
     const deps = extractDependencies(code);
-    console.log(`Syncing: ${name}`);
+    console.log(`📦 Syncing: ${name}...`);
 
     try {
       await db
@@ -59,17 +81,20 @@ async function syncRegistry() {
         })
         .onConflictDoUpdate({
           target: components.slug,
-          set: { code, dependencies: deps, updatedAt: new Date() },
+          set: {
+            code,
+            dependencies: deps,
+            updatedAt: new Date(),
+          },
         });
 
-      console.log(`✅ ${name} ready.`);
-      console.log(`Dependencies: ${deps.join(', ')}`);
+      console.log(`✅ ${name} ready. (Deps: ${deps.join(', ') || 'none'})`);
     } catch (error) {
       console.error(`❌ Error syncing ${name}:`, error);
-    } finally {
-      console.log('Syncing successfully...');
     }
   }
+
+  console.log('\n✨ Syncing finished successfully.');
   process.exit(0);
 }
 
