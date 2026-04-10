@@ -1,6 +1,6 @@
 {
   "name": "nachui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
   "description": "Official CLI for NachUI",
   "main": "./dist/index.js",
