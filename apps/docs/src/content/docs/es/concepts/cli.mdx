@@ -1,0 +1,198 @@
+---
+title: CLI
+description: Usa el CLI de NachUI para inicializar tu proyecto, agregar, actualizar, eliminar y listar componentes directamente desde la terminal.
+published: true
+toc:
+  visible: true
+date: 2026-04-10
+locale: es
+---
+
+El CLI de NachUI es la forma más rápida de gestionar componentes en tu proyecto. Se conecta al registro oficial y te permite instalar, actualizar y eliminar componentes sin salir de tu terminal.
+
+## Instalación
+
+No necesitas instalar nada de forma global. Usa `pnpm dlx` o `npx` para ejecutar el CLI bajo demanda:
+
+```bash
+pnpm dlx nachui <comando>
+# o
+npx nachui <comando>
+```
+
+## Comandos
+
+### init
+
+Inicializa NachUI en tu proyecto. Este es el **primer comando que debes ejecutar**. Se encargará de:
+
+1. Obtener los temas disponibles desde el registro.
+2. Pedirte que selecciones un tema de forma interactiva.
+3. Crear un archivo de configuración `nachui.json` en la raíz de tu proyecto.
+4. Inyectar los tokens CSS de diseño en tu hoja de estilos (`src/app/globals.css` para Next.js o `src/index.css` para Vite).
+5. Generar la función utilitaria `cn` en la ruta definida por `aliases.utils`.
+
+```bash
+pnpm dlx nachui init
+```
+
+Después de ejecutar `init`, tu proyecto contendrá un archivo `nachui.json` similar a este:
+
+```json
+{
+  "$schema": "...",
+  "style": "default",
+  "tailwind": {
+    "config": "",
+    "baseColor": "zinc",
+    "css": "src/app/globals.css"
+  },
+  "aliases": {
+    "components": "@/components/ui",
+    "utils": "@/lib/utils"
+  }
+}
+```
+
+<Callout variant="info" className="mt-4">
+  <Callout.Title>Info</Callout.Title>
+  <Callout.Content>
+    Si `nachui.json` ya existe, `init` lo detectará y omitirá la re-inyección de tokens para evitar
+    duplicados.
+  </Callout.Content>
+</Callout>
+
+### add
+
+Agrega un componente del registro a tu proyecto. Requiere que exista `nachui.json` (ejecuta `init` primero).
+
+```bash
+pnpm dlx nachui add <componente>
+```
+
+**Ejemplo:**
+
+```bash
+pnpm dlx nachui add button
+```
+
+**¿Qué hace?**
+
+- Obtiene el código fuente del componente desde el registro.
+- Escribe el archivo del componente en la ruta definida en `aliases.components` (ej: `src/components/ui/button.tsx`).
+- Verifica si el componente tiene dependencias externas.
+- Si faltan dependencias, te preguntará si deseas instalarlas automáticamente usando tu gestor de paquetes (npm, pnpm, yarn o bun — detectado automáticamente).
+
+<Callout variant="success" className="mt-4">
+  <Callout.Title>Tip</Callout.Title>
+  <Callout.Content>
+    Usa `pnpm dlx nachui list` para ver todos los slugs de componentes disponibles.
+  </Callout.Content>
+</Callout>
+
+### list
+
+Lista todos los componentes disponibles actualmente en el registro de NachUI.
+
+```bash
+pnpm dlx nachui list
+```
+
+**Ejemplo de salida:**
+
+```
+→ Button   (button)
+→ Input    (input)
+    Deps: react-hook-form
+→ Dialog   (dialog)
+```
+
+Cada entrada muestra el nombre del componente, su slug (usado con `add`/`update`/`remove`) y las dependencias requeridas.
+
+---
+
+### update
+
+Obtiene la última versión de un componente ya instalado desde el registro y sobreescribe el archivo local.
+
+```bash
+pnpm dlx nachui update <componente>
+```
+
+**Ejemplo:**
+
+```bash
+pnpm dlx nachui update button
+```
+
+<Callout variant="warning" className="mt-4">
+  <Callout.Title>Warning</Callout.Title>
+  <Callout.Content>
+    Running `update` will **overwrite your local changes** to that component. You will be asked to
+    confirm before the update is applied.
+  </Callout.Content>
+</Callout>
+
+El comando:
+
+1. Verifica que el componente está instalado (el archivo existe en `aliases.components`).
+2. Obtiene el código más reciente desde el registro.
+3. Pide confirmación antes de escribir.
+4. Reemplaza el archivo local con la versión actualizada.
+
+---
+
+### remove
+
+Elimina un componente instalado de tu proyecto borrando su archivo (o carpeta) del directorio de componentes.
+
+```bash
+pnpm dlx nachui remove <componente>
+```
+
+**Ejemplo:**
+
+```bash
+pnpm dlx nachui remove button
+```
+
+El comando busca `button.tsx` (o una carpeta `button/`) dentro de `src/components/ui/`. Si lo encuentra, pide confirmación antes de eliminarlo de forma permanente.
+
+<Callout variant="warning" className="mt-4">
+  <Callout.Title>Warning</Callout.Title>
+  <Callout.Content>
+    This action cannot be undone. Make sure you no longer need the component before confirming.
+  </Callout.Content>
+</Callout>
+
+## Flujo de trabajo típico
+
+```bash
+# 1. Inicializar NachUI en tu proyecto
+pnpm dlx nachui init
+
+# 2. Ver los componentes disponibles
+pnpm dlx nachui list
+
+# 3. Agregar un componente
+pnpm dlx nachui add button
+
+# 4. Actualizar un componente a la última versión
+pnpm dlx nachui update button
+
+# 5. Eliminar un componente que ya no necesitas
+pnpm dlx nachui remove button
+```
+
+## Archivo de configuración
+
+El archivo `nachui.json` es creado por `init` y es requerido por los comandos `add`, `update` y `remove`. Controla dónde se colocan los componentes y utilidades dentro de tu proyecto.
+
+| Campo                | Descripción                                            |
+| -------------------- | ------------------------------------------------------ |
+| `style`              | El estilo de tema seleccionado                         |
+| `tailwind.css`       | Ruta a tu archivo CSS principal                        |
+| `aliases.components` | Alias de importación para el directorio de componentes |
+| `aliases.utils`      | Alias de importación para la utilidad `cn`             |
+
+Si este archivo no existe, la mayoría de los comandos fallarán y te pedirán que ejecutes `nachui init` primero.
