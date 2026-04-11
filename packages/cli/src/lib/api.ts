@@ -1,4 +1,4 @@
-const API_URL = 'https://api.nach-ui.vercel.app/api/v1';
+const API_URL = 'https://api-nach-ui.vercel.app/api/v1';
 
 export interface RegistryComponent {
   name: string;
