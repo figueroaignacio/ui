@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NachUI Config",
+  "type": "object",
+  "properties": {
+    "style": { "type": "string", "enum": ["oklch", "css"] },
+    "tailwind": {
+      "type": "object",
+      "properties": {
+        "config": { "type": "string" },
+        "css": { "type": "string" }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "properties": {
+        "components": { "type": "string" },
+        "utils": { "type": "string" }
+      }
+    }
+  },
+  "required": ["style", "tailwind", "aliases"]
+}

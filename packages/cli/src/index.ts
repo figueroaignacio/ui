@@ -2,13 +2,26 @@ import * as p from '@clack/prompts';
 import { Command } from 'commander';
 import kleur from 'kleur';
 import { addCommand } from './commands/add.js';
+import { initCommand } from './commands/init.js';
 import { listCommand } from './commands/list.js';
 import { removeCommand } from './commands/remove.js';
 import { updateCommand } from './commands/update.js';
 
 const program = new Command();
 
-program.name('nachui').description('CLI de NachUI').version('0.0.1');
+program
+  .name('nachui')
+  .description('NachUI CLI - Add, update, remove and list components')
+  .version('0.0.1');
+
+program
+  .command('init')
+  .description('Initialize NachUI in your project')
+  .action(async () => {
+    console.log('');
+    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    await initCommand();
+  });
 
 program
   .command('add')

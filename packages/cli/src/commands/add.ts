@@ -8,59 +8,74 @@ import { detectPackageManager, getInstallCommand } from '../lib/package-manager.
 
 export async function addCommand(componentSlug: string) {
   const s = p.spinner();
-  s.start(`Searching for ${kleur.cyan(componentSlug)}...`);
+
+  const configPath = path.join(process.cwd(), 'nachui.json');
+
+  if (!fs.existsSync(configPath)) {
+    p.log.error(kleur.red("Error: nachui.json not found. Please run 'nachui init' first."));
+    return;
+  }
+
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+  s.start(`Searching for ${kleur.cyan(componentSlug)} in the registry...`);
 
   try {
     const component = await api.getComponent(componentSlug);
     s.stop(`Component ${kleur.green(componentSlug)} found.`);
 
-    const targetDir = path.join(process.cwd(), 'src/components/ui');
+    const targetBaseDir = config.aliases.components.replace('@/', 'src/');
+    const targetDir = path.join(process.cwd(), targetBaseDir);
     const targetPath = path.join(targetDir, `${componentSlug}.tsx`);
 
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
-
     fs.writeFileSync(targetPath, component.code);
-    p.note(kleur.gray(`Created at: ${targetPath}`), 'File installed');
+    p.note(kleur.gray(`Location: ${targetPath}`), 'Component installed');
 
-    if (component.dependencies?.length > 0) {
+    if (component.dependencies && component.dependencies.length > 0) {
       const pkgPath = path.join(process.cwd(), 'package.json');
 
       if (fs.existsSync(pkgPath)) {
         const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-        const allInstalled = { ...pkg.dependencies, ...pkg.devDependencies };
+        const installedDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
-        const missingDeps = component.dependencies.filter((dep) => !allInstalled[dep]);
+        const missingDeps = component.dependencies.filter((dep) => !installedDeps[dep]);
 
         if (missingDeps.length > 0) {
-          p.log.warn(`Missing: ${kleur.yellow(missingDeps.join(', '))}`);
+          p.log.warn(`Missing dependencies: ${kleur.yellow(missingDeps.join(', '))}`);
 
           const shouldInstall = await p.confirm({
-            message: `Do you want to install them?`,
+            message: `Do you want to install missing dependencies?`,
             initialValue: true,
           });
 
           if (shouldInstall && !p.isCancel(shouldInstall)) {
-            const agent = detectPackageManager();
-            const installCmd = getInstallCommand(agent, missingDeps);
-
-            p.log.info(`Running: ${kleur.dim(installCmd)}`);
+            const installSpinner = p.spinner();
+            installSpinner.start('Installing dependencies...');
 
             try {
+              const agent = detectPackageManager();
+              const installCmd = getInstallCommand(agent, missingDeps);
+
               execSync(installCmd, { stdio: 'inherit' });
-              p.log.success(kleur.green('Dependencies installed.'));
+
+              installSpinner.stop(kleur.green('Dependencies installed successfully.'));
             } catch {
-              p.log.error('Install failed. Please run it manually.');
+              installSpinner.stop(kleur.red('Failed to install dependencies.'));
+              p.log.error('Please run the command manually.');
             }
           }
+        } else {
+          p.log.info(kleur.green('✓ All dependencies are already present.'));
         }
       }
     }
 
-    p.outro(kleur.bgGreen().black(' NachUI ') + ' Done!');
+    p.outro(kleur.bgGreen().black(' NachUI ') + ' Component ready to use!');
   } catch {
-    s.stop(kleur.red('Error getting component.'));
-    p.log.error('Check your API or slug.');
+    s.stop(kleur.red('Error getting the component.'));
+    p.log.error('Make sure the slug is correct or the API is online.');
   }
 }

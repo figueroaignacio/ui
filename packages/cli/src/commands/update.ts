@@ -7,23 +7,34 @@ import { api } from '../lib/api.js';
 export async function updateCommand(componentSlug: string) {
   const s = p.spinner();
 
-  const targetDir = path.join(process.cwd(), 'src/components/ui');
-  const targetPath = path.join(targetDir, `${componentSlug}.tsx`);
+  const configPath = path.join(process.cwd(), 'nachui.json');
 
-  if (!fs.existsSync(targetPath)) {
-    p.log.error(kleur.red(`The component "${componentSlug}" is not installed in your project.`));
-    p.log.info(`Try using: ${kleur.cyan(`pnpm dlx nachui add ${componentSlug}`)}`);
+  if (!fs.existsSync(configPath)) {
+    p.log.error(kleur.red("Error: nachui.json not found. Please run 'nachui init' first."));
     return;
   }
 
-  s.start(`Searching for updates for ${kleur.cyan(componentSlug)}...`);
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+  const targetBaseDir = config.aliases.components.replace('@/', 'src/');
+  const targetPath = path.join(process.cwd(), targetBaseDir, `${componentSlug}.tsx`);
+
+  if (!fs.existsSync(targetPath)) {
+    p.log.error(
+      kleur.red(`The component "${componentSlug}" is not installed in ${targetBaseDir}.`),
+    );
+    p.log.info(`Try using: ${kleur.cyan(`nachui add ${componentSlug}`)}`);
+    return;
+  }
+
+  s.start(`Fetching latest code for ${kleur.cyan(componentSlug)}...`);
 
   try {
     const component = await api.getComponent(componentSlug);
-    s.stop(`Latest version of ${kleur.green(componentSlug)} obtained.`);
+    s.stop(`Latest version of ${kleur.green(componentSlug)} fetched.`);
 
     const confirm = await p.confirm({
-      message: `Are you sure you want to update ${kleur.bold(componentSlug)}? This will overwrite your local changes.`,
+      message: `Update ${kleur.bold(componentSlug)}? This will ${kleur.red('overwrite')} your local changes.`,
       initialValue: false,
     });
 
@@ -34,10 +45,12 @@ export async function updateCommand(componentSlug: string) {
 
     fs.writeFileSync(targetPath, component.code);
 
-    p.note(kleur.gray(`File updated at: ${targetPath}`), 'Update successful');
-    p.outro(kleur.bgBlue().white(' NachUI ') + ' Component updated to the latest version.');
+    p.note(kleur.gray(`Location: ${targetPath}`), 'Update successful');
+    p.outro(
+      kleur.bgBlue().white(' NachUI ') + ' Component updated to the latest registry version.',
+    );
   } catch {
     s.stop(kleur.red('Error updating.'));
-    p.log.error('Make sure you have a connection and that the API is active.');
+    p.log.error('Check your internet connection or if the component slug is correct.');
   }
 }
