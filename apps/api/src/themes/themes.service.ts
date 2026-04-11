@@ -5,7 +5,7 @@ import path from 'node:path';
 @Injectable()
 export class ThemesService {
   getThemeConfig(theme: string = 'default') {
-    const themePath = path.resolve(process.cwd(), 'src/themes/css', `${theme}.css`);
+    const themePath = path.resolve(__dirname, 'css', `${theme}.css`);
 
     if (!fs.existsSync(themePath)) {
       throw new NotFoundException(`Theme "${theme}" not found`);
@@ -36,7 +36,7 @@ export function cn(...inputs: ClassValue[]) {
   }
 
   getAllThemes() {
-    const themePath = path.resolve(process.cwd(), 'src/themes/css');
+    const themePath = path.resolve(__dirname, 'css');
     const themes = fs.readdirSync(themePath);
     return themes.map((theme) => theme.replace('.css', ''));
   }
