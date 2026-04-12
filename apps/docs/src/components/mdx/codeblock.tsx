@@ -22,9 +22,9 @@ export function CodeBlock({
   code,
   language = 'tsx',
   className,
-  showLineNumbers = false,
+  showLineNumbers = true,
   isExpanded: initialIsExpanded = false,
-  filename,
+  filename: _filename,
   expandButton,
 }: CodeBlockProps) {
   const codeString = code.trim();
@@ -51,18 +51,18 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20] transition-all duration-500',
+        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20]/50 transition-all duration-500',
         !internalIsExpanded ? 'max-h-[450px]' : 'max-h-none',
         className,
       )}
     >
       <div className="max-h-inherit flex h-full flex-col">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/5 bg-[#1e1f20]/90 px-4 py-2 backdrop-blur-sm">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/5 bg-[#1e1f20]/50 px-4 py-2 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
-              <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-              <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-              <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
+              <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
+              <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -97,7 +97,8 @@ export function CodeBlock({
                 style={{ ...style, backgroundColor: 'transparent' }}
               >
                 {tokens.map((line, i) => {
-                  const { key, ...lineProps } = getLineProps({ line, key: i });
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                  const { key: _key, ...lineProps } = getLineProps({ line, key: i });
                   return (
                     <div key={i} {...lineProps} className={cn('table-row', lineProps.className)}>
                       {showLineNumbers && (
@@ -114,11 +115,6 @@ export function CodeBlock({
                   );
                 })}
               </pre>
-
-              {/* Gradient shadow to indicate more code when collapsed */}
-              {isExpandable && !internalIsExpanded && (
-                <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-12 bg-linear-to-t from-[#1e1f20] to-transparent" />
-              )}
             </>
           )}
         </Highlight>
