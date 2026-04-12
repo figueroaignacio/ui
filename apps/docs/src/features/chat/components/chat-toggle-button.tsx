@@ -1,6 +1,6 @@
-import { Robot01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
+import { useKbdShortcut } from '@/hooks/use-kbd-shortcut';
 import { Button } from '@repo/ui/components/button';
+import { Kbd, KbdGroup } from '@repo/ui/components/kbd';
 import { Tooltip } from '@repo/ui/components/tooltip';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -25,6 +25,8 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
     };
   }, []);
 
+  useKbdShortcut(['cmd', 'j'], onClick);
+
   const shouldShowTooltip = (isHovered || autoShow) && !isOpen;
 
   return (
@@ -32,9 +34,15 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
       <Tooltip.Trigger asChild>
         <Button
           onClick={onClick}
-          variant="ghost"
+          variant="outline"
           size="sm"
-          leftIcon={<HugeiconsIcon icon={Robot01Icon} size={16} />}
+          rightIcon={
+            <KbdGroup className="ml-2 hidden sm:flex">
+              <Kbd size="sm">⌘</Kbd>
+              <span className="text-muted-foreground">+</span>
+              <Kbd size="sm">J</Kbd>
+            </KbdGroup>
+          }
         >
           {t('button.label')}
         </Button>
