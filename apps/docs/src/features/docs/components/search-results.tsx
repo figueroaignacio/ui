@@ -1,30 +1,27 @@
 import { Link } from '@/i18n/navigation';
 import type { NavigationSection, SearchResultItem } from '@/lib/definitions';
-import { Layout01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { Dialog } from '@repo/ui/components/dialog';
+import { cn } from '@repo/ui/lib/cn';
 import { useTranslations } from 'next-intl';
-
-const CATEGORY_ICONS: Record<string, any> = {
-  'getting started': Rocket01Icon,
-  comenzando: Rocket01Icon,
-  components: PackageIcon,
-  componentes: PackageIcon,
-};
-
-function getCategoryIcon(category: string) {
-  const icon = CATEGORY_ICONS[category.toLowerCase()] ?? Layout01Icon;
-  return <HugeiconsIcon icon={icon} size={16} className="h-4 w-4" />;
-}
+import { useEffect, useRef } from 'react';
 
 interface SearchResultsProps {
   query: string;
   results: SearchResultItem[];
   navigation: NavigationSection[];
+  selectedIndex: number;
 }
 
-export function SearchResults({ query, results, navigation }: SearchResultsProps) {
+export function SearchResults({ query, results, navigation, selectedIndex }: SearchResultsProps) {
   const t = useTranslations('components.searcher');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const activeElement = containerRef.current?.querySelector('[data-active="true"]');
+    if (activeElement) {
+      activeElement.scrollIntoView({ block: 'nearest' });
+    }
+  }, [selectedIndex]);
 
   if (query && results.length === 0) {
     return <div className="text-muted-foreground py-8 text-center">{t('noResults')}</div>;
@@ -32,54 +29,68 @@ export function SearchResults({ query, results, navigation }: SearchResultsProps
 
   if (results.length > 0) {
     return (
-      <div className="my-4 max-h-64 overflow-hidden">
-        <ul className="max-h-96 space-y-1 overflow-y-auto pr-2">
-          {results.map((item) => (
-            <li
-              key={item.href}
-              className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-sm px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
-            >
-              <Dialog.Close className="h-full w-full">
-                <Link href={item.href} className="flex items-center gap-x-4">
-                  {getCategoryIcon(item.category)}
-                  <div className="flex w-full items-center justify-between">
-                    <span className="text-sm">{item.title}</span>
-                    <span className="text-muted-foreground text-xs">{item.category}</span>
-                  </div>
-                </Link>
-              </Dialog.Close>
-            </li>
-          ))}
-        </ul>
+      <div ref={containerRef} className="max-h-[300px] overflow-y-auto p-2">
+        <div className="mb-2">
+          <h2 className="text-muted-foreground px-2 py-1.5 text-xs font-medium">Results</h2>
+          <ul className="space-y-0.5">
+            {results.map((item, index) => {
+              const isActive = index === selectedIndex;
+              return (
+                <li key={item.href}>
+                  <Dialog.Close className="h-full w-full text-left outline-none">
+                    <Link
+                      href={item.href}
+                      data-active={isActive}
+                      className={cn(
+                        'text-foreground flex w-full cursor-pointer items-center justify-between gap-x-2 rounded-md px-4 py-2.5 text-sm transition-colors',
+                        isActive ? 'bg-secondary/80' : 'hover:bg-secondary/50',
+                      )}
+                    >
+                      <span className={cn(isActive && 'font-medium')}>{item.title}</span>
+                      <span className="text-muted-foreground text-xs">{item.category}</span>
+                    </Link>
+                  </Dialog.Close>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
 
-  // Default navigation view
+  let globalIndex = 0;
+
   return (
-    <div className="max-h-64 overflow-hidden">
-      <div className="max-h-64 overflow-y-auto pr-2">
-        {navigation.map((section) => (
-          <div key={section.title}>
-            <h2 className="text-muted-foreground my-4 text-xs">{section.title}</h2>
-            <ul className="space-y-3">
-              {section.items.map((item) => (
-                <li
-                  key={item.href}
-                  className="hover:bg-secondary text-foreground ring-primary ring-offset-background rounded-xl px-3 py-2 text-sm transition-transform duration-200 active:scale-95"
-                >
-                  <Dialog.Close className="h-full w-full">
-                    <Link href={item.href} className="flex items-center gap-x-4">
-                      {getCategoryIcon(section.title)}
-                      {item.title}
+    <div ref={containerRef} className="max-h-[300px] overflow-y-auto p-2">
+      {navigation.map((section) => (
+        <div key={section.title} className="mb-4 last:mb-0">
+          <h2 className="text-muted-foreground px-2 py-1.5 text-xs font-medium">{section.title}</h2>
+          <ul className="space-y-0.5">
+            {section.items.map((item) => {
+              const isActive = globalIndex === selectedIndex;
+              globalIndex++;
+
+              return (
+                <li key={item.href}>
+                  <Dialog.Close className="h-full w-full text-left outline-none">
+                    <Link
+                      href={item.href}
+                      data-active={isActive}
+                      className={cn(
+                        'text-foreground flex w-full cursor-pointer items-center gap-x-2 rounded-md px-4 py-2.5 text-sm transition-colors',
+                        isActive ? 'bg-secondary/80' : 'hover:bg-secondary/50',
+                      )}
+                    >
+                      <span className={cn(isActive && 'font-medium')}>{item.title}</span>
                     </Link>
                   </Dialog.Close>
                 </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }

@@ -1,7 +1,10 @@
 {
   "searcher": {
     "label": "Buscar",
-    "placeholder": "Buscar..."
+    "placeholder": "Buscar...",
+    "noResults": "No se encontraron resultados",
+    "exit": "para salir",
+    "select": "para seleccionar"
   },
   "docsPagination": {
     "previous": "Anterior",

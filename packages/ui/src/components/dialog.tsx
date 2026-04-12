@@ -286,7 +286,7 @@ const DialogContent = ({
             transition={DIALOG_TRANSITION}
             style={DIALOG_STYLE}
             className={cn(
-              'bg-background fixed top-[50%] left-[50%] z-500 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6 shadow-lg',
+              'bg-background fixed top-[50%] left-[50%] z-500 grid w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border p-6',
               className,
             )}
           >
