@@ -69,5 +69,10 @@
   },
   "banner": {
     "title": "Aún en desarrollo. Pero funciona, lo prometo - Nacho"
+  },
+  "componentInstallTabs": {
+    "dependencies": "Instala las siguientes dependencias:",
+    "copyCode": "Copia y pega el siguiente código en tu proyecto.",
+    "updatePaths": "Actualiza las rutas de importación para que coincidan con la estructura de tu proyecto."
   }
 }

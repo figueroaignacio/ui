@@ -20,6 +20,7 @@ const tabsListVariants = cva(
         outline: 'border border-border bg-transparent',
         underline: 'bg-transparent border-b border-border rounded-none p-0 justify-start w-full',
         ghost: 'bg-transparent p-0 gap-2',
+        unstyled: '',
       },
       size: {
         default: 'h-10',
@@ -260,7 +261,7 @@ const TabsTrigger = ({
           className={cn(
             'absolute inset-0 z-10',
             finalVariant === 'underline'
-              ? 'bg-primary top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
+              ? 'bg-secondary-foreground top-auto bottom-0 h-[2px] shadow-[0_0_10px_rgba(var(--primary),0.5)]'
               : 'bg-secondary border-border/50 rounded-sm border shadow-sm',
           )}
           transition={TABS_INDICATOR_TRANSITION}

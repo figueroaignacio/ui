@@ -6,6 +6,7 @@ import { cn } from '@repo/ui/lib/cn';
 import { isValidElement } from 'react';
 import { CodeBlockWrapper } from './code-block-wrapper';
 import { CodeBlock } from './codeblock';
+import { ComponentInstallTabs } from './component-install-tabs';
 import { ComponentPreview } from './component-preview';
 import { ComponentSource } from './component-source';
 import { ComponentsList } from './components-list';
@@ -62,7 +63,7 @@ function Paragraph({ className, ...props }: React.HTMLAttributes<HTMLDivElement>
   );
 }
 
-function Link({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) {
+function Link({ className, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
       className={cn(
@@ -72,7 +73,9 @@ function Link({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) 
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </a>
   );
 }
 
@@ -113,22 +116,26 @@ function HorizontalRule({ className, ...props }: React.HTMLAttributes<HTMLHRElem
 }
 
 export function Pre({ children }: { children: React.ReactNode }) {
-  const child = (children as any)?.props;
-  if (!child) return <pre className="overflow-x-auto">{children}</pre>;
+  if (!isValidElement(children)) {
+    return <pre className="overflow-x-auto">{children}</pre>;
+  }
 
-  const language = child.className?.replace('language-', '') || 'tsx';
+  const childProps = children.props as { className?: string; children?: React.ReactNode };
+  const language = childProps.className?.replace('language-', '') || 'tsx';
 
-  const extractCode = (node: any): string => {
+  const extractCode = (node: unknown): string => {
     if (!node) return '';
     if (typeof node === 'string') return node;
     if (Array.isArray(node)) return node.map(extractCode).join('');
     if (isValidElement(node)) {
       return extractCode((node.props as { children?: React.ReactNode }).children);
     }
-    if (typeof node === 'object' && 'value' in node) return String(node.value);
+    if (typeof node === 'object' && node !== null && 'value' in node) {
+      return String((node as Record<string, unknown>).value);
+    }
     return '';
   };
-  const code = extractCode(child.children).trim();
+  const code = extractCode(childProps.children).trim();
 
   return (
     <div className="w-full overflow-x-auto">
@@ -189,6 +196,7 @@ export const mdxComponents = {
   TabsContent: MdxTabsContent,
   TabsTrigger: MdxTabsTrigger,
   TabsList: MdxTabsList,
+  ComponentInstallTabs,
   ComponentPreview,
   ComponentsList,
   ComponentSource,
