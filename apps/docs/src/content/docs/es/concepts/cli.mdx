@@ -109,8 +109,6 @@ pnpm dlx nachui list
 
 Cada entrada muestra el nombre del componente, su slug (usado con `add`/`update`/`remove`) y las dependencias requeridas.
 
----
-
 ### update
 
 Obtiene la última versión de un componente ya instalado desde el registro y sobreescribe el archivo local.
@@ -126,10 +124,10 @@ pnpm dlx nachui update button
 ```
 
 <Callout variant="warning" className="mt-4">
-  <Callout.Title>Warning</Callout.Title>
+  <Callout.Title>Importante</Callout.Title>
   <Callout.Content>
-    Running `update` will **overwrite your local changes** to that component. You will be asked to
-    confirm before the update is applied.
+    Al ejecutar `update` se sobrescribirán tus cambios locales en ese componente. Se te pedirá
+    confirmación antes de aplicar la actualización.
   </Callout.Content>
 </Callout>
 
@@ -139,8 +137,6 @@ El comando:
 2. Obtiene el código más reciente desde el registro.
 3. Pide confirmación antes de escribir.
 4. Reemplaza el archivo local con la versión actualizada.
-
----
 
 ### remove
 
