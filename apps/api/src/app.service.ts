@@ -2,30 +2,23 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getWelcomeMessage(): string {
-    return `
-    ###########################################################################
-    #                                                                         #
-    #   NACHUI REGISTRY v1.0.0 - "The kernel of your Frontend"                #
-    #                                                                         #
-    ###########################################################################
-    
-    "If you think your UI is good, you are probably wrong." 
-
-    Welcome to the source of truth. 
-    
-    NachUI is NOT a library for weak developers who love 1GB of node_modules.
-    It's for people who know how to copy-paste code and OWN IT.
-
-    RULES:
-    1. don't ask for a 'Calendar' component if you can't even center a div without ai.
-    2. if the CLI fails, it's probably your shitty internet or your OS.
-    3. talk is cheap. Show me the code (or run 'pnpm dlx nachui list').
-
-    STATUS: RUNNING (Unlike your last deploy)
-    UPTIME: ${Math.floor(process.uptime())}s
-    LICENSE: Just don't say you built it yourself.
-    `;
+  getWelcomeMessage() {
+    return {
+      title: 'NACHUI REGISTRY API',
+      version: '1.0.0',
+      tagline: 'The kernel of your Frontend',
+      quote: 'If you think your UI is good, you are probably wrong. Like me',
+      message:
+        "Welcome to the source of truth. NachUI is NOT a library for weak developers who love 1GB of node_modules. It's for people who know how to copy-paste code and OWN IT.",
+      rules: [
+        "don't ask for a 'Calendar' component if you can't even center a div without ai.",
+        "if the CLI fails, it's probably your shitty internet or your OS.",
+        "talk is cheap. Show me the code (or run 'pnpm dlx nachui list').",
+      ],
+      status: 'RUNNING (Unlike your last deploy)',
+      uptime: `${Math.floor(process.uptime())}s`,
+      license: "Just don't say you built it yourself.",
+    };
   }
 
   getHealthCheck() {
