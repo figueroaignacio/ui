@@ -38,7 +38,6 @@ export async function initCommand() {
     const isNext = nextConfigFiles.some((file) => fs.existsSync(path.join(cwd, file)));
 
     let cssRelativePath = '';
-
     if (isNext) {
       const nextPaths = [
         'src/app/globals.css',
@@ -66,80 +65,78 @@ export async function initCommand() {
     const sanitizedCss = css.replace(/@source\s+['"][^'"]+['"];\n/g, '');
     const tokenIdentifier = '/* NachUI Tokens */';
 
-    let newContent = '';
+    const tailwindImport = '@import "tailwindcss";\n\n';
+    const fullNachContent = `${tokenIdentifier}\n${sanitizedCss}`;
+
     if (fs.existsSync(absoluteCssPath)) {
       const content = fs.readFileSync(absoluteCssPath, 'utf8');
 
       if (content.includes(tokenIdentifier)) {
         const parts = content.split(tokenIdentifier);
-        newContent = parts[0].trim() + '\n\n' + tokenIdentifier + '\n' + sanitizedCss;
+        const updatedContent = parts[0].trim() + '\n\n' + fullNachContent;
+        fs.writeFileSync(absoluteCssPath, updatedContent.trim());
       } else {
-        newContent = content.trim() + '\n\n' + tokenIdentifier + '\n' + sanitizedCss;
+        const confirmWipe = await p.confirm({
+          message: `Existing styles detected in ${cssRelativePath}. Do you want to wipe them and apply NachUI reset?`,
+          initialValue: true,
+        });
+
+        if (confirmWipe && !p.isCancel(confirmWipe)) {
+          const hasTailwindImport = content.includes('@import "tailwindcss"');
+          const cleanContent = (hasTailwindImport ? tailwindImport : '') + fullNachContent;
+          fs.writeFileSync(absoluteCssPath, cleanContent.trim());
+          p.log.info(kleur.blue('CSS file cleaned and NachUI tokens applied.'));
+        } else {
+          fs.appendFileSync(absoluteCssPath, '\n\n' + fullNachContent);
+        }
       }
     } else {
-      newContent = tokenIdentifier + '\n' + sanitizedCss;
+      fs.mkdirSync(path.dirname(absoluteCssPath), { recursive: true });
+      fs.writeFileSync(absoluteCssPath, tailwindImport + fullNachContent);
     }
 
-    fs.mkdirSync(path.dirname(absoluteCssPath), { recursive: true });
-    fs.writeFileSync(absoluteCssPath, newContent.trim());
-
-    const garbageIndex = path.join(cwd, 'index.css');
-    if (isNext && fs.existsSync(garbageIndex) && cssRelativePath !== 'index.css') {
-      fs.unlinkSync(garbageIndex);
-      p.log.info(kleur.gray('Cleaned up accidental index.css from root.'));
+    const garbage = path.join(cwd, 'index.css');
+    if (isNext && fs.existsSync(garbage) && cssRelativePath !== 'index.css') {
+      fs.unlinkSync(garbage);
     }
 
     const utilsRelativePath = config.aliases.utils.replace('@/', 'src/') + '.ts';
     const utilsPath = path.join(cwd, utilsRelativePath);
-
-    if (!fs.existsSync(path.dirname(utilsPath))) {
+    if (!fs.existsSync(path.dirname(utilsPath)))
       fs.mkdirSync(path.dirname(utilsPath), { recursive: true });
-    }
     fs.writeFileSync(utilsPath, utils);
 
     const utilsDeps = ['clsx', 'tailwind-merge'];
     const pkgPath = path.join(cwd, 'package.json');
-
     if (fs.existsSync(pkgPath)) {
       const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
       const installedDeps = { ...pkg.dependencies, ...pkg.devDependencies };
       const missingDeps = utilsDeps.filter((dep) => !installedDeps[dep]);
 
       if (missingDeps.length > 0) {
-        p.log.warn(`Missing core utilities: ${kleur.yellow(missingDeps.join(', '))}`);
-
         const shouldInstall = await p.confirm({
-          message: 'Install clsx and tailwind-merge?',
+          message: `Install missing dependencies: ${missingDeps.join(', ')}?`,
           initialValue: true,
         });
-
         if (shouldInstall && !p.isCancel(shouldInstall)) {
-          const instSpinner = p.spinner();
-          instSpinner.start('Installing dependencies...');
+          const instS = p.spinner();
+          instS.start('Installing...');
           try {
             const agent = detectPackageManager();
             const installCmd = getInstallCommand(agent, missingDeps);
             execSync(installCmd, { stdio: 'ignore' });
-            instSpinner.stop(kleur.green('Dependencies installed.'));
+            instS.stop(kleur.green('Installed.'));
           } catch {
-            instSpinner.stop(kleur.red('Failed to install automatically.'));
-            p.log.info(`Run: ${kleur.cyan(`npm install ${missingDeps.join(' ')}`)}`);
+            instS.stop(kleur.red('Failed.'));
           }
         }
       }
     }
 
-    p.note(
-      `Theme: ${kleur.cyan(selectedTheme as string)}\n` +
-        `Config: nachui.json\n` +
-        `Styles: ${cssRelativePath}\n` +
-        `Utils: ${utilsRelativePath}`,
-      'Setup complete',
-    );
-
-    p.outro(kleur.bgGreen().black(' NachUI ') + ' Ready to go!');
+    p.note(`Theme: ${selectedTheme}\nStyles: ${cssRelativePath}`, 'Setup Successful');
+    p.outro(kleur.bgGreen().black(' NachUI ') + ' Ready!');
   } catch (error) {
     s.stop(kleur.red('Init failed.'));
-    console.error(kleur.red('\nDetails:'), error);
+    console.error(error);
   }
 }
