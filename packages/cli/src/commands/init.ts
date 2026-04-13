@@ -62,10 +62,11 @@ export async function initCommand() {
     fs.writeFileSync(path.join(cwd, 'nachui.json'), JSON.stringify(finalConfig, null, 2));
 
     const absoluteCssPath = path.join(cwd, cssRelativePath);
-    const sanitizedCss = css.replace(/@source\s+['"][^'"]+['"];\n/g, '');
+    const sanitizedCss = css
+      .replace(/@import\s+['"]tailwindcss['"];\n/g, '')
+      .replace(/@source\s+['"][^'"]+['"];\n/g, '');
     const tokenIdentifier = '/* NachUI Tokens */';
-
-    const tailwindImport = '@import "tailwindcss";\n\n';
+    const tailwindImport = '@import "tailwindcss";';
     const fullNachContent = `${tokenIdentifier}\n${sanitizedCss}`;
 
     if (fs.existsSync(absoluteCssPath)) {
@@ -73,7 +74,10 @@ export async function initCommand() {
 
       if (content.includes(tokenIdentifier)) {
         const parts = content.split(tokenIdentifier);
-        const updatedContent = parts[0].trim() + '\n\n' + fullNachContent;
+        const header = parts[0].includes(tailwindImport)
+          ? parts[0].trim()
+          : tailwindImport + '\n\n' + parts[0].trim();
+        const updatedContent = header + '\n\n' + fullNachContent;
         fs.writeFileSync(absoluteCssPath, updatedContent.trim());
       } else {
         const confirmWipe = await p.confirm({
@@ -82,17 +86,17 @@ export async function initCommand() {
         });
 
         if (confirmWipe && !p.isCancel(confirmWipe)) {
-          const hasTailwindImport = content.includes('@import "tailwindcss"');
-          const cleanContent = (hasTailwindImport ? tailwindImport : '') + fullNachContent;
-          fs.writeFileSync(absoluteCssPath, cleanContent.trim());
+          fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullNachContent);
           p.log.info(kleur.blue('CSS file cleaned and NachUI tokens applied.'));
         } else {
-          fs.appendFileSync(absoluteCssPath, '\n\n' + fullNachContent);
+          const hasImport = content.includes(tailwindImport);
+          const prefix = hasImport ? '' : tailwindImport + '\n\n';
+          fs.writeFileSync(absoluteCssPath, prefix + content.trim() + '\n\n' + fullNachContent);
         }
       }
     } else {
       fs.mkdirSync(path.dirname(absoluteCssPath), { recursive: true });
-      fs.writeFileSync(absoluteCssPath, tailwindImport + fullNachContent);
+      fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullNachContent);
     }
 
     const garbage = path.join(cwd, 'index.css');
