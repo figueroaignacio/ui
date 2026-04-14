@@ -13,7 +13,7 @@ export const getDocsTool = tool({
     const resolvedLocale = locale ?? 'en';
 
     try {
-      const res = await fetch(`${process.env.FRONTEND_URL}/api/docs`);
+      const res = await fetch(`${process.env.API_URL}/api/v1/docs`);
 
       if (!res.ok) {
         throw new Error('Failed to fetch docs');
