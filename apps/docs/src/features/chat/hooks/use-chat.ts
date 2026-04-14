@@ -2,8 +2,11 @@
 
 import type { Message } from '@/lib/definitions';
 import { useChat as useAIChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
 import { useTranslations } from 'next-intl';
 import { useCallback, useMemo, useRef } from 'react';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export function useChat() {
   const t = useTranslations('components.chat.messages');
@@ -16,6 +19,9 @@ export function useChat() {
     stop,
     error,
   } = useAIChat({
+    transport: new DefaultChatTransport({
+      api: `${API_URL}/api/v1/chat`,
+    }),
     messages: [
       {
         id: 'initial',

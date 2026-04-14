@@ -3,34 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./providers": {
-      "types": "./src/providers.ts",
-      "default": "./src/providers.ts"
+      "types": "./dist/providers.d.ts",
+      "import": "./dist/providers.js",
+      "require": "./dist/providers.cjs"
     },
     "./prompts": {
-      "types": "./src/prompts/system-prompt.ts",
-      "default": "./src/prompts/system-prompt.ts"
+      "types": "./dist/prompts.d.ts",
+      "import": "./dist/prompts.js",
+      "require": "./dist/prompts.cjs"
     },
     "./agent": {
-      "types": "./src/agent.ts",
-      "default": "./src/agent.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./src/*"
-      ]
+      "types": "./dist/agent.d.ts",
+      "import": "./dist/agent.js",
+      "require": "./dist/agent.cjs"
     }
   },
   "scripts": {
+    "build": "tsup",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
@@ -42,6 +40,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^25.5.2",
     "@vitest/coverage-v8": "^4.1.2",
+    "tsup": "^8.5.1",
     "typescript": "^6.0.2",
     "vitest": "^4.1.2"
   }

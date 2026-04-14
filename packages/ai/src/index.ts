@@ -1,3 +1,3 @@
 export { createAgentUIStreamResponse } from 'ai';
-export * from './agent';
-export * from './providers';
+export * from './agent.js';
+export * from './providers.js';

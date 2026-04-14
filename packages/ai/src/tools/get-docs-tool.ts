@@ -2,7 +2,7 @@ import { tool } from 'ai';
 import fs from 'fs/promises';
 import path from 'path';
 import z from 'zod';
-import { getQueryWords } from '../lib/get-query-words';
+import { getQueryWords } from '../lib/get-query-words.js';
 
 const VELITE_DOCS_PATH = path.join(process.cwd(), '.velite/docs.json');
 

@@ -1,8 +1,8 @@
 import { stepCountIs, ToolLoopAgent } from 'ai';
-import { NACHUI_SYSTEM_PROMPT } from './prompts/system-prompt';
-import { google, GOOGLE_MODELS } from './providers';
-import { getComponentCodeTool } from './tools/get-component-code-tool';
-import { getDocsTool } from './tools/get-docs-tool';
+import { NACHUI_SYSTEM_PROMPT } from './prompts/system-prompt.js';
+import { google, GOOGLE_MODELS } from './providers.js';
+import { getComponentCodeTool } from './tools/get-component-code-tool.js';
+import { getDocsTool } from './tools/get-docs-tool.js';
 
 export const nachUIAgent = new ToolLoopAgent({
   model: google(GOOGLE_MODELS.gemini25Flash),

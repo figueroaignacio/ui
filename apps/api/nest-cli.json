@@ -3,6 +3,7 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
+    "builder": "webpack",
     "deleteOutDir": true,
     "assets": [{ "include": "modules/themes/css/**/*.css", "watchAssets": true }]
   }
