@@ -1,11 +1,9 @@
 import { getDocs } from '@/features/docs/lib/get-docs';
-import { getLocale } from 'next-intl/server';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const locale = await getLocale();
-    const docs = getDocs(locale);
+    const docs = getDocs();
 
     return NextResponse.json({
       success: true,
