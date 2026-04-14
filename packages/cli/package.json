@@ -16,7 +16,7 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tsx src/index.ts",
+    "test:dev": "tsx src/index.ts",
     "build": "tsup",
     "prepublishOnly": "pnpm build",
     "release": "pnpm build && npm publish",
