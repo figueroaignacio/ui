@@ -1,12 +1,11 @@
-import fs from 'fs/promises';
+import { getDocs } from '@/features/docs/lib/get-docs';
+import { getLocale } from 'next-intl/server';
 import { NextResponse } from 'next/server';
-import path from 'path';
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), '.velite/docs.json');
-    const raw = await fs.readFile(filePath, 'utf-8');
-    const docs = JSON.parse(raw);
+    const locale = await getLocale();
+    const docs = getDocs(locale);
 
     return NextResponse.json({
       success: true,
