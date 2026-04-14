@@ -4,18 +4,19 @@ import path from 'path';
 import z from 'zod';
 import { getQueryWords } from '../lib/get-query-words.js';
 
-const VELITE_DOCS_PATH = path.join(process.cwd(), '.velite/docs.json');
+const VELITE_DOCS_PATH =
+  process.env.VELITE_DOCS_PATH || path.join(process.cwd(), '.velite', 'docs.json');
 
-// getDocs tool – searches .velite/docs.json (i think it makes sense to use it for any question about nachui)
 export const getDocsTool = tool({
   description:
     'Search the NachUI documentation. Use this tool whenever the user asks about how to use a component, its props, or any conceptual question about NachUI. Returns the raw content of the most relevant docs pages.',
   inputSchema: z.object({
-    query: z.string().describe('The search query, e.g. "Button props" or "installation steps"'),
-    locale: z.enum(['en', 'es']).optional().describe('Preferred docs locale (default: en)'),
+    query: z.string(),
+    locale: z.enum(['en', 'es']).optional(),
   }),
   execute: async ({ query, locale }) => {
     const resolvedLocale = locale ?? 'en';
+
     try {
       const raw = await fs.readFile(VELITE_DOCS_PATH, 'utf-8');
       const allDocs = JSON.parse(raw) as Array<{
@@ -28,7 +29,7 @@ export const getDocsTool = tool({
 
       const queryWords = getQueryWords(query);
       if (queryWords.length === 0) {
-        return { found: false as const, message: 'Query too short or only stop words.' };
+        return { found: false as const, message: 'Query too short.' };
       }
 
       const localeDocs = allDocs.filter((d) => d.locale === resolvedLocale);
@@ -38,12 +39,15 @@ export const getDocsTool = tool({
         .map((doc) => {
           const titleLower = doc.title.toLowerCase();
           const contentLower = (doc.raw ?? '').toLowerCase();
+
           let score = 0;
+
           for (const word of queryWords) {
             if (titleLower === word) score += 100;
             else if (titleLower.includes(word)) score += 50;
             if (contentLower.includes(word)) score += 5;
           }
+
           return { doc, score };
         })
         .filter((item) => item.score > 0)
@@ -53,7 +57,7 @@ export const getDocsTool = tool({
       if (scored.length === 0) {
         return {
           found: false as const,
-          message: `No documentation found matching "${query}". The feature or component may not exist in NachUI.`,
+          message: `No docs found for "${query}"`,
         };
       }
 
@@ -65,8 +69,8 @@ export const getDocsTool = tool({
 
       return { found: true as const, results };
     } catch (error) {
-      console.error('[getDocs] Error reading docs.json:', error);
-      return { found: false as const, message: 'Could not read documentation files.' };
+      console.error('[getDocs] Error:', error);
+      return { found: false as const, message: 'Docs read error' };
     }
   },
 });
