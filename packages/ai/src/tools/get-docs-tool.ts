@@ -13,7 +13,11 @@ export const getDocsTool = tool({
     const resolvedLocale = locale ?? 'en';
 
     try {
-      const res = await fetch(`${process.env.API_URL}/api/v1/docs`);
+      const res = await fetch(`${process.env.API_URL}/api/v1/docs`, {
+        headers: {
+          'x-api-key': process.env.NACHUI_API_KEY!,
+        },
+      });
 
       if (!res.ok) {
         throw new Error('Failed to fetch docs');
@@ -25,7 +29,7 @@ export const getDocsTool = tool({
         return { found: false as const, message: 'Docs API error' };
       }
 
-      const allDocs = data.docs as Array<{
+      const allDocs = data.data as Array<{
         title: string;
         description: string;
         raw: string;

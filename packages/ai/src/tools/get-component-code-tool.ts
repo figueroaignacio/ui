@@ -9,7 +9,11 @@ export const getComponentCodeTool = tool({
 
   execute: async ({ componentName }) => {
     try {
-      const res = await fetch(`${process.env.API_URL}/api/v1/registry/${componentName}`);
+      const res = await fetch(`${process.env.API_URL}/api/v1/registry/${componentName}`, {
+        headers: {
+          'x-api-key': process.env.NACHUI_API_KEY!,
+        },
+      });
 
       if (!res.ok) {
         return {

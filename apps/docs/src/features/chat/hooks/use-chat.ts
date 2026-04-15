@@ -21,6 +21,9 @@ export function useChat() {
   } = useAIChat({
     transport: new DefaultChatTransport({
       api: `${API_URL}/api/v1/chat`,
+      headers: {
+        'x-api-key': process.env.NEXT_PUBLIC_NACHUI_API_KEY!,
+      },
     }),
     messages: [
       {
