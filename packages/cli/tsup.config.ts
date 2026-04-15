@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
+import path from 'path';
 import { defineConfig } from 'tsup';
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default defineConfig({
   entry: ['src/index.ts'],

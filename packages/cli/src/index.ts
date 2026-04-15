@@ -12,7 +12,7 @@ const program = new Command();
 program
   .name('nachui')
   .description('NachUI CLI - Add, update, remove and list components')
-  .version('0.0.1');
+  .version('1.0.8');
 
 program
   .command('init')
