@@ -8,6 +8,9 @@ export default defineConfig({
   minify: true,
   sourcemap: false,
   shims: true,
+  env: {
+    NACHUI_API_KEY: process.env.NACHUI_API_KEY || '',
+  },
   banner: {
     js: '#!/usr/bin/env node',
   },

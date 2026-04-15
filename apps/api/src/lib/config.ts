@@ -1,5 +1,6 @@
 export const CONFIG = {
-  frontend: {
-    url: process.env.FRONTEND_URL,
+  url: {
+    frontend: process.env.FRONTEND_URL,
+    portfolio: process.env.PORTFOLIO_URL,
   },
 };
