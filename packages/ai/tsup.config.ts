@@ -16,7 +16,7 @@ export default defineConfig({
   sourcemap: true,
   minify: true,
   env: {
-    API_URL: process.env.API_URL as string,
-    NACHUI_API_KEY: process.env.NACHUI_API_KEY as string,
+    API_URL: process.env.API_URL ?? '',
+    NACHUI_API_KEY: process.env.NACHUI_API_KEY ?? '',
   },
 });
