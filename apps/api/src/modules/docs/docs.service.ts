@@ -1,4 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  InternalServerErrorException,
+  BadGatewayException,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import type { Doc } from './docs.types';
 
 interface DocsApiResponse {
@@ -8,26 +14,34 @@ interface DocsApiResponse {
 
 @Injectable()
 export class DocsService {
-  private readonly baseUrl = process.env.FRONTEND_URL;
+  private readonly logger = new Logger(DocsService.name);
+  private readonly baseUrl: string;
+
+  constructor(private readonly configService: ConfigService) {
+    this.baseUrl = this.configService.get<string>('FRONTEND_URL') || '';
+  }
 
   async getDocs(): Promise<Doc[]> {
     try {
       const res = await fetch(`${this.baseUrl}/api/docs`);
 
       if (!res.ok) {
-        throw new Error('Failed to fetch docs');
+        throw new BadGatewayException('Failed to fetch docs');
       }
 
       const data = (await res.json()) as DocsApiResponse;
 
       if (!data.success) {
-        throw new Error('Docs API returned error');
+        throw new BadGatewayException('Docs API returned error');
       }
 
       return data.docs;
     } catch (error) {
-      console.error('[DocsService] error:', error);
-      throw new Error('Could not fetch docs');
+      if (error instanceof BadGatewayException) {
+        throw error;
+      }
+      this.logger.error('error:', error);
+      throw new InternalServerErrorException('Could not fetch docs');
     }
   }
 }

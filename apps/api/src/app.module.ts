@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ChatModule } from './modules/chat/chat.module';
@@ -7,7 +8,13 @@ import { RegistryModule } from './modules/registry/registry.module';
 import { ThemesModule } from './modules/themes/themes.module';
 
 @Module({
-  imports: [RegistryModule, ThemesModule, ChatModule, DocsModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    RegistryModule,
+    ThemesModule,
+    ChatModule,
+    DocsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

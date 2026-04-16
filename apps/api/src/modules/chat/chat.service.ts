@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { nachUIAgent } from '@repo/ai';
 import { pipeAgentUIStreamToResponse } from 'ai';
 import type { Response } from 'express';
 
 @Injectable()
 export class ChatService {
+  private readonly logger = new Logger(ChatService.name);
+
   async streamChat(messages: unknown[], res: Response): Promise<void> {
     await pipeAgentUIStreamToResponse({
       response: res,
@@ -14,21 +16,21 @@ export class ChatService {
         const error = (err as Record<string, unknown>) || {};
         const message = typeof error.message === 'string' ? error.message : 'Unknown Error';
 
-        console.error(`Message: ${message}`);
+        this.logger.error(`Message: ${message}`);
 
         if (typeof error.statusCode === 'number') {
-          console.error(`Status Code: ${error.statusCode}`);
+          this.logger.error(`Status Code: ${error.statusCode}`);
         }
 
         if (typeof error.responseBody === 'string') {
           try {
             const parsed = JSON.parse(error.responseBody) as Record<string, unknown>;
-            console.error('Detalles:', JSON.stringify(parsed, null, 2));
+            this.logger.error(`Detalles: ${JSON.stringify(parsed, null, 2)}`);
           } catch {
-            console.error('Response Body:', error.responseBody);
+            this.logger.error(`Response Body: ${error.responseBody}`);
           }
         } else if (error.data) {
-          console.error('Data:', JSON.stringify(error.data, null, 2));
+          this.logger.error(`Data: ${JSON.stringify(error.data, null, 2)}`);
         }
 
         try {
