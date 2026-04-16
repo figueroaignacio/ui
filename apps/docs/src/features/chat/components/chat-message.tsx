@@ -1,10 +1,6 @@
-import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
 import type { Message } from '@/lib/definitions';
-import { Copy01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { cn } from '@repo/ui/lib/cn';
 import { motion, useReducedMotion } from 'motion/react';
-import { useTranslations } from 'next-intl';
 import { ChatMarkdownContent } from './chat-markdown-content';
 
 interface ChatMessageProps {
@@ -18,14 +14,11 @@ const userMessageTransition = {
   damping: 26,
 };
 
-const markdownRevealTransition = { duration: 0.4 };
 const cursorStyle = { willChange: 'opacity' } as const;
 
 export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
   const isUser = message.role === 'user';
   const shouldReduceMotion = useReducedMotion();
-  const { isCopied, copyToClipboard } = useCopyToClipboard(2000);
-  const t = useTranslations('components.chat.messages');
 
   return (
     <motion.div layout="position" className={cn('flex w-full max-w-full gap-3', !isUser && 'mt-2')}>
@@ -52,21 +45,6 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
               />
-            )}
-            {!isStreaming && (
-              <div className="mt-2 flex items-center justify-start opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-within:opacity-100 sm:opacity-100 sm:group-hover:opacity-100">
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(message.content)}
-                  disabled={isCopied}
-                  className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-neutral-500 transition-colors hover:bg-white/5 hover:text-neutral-300 active:scale-95"
-                  title={isCopied ? t('copied') : t('copy')}
-                  aria-label={isCopied ? t('copied') : t('copy')}
-                >
-                  <HugeiconsIcon icon={isCopied ? Tick02Icon : Copy01Icon} size={14} />
-                  {isCopied ? t('copied') : t('copy')}
-                </button>
-              </div>
             )}
           </div>
         )}
