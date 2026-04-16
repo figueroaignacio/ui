@@ -38,7 +38,7 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
           size="sm"
           rightIcon={
             <KbdGroup className="ml-2 hidden sm:flex">
-              <Kbd size="sm">⌘</Kbd>
+              <Kbd size="sm">ctrl</Kbd>
               <span className="text-muted-foreground">+</span>
               <Kbd size="sm">J</Kbd>
             </KbdGroup>

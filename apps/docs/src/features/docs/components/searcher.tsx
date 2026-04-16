@@ -69,7 +69,7 @@ export function Searcher() {
           <HugeiconsIcon icon={Search02Icon} size={18} />
           <span>{t('placeholder')}</span>
           <div className="ml-auto hidden items-center gap-1 text-[10px] sm:flex">
-            <Kbd size="sm">⌘</Kbd>
+            <Kbd size="sm">ctrl</Kbd>
             <span className="text-muted-foreground">+</span>
             <Kbd size="sm">K</Kbd>
           </div>
