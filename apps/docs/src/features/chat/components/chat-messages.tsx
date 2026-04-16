@@ -3,6 +3,7 @@ import { cn } from '@repo/ui/lib/cn';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
+import { ChatError } from './chat-error';
 import { ChatLoading } from './chat-loading';
 import { ChatMessage } from './chat-message';
 import { ChatSuggestions } from './chat-suggestions';
@@ -11,6 +12,7 @@ interface ChatMessagesProps {
   messages: Message[];
   isLoading: boolean;
   isStreaming: boolean;
+  error: Error | undefined;
   endRef: RefObject<HTMLDivElement>;
   onSuggestionClick: (text: string) => void;
 }
@@ -41,6 +43,7 @@ export function ChatMessages({
   messages,
   isLoading,
   isStreaming,
+  error,
   endRef,
   onSuggestionClick,
 }: ChatMessagesProps) {
@@ -85,6 +88,20 @@ export function ChatMessages({
           );
         })}
       </AnimatePresence>
+
+      {error && !isLoading && !isStreaming && (
+        <motion.div
+          key="error"
+          style={messageRowStyle}
+          variants={loadingVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={loadingTransition}
+        >
+          <ChatError />
+        </motion.div>
+      )}
 
       {showSuggestions && !isLoading && !isStreaming && (
         <ChatSuggestions onSuggestionClick={onSuggestionClick} />

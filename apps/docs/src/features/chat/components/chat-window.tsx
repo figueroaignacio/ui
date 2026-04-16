@@ -9,6 +9,7 @@ interface ChatWindowProps {
   messages: Message[];
   isLoading: boolean;
   isStreaming: boolean;
+  error: Error | undefined;
   messagesEndRef: React.RefObject<HTMLDivElement>;
   message: string;
   onMessageChange: (value: string) => void;
@@ -47,6 +48,7 @@ export function ChatWindow(props: ChatWindowProps) {
     messages,
     isLoading,
     isStreaming,
+    error,
     messagesEndRef,
     message,
     onMessageChange,
@@ -87,6 +89,7 @@ export function ChatWindow(props: ChatWindowProps) {
                 messages={messages}
                 isLoading={isLoading}
                 isStreaming={isStreaming}
+                error={error}
                 endRef={messagesEndRef}
                 onSuggestionClick={onSuggestionClick}
               />

@@ -34,6 +34,8 @@
     "messages": {
       "initial": "¿Cómo puedo ayudarte hoy?",
       "error": "Lo siento, encontré un error. Por favor, intenta de nuevo.",
+      "errorTitle": "Error",
+      "errorContent": "Un error generando la respuesta. Por favor, intenta de nuevo más tarde.",
       "helperText": "Presiona Enter para enviar, Shift + Enter para nueva línea",
       "tooltip": "¿Puedo ayudarte?",
       "thinking": "Pensando",

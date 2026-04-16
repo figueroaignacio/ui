@@ -14,6 +14,7 @@ export function AiChat() {
     messages,
     isLoading,
     isStreaming,
+    error,
     messagesEndRef,
     sendMessage,
     handleSuggestionClick,
@@ -39,6 +40,7 @@ export function AiChat() {
         messages={messages}
         isLoading={isLoading}
         isStreaming={isStreaming}
+        error={error}
         messagesEndRef={messagesEndRef as RefObject<HTMLDivElement>}
         message={message}
         onMessageChange={setMessage}
