@@ -95,6 +95,7 @@
   --radius-2xl: calc(var(--radius) + 1rem);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
+  --animate-blink: blink 2s infinite;
 }
 
 @layer base {
@@ -162,4 +163,17 @@
 
 .gradient-text {
   @apply from-foreground to-foreground/30 bg-linear-to-br bg-clip-text leading-tight font-extrabold tracking-tight text-balance text-transparent;
+}
+
+@keyframes blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(0);
+  }
+
+  95%,
+  97% {
+    transform: scaleY(1);
+  }
 }
