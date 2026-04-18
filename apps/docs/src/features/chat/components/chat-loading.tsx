@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import { AiAvatar } from './ai-avatar';
 
 const dotStyle = { willChange: 'opacity' } as const;
 
@@ -27,8 +28,8 @@ export function ChatLoading() {
       animate="animate"
       className="flex flex-col items-start space-y-2"
     >
-      <span className="text-muted-foreground text-sm font-medium">NachUI Bot</span>
       <div className="flex animate-pulse items-center gap-1 rounded-xl text-sm backdrop-blur-sm">
+        <AiAvatar />
         <span className="text-muted-foreground">{t('thinking')}</span>
         <span className="flex gap-[2px]">
           {[0, 1, 2].map((dot) => (

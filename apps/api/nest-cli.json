@@ -6,5 +6,6 @@
     "builder": "webpack",
     "deleteOutDir": true,
     "assets": [{ "include": "modules/themes/css/**/*.css", "watchAssets": true }]
-  }
+  },
+  "exec": "node -r dotenv/config"
 }

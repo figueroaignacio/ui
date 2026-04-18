@@ -1,9 +1,10 @@
 'use client';
 
 import { GitHubIcon } from '@/components/common/tech-icons';
+import { AiAvatar } from '@/features/chat/components/ai-avatar';
 import { useChatContext } from '@/features/chat/context/chat-context';
 import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
-import { ArrowDown01Icon, Copy01Icon, Robot01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
+import { ArrowDown01Icon, Copy01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
@@ -47,7 +48,7 @@ export function DocActions({ page, url, filePath, rawContent }: DocActionsProps)
         href: `https://v0.dev/chat?q=${encodedPrompt}`,
       },
     ];
-  }, [t, url]);
+  }, [t, page, url]);
 
   const githubEditUrl = `https://github.com/figueroaignacio/ui/edit/main/apps/docs/src/content/${filePath}.mdx`;
 
@@ -58,7 +59,7 @@ export function DocActions({ page, url, filePath, rawContent }: DocActionsProps)
         size="sm"
         className="h-8 gap-2 rounded-l-full border-r-0 px-4"
         onClick={handleExplain}
-        leftIcon={<HugeiconsIcon icon={Robot01Icon} size={16} />}
+        leftIcon={<AiAvatar size="sm" />}
       >
         <span>{t('explainButton.label')}</span>
       </Button>

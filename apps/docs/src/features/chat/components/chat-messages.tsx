@@ -3,6 +3,7 @@ import { cn } from '@repo/ui/lib/cn';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
+import { AiAvatar } from './ai-avatar';
 import { ChatError } from './chat-error';
 import { ChatLoading } from './chat-loading';
 import { ChatMessage } from './chat-message';
@@ -81,7 +82,7 @@ export function ChatMessages({
               className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
             >
               <span className="mb-1.5 text-[10px] font-bold tracking-[0.15em] uppercase">
-                {msg.role === 'assistant' ? '' : 'You'}
+                {msg.role === 'assistant' ? <AiAvatar /> : 'You'}
               </span>
               <ChatMessage message={msg} isStreaming={isActiveStream} />
             </motion.div>
