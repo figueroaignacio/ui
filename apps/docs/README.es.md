@@ -1,8 +1,8 @@
-# Documentación de NachUI (Web)
+# Documentación de Mate UI (Web)
 
 [English](./README.md) | [Español]
 
-La interfaz principal y el Portal de Documentación Neural para el ecosistema NachUI. Una aplicación **Next.js** de alto rendimiento que sirve como galería interactiva de componentes y motor para desarrolladores.
+La interfaz principal y el Portal de Documentación Neural para el ecosistema Mate UI. Una aplicación **Next.js** de alto rendimiento que sirve como galería interactiva de componentes y motor para desarrolladores.
 
 ## Stack Tecnológico
 
@@ -21,7 +21,7 @@ Un asistente de IA integrado (conectado a **Gemini**) que proporciona orientaci�
 
 ### 2. Simulación de Alto Rendimiento
 
-Cada componente en NachUI se renderiza dentro de un entorno simulado, lo que permite a los desarrolladores interactuar, probar y extraer el código fuente en milisegundos.
+Cada componente en Mate UI se renderiza dentro de un entorno simulado, lo que permite a los desarrolladores interactuar, probar y extraer el código fuente en milisegundos.
 
 ### 3. Integración MDX con Seguridad de Tipos
 

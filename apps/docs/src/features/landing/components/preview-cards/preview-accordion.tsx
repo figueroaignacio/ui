@@ -9,7 +9,7 @@ export function PreviewAccordion() {
         <Accordion type="single" defaultValue="item-1">
           <Accordion.Item value="item-1">
             <Accordion.Trigger value="item-1" className="py-2 text-xs">
-              What is NachUI?
+              What is Mate UI?
             </Accordion.Trigger>
             <Accordion.Content value="item-1" className="text-[11px]">
               A premium React component library built with Tailwind CSS v4 and Framer Motion.

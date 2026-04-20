@@ -1,4 +1,4 @@
-import { NACHUI_SYSTEM_PROMPT as SYSTEM_PROMPT } from '@repo/ai/prompts';
+import { MATEUI_SYSTEM_PROMPT as SYSTEM_PROMPT } from '@repo/ai/prompts';
 import type { Message } from '../../../lib/definitions';
 import { getCachedContext } from './cache-manager';
 import { buildEnrichedContext, findRelevantComponents, findRelevantDocs } from './context-loader';

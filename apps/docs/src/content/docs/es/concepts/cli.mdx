@@ -1,6 +1,6 @@
 ---
 title: CLI
-description: Usa el CLI de NachUI para inicializar tu proyecto, agregar, actualizar, eliminar y listar componentes directamente desde la terminal.
+description: Usa el CLI de Mate UI para inicializar tu proyecto, agregar, actualizar, eliminar y listar componentes directamente desde la terminal.
 published: true
 toc:
   visible: true
@@ -8,35 +8,35 @@ date: 2026-04-10
 locale: es
 ---
 
-El CLI de NachUI es la forma más rápida de gestionar componentes en tu proyecto. Se conecta al registro oficial y te permite instalar, actualizar y eliminar componentes sin salir de tu terminal.
+El CLI de Mate UI es la forma más rápida de gestionar componentes en tu proyecto. Se conecta al registro oficial y te permite instalar, actualizar y eliminar componentes sin salir de tu terminal.
 
 ## Instalación
 
 No necesitas instalar nada de forma global. Usa `pnpm dlx` o `npx` para ejecutar el CLI bajo demanda:
 
 ```bash
-pnpm dlx nachui <comando>
+pnpm dlx mate-ui <comando>
 # o
-npx nachui <comando>
+npx mate-ui <comando>
 ```
 
 ## Comandos
 
 ### init
 
-Inicializa NachUI en tu proyecto. Este es el **primer comando que debes ejecutar**. Se encargará de:
+Inicializa Mate UI en tu proyecto. Este es el **primer comando que debes ejecutar**. Se encargará de:
 
 1. Obtener los temas disponibles desde el registro.
 2. Pedirte que selecciones un tema de forma interactiva.
-3. Crear un archivo de configuración `nachui.json` en la raíz de tu proyecto.
+3. Crear un archivo de configuración `mate-ui.json` en la raíz de tu proyecto.
 4. Inyectar los tokens CSS de diseño en tu hoja de estilos (`src/app/globals.css` para Next.js o `src/index.css` para Vite).
 5. Generar la función utilitaria `cn` en la ruta definida por `aliases.utils`.
 
 ```bash
-pnpm dlx nachui init
+pnpm dlx mate-ui init
 ```
 
-Después de ejecutar `init`, tu proyecto contendrá un archivo `nachui.json` similar a este:
+Después de ejecutar `init`, tu proyecto contendrá un archivo `mate-ui.json` similar a este:
 
 ```json
 {
@@ -57,23 +57,23 @@ Después de ejecutar `init`, tu proyecto contendrá un archivo `nachui.json` sim
 <Callout variant="info" className="mt-4">
   <Callout.Title>Info</Callout.Title>
   <Callout.Content>
-    Si `nachui.json` ya existe, `init` lo detectará y omitirá la re-inyección de tokens para evitar
+    Si `mate-ui.json` ya existe, `init` lo detectará y omitirá la re-inyección de tokens para evitar
     duplicados.
   </Callout.Content>
 </Callout>
 
 ### add
 
-Agrega un componente del registro a tu proyecto. Requiere que exista `nachui.json` (ejecuta `init` primero).
+Agrega un componente del registro a tu proyecto. Requiere que exista `mate-ui.json` (ejecuta `init` primero).
 
 ```bash
-pnpm dlx nachui add <componente>
+pnpm dlx mate-ui add <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx nachui add button
+pnpm dlx mate-ui add button
 ```
 
 **¿Qué hace?**
@@ -86,16 +86,16 @@ pnpm dlx nachui add button
 <Callout variant="success" className="mt-4">
   <Callout.Title>Tip</Callout.Title>
   <Callout.Content>
-    Usa `pnpm dlx nachui list` para ver todos los slugs de componentes disponibles.
+    Usa `pnpm dlx mate-ui list` para ver todos los slugs de componentes disponibles.
   </Callout.Content>
 </Callout>
 
 ### list
 
-Lista todos los componentes disponibles actualmente en el registro de NachUI.
+Lista todos los componentes disponibles actualmente en el registro de Mate UI.
 
 ```bash
-pnpm dlx nachui list
+pnpm dlx mate-ui list
 ```
 
 **Ejemplo de salida:**
@@ -114,13 +114,13 @@ Cada entrada muestra el nombre del componente, su slug (usado con `add`/`update`
 Obtiene la última versión de un componente ya instalado desde el registro y sobreescribe el archivo local.
 
 ```bash
-pnpm dlx nachui update <componente>
+pnpm dlx mate-ui update <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx nachui update button
+pnpm dlx mate-ui update button
 ```
 
 <Callout variant="warning" className="mt-4">
@@ -143,13 +143,13 @@ El comando:
 Elimina un componente instalado de tu proyecto borrando su archivo (o carpeta) del directorio de componentes.
 
 ```bash
-pnpm dlx nachui remove <componente>
+pnpm dlx mate-ui remove <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx nachui remove button
+pnpm dlx mate-ui remove button
 ```
 
 El comando busca `button.tsx` (o una carpeta `button/`) dentro de `src/components/ui/`. Si lo encuentra, pide confirmación antes de eliminarlo de forma permanente.
@@ -165,25 +165,25 @@ El comando busca `button.tsx` (o una carpeta `button/`) dentro de `src/component
 ## Flujo de trabajo típico
 
 ```bash
-# 1. Inicializar NachUI en tu proyecto
-pnpm dlx nachui init
+# 1. Inicializar Mate UI en tu proyecto
+pnpm dlx mate-ui init
 
 # 2. Ver los componentes disponibles
-pnpm dlx nachui list
+pnpm dlx mate-ui list
 
 # 3. Agregar un componente
-pnpm dlx nachui add button
+pnpm dlx mate-ui add button
 
 # 4. Actualizar un componente a la última versión
-pnpm dlx nachui update button
+pnpm dlx mate-ui update button
 
 # 5. Eliminar un componente que ya no necesitas
-pnpm dlx nachui remove button
+pnpm dlx mate-ui remove button
 ```
 
 ## Archivo de configuración
 
-El archivo `nachui.json` es creado por `init` y es requerido por los comandos `add`, `update` y `remove`. Controla dónde se colocan los componentes y utilidades dentro de tu proyecto.
+El archivo `mate-ui.json` es creado por `init` y es requerido por los comandos `add`, `update` y `remove`. Controla dónde se colocan los componentes y utilidades dentro de tu proyecto.
 
 | Campo                | Descripción                                            |
 | -------------------- | ------------------------------------------------------ |
@@ -192,4 +192,4 @@ El archivo `nachui.json` es creado por `init` y es requerido por los comandos `a
 | `aliases.components` | Alias de importación para el directorio de componentes |
 | `aliases.utils`      | Alias de importación para la utilidad `cn`             |
 
-Si este archivo no existe, la mayoría de los comandos fallarán y te pedirán que ejecutes `nachui init` primero.
+Si este archivo no existe, la mayoría de los comandos fallarán y te pedirán que ejecutes `mate-ui init` primero.

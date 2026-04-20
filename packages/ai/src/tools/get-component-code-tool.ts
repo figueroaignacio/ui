@@ -2,7 +2,7 @@ import { tool } from 'ai';
 import { z } from 'zod';
 
 export const getComponentCodeTool = tool({
-  description: 'Get NachUI component from registry API',
+  description: 'Get Mate UI component from registry API',
   inputSchema: z.object({
     componentName: z.string(),
   }),
@@ -11,7 +11,7 @@ export const getComponentCodeTool = tool({
     try {
       const res = await fetch(`${process.env.API_URL}/api/v1/registry/${componentName}`, {
         headers: {
-          'x-api-key': process.env.NACHUI_API_KEY!,
+          'x-api-key': process.env.MATEUI_API_KEY!,
         },
       });
 

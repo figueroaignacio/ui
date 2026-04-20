@@ -14,7 +14,7 @@ export function AiAvatar({ size = 'md' }: AiAvatarProps) {
 
   return (
     <svg height={SIZE} viewBox="0 0 24 24" width={SIZE} xmlns="http://www.w3.org/2000/svg">
-      <title>NachUI Agent</title>
+      <title>Mate UI Agent</title>
       <path
         clipRule="evenodd"
         fillRule="evenodd"

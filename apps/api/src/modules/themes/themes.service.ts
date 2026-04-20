@@ -20,7 +20,7 @@ export function cn(...inputs: ClassValue[]) {
 }`;
 
     const config = {
-      $schema: 'https://nach-ui.vercel.app/schema.json',
+      $schema: 'https://mate-ui.vercel.app/schema.json',
       style: 'oklch',
       tailwind: {
         config: 'tailwind.config.ts',

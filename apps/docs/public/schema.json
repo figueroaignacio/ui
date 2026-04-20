@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "NachUI Config",
+  "title": "Mate UI Config",
   "type": "object",
   "properties": {
     "style": { "type": "string", "enum": ["oklch", "css"] },

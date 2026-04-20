@@ -1,12 +1,12 @@
 import { stepCountIs, ToolLoopAgent } from 'ai';
-import { NACHUI_SYSTEM_PROMPT } from './prompts/system-prompt.js';
+import { MATEUI_SYSTEM_PROMPT } from './prompts/system-prompt.js';
 import { google, GOOGLE_MODELS } from './providers.js';
 import { getComponentCodeTool } from './tools/get-component-code-tool.js';
 import { getDocsTool } from './tools/get-docs-tool.js';
 
-export const nachUIAgent = new ToolLoopAgent({
+export const mateUIAgent = new ToolLoopAgent({
   model: google(GOOGLE_MODELS.gemini25Flash),
-  instructions: NACHUI_SYSTEM_PROMPT,
+  instructions: MATEUI_SYSTEM_PROMPT,
   tools: {
     getDocs: getDocsTool,
     getComponentCode: getComponentCodeTool,

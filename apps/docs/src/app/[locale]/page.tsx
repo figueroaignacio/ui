@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'website',
       locale,
       url: `https://i7a-ui.vercel.app/${locale}`,
-      siteName: 'NachUI',
+      siteName: 'Mate UI',
       images: [
         {
           url: `/${locale}/opengraph-image`,

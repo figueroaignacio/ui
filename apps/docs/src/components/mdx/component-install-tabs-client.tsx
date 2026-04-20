@@ -10,10 +10,10 @@ interface ComponentInstallTabsClientProps {
 }
 
 const CLI_COMMANDS = {
-  pnpm: (slug: string) => `pnpm dlx nachui add ${slug}`,
-  npm: (slug: string) => `npx nachui add ${slug}`,
-  yarn: (slug: string) => `yarn dlx nachui add ${slug}`,
-  bun: (slug: string) => `bunx nachui add ${slug}`,
+  pnpm: (slug: string) => `pnpm dlx mate-ui add ${slug}`,
+  npm: (slug: string) => `npx mate-ui add ${slug}`,
+  yarn: (slug: string) => `yarn dlx mate-ui add ${slug}`,
+  bun: (slug: string) => `bunx mate-ui add ${slug}`,
 } as const;
 
 type Manager = keyof typeof CLI_COMMANDS;
