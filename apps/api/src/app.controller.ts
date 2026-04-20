@@ -17,15 +17,11 @@ export class AppController {
 
   @Get('blame')
   gitBlame() {
-    return {
-      error: '404 - Skill Not Found',
-      message: 'The component is fine. Your implementation is the bottleneck.',
-      suggestion: 'Try reading the documentation or go back to jQuery.',
-    };
+    return this.appService.getBlameResponse();
   }
 
   @Get('inspiration')
-  getQuote() {
+  getQuote(): { author: string; quote: string } {
     return {
       author: 'Nacho Figueroa',
       quote: this.appService.getSecretQuote(),
