@@ -49,6 +49,9 @@
       "technologies": "What technologies does it support?",
       "features": "What are the main features?",
       "getStarted": "How do I get started?"
+    },
+    "header": {
+      "reset": "New chat"
     }
   },
   "backButton": {

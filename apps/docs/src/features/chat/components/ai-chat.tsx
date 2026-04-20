@@ -18,6 +18,7 @@ export function AiChat() {
     messagesEndRef,
     sendMessage,
     handleSuggestionClick,
+    resetChat,
   } = useChatContext();
   const { message, setMessage, handleSubmit, handleKeyPress } = useChatInput(sendMessage);
 
@@ -47,6 +48,7 @@ export function AiChat() {
         onSubmit={handleSubmit}
         onKeyPress={handleKeyPress}
         onClose={handleClose}
+        onReset={resetChat}
         onSuggestionClick={handleSuggestionClickWrapper}
       />
     </div>

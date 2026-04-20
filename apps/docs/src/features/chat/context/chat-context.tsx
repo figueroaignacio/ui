@@ -18,6 +18,7 @@ interface ChatContextType {
   messagesEndRef: RefObject<HTMLDivElement | null>;
   stop: () => void;
   error: Error | undefined;
+  resetChat: () => void;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -33,6 +34,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     messagesEndRef,
     stop,
     error,
+    resetChat,
   } = useChat();
 
   const openChat = useCallback(() => setIsOpen(true), []);
@@ -63,6 +65,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         messagesEndRef,
         stop,
         error,
+        resetChat,
       }}
     >
       {children}

@@ -16,6 +16,7 @@ interface ChatWindowProps {
   onSubmit: (e?: React.FormEvent) => void;
   onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClose: () => void;
+  onReset: () => void;
   onSuggestionClick: (text: string) => void;
 }
 
@@ -55,6 +56,7 @@ export function ChatWindow(props: ChatWindowProps) {
     onSubmit,
     onKeyPress,
     onClose,
+    onReset,
     onSuggestionClick,
   } = props;
 
@@ -70,7 +72,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={backdropTransition}
-            className="fixed inset-0 z-9998 px-12 backdrop-blur-xs"
+            className="bg-background/50 fixed inset-0 z-9998 px-12 backdrop-blur-xs"
             onClick={onClose}
           />
           <motion.div
@@ -81,9 +83,9 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="bg-background border-border fixed inset-0 z-9999 flex flex-col overflow-hidden rounded-none border-0 shadow-2xl backdrop-blur-3xl md:top-auto md:right-4 md:bottom-4 md:left-auto md:h-[calc(100dvh-2rem)] md:rounded-lg md:border lg:top-4 lg:bottom-auto lg:w-[550px]"
+            className="bg-background border-border fixed inset-0 z-9999 flex flex-col overflow-hidden rounded-none border-0 shadow-2xl backdrop-blur-3xl md:top-auto md:right-4 md:bottom-4 md:left-auto md:h-[calc(100dvh-2rem)] md:rounded-lg md:border lg:top-4 lg:bottom-auto lg:w-[650px]"
           >
-            <ChatHeader onClose={onClose} />
+            <ChatHeader onClose={onClose} onReset={onReset} />
             <div className="flex-1 overflow-y-auto">
               <ChatMessages
                 messages={messages}
