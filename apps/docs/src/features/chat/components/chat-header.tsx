@@ -41,7 +41,7 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
                 onClick={onReset}
                 size="icon"
                 variant="ghost"
-                className="text-muted-foreground hover:text-foreground h-8 w-8 rounded-full transition-all"
+                className="h-8 w-8 rounded-full transition-all"
                 aria-label="Reset chat"
                 title="Reset chat"
               >
