@@ -23,16 +23,16 @@ export function ChatInput(props: ChatInputProps) {
   return (
     <form
       onSubmit={onSubmit}
-      className="relative z-10 w-full px-4 py-4 before:pointer-events-none before:absolute before:inset-0 before:-z-10"
+      className="bg-background/50 border-border/40 relative z-10 w-full rounded-b-[24px] border-t px-6 py-5 backdrop-blur-md before:pointer-events-none before:absolute before:inset-0 before:-z-10"
     >
-      <div className="bg-secondary border-border focus-within:border-border focus-within:ring-border flex items-center gap-3 rounded-4xl border p-1.5 transition-all duration-300">
+      <div className="bg-background border-border/50 focus-within:border-foreground/30 focus-within:ring-foreground/5 flex items-center gap-3 rounded-[32px] border p-1.5 shadow-[0_2px_14px_rgba(0,0,0,0.04),inset_0_0_0_1px_rgba(255,255,255,0.02)] transition-all duration-500 focus-within:ring-4">
         <input
           value={message}
           disabled={isLoading}
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyPress={onKeyPress}
           placeholder={t('input.placeholder')}
-          className="flex-1 bg-transparent px-4 py-2.5 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="placeholder:text-muted-foreground/70 flex-1 bg-transparent px-5 py-3 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         <motion.button
           type="submit"
@@ -40,7 +40,7 @@ export function ChatInput(props: ChatInputProps) {
           whileHover={{ scale: hoverScale }}
           whileTap={{ scale: tapScale }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_10px_rgba(255,255,255,0.1)] transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-foreground text-background hover:bg-foreground/90 flex h-11 w-11 items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.1)] transition-colors disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0_4px_14px_rgba(255,255,255,0.1)]"
         >
           {isLoading ? (
             <HugeiconsIcon icon={Loading03Icon} size={18} className="animate-spin" />

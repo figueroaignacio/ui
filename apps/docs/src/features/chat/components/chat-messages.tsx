@@ -81,8 +81,19 @@ export function ChatMessages({
               transition={messageRowTransition}
               className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
             >
-              <span className="mb-1.5 text-[10px] font-bold tracking-[0.15em] uppercase">
-                {msg.role === 'assistant' ? <AiAvatar /> : 'You'}
+              <span
+                className={cn(
+                  'text-foreground/50 mb-1.5 flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em]',
+                  msg.role === 'user' ? 'mr-2' : 'ml-1',
+                )}
+              >
+                {msg.role === 'assistant' ? (
+                  <>
+                    <AiAvatar size="sm" /> <span>Mate</span>
+                  </>
+                ) : (
+                  'You'
+                )}
               </span>
               <ChatMessage message={msg} isStreaming={isActiveStream} />
             </motion.div>

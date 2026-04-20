@@ -30,12 +30,12 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
             transition={userMessageTransition}
             className="mb-8 flex justify-end"
           >
-            <p className="bg-secondary-foreground text-background max-w-[85%] rounded-3xl rounded-tr-sm px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+            <p className="from-foreground to-foreground/90 text-background max-w-[85%] rounded-[24px] rounded-tr-[4px] bg-linear-to-tr px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word shadow-[0_8px_30px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.2)] ring-1 ring-black/5 dark:ring-white/10">
               {message.content}
             </p>
           </motion.div>
         ) : (
-          <div className="group relative mb-8 w-full min-w-0 text-[15px] leading-relaxed text-neutral-200/90">
+          <div className="group text-foreground/90 relative mb-8 w-full min-w-0 pl-1 text-[15px] leading-relaxed">
             <ChatMarkdownContent content={message.content} />
             {isStreaming && !shouldReduceMotion && (
               <motion.span
