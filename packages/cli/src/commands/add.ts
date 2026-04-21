@@ -9,10 +9,10 @@ import { detectPackageManager, getInstallCommand } from '../lib/package-manager.
 export async function addCommand(componentSlug: string) {
   const s = p.spinner();
 
-  const configPath = path.join(process.cwd(), 'mateui.json');
+  const configPath = path.join(process.cwd(), 'nachui.json');
 
   if (!fs.existsSync(configPath)) {
-    p.log.error(kleur.red("Error: mateui.json not found. Please run 'mateui init' first."));
+    p.log.error(kleur.red("Error: nachui.json not found. Please run 'nachui init' first."));
     return;
   }
 
@@ -73,7 +73,7 @@ export async function addCommand(componentSlug: string) {
       }
     }
 
-    p.outro(kleur.bgGreen().black(' MateUI ') + ' Component ready to use!');
+    p.outro(kleur.bgGreen().black(' NachUI ') + ' Component ready to use!');
   } catch {
     s.stop(kleur.red('Error getting the component.'));
     p.log.error('Make sure the slug is correct or the API is online.');

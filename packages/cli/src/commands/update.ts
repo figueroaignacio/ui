@@ -7,10 +7,10 @@ import { api } from '../lib/api.js';
 export async function updateCommand(componentSlug: string) {
   const s = p.spinner();
 
-  const configPath = path.join(process.cwd(), 'mateui.json');
+  const configPath = path.join(process.cwd(), 'nachui.json');
 
   if (!fs.existsSync(configPath)) {
-    p.log.error(kleur.red("Error: mateui.json not found. Please run 'mateui init' first."));
+    p.log.error(kleur.red("Error: nachui.json not found. Please run 'nachui init' first."));
     return;
   }
 
@@ -23,7 +23,7 @@ export async function updateCommand(componentSlug: string) {
     p.log.error(
       kleur.red(`The component "${componentSlug}" is not installed in ${targetBaseDir}.`),
     );
-    p.log.info(`Try using: ${kleur.cyan(`mateui add ${componentSlug}`)}`);
+    p.log.info(`Try using: ${kleur.cyan(`nachui add ${componentSlug}`)}`);
     return;
   }
 
@@ -47,7 +47,7 @@ export async function updateCommand(componentSlug: string) {
 
     p.note(kleur.gray(`Location: ${targetPath}`), 'Update successful');
     p.outro(
-      kleur.bgBlue().white(' MateUI ') + ' Component updated to the latest registry version.',
+      kleur.bgBlue().white(' NachUI ') + ' Component updated to the latest registry version.',
     );
   } catch {
     s.stop(kleur.red('Error updating.'));

@@ -4,7 +4,7 @@ import { api } from '../lib/api';
 
 export async function listCommand() {
   const s = p.spinner();
-  s.start('Consulting MateUI registry...');
+  s.start('Consulting NachUI registry...');
 
   try {
     const components = await api.getComponents();
@@ -26,7 +26,7 @@ export async function listCommand() {
     });
     console.log('');
 
-    p.note(`To install one, run:\n${kleur.cyan(`pnpm dlx mateui add <slug>`)}`, 'Tip');
+    p.note(`To install one, run:\n${kleur.cyan(`pnpm dlx nachui add <slug>`)}`, 'Tip');
   } catch {
     s.stop(kleur.red('Error connecting to the API.'));
     p.log.error('Make sure the API is running on the correct port.');

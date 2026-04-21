@@ -7,7 +7,7 @@ import { api } from '../lib/api.js';
 import { detectPackageManager, getInstallCommand } from '../lib/package-manager.js';
 
 export async function initCommand() {
-  p.intro(kleur.bgCyan().black(' MateUI - Initialization '));
+  p.intro(kleur.bgCyan().black(' NachUI - Initialization '));
   const s = p.spinner();
   const cwd = process.cwd();
 
@@ -59,15 +59,15 @@ export async function initCommand() {
       ...config,
       tailwind: { ...config.tailwind, css: cssRelativePath },
     };
-    fs.writeFileSync(path.join(cwd, 'mateui.json'), JSON.stringify(finalConfig, null, 2));
+    fs.writeFileSync(path.join(cwd, 'nachui.json'), JSON.stringify(finalConfig, null, 2));
 
     const absoluteCssPath = path.join(cwd, cssRelativePath);
     const sanitizedCss = css
       .replace(/@import\s+['"]tailwindcss['"];\n/g, '')
       .replace(/@source\s+['"][^'"]+['"];\n/g, '');
-    const tokenIdentifier = '/* MateUI Tokens */';
+    const tokenIdentifier = '/* NachUI Tokens */';
     const tailwindImport = '@import "tailwindcss";';
-    const fullMateContent = `${tokenIdentifier}\n${sanitizedCss}`;
+    const fullNachUIContent = `${tokenIdentifier}\n${sanitizedCss}`;
 
     if (fs.existsSync(absoluteCssPath)) {
       const content = fs.readFileSync(absoluteCssPath, 'utf8');
@@ -77,26 +77,26 @@ export async function initCommand() {
         const header = parts[0].includes(tailwindImport)
           ? parts[0].trim()
           : tailwindImport + '\n\n' + parts[0].trim();
-        const updatedContent = header + '\n\n' + fullMateContent;
+        const updatedContent = header + '\n\n' + fullNachUIContent;
         fs.writeFileSync(absoluteCssPath, updatedContent.trim());
       } else {
         const confirmWipe = await p.confirm({
-          message: `Existing styles detected in ${cssRelativePath}. Do you want to wipe them and apply MateUI reset?`,
+          message: `Existing styles detected in ${cssRelativePath}. Do you want to wipe them and apply NachUI reset?`,
           initialValue: true,
         });
 
         if (confirmWipe && !p.isCancel(confirmWipe)) {
-          fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullMateContent);
-          p.log.info(kleur.blue('CSS file cleaned and MateUI tokens applied.'));
+          fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullNachUIContent);
+          p.log.info(kleur.blue('CSS file cleaned and NachUI tokens applied.'));
         } else {
           const hasImport = content.includes(tailwindImport);
           const prefix = hasImport ? '' : tailwindImport + '\n\n';
-          fs.writeFileSync(absoluteCssPath, prefix + content.trim() + '\n\n' + fullMateContent);
+          fs.writeFileSync(absoluteCssPath, prefix + content.trim() + '\n\n' + fullNachUIContent);
         }
       }
     } else {
       fs.mkdirSync(path.dirname(absoluteCssPath), { recursive: true });
-      fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullMateContent);
+      fs.writeFileSync(absoluteCssPath, tailwindImport + '\n\n' + fullNachUIContent);
     }
 
     const garbage = path.join(cwd, 'index.css');
@@ -138,7 +138,7 @@ export async function initCommand() {
     }
 
     p.note(`Theme: ${selectedTheme}\nStyles: ${cssRelativePath}`, 'Setup Successful');
-    p.outro(kleur.bgGreen().black(' MateUI ') + ' Ready!');
+    p.outro(kleur.bgGreen().black(' NachUI ') + ' Ready!');
   } catch (error) {
     s.stop(kleur.red('Init failed.'));
     console.error(error);
