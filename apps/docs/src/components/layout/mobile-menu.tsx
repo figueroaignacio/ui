@@ -40,7 +40,6 @@ export function MobileMenu() {
       </button>
       <div className="flex items-center gap-x-3">
         <AiChat />
-
         <Searcher />
       </div>
       <div
@@ -65,7 +64,7 @@ export function MobileMenu() {
             type="button"
             className="flex items-center gap-x-2 text-sm font-medium"
           >
-            <Logo />
+            <Logo size="sm" />
           </button>
           <div className="flex items-center gap-x-3">
             <ThemeToggle />
