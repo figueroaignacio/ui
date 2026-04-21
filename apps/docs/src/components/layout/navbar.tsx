@@ -12,9 +12,7 @@ export function Navbar() {
   return (
     <div className="relative z-50 container mx-auto hidden w-full items-center justify-between px-4 py-3 lg:flex">
       <div className="flex items-center justify-between gap-x-6">
-        <Logo size="sm">
-          <span className="font-semibold">NachUI</span>
-        </Logo>
+        <Logo size="sm" />
         <nav className="space-x-5">
           {navigation.map((item) => (
             <Link
