@@ -44,7 +44,7 @@ export const removeCommand = async (slug: string) => {
       await new Promise((res) => setTimeout(res, 100));
 
       p.log.success(`${kleur.green('✓')} ${kleur.bold(slug)} deleted.`);
-      p.outro(kleur.bgRed().black(' NachUI ') + ' Clean up complete.');
+      p.outro(kleur.bgRed().black(' MateUI ') + ' Clean up complete.');
     } else {
       s.stop(kleur.red('Error: Component not found.'));
       p.outro('Check the name and try again.');

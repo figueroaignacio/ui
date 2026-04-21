@@ -2,7 +2,7 @@
 
 [English](./README.md) | [Español]
 
-Reglas de linting unificadas y cumplimiento del estilo de código en todos los paquetes y aplicaciones de NachUI.
+Reglas de linting unificadas y cumplimiento del estilo de código en todos los paquetes y aplicaciones de MateUI.
 
 ## Uso
 

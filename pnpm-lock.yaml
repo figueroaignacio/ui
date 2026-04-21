@@ -191,7 +191,7 @@ importers:
       motion:
         specifier: ^12.38.0
         version: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      nach-themes:
+      mate-themes:
         specifier: ^4.0.1
         version: 4.0.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       next:
@@ -9188,7 +9188,7 @@ packages:
         integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==,
       }
 
-  nach-themes@4.0.1:
+  mate-themes@4.0.1:
     resolution:
       {
         integrity: sha512-nf8ttSpHOYADw9XoWgkeFbL5IvDl/ce+kd+SsujPNQPOhs1CbI605vyykx0VASkaZG8Bq5be9EBq9c1mg9o1dQ==,
@@ -17490,7 +17490,7 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
-  nach-themes@4.0.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  mate-themes@4.0.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)

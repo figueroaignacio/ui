@@ -1,8 +1,8 @@
-# Mate UI Neural Core (API)
+# MateUI Neural Core (API)
 
 [English] | [Español](./README.es.md)
 
-The intelligence layer for the Mate UI ecosystem. Designed to orchestrate AI-powered assistants and agentic workflows using the latest Large Language Models (LLMs).
+The intelligence layer for the MateUI ecosystem. Designed to orchestrate AI-powered assistants and agentic workflows using the latest Large Language Models (LLMs).
 
 ## Tech Stack
 
@@ -19,7 +19,7 @@ Provides low-latency, real-time responses using Gemini, ensuring a smooth and re
 
 ### 2. Context-Aware Knowledge Layer
 
-The AI is configured with a specialized system prompt that allows it to understand Mate UI's "Copy-Paste" philosophy, the latest Tailwind CSS v4 features, and React 19 best practices.
+The AI is configured with a specialized system prompt that allows it to understand MateUI's "Copy-Paste" philosophy, the latest Tailwind CSS v4 features, and React 19 best practices.
 
 ### 3. Modular Provider Architecture
 

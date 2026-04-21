@@ -1,13 +1,13 @@
 {
-  "name": "nachui",
+  "name": "mateui-cli",
   "version": "1.0.8",
   "type": "module",
-  "description": "Official CLI for NachUI",
+  "description": "Official CLI for MateUI",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "nachui": "./dist/index.js"
+    "mateui": "./dist/index.js"
   },
   "files": [
     "dist"

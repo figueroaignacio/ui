@@ -1,8 +1,8 @@
-# NachUI CLI
+# MateUI CLI
 
 [English] | [Español](./README.es.md)
 
-The official Command Line Interface for the NachUI ecosystem. Designed to help you seamlessly integrate, manage, and update high-fidelity React primitives directly into your codebase.
+The official Command Line Interface for the MateUI ecosystem. Designed to help you seamlessly integrate, manage, and update high-fidelity React primitives directly into your codebase.
 
 ## Tech Stack
 
@@ -15,7 +15,7 @@ The official Command Line Interface for the NachUI ecosystem. Designed to help y
 
 ### 1. Radically Simple Integration
 
-Initialize NachUI in your workspace, configure your environment, and add beautifully crafted React components directly to your source files. You own the code.
+Initialize MateUI in your workspace, configure your environment, and add beautifully crafted React components directly to your source files. You own the code.
 
 ### 2. Streamlined Workflow
 
@@ -30,20 +30,20 @@ Built with gorgeous interactive prompts, helpful validation, and intuitive comma
 You can run the CLI directly via `npx` (or your package manager of choice) without installing it globally.
 
 ```bash
-# Initialize NachUI in your project
-npx nachui init
+# Initialize MateUI in your project
+npx mateui init
 
 # Add a specific component
-npx nachui add button
+npx mateui add button
 
 # List all available components
-npx nachui list
+npx mateui list
 
 # Update an installed component
-npx nachui update button
+npx mateui update button
 
 # Remove an installed component
-npx nachui remove button
+npx mateui remove button
 ```
 
 ## Architecture

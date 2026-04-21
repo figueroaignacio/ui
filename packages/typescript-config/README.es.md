@@ -2,7 +2,7 @@
 
 [English](./README.md) | [Español]
 
-Configuraciones compartidas de TypeScript utilizadas en todo el monorepo de NachUI para garantizar una comprobación de tipos estricta y comportamientos consistentes del compilador.
+Configuraciones compartidas de TypeScript utilizadas en todo el monorepo de MateUI para garantizar una comprobación de tipos estricta y comportamientos consistentes del compilador.
 
 ## Uso
 

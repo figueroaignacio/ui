@@ -8,7 +8,7 @@ export function PreviewNotifications() {
         <div>
           <div className="text-foreground text-sm font-bold">Allow notifications</div>
           <div className="text-muted-foreground mt-0.5 text-xs">
-            Receive push notifications from Mate UI
+            Receive push notifications from MateUI
           </div>
         </div>
         <Switch defaultChecked />

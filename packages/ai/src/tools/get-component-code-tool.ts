@@ -2,7 +2,7 @@ import { tool } from 'ai';
 import { z } from 'zod';
 
 export const getComponentCodeTool = tool({
-  description: 'Get Mate UI component from registry API',
+  description: 'Get MateUI component from registry API',
   inputSchema: z.object({
     componentName: z.string(),
   }),

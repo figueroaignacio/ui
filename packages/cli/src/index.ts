@@ -10,16 +10,16 @@ import { updateCommand } from './commands/update.js';
 const program = new Command();
 
 program
-  .name('nachui')
-  .description('NachUI CLI - Add, update, remove and list components')
+  .name('mateui')
+  .description('MateUI CLI - Add, update, remove and list components')
   .version('1.0.8');
 
 program
   .command('init')
-  .description('Initialize NachUI in your project')
+  .description('Initialize MateUI in your project')
   .action(async () => {
     console.log('');
-    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    p.intro(kleur.bgCyan().black(' MateUI CLI '));
     await initCommand();
   });
 
@@ -29,7 +29,7 @@ program
   .argument('<component>', 'component slug')
   .action(async (component) => {
     console.log('');
-    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    p.intro(kleur.bgCyan().black(' MateUI CLI '));
     await addCommand(component);
   });
 
@@ -38,7 +38,7 @@ program
   .description('List all available components')
   .action(async () => {
     console.log('');
-    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    p.intro(kleur.bgCyan().black(' MateUI CLI '));
     await listCommand();
   });
 
@@ -48,7 +48,7 @@ program
   .argument('<component>', 'component slug')
   .action(async (component) => {
     console.log('');
-    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    p.intro(kleur.bgCyan().black(' MateUI CLI '));
     await updateCommand(component);
   });
 
@@ -58,7 +58,7 @@ program
   .argument('<component>', 'component slug')
   .action(async (component) => {
     console.log('');
-    p.intro(kleur.bgCyan().black(' NachUI CLI '));
+    p.intro(kleur.bgCyan().black(' MateUI CLI '));
     await removeCommand(component);
   });
 

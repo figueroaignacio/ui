@@ -1,8 +1,8 @@
-# NachUI Primitive Layer (UI)
+# MateUI Primitive Layer (UI)
 
 [English] | [Español](./README.es.md)
 
-The core UI engine of the NachUI ecosystem. Built for **React**, **Tailwind**, and is optimized for the highest performance standards.
+The core UI engine of the MateUI ecosystem. Built for **React**, **Tailwind**, and is optimized for the highest performance standards.
 
 ## Tech Stack
 
@@ -31,7 +31,7 @@ Built for the next generation of CSS, this library leverages the Direct-to-CSS a
 As a developer, you don't install `@repo/ui`. You use this workspace as a reference, selecting the primitive you need (e.g., `button.tsx`), and pasting it into your own workspace.
 
 ```tsx
-// Example of a NachUI Button primitive implementation
+// Example of a MateUI Button primitive implementation
 import { Button } from '@/components/button';
 
 export const App = () => (

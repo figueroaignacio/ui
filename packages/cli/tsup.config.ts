@@ -13,7 +13,7 @@ export default defineConfig({
   sourcemap: false,
   shims: true,
   env: {
-    NACHUI_API_KEY: process.env.NACHUI_API_KEY || '',
+    MATEUI_API_KEY: process.env.MATEUI_API_KEY || '',
   },
   banner: {
     js: '#!/usr/bin/env node',

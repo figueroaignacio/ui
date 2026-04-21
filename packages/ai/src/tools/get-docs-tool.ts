@@ -4,7 +4,7 @@ import { getQueryWords } from '../lib/get-query-words.js';
 
 export const getDocsTool = tool({
   description:
-    'Search the Mate UI documentation. Use this tool whenever the user asks about how to use a component, its props, or any conceptual question about Mate UI.',
+    'Search the MateUI documentation. Use this tool whenever the user asks about how to use a component, its props, or any conceptual question about MateUI.',
   inputSchema: z.object({
     query: z.string(),
     locale: z.enum(['en', 'es']).optional(),

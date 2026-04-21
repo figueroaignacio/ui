@@ -1,8 +1,8 @@
-# Mate UI Documentation (Web)
+# MateUI Documentation (Web)
 
 [English] | [Español](./README.es.md)
 
-The primary interface and Neural Documentation Portal for the Mate UI ecosystem. A high-performance **Next.js 16** application serving as an interactive component gallery and developer engine.
+The primary interface and Neural Documentation Portal for the MateUI ecosystem. A high-performance **Next.js 16** application serving as an interactive component gallery and developer engine.
 
 ## Tech Stack
 
@@ -21,7 +21,7 @@ An integrated AI assistant (connected to **Gemini**) providing real-time technic
 
 ### 2. High-Performance Simulation
 
-Each component in Mate UI is rendered within a simulated environment, allowing developers to interact, test, and extract source code in milliseconds.
+Each component in MateUI is rendered within a simulated environment, allowing developers to interact, test, and extract source code in milliseconds.
 
 ### 3. Type-Safe MDX Integration
 

@@ -1,9 +1,9 @@
-const API_URL = 'https://api-nach-ui.vercel.app/api/v1';
-const NACHUI_API_KEY = process.env.NACHUI_API_KEY;
+const API_URL = 'https://api-mateui.vercel.app/api/v1';
+const MATEUI_API_KEY = process.env.MATEUI_API_KEY;
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-api-key': NACHUI_API_KEY as string,
+  'x-api-key': MATEUI_API_KEY as string,
 };
 
 export interface RegistryComponent {
@@ -24,7 +24,7 @@ export const api = {
       }
 
       return response.json();
-    } catch (error) {
+    } catch {
       throw new Error('Error connecting to the API. Make sure it is running.');
     }
   },
