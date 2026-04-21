@@ -32,8 +32,14 @@ function Switch({
         }}
         {...props}
       />
-      <div className="bg-input peer-checked:bg-primary/60 pointer-events-none absolute inset-x-0 h-full w-full rounded-full transition-colors" />
-      <span className="bg-secondary-foreground pointer-events-none z-10 block h-5 w-5 rounded-full shadow-sm ring-0 transition-transform peer-checked:translate-x-5" />
+      <div
+        aria-hidden="true"
+        className="bg-input peer-checked:bg-primary/60 pointer-events-none absolute inset-x-0 h-full w-full rounded-full transition-colors"
+      />
+      <span
+        aria-hidden="true"
+        className="bg-secondary-foreground pointer-events-none z-10 block h-5 w-5 rounded-full shadow-sm ring-0 transition-transform peer-checked:translate-x-5"
+      />
     </label>
   );
 }

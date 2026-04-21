@@ -30,6 +30,7 @@ function Select({
       </select>
       <HugeiconsIcon
         icon={ArrowDown01Icon}
+        aria-hidden="true"
         className="text-muted-foreground pointer-events-none absolute right-3 size-4"
         size={16}
       />

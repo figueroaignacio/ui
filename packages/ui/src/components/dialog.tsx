@@ -264,6 +264,14 @@ const DialogContent = ({
     };
   }, [open, setOpen]);
 
+  React.useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
+
   return (
     <AnimatePresence mode="wait">
       {open && (
@@ -278,6 +286,7 @@ const DialogContent = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${id}-title`}
+            aria-describedby={`${id}-description`}
             onClick={(e) => e.stopPropagation()}
             variants={DIALOG_VARIANTS}
             initial="initial"
@@ -291,7 +300,7 @@ const DialogContent = ({
             )}
           >
             {children}
-            <DialogClose className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none">
+            <DialogClose className="ring-offset-background focus-visible:ring-ring absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none">
               <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" size={16} />
               <span className="sr-only">Close</span>
             </DialogClose>

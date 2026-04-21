@@ -231,6 +231,9 @@ function ToastProvider({
       {mounted &&
         createPortal(
           <div
+            role="status"
+            aria-live="polite"
+            aria-relevant="additions"
             className={cn(
               'pointer-events-none fixed z-9999 flex max-h-screen gap-2 p-4',
               POSITION_CLASSES[position],

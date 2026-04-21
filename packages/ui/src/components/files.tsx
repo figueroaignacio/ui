@@ -102,7 +102,7 @@ const File: React.FC<FileProps> = ({ name, className, onClick, status }) => {
         className,
       )}
     >
-      <span className={cn('text-muted-foreground', statusConfig?.color)}>
+      <span aria-hidden="true" className={cn('text-muted-foreground', statusConfig?.color)}>
         <HugeiconsIcon icon={File01Icon} className="size-4" size={16} />
       </span>
 
@@ -184,6 +184,7 @@ const Folder: React.FC<FolderProps> = ({
         )}
 
         <motion.div
+          aria-hidden="true"
           animate={isOpen ? FOLDER_ICON_OPEN : FOLDER_ICON_CLOSED}
           transition={FOLDER_ICON_TRANSITION}
           className={cn('text-muted-foreground', statusConfig?.color)}

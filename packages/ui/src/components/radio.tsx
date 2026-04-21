@@ -28,7 +28,10 @@ function Radio({
         }}
         {...props}
       />
-      <div className="bg-background pointer-events-none absolute size-2 rounded-full opacity-0 transition-opacity peer-checked:opacity-100" />
+      <div
+        aria-hidden="true"
+        className="bg-background pointer-events-none absolute size-2 rounded-full opacity-0 transition-opacity peer-checked:opacity-100"
+      />
     </div>
   );
 }

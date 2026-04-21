@@ -29,7 +29,11 @@ function Label({
         {...props}
       >
         {children}
-        {required && <span className="text-destructive text-sm">*</span>}
+        {required && (
+          <span aria-hidden="true" className="text-destructive text-sm">
+            *
+          </span>
+        )}
         {optional && <span className="text-muted-foreground text-xs font-normal">(optional)</span>}
       </label>
       {description && <span className="text-muted-foreground text-xs">{description}</span>}

@@ -6,6 +6,8 @@ export type StepsProps = React.HTMLAttributes<HTMLDivElement>;
 export function Steps({ className, children, ...props }: StepsProps) {
   return (
     <div
+      role="list"
+      aria-label="Steps"
       className={cn(
         'steps border-border mb-12 ml-4 border-l pl-6.5 [counter-reset:step]',
         // Targets nested headers (h4)

@@ -295,6 +295,7 @@ const DrawerContent = ({
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${id}-title`}
+            aria-describedby={`${id}-description`}
             drag={dragAxis}
             dragMomentum={false}
             dragElastic={dragElastic}

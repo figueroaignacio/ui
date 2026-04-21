@@ -236,7 +236,7 @@ const PopoverContent = ({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="ring-offset-background focus:ring-ring absolute top-3 right-3 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              className="ring-offset-background focus-visible:ring-ring absolute top-3 right-3 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" size={16} />
               <span className="sr-only">Close</span>

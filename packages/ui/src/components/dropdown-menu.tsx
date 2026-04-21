@@ -199,6 +199,7 @@ const DropdownMenuTrigger = ({
     >
       {children}
       <motion.span
+        aria-hidden="true"
         variants={DROPDOWN_ICON_VARIANTS}
         animate={isOpen ? 'open' : 'closed'}
         transition={DROPDOWN_ICON_TRANSITION}

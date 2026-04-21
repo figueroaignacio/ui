@@ -228,6 +228,7 @@ const CollapsibleTrigger = ({
     <motion.button
       ref={ref}
       type="button"
+      id={`${id}-trigger`}
       onClick={handleClick}
       disabled={disabled}
       data-state={isOpen ? 'open' : 'closed'}
@@ -284,6 +285,8 @@ const CollapsibleContent = ({
         <motion.div
           ref={ref}
           id={`${id}-content`}
+          role="region"
+          aria-labelledby={`${id}-trigger`}
           variants={COLLAPSIBLE_HEIGHT_VARIANTS}
           initial="closed"
           animate="open"
