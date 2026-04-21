@@ -1,4 +1,4 @@
-const API_URL = 'https://api-mateui.vercel.app/api/v1';
+const API_URL = 'https://api-mate-ui.vercel.app/api/v1';
 const MATEUI_API_KEY = process.env.MATEUI_API_KEY;
 
 const headers = {
