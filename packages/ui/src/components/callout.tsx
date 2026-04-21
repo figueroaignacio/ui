@@ -15,7 +15,7 @@ const calloutVariants = cva('flex w-full items-start gap-3 rounded-md border p-4
       default: 'bg-card/50 text-card-foreground border-border',
       info: 'bg-info/10 text-info border-info/20',
       warning: 'bg-warning/10 text-warning border-warning/20',
-      danger: 'bg-destructive/10 text-destructive border-destructive/20',
+      danger: 'bg-destructive/70 border-destructive/20',
       success: 'bg-success/10 text-success border-success/20',
     },
   },

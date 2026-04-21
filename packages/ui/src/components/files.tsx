@@ -18,11 +18,11 @@ export type GitStatus = 'modified' | 'deleted' | 'added' | 'untracked' | 'rename
 // --- Constants (module level) ---
 
 const GIT_STATUS_STYLES: Record<GitStatus, { color: string; letter: string }> = {
-  modified: { color: 'text-yellow-500', letter: 'M' },
-  deleted: { color: 'text-red-500 line-through opacity-70', letter: 'D' },
-  added: { color: 'text-green-500', letter: 'A' },
-  untracked: { color: 'text-green-500', letter: 'U' },
-  renamed: { color: 'text-blue-500', letter: 'R' },
+  modified: { color: 'text-warning', letter: 'M' },
+  deleted: { color: 'text-destructive line-through opacity-70', letter: 'D' },
+  added: { color: 'text-success', letter: 'A' },
+  untracked: { color: 'text-success', letter: 'U' },
+  renamed: { color: 'text-foreground', letter: 'R' },
   ignored: { color: 'text-muted-foreground opacity-50', letter: 'I' },
 };
 
