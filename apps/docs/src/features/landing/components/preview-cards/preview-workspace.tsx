@@ -1,43 +1,44 @@
 import { Card } from '@repo/ui/components/card';
 import { Input } from '@repo/ui/components/input';
+import { Label } from '@repo/ui/components/label';
+import { Progress } from '@repo/ui/components/progress';
 import { Select } from '@repo/ui/components/select';
 import { Switch } from '@repo/ui/components/switch';
 
 export function PreviewWorkspace() {
   return (
     <Card variant="outline">
-      <Card.Content compact className="flex flex-col gap-4 pt-4">
+      <Card.Content compact className="flex flex-col gap-5 pt-5 pb-5">
         <Input
           label="Workspace Name"
           defaultValue="acme-corp"
           description="This will be your project's unique identifier."
-          className="bg-background text-foreground placeholder:text-muted-foreground"
         />
 
-        <div className="block space-y-1">
-          <label className="text-foreground text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-            Environment
-          </label>
-          <Select className="bg-background text-foreground" defaultValue="production">
+        <div className="space-y-1.5">
+          <Label>Environment</Label>
+          <Select defaultValue="production">
             <option value="development">Development</option>
             <option value="staging">Staging</option>
             <option value="production">Production</option>
           </Select>
         </div>
 
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-foreground text-sm font-medium">Maintenance Mode</span>
+        <div className="flex items-center justify-between">
+          <div className="space-y-0.5">
+            <Label className="text-xs">Maintenance Mode</Label>
+            <p className="text-muted-foreground text-[10px]">Disable public access</p>
+          </div>
           <Switch defaultChecked />
         </div>
 
-        <div className="space-y-2 pt-4">
-          <div className="text-foreground flex justify-between text-xs">
-            <span className="font-medium">API Rate Limit</span>
-            <span className="font-bold">1,000 / hr</span>
+        <div className="space-y-2 pt-2">
+          <div className="text-foreground flex justify-between text-[10px] font-bold tracking-widest uppercase">
+            <span className="text-muted-foreground">API Rate Limit</span>
+            <span>70%</span>
           </div>
-          <div className="bg-secondary relative h-2 w-full overflow-hidden rounded-full">
-            <div className="bg-primary absolute top-0 left-0 h-full w-[70%] rounded-full" />
-          </div>
+          <Progress value={70} />
+          <p className="text-muted-foreground text-right text-[10px]">700 / 1,000 hr</p>
         </div>
       </Card.Content>
     </Card>

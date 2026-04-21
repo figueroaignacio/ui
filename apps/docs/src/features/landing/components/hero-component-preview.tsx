@@ -15,6 +15,10 @@ import { PreviewTasks } from './preview-cards/preview-tasks';
 import { PreviewTeam } from './preview-cards/preview-team';
 import { PreviewUpgrade } from './preview-cards/preview-upgrade';
 import { PreviewWorkspace } from './preview-cards/preview-workspace';
+import { PreviewFiles } from './preview-cards/preview-files';
+import { PreviewButtonVariants } from './preview-cards/preview-button-variants';
+import { PreviewSpinners } from './preview-cards/preview-spinners';
+import { PreviewTabs } from './preview-cards/preview-tabs';
 
 export function HeroComponentPreview() {
   return (
@@ -30,6 +34,7 @@ export function HeroComponentPreview() {
         <div className="relative grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-6">
             <PreviewWorkspace />
+            <PreviewButtonVariants />
             <PreviewProjectActions />
             <PreviewAccordion />
             <PreviewTasks />
@@ -37,6 +42,7 @@ export function HeroComponentPreview() {
           </div>
           <div className="flex flex-col gap-6">
             <PreviewMfa />
+            <PreviewSpinners />
             <PreviewMenu />
             <PreviewControls />
             <PreviewProfile />
@@ -44,6 +50,8 @@ export function HeroComponentPreview() {
           </div>
           <div className="flex flex-col gap-6">
             <PreviewDeploy />
+            <PreviewTabs />
+            <PreviewFiles />
             <PreviewBadges />
             <PreviewTeam />
             <PreviewStatus />

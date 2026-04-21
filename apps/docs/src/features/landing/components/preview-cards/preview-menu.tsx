@@ -1,23 +1,31 @@
 import { CreditCardIcon, Logout01Icon, Settings02Icon, UserIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { Badge } from '@repo/ui/components/badge';
 import { Button } from '@repo/ui/components/button';
 import { Card } from '@repo/ui/components/card';
 import { DropdownMenu } from '@repo/ui/components/dropdown-menu';
+import { Label } from '@repo/ui/components/label';
 import { Separator } from '@repo/ui/components/separator';
 
 export function PreviewMenu() {
   return (
-    <Card variant="default">
-      <Card.Content compact className="flex flex-col gap-3 pt-4">
-        <div className="text-muted-foreground text-xs font-medium">Quick Actions</div>
+    <Card variant="outline">
+      <Card.Content compact className="flex flex-col gap-4 pt-5 pb-5">
+        <div className="flex items-center justify-between">
+          <Label className="text-[10px] font-bold tracking-widest uppercase">Settings</Label>
+          <Badge variant="secondary" className="h-4 px-1 text-[9px]">
+            ACTIVE
+          </Badge>
+        </div>
+
         <div className="flex items-center justify-between gap-2">
           <div className="flex flex-col">
-            <span className="text-sm font-medium">Account Settings</span>
-            <span className="text-muted-foreground text-[11px]">Manage your profile</span>
+            <span className="text-foreground text-xs font-bold">Account Settings</span>
+            <span className="text-muted-foreground text-[10px]">Manage your profile</span>
           </div>
           <DropdownMenu>
             <DropdownMenu.Trigger asChild>
-              <Button variant="outline" size="sm" className="h-8 w-8 border-dashed p-0">
+              <Button variant="outline" size="sm" className="h-7 w-7 rounded-full p-0">
                 <HugeiconsIcon icon={Settings02Icon} size={14} />
               </Button>
             </DropdownMenu.Trigger>
@@ -39,8 +47,14 @@ export function PreviewMenu() {
             </DropdownMenu.Content>
           </DropdownMenu>
         </div>
-        <Separator label="or" />
-        <Button variant="secondary" size="sm" className="w-full text-xs">
+
+        <Separator />
+
+        <Button
+          variant="secondary"
+          size="sm"
+          className="h-8 w-full text-[10px] font-bold uppercase"
+        >
           View all activity
         </Button>
       </Card.Content>
