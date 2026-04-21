@@ -164,8 +164,17 @@ function Blockquote({ className, children, ...props }: React.HTMLAttributes<HTML
   );
 }
 
-function Image({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
-  return <img className={cn('rounded-xl border', className)} alt={alt} {...props} />;
+function Image({ className, alt, src, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
+  if (!src) return null;
+  return (
+    <img
+      className={cn('rounded-xl border', className)}
+      alt={alt || ''}
+      sizes="100vw"
+      style={{ width: '100%', height: 'auto' }}
+      {...props}
+    />
+  );
 }
 
 export const mdxComponents = {

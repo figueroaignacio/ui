@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/': ['../../packages/ui/src/samples/**'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

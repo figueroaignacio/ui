@@ -49,7 +49,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           <p className="text-muted-foreground">{doc.description}</p>
           <DocActions
             page={doc.title}
-            url={`https://nachui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+            url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://nachui.vercel.app'}/${doc.locale}/docs/${doc.slugAsParams}`}
             filePath={doc.sourceFilePath}
             rawContent={doc.raw}
           />

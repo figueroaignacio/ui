@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: t('description'),
       type: 'website',
       locale,
-      url: `https://i7a-ui.vercel.app/${locale}`,
+      url: `/${locale}`,
       siteName: 'NachUI',
       images: [
         {
@@ -43,10 +43,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [`/${locale}/opengraph-image`],
     },
     alternates: {
-      canonical: `https://i7a-ui.vercel.app`,
+      canonical: `/${locale}`,
       languages: {
-        es: `https://i7a-ui.vercel.app/es`,
-        en: `https://i7a-ui.vercel.app/en`,
+        es: `/es`,
+        en: `/en`,
       },
     },
     robots: {

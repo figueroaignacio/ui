@@ -37,7 +37,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const url = `https://i7a-ui.vercel.app/${locale}/posts/${slugPath}`;
+  const url = `/${locale}/posts/${slugPath}`;
 
   return {
     title: post.title,
@@ -45,8 +45,8 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        es: `https://i7a-ui.vercel.app/es/blog/${slugPath}`,
-        en: `https://i7a-ui.vercel.app/en/blog/${slugPath}`,
+        es: `/es/blog/${slugPath}`,
+        en: `/en/blog/${slugPath}`,
       },
     },
     robots: {
