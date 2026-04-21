@@ -1,6 +1,6 @@
 ---
 title: CLI
-description: Use the MateUI CLI to initialize your project, add, update, remove, and list components directly from the terminal.
+description: Use the NachUI CLI to initialize your project, add, update, remove, and list components directly from the terminal.
 published: true
 toc:
   visible: true
@@ -8,35 +8,35 @@ date: 2026-04-10
 locale: en
 ---
 
-The MateUI CLI is the fastest way to manage components in your project. It connects to the official registry and lets you install, update, and remove components without leaving your terminal.
+The NachUI CLI is the fastest way to manage components in your project. It connects to the official registry and lets you install, update, and remove components without leaving your terminal.
 
 ## Installation
 
 You don't need to install anything globally. Use `pnpm dlx` or `npx` to run the CLI on demand:
 
 ```bash
-pnpm dlx mateui <command>
+pnpm dlx nachui <command>
 # or
-npx mateui <command>
+npx nachui <command>
 ```
 
 ## Commands
 
 ### init
 
-Initializes MateUI in your project. This is the **first command you should run**. It will:
+Initializes NachUI in your project. This is the **first command you should run**. It will:
 
 1. Fetch the available themes from the registry.
 2. Ask you to select a theme interactively.
-3. Create a `mateui.json` configuration file in the root of your project.
+3. Create a `nachui.json` configuration file in the root of your project.
 4. Inject the CSS design tokens into your stylesheet (`src/app/globals.css` for Next.js or `src/index.css` for Vite).
 5. Generate the `cn` utility function in the path defined by `aliases.utils`.
 
 ```bash
-pnpm dlx mateui init
+pnpm dlx nachui init
 ```
 
-After running `init`, your project will contain a `mateui.json` file like this:
+After running `init`, your project will contain a `nachui.json` file like this:
 
 ```json
 {
@@ -57,23 +57,23 @@ After running `init`, your project will contain a `mateui.json` file like this:
 <Callout variant="info" className="mt-4">
   <Callout.Title>Info</Callout.Title>
   <Callout.Content>
-    If `mateui.json` already exists, `init` will detect it and skip re-injecting tokens to avoid
+    If `nachui.json` already exists, `init` will detect it and skip re-injecting tokens to avoid
     duplicates.
   </Callout.Content>
 </Callout>
 
 ### add
 
-Adds a component from the registry to your project. Requires `mateui.json` to exist (run `init` first).
+Adds a component from the registry to your project. Requires `nachui.json` to exist (run `init` first).
 
 ```bash
-pnpm dlx mateui add <component>
+pnpm dlx nachui add <component>
 ```
 
 **Example:**
 
 ```bash
-pnpm dlx mateui add button
+pnpm dlx nachui add button
 ```
 
 **What it does:**
@@ -86,16 +86,16 @@ pnpm dlx mateui add button
 <Callout variant="success" className="mt-4">
   <Callout.Title>Tip</Callout.Title>
   <Callout.Content>
-    Use `pnpm dlx mateui list` to see all available component slugs.
+    Use `pnpm dlx nachui list` to see all available component slugs.
   </Callout.Content>
 </Callout>
 
 ### list
 
-Lists all components currently available in the MateUI registry.
+Lists all components currently available in the NachUI registry.
 
 ```bash
-pnpm dlx mateui list
+pnpm dlx nachui list
 ```
 
 **Output example:**
@@ -116,13 +116,13 @@ Each entry shows the component name, its slug (used with `add`/`update`/`remove`
 Fetches the latest version of an already-installed component from the registry and overwrites the local file.
 
 ```bash
-pnpm dlx mateui update <component>
+pnpm dlx nachui update <component>
 ```
 
 **Example:**
 
 ```bash
-pnpm dlx mateui update button
+pnpm dlx nachui update button
 ```
 
 <Callout variant="warning" className="mt-4">
@@ -145,13 +145,13 @@ The command will:
 Removes an installed component from your project by deleting its file (or folder) from the components directory.
 
 ```bash
-pnpm dlx mateui remove <component>
+pnpm dlx nachui remove <component>
 ```
 
 **Example:**
 
 ```bash
-pnpm dlx mateui remove button
+pnpm dlx nachui remove button
 ```
 
 The command looks for `button.tsx` (or a `button/` folder) inside `src/components/ui/`. If found, it asks for confirmation before permanently deleting the file.
@@ -166,25 +166,25 @@ The command looks for `button.tsx` (or a `button/` folder) inside `src/component
 ## Typical workflow
 
 ```bash
-# 1. Initialize MateUI in your project
-pnpm dlx mateui init
+# 1. Initialize NachUI in your project
+pnpm dlx nachui init
 
 # 2. Browse available components
-pnpm dlx mateui list
+pnpm dlx nachui list
 
 # 3. Add a component
-pnpm dlx mateui add button
+pnpm dlx nachui add button
 
 # 4. Update a component to the latest version
-pnpm dlx mateui update button
+pnpm dlx nachui update button
 
 # 5. Remove a component you no longer need
-pnpm dlx mateui remove button
+pnpm dlx nachui remove button
 ```
 
 ## Configuration file
 
-The `mateui.json` file is created by `init` and is required by the `add`, `update`, and `remove` commands. It controls where components and utilities are placed inside your project.
+The `nachui.json` file is created by `init` and is required by the `add`, `update`, and `remove` commands. It controls where components and utilities are placed inside your project.
 
 | Field                | Description                               |
 | -------------------- | ----------------------------------------- |
@@ -193,4 +193,4 @@ The `mateui.json` file is created by `init` and is required by the `add`, `updat
 | `aliases.components` | Import alias for the components directory |
 | `aliases.utils`      | Import alias for the `cn` utility         |
 
-If this file is missing, most commands will fail and ask you to run `mateui init` first.
+If this file is missing, most commands will fail and ask you to run `nachui init` first.

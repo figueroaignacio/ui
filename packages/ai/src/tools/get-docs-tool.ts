@@ -4,7 +4,7 @@ import { getQueryWords } from '../lib/get-query-words.js';
 
 export const getDocsTool = tool({
   description:
-    'Search the MateUI documentation. Use this tool whenever the user asks about how to use a component, its props, or any conceptual question about MateUI.',
+    'Search the NachUI documentation. Use this tool whenever the user asks about how to use a component, its props, or any conceptual question about NachUI.',
   inputSchema: z.object({
     query: z.string(),
     locale: z.enum(['en', 'es']).optional(),
@@ -15,7 +15,7 @@ export const getDocsTool = tool({
     try {
       const res = await fetch(`${process.env.API_URL}/api/v1/docs`, {
         headers: {
-          'x-api-key': process.env.MATEUI_API_KEY!,
+          'x-api-key': process.env.NACHUI_API_KEY!,
         },
       });
 

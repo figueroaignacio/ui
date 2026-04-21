@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { mateUIAgent } from '@repo/ai';
+import { nachUIAgent } from '@repo/ai';
 import { pipeAgentUIStreamToResponse } from 'ai';
 import type { Response } from 'express';
 
@@ -10,7 +10,7 @@ export class ChatService {
   async streamChat(messages: unknown[], res: Response): Promise<void> {
     await pipeAgentUIStreamToResponse({
       response: res,
-      agent: mateUIAgent,
+      agent: nachUIAgent,
       uiMessages: messages,
       onError: (err: unknown) => {
         const error = (err as Record<string, unknown>) || {};

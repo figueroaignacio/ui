@@ -49,7 +49,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           <p className="text-muted-foreground">{doc.description}</p>
           <DocActions
             page={doc.title}
-            url={`https://mateui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
+            url={`https://nachui.vercel.app/${doc.locale}/docs/${doc.slugAsParams}`}
             filePath={doc.sourceFilePath}
             rawContent={doc.raw}
           />
@@ -84,7 +84,7 @@ export async function generateMetadata({
 
   const metaTitle = doc.title;
   const metaDescription = doc.description;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mateui.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nachui.vercel.app';
   const url = `${baseUrl}/${locale}/docs/${slugPath}`;
 
   return {
@@ -96,7 +96,7 @@ export async function generateMetadata({
       type: 'article',
       locale: locale,
       url: url,
-      siteName: 'MateUI',
+      siteName: 'NachUI',
       images: [
         {
           url: `${baseUrl}/${locale}/docs/${slugPath}/opengraph-image`,

@@ -19,26 +19,26 @@ interface LocaleLayoutProps {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: {
-    default: 'MateUI',
-    template: `MateUI - %s`,
+    default: 'NachUI',
+    template: `NachUI - %s`,
   },
   description: 'Next-generation React components built for performance.',
   openGraph: {
-    title: 'MateUI',
+    title: 'NachUI',
     description: 'Next-generation React components built for performance.',
-    siteName: 'MateUI',
+    siteName: 'NachUI',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MateUI',
+    title: 'NachUI',
     description: 'Next-generation React components built for performance.',
   },
   other: {
     'application/ld+json': JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'MateUI',
+      name: 'NachUI',
       description: 'Next-generation React components built for performance.',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',

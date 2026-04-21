@@ -6,7 +6,7 @@ export function Default() {
   return (
     <div className="w-full max-w-sm space-y-4">
       <div>
-        <h4 className="text-sm font-medium">MateUI</h4>
+        <h4 className="text-sm font-medium">NachUI</h4>
         <p className="text-muted-foreground text-sm">An open-source UI component library.</p>
       </div>
       <Separator />

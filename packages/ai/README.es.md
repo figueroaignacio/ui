@@ -1,8 +1,8 @@
-# Núcleo Neural de MateUI (API)
+# Núcleo Neural de NachUI (API)
 
 [English](./README.md) | [Español]
 
-La capa de inteligencia para el ecosistema MateUI. Diseñada para orquestar asistentes impulsados por IA y flujos de trabajo de agentes utilizando los últimos Modelos de Lenguaje de Gran Tamaño (LLMs).
+La capa de inteligencia para el ecosistema NachUI. Diseñada para orquestar asistentes impulsados por IA y flujos de trabajo de agentes utilizando los últimos Modelos de Lenguaje de Gran Tamaño (LLMs).
 
 ## Stack Tecnológico
 
@@ -19,7 +19,7 @@ Proporciona respuestas de baja latencia en tiempo real utilizando Gemini Flash, 
 
 ### 2. Capa de Conocimiento Contextual
 
-La IA está configurada con un prompt de sistema especializado que le permite comprender la filosofía "Copy-Paste" de MateUI, las últimas características de Tailwind y las mejores prácticas de React.
+La IA está configurada con un prompt de sistema especializado que le permite comprender la filosofía "Copy-Paste" de NachUI, las últimas características de Tailwind y las mejores prácticas de React.
 
 ### 3. Arquitectura de Proveedores Modular
 

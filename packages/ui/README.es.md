@@ -1,8 +1,8 @@
-# Capa de Primitivas de MateUI (UI)
+# Capa de Primitivas de NachUI (UI)
 
 [English](./README.md) | [Español]
 
-El motor de UI central del ecosistema MateUI. Construido para **React**, **Tailwind**, y optimizado para los más altos estándares de rendimiento.
+El motor de UI central del ecosistema NachUI. Construido para **React**, **Tailwind**, y optimizado para los más altos estándares de rendimiento.
 
 ## Stack Tecnológico
 
@@ -31,7 +31,7 @@ Construida para la próxima generación de CSS, esta librería aprovecha la arqu
 Como desarrollador, no instalas `@repo/ui`. Utilizas este espacio de trabajo como referencia, seleccionando la primitiva que necesitas (por ejemplo, `button.tsx`), y pegándola en tu propio espacio de trabajo.
 
 ```tsx
-// Ejemplo de implementación de una primitiva de Botón de MateUI
+// Ejemplo de implementación de una primitiva de Botón de NachUI
 import { Button } from '@/components/button';
 
 export const App = () => (

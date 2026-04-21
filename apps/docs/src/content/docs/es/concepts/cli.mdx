@@ -1,6 +1,6 @@
 ---
 title: CLI
-description: Usa el CLI de MateUI para inicializar tu proyecto, agregar, actualizar, eliminar y listar componentes directamente desde la terminal.
+description: Usa el CLI de NachUI para inicializar tu proyecto, agregar, actualizar, eliminar y listar componentes directamente desde la terminal.
 published: true
 toc:
   visible: true
@@ -8,35 +8,35 @@ date: 2026-04-10
 locale: es
 ---
 
-El CLI de MateUI es la forma más rápida de gestionar componentes en tu proyecto. Se conecta al registro oficial y te permite instalar, actualizar y eliminar componentes sin salir de tu terminal.
+El CLI de NachUI es la forma más rápida de gestionar componentes en tu proyecto. Se conecta al registro oficial y te permite instalar, actualizar y eliminar componentes sin salir de tu terminal.
 
 ## Instalación
 
 No necesitas instalar nada de forma global. Usa `pnpm dlx` o `npx` para ejecutar el CLI bajo demanda:
 
 ```bash
-pnpm dlx mateui <comando>
+pnpm dlx nachui <comando>
 # o
-npx mateui <comando>
+npx nachui <comando>
 ```
 
 ## Comandos
 
 ### init
 
-Inicializa MateUI en tu proyecto. Este es el **primer comando que debes ejecutar**. Se encargará de:
+Inicializa NachUI en tu proyecto. Este es el **primer comando que debes ejecutar**. Se encargará de:
 
 1. Obtener los temas disponibles desde el registro.
 2. Pedirte que selecciones un tema de forma interactiva.
-3. Crear un archivo de configuración `mateui.json` en la raíz de tu proyecto.
+3. Crear un archivo de configuración `nachui.json` en la raíz de tu proyecto.
 4. Inyectar los tokens CSS de diseño en tu hoja de estilos (`src/app/globals.css` para Next.js o `src/index.css` para Vite).
 5. Generar la función utilitaria `cn` en la ruta definida por `aliases.utils`.
 
 ```bash
-pnpm dlx mateui init
+pnpm dlx nachui init
 ```
 
-Después de ejecutar `init`, tu proyecto contendrá un archivo `mateui.json` similar a este:
+Después de ejecutar `init`, tu proyecto contendrá un archivo `nachui.json` similar a este:
 
 ```json
 {
@@ -57,23 +57,23 @@ Después de ejecutar `init`, tu proyecto contendrá un archivo `mateui.json` sim
 <Callout variant="info" className="mt-4">
   <Callout.Title>Info</Callout.Title>
   <Callout.Content>
-    Si `mateui.json` ya existe, `init` lo detectará y omitirá la re-inyección de tokens para evitar
+    Si `nachui.json` ya existe, `init` lo detectará y omitirá la re-inyección de tokens para evitar
     duplicados.
   </Callout.Content>
 </Callout>
 
 ### add
 
-Agrega un componente del registro a tu proyecto. Requiere que exista `mateui.json` (ejecuta `init` primero).
+Agrega un componente del registro a tu proyecto. Requiere que exista `nachui.json` (ejecuta `init` primero).
 
 ```bash
-pnpm dlx mateui add <componente>
+pnpm dlx nachui add <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx mateui add button
+pnpm dlx nachui add button
 ```
 
 **¿Qué hace?**
@@ -86,16 +86,16 @@ pnpm dlx mateui add button
 <Callout variant="success" className="mt-4">
   <Callout.Title>Tip</Callout.Title>
   <Callout.Content>
-    Usa `pnpm dlx mateui list` para ver todos los slugs de componentes disponibles.
+    Usa `pnpm dlx nachui list` para ver todos los slugs de componentes disponibles.
   </Callout.Content>
 </Callout>
 
 ### list
 
-Lista todos los componentes disponibles actualmente en el registro de MateUI.
+Lista todos los componentes disponibles actualmente en el registro de NachUI.
 
 ```bash
-pnpm dlx mateui list
+pnpm dlx nachui list
 ```
 
 **Ejemplo de salida:**
@@ -114,13 +114,13 @@ Cada entrada muestra el nombre del componente, su slug (usado con `add`/`update`
 Obtiene la última versión de un componente ya instalado desde el registro y sobreescribe el archivo local.
 
 ```bash
-pnpm dlx mateui update <componente>
+pnpm dlx nachui update <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx mateui update button
+pnpm dlx nachui update button
 ```
 
 <Callout variant="warning" className="mt-4">
@@ -143,13 +143,13 @@ El comando:
 Elimina un componente instalado de tu proyecto borrando su archivo (o carpeta) del directorio de componentes.
 
 ```bash
-pnpm dlx mateui remove <componente>
+pnpm dlx nachui remove <componente>
 ```
 
 **Ejemplo:**
 
 ```bash
-pnpm dlx mateui remove button
+pnpm dlx nachui remove button
 ```
 
 El comando busca `button.tsx` (o una carpeta `button/`) dentro de `src/components/ui/`. Si lo encuentra, pide confirmación antes de eliminarlo de forma permanente.
@@ -165,25 +165,25 @@ El comando busca `button.tsx` (o una carpeta `button/`) dentro de `src/component
 ## Flujo de trabajo típico
 
 ```bash
-# 1. Inicializar MateUI en tu proyecto
-pnpm dlx mateui init
+# 1. Inicializar NachUI en tu proyecto
+pnpm dlx nachui init
 
 # 2. Ver los componentes disponibles
-pnpm dlx mateui list
+pnpm dlx nachui list
 
 # 3. Agregar un componente
-pnpm dlx mateui add button
+pnpm dlx nachui add button
 
 # 4. Actualizar un componente a la última versión
-pnpm dlx mateui update button
+pnpm dlx nachui update button
 
 # 5. Eliminar un componente que ya no necesitas
-pnpm dlx mateui remove button
+pnpm dlx nachui remove button
 ```
 
 ## Archivo de configuración
 
-El archivo `mateui.json` es creado por `init` y es requerido por los comandos `add`, `update` y `remove`. Controla dónde se colocan los componentes y utilidades dentro de tu proyecto.
+El archivo `nachui.json` es creado por `init` y es requerido por los comandos `add`, `update` y `remove`. Controla dónde se colocan los componentes y utilidades dentro de tu proyecto.
 
 | Campo                | Descripción                                            |
 | -------------------- | ------------------------------------------------------ |
@@ -192,4 +192,4 @@ El archivo `mateui.json` es creado por `init` y es requerido por los comandos `a
 | `aliases.components` | Alias de importación para el directorio de componentes |
 | `aliases.utils`      | Alias de importación para la utilidad `cn`             |
 
-Si este archivo no existe, la mayoría de los comandos fallarán y te pedirán que ejecutes `mateui init` primero.
+Si este archivo no existe, la mayoría de los comandos fallarán y te pedirán que ejecutes `nachui init` primero.

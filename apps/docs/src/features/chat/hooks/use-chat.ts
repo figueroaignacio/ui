@@ -25,7 +25,7 @@ export function useChat() {
 
   const [storedMessages, setStoredMessages, removeStoredMessages, isMounted] = useLocalStorage<
     UIMessage[]
-  >('mateui-chat', [initialMessage]);
+  >('nachui-chat', [initialMessage]);
 
   const {
     messages: aiMessages,
@@ -43,7 +43,7 @@ export function useChat() {
 
   useEffect(() => {
     if (isMounted) {
-      const item = window.localStorage.getItem('mateui-chat');
+      const item = window.localStorage.getItem('nachui-chat');
       if (item) {
         try {
           const parsed = JSON.parse(item) as UIMessage[];

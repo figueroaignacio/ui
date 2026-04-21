@@ -13,7 +13,7 @@ export class RegistryService {
     const component = await this.repository.findBySlug(slug);
 
     if (!component) {
-      throw new NotFoundException(`MateUI: El componente '${slug}' no existe.`);
+      throw new NotFoundException(`NachUI: El componente '${slug}' no existe.`);
     }
 
     return component;

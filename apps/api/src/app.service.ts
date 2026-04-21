@@ -4,12 +4,12 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getWelcomeMessage() {
     return {
-      title: 'MATEUI REGISTRY API',
+      title: 'NACHUI REGISTRY API',
       version: '1.0.0',
       tagline: 'The kernel of your Frontend',
       quote: 'If you think your UI is good, you are probably wrong. Like me',
       message:
-        "Welcome to the source of truth. MateUI is NOT a library for weak developers who love 1GB of node_modules. It's for people who know how to copy-paste code and OWN IT.",
+        "Welcome to the source of truth. NachUI is NOT a library for weak developers who love 1GB of node_modules. It's for people who know how to copy-paste code and OWN IT.",
       endpoints: [
         '/api/v1',
         '/api/v1/health',
@@ -44,9 +44,9 @@ export class AppService {
   getSecretQuote(): string {
     const quotes = [
       "Software is like sex: it's better when it's free and has good padding.",
-      'Most decorators are just a way to hide bad architecture. Use MateUI instead.',
+      'Most decorators are just a way to hide bad architecture. Use NachUI instead.',
       "Real developers don't need 'npm install'. They need a CLI and a dream.",
-      "If it compiles, it's good. If it has MateUI, it's perfect.",
+      "If it compiles, it's good. If it has NachUI, it's perfect.",
     ];
     return quotes[Math.floor(Math.random() * quotes.length)];
   }

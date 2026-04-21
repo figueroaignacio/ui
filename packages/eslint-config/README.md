@@ -2,7 +2,7 @@
 
 [English] | [Español](./README.es.md)
 
-Unified linting rules and code style enforcement across all MateUI packages and applications.
+Unified linting rules and code style enforcement across all NachUI packages and applications.
 
 ## Usage
 

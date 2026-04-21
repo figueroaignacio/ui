@@ -26,7 +26,7 @@ export function Logo({ size = 'md', showText = false }: LogoProps) {
         <rect x="16" y="22" width="48" height="8" rx="4" fill="var(--background)" />
         <path d="M18 30 C18 30 14 70 40 70 C66 70 62 30 62 30 Z" fill="var(--background)" />
       </svg>
-      {showText && <span className="">MateUI</span>}
+      {showText && <span className="">NachUI</span>}
     </Link>
   );
 }
