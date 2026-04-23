@@ -222,5 +222,19 @@ export const DEMO_REGISTRY = {
   },
 } as const;
 
+export const BRICK_REGISTRY = {
+  login: {
+    'login-01': 'packages/ui/src/bricks/login/login-01.tsx',
+    'login-02': 'packages/ui/src/bricks/login/login-02.tsx',
+    'login-03': 'packages/ui/src/bricks/login/login-03.tsx',
+  },
+  signup: {
+    'signup-01': 'packages/ui/src/bricks/signup/signup-01.tsx',
+    'signup-02': 'packages/ui/src/bricks/signup/signup-02.tsx',
+  },
+} as const;
+
 export type ComponentName = keyof typeof COMPONENT_REGISTRY;
 export type DemoName<T extends keyof typeof DEMO_REGISTRY> = keyof (typeof DEMO_REGISTRY)[T];
+export type BrickCategory = keyof typeof BRICK_REGISTRY;
+export type BrickName<T extends BrickCategory> = keyof (typeof BRICK_REGISTRY)[T];
