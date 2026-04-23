@@ -50,6 +50,23 @@
     "subtitle": "Las últimas actualizaciones de NachUI",
     "postedBy": "Publicado por:"
   },
+  "bricks": {
+    "title": "Nach Bricks",
+    "subtitle": "para la web",
+    "description": "Bloques de UI limpios y modernos. Copia y pega en tus aplicaciones. Construidos con componentes NachUI. Open Source. Gratis para siempre.",
+    "actions": [
+      {
+        "label": "Explorar docs",
+        "href": "/docs",
+        "variant": "default"
+      },
+      {
+        "label": "Ver componentes",
+        "href": "/docs/components",
+        "variant": "secondary"
+      }
+    ]
+  },
   "footer": {
     "product": {
       "title": "Producto",

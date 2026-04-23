@@ -50,6 +50,23 @@
     "subtitle": "The latest updates from NachUI",
     "postedBy": "Posted by:"
   },
+  "bricks": {
+    "title": "Nach Bricks",
+    "subtitle": "for the web",
+    "description": "Clean, modern UI bricks. Copy and paste into your apps. Built with NachUI components. Open Source. Free forever.",
+    "actions": [
+      {
+        "label": "Browse docs",
+        "href": "/docs",
+        "variant": "default"
+      },
+      {
+        "label": "View components",
+        "href": "/docs/components",
+        "variant": "secondary"
+      }
+    ]
+  },
   "footer": {
     "product": {
       "title": "Product",
