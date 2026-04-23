@@ -11,12 +11,16 @@
     "./hooks/*": "./src/hooks/*.ts",
     "./registry": "./src/lib/registry.ts",
     "./src/demos/*/*": "./src/demos/*/*.tsx",
+    "./src/bricks/*/*": "./src/bricks/*/*.tsx",
     "./src/*": "./src/*"
   },
   "typesVersions": {
     "*": {
       "src/demos/*/*": [
         "./src/demos/*/*.tsx"
+      ],
+      "src/bricks/*/*": [
+        "./src/bricks/*/*.tsx"
       ],
       "src/*": [
         "./src/*"
