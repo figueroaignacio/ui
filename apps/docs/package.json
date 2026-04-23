@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "concurrently \"velite dev --watch\" \"next dev\"",
     "build": "velite generate && velite build && next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.162",

@@ -1,18 +1,21 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["GOOGLE_GENERATIVE_AI_API_KEY", "POSTGRES_URL", "FRONTEND_URL"],
   "ui": "tui",
   "tasks": {
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", ".velite/**", "!.next/cache/**", "dist/**"],
-      "env": ["GOOGLE_GENERATIVE_AI_API_KEY", "POSTGRES_URL", "FRONTEND_URL"]
+      "outputs": ["dist/**", ".next/**", ".velite/**", "!.next/cache/**"],
+      "env": ["GOOGLE_GENERATIVE_AI_API_KEY", "POSTGRES_URL", "FRONTEND_URL"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*"]
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["transit"]
     },
     "test": {
-      "dependsOn": ["^test"],
+      "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
     "dev": {
@@ -24,7 +27,7 @@
       "cache": false
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["transit"]
     }
   }
 }
