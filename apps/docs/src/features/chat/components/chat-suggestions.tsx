@@ -13,22 +13,18 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
     {
       icon: Comment01Icon,
       text: t('howWorks'),
-      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: CodeIcon,
       text: t('technologies'),
-      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: SparklesIcon,
       text: t('features'),
-      gradient: 'from-orange-500 to-red-500',
     },
     {
       icon: BulbIcon,
       text: t('getStarted'),
-      gradient: 'from-green-500 to-emerald-500',
     },
   ];
 
@@ -48,9 +44,7 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
               className="transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="group bg-secondary/30 border-border/50 hover:border-border/80 relative flex cursor-pointer items-center gap-2.5 overflow-hidden rounded-[18px] border px-4 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-colors">
-                <div
-                  className={`flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br ${suggestion.gradient} shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]`}
-                >
+                <div className={``}>
                   <HugeiconsIcon icon={suggestion.icon} size={14} className="text-white" />
                 </div>
                 <div className="min-w-0 flex-1">

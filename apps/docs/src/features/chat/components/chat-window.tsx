@@ -83,7 +83,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="bg-background/95 md:border-border/50 fixed inset-0 z-9999 flex flex-col overflow-hidden rounded-none border-0 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.6)] backdrop-blur-3xl md:top-auto md:right-6 md:bottom-6 md:left-auto md:h-[calc(100dvh-3rem)] md:rounded-[24px] md:border md:ring-1 md:ring-white/5 lg:top-6 lg:bottom-auto lg:w-[650px]"
+            className="bg-background/95 md:border-border fixed inset-0 z-9999 flex flex-col overflow-hidden rounded-none backdrop-blur-xl md:top-auto md:right-6 md:bottom-6 md:left-auto md:h-[calc(100dvh-3rem)] md:rounded-[24px] md:border md:ring-1 md:ring-white/5 lg:top-6 lg:bottom-auto lg:w-[650px]"
           >
             <div
               className="pointer-events-none absolute inset-0 z-0 opacity-[0.03] mix-blend-overlay"
@@ -93,10 +93,8 @@ export function ChatWindow(props: ChatWindowProps) {
               }}
             />
             <div className="from-primary/5 via-primary/2 pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-linear-to-b to-transparent" />
-
             <div className="relative z-10 flex h-full flex-col">
               <ChatHeader onClose={onClose} onReset={onReset} />
-
               <div className="flex-1 overflow-y-auto">
                 <ChatMessages
                   messages={messages}
