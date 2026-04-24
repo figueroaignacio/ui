@@ -51,7 +51,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20]/50 transition-all duration-500',
+        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20] transition-all duration-500',
         !internalIsExpanded ? 'max-h-[450px]' : 'max-h-none',
         className,
       )}
