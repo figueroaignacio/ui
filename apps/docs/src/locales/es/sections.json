@@ -1,9 +1,9 @@
 {
   "home": {
     "badge": "Presentando NachUI v1",
-    "subheading1": "Crea interfaces excepcionales.",
+    "subheading1": "Crea interfaces que tus usuarios recuerden.",
     "subheading2": "Hermoso. Rápido. Accesible.",
-    "description": "Construye aplicaciones React accesibles y de alto rendimiento con una biblioteca de componentes de élite diseñada para ofrecer gran potencia y flexibilidad sin igual.",
+    "description": "Una colección de componentes de React de élite diseñada para creadores que se niegan a conformarse con interfaces genéricas. Copia, pega y lanza interfaces de nivel de producción en minutos.",
     "github": "Código abierto, el código es tuyo",
     "actions": [
       {
@@ -99,7 +99,7 @@
     "sitemap": "Mapa del sitio"
   },
   "faq": {
-    "title": "Preguntas Frecuentes",
+    "title": "Todo lo que necesitas saber",
     "items": [
       {
         "question": "¿NachUI es una librería npm?",

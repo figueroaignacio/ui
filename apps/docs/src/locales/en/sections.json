@@ -1,9 +1,9 @@
 {
   "home": {
     "badge": "Introducing NachUI v1",
-    "subheading1": "Build exceptional UI.",
-    "subheading2": "Beatiful. Fast. Accessible.",
-    "description": "Build accessible, high-performance React applications with an elite component library designed for power and unparalleled flexibility.",
+    "subheading1": "Build UI that users remember.",
+    "subheading2": "Beautiful. Fast. Accessible.",
+    "description": "An elite collection of React components designed for builders who refuse to settle for generic 'AI slop'. Copy, paste, and ship production-grade interfaces in minutes.",
     "github": "Open source, the code is yours",
     "actions": [
       {
@@ -99,7 +99,7 @@
     "sitemap": "Sitemap"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Everything you need to know",
     "items": [
       {
         "question": "Is NachUI an npm library?",

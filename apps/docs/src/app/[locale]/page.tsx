@@ -10,7 +10,11 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <LandingHero />;
+  return (
+    <div className="flex flex-col items-center">
+      <LandingHero />
+    </div>
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
