@@ -5,6 +5,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { useTranslations } from 'next-intl';
 import { HeroComponentPreview } from './hero-component-preview';
+import { ThemeColorSwitcher } from '@/features/theme/components/theme-color-switcher';
 
 interface HomePageActions {
   href: string;
@@ -44,16 +45,22 @@ export function LandingHero() {
             <Link href="/docs/components">{actions[1]?.label || 'View components'}</Link>
           </Button>
         </div>
-        <div className="text-muted-foreground hover:text-foreground mt-2 flex cursor-pointer items-center gap-2 text-sm transition-colors">
-          <GitHubIcon />
-          <a
-            href="https://github.com/figueroaignacio/ui"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            {t('github')}
-          </a>
+        <div className="mt-6 flex flex-col items-center gap-6 sm:flex-row">
+          <div className="border-border/50 bg-muted/30 flex items-center gap-2.5 rounded-full border px-3 py-1.5 backdrop-blur-sm">
+            <span className="text-muted-foreground mr-1 text-xs font-medium">Theme</span>
+            <ThemeColorSwitcher />
+          </div>
+          <div className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2 text-sm transition-colors">
+            <GitHubIcon />
+            <a
+              href="https://github.com/figueroaignacio/ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              {t('github')}
+            </a>
+          </div>
         </div>
         <div className="w-full">
           <HeroComponentPreview />

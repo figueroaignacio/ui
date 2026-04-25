@@ -62,6 +62,63 @@
   --shadow-lg: 0 10px 30px -10px oklch(0% 0 0 / 0.9);
 }
 
+/* Theme Color Overrides */
+[data-theme-color='zinc'] {
+  --primary: oklch(20.5% 0 0);
+  --primary-foreground: oklch(98.5% 0 0);
+  --ring: oklch(20.5% 0 0);
+  --accent-foreground: oklch(20.5% 0 0);
+}
+.dark[data-theme-color='zinc'],
+[data-theme-color='zinc'] .dark {
+  --primary: oklch(98.5% 0 0);
+  --primary-foreground: oklch(20.5% 0 0);
+  --ring: oklch(98.5% 0 0);
+  --accent-foreground: oklch(98.5% 0 0);
+}
+
+[data-theme-color='green'] {
+  --primary: oklch(65% 0.15 150);
+  --primary-foreground: oklch(98% 0 0);
+  --ring: oklch(65% 0.15 150);
+  --accent-foreground: oklch(65% 0.15 150);
+}
+.dark[data-theme-color='green'],
+[data-theme-color='green'] .dark {
+  --primary: oklch(65% 0.15 150);
+  --primary-foreground: oklch(15% 0 0);
+  --ring: oklch(65% 0.15 150);
+  --accent-foreground: oklch(65% 0.15 150);
+}
+
+[data-theme-color='blue'] {
+  --primary: oklch(60% 0.15 250);
+  --primary-foreground: oklch(98% 0 0);
+  --ring: oklch(60% 0.15 250);
+  --accent-foreground: oklch(60% 0.15 250);
+}
+.dark[data-theme-color='blue'],
+[data-theme-color='blue'] .dark {
+  --primary: oklch(65% 0.15 250);
+  --primary-foreground: oklch(15% 0 0);
+  --ring: oklch(65% 0.15 250);
+  --accent-foreground: oklch(65% 0.15 250);
+}
+
+[data-theme-color='rose'] {
+  --primary: oklch(60% 0.2 15);
+  --primary-foreground: oklch(98% 0 0);
+  --ring: oklch(60% 0.2 15);
+  --accent-foreground: oklch(60% 0.2 15);
+}
+.dark[data-theme-color='rose'],
+[data-theme-color='rose'] .dark {
+  --primary: oklch(65% 0.2 15);
+  --primary-foreground: oklch(15% 0 0);
+  --ring: oklch(65% 0.2 15);
+  --accent-foreground: oklch(65% 0.2 15);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

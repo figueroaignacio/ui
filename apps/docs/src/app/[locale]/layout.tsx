@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
+import { ThemeInitScript } from '@/features/theme/components/theme-init-script';
 import { routing } from '@/i18n/routing';
 import { fontHeading, fontSans } from '@/lib/font';
 import '@repo/ui/globals.css';
@@ -65,6 +66,9 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <ThemeInitScript />
+      </head>
       <body className={`relative ${fontSans.variable} ${fontHeading.variable}`}>
         <a
           href="#main-content"
