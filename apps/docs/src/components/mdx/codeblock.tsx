@@ -52,13 +52,13 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#1e1f20] transition-all duration-500',
+        'group relative mt-6 w-full overflow-hidden rounded-md bg-[#0e1216] transition-all duration-500',
         !internalIsExpanded ? 'max-h-[450px]' : 'max-h-none',
         className,
       )}
     >
       <div className="max-h-inherit flex h-full flex-col">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/5 bg-[#1e1f20]/50 px-4 py-2 backdrop-blur-sm">
+        <div className="bg-[#0e1216 ]/50 sticky top-0 z-10 flex items-center justify-between border-b border-white/5 px-4 py-2 backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
               <div className="h-2.5 w-2.5 rounded-full bg-red-500" />

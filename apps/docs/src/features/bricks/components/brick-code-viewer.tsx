@@ -138,9 +138,9 @@ export function BrickCodeViewer({ files }: BrickCodeViewerProps) {
   const activeFileName = activeFile.split('/').pop() ?? '';
 
   return (
-    <div className="dark text-foreground flex min-h-[500px] flex-col overflow-hidden rounded-lg bg-[#1e1f20] md:flex-row">
-      <div className="flex flex-col border-b border-white/10 bg-black/20 md:w-64 md:border-r md:border-b-0">
-        <div className="border-b border-white/10 p-3">
+    <div className="dark text-foreground flex min-h-[500px] flex-col overflow-hidden rounded-lg bg-[#0e1216] md:flex-row">
+      <div className="flex flex-col border-b md:w-64 md:border-r md:border-b-0">
+        <div className="p-3">
           <h4 className="text-xs font-semibold tracking-wider text-white/80 uppercase">Files</h4>
         </div>
         <div className="flex-1 overflow-auto py-2">
@@ -165,7 +165,7 @@ export function BrickCodeViewer({ files }: BrickCodeViewerProps) {
           filename={activeFileName}
           showLineNumbers
           isExpanded
-          className="mt-0 h-full rounded-none border-0 bg-transparent!"
+          className="mt-0 h-full rounded-none border-0"
         />
       </div>
     </div>
