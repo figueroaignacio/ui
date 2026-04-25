@@ -51,18 +51,18 @@
     "postedBy": "Publicado por:"
   },
   "bricks": {
-    "title": "Nach Bricks",
-    "subtitle": "para la web",
-    "description": "Bloques de UI limpios y modernos. Copia y pega en tus aplicaciones. Construidos con componentes NachUI. Open Source. Gratis para siempre.",
+    "title": "Deja de construir desde cero.",
+    "subtitle": "Copia. Pega. Lanza.",
+    "description": "Componentes de React de nivel de producción diseñados para creadores. Cero dependencias. Código limpio y accesible, listo para tu próximo proyecto.",
     "actions": [
       {
-        "label": "Explorar docs",
-        "href": "/docs",
+        "label": "Explorar Componentes",
+        "href": "/bricks/login",
         "variant": "default"
       },
       {
-        "label": "Ver componentes",
-        "href": "/docs/components",
+        "label": "Leer Documentación",
+        "href": "/docs",
         "variant": "secondary"
       }
     ]

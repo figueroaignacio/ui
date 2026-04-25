@@ -51,18 +51,18 @@
     "postedBy": "Posted by:"
   },
   "bricks": {
-    "title": "Nach Bricks",
-    "subtitle": "for the web",
-    "description": "Clean, modern UI bricks. Copy and paste into your apps. Built with NachUI components. Open Source. Free forever.",
+    "title": "Stop building from scratch.",
+    "subtitle": "Copy. Paste. Ship.",
+    "description": "Production-grade React components designed for builders. Zero dependencies. No 'AI slop'. Just clean, accessible code ready for your next project.",
     "actions": [
       {
-        "label": "Browse docs",
-        "href": "/docs",
+        "label": "Browse Components",
+        "href": "/bricks/login",
         "variant": "default"
       },
       {
-        "label": "View components",
-        "href": "/docs/components",
+        "label": "Read the Docs",
+        "href": "/docs",
         "variant": "secondary"
       }
     ]
