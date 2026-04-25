@@ -224,13 +224,25 @@ export const DEMO_REGISTRY = {
 
 export const BRICK_REGISTRY = {
   login: {
-    'login-01': 'packages/ui/src/bricks/login/login-01.tsx',
-    'login-02': 'packages/ui/src/bricks/login/login-02.tsx',
-    'login-03': 'packages/ui/src/bricks/login/login-03.tsx',
+    'login-01': 'packages/ui/src/bricks/login/login-01',
+    'login-02': 'packages/ui/src/bricks/login/login-02',
+    'login-03': 'packages/ui/src/bricks/login/login-03',
   },
   signup: {
-    'signup-01': 'packages/ui/src/bricks/signup/signup-01.tsx',
-    'signup-02': 'packages/ui/src/bricks/signup/signup-02.tsx',
+    'signup-01': 'packages/ui/src/bricks/signup/signup-01',
+    'signup-02': 'packages/ui/src/bricks/signup/signup-02',
+  },
+  pricing: {
+    'pricing-01': 'packages/ui/src/bricks/pricing/pricing-01',
+    'pricing-02': 'packages/ui/src/bricks/pricing/pricing-02',
+  },
+  dashboard: {
+    'dashboard-01': 'packages/ui/src/bricks/dashboard/dashboard-01',
+    'dashboard-02': 'packages/ui/src/bricks/dashboard/dashboard-02',
+  },
+  settings: {
+    'settings-01': 'packages/ui/src/bricks/settings/settings-01',
+    'settings-02': 'packages/ui/src/bricks/settings/settings-02',
   },
 } as const;
 

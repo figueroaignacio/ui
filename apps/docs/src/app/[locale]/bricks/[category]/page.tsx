@@ -42,8 +42,8 @@ export default async function BricksCategoryPage({ params }: PageProps) {
 
   const bricksWithCode = await Promise.all(
     brickCategory.bricks.map(async (brick) => {
-      const { code } = await getBrickSourceCode(category, brick.component);
-      return { ...brick, code };
+      const { files } = await getBrickSourceCode(category, brick.component);
+      return { ...brick, files };
     }),
   );
 
@@ -65,7 +65,7 @@ export default async function BricksCategoryPage({ params }: PageProps) {
               id={brick.id}
               name={brick.name}
               description={brick.description}
-              code={brick.code}
+              files={brick.files}
             >
               <Component />
             </BrickPreview>

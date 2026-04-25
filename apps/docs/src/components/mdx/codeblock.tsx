@@ -28,6 +28,7 @@ export function CodeBlock({
   expandButton,
 }: CodeBlockProps) {
   const codeString = code.trim();
+  const filename = _filename?.trim() || undefined;
   const preRef = useRef<HTMLPreElement>(null);
   const [internalIsExpanded, setInternalIsExpanded] = useState(initialIsExpanded);
   const [isExpandable, setIsExpandable] = useState(false);
@@ -64,6 +65,16 @@ export function CodeBlock({
               <div className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
               <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
             </div>
+            {filename ? (
+              <span
+                className={cn(
+                  'rounded-sm bg-white/5 px-2 py-0.5 font-mono text-[11px] leading-none text-white/60',
+                  fontCode.className,
+                )}
+              >
+                {filename}
+              </span>
+            ) : null}
           </div>
           <div className="flex items-center gap-2">
             {isExpandable && (

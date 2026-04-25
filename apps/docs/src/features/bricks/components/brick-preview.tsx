@@ -1,19 +1,19 @@
 'use client';
 
-import { CodeBlock } from '@/components/mdx/codeblock';
+import type { BrickSourceFile } from '@/features/bricks/lib/get-brick-source';
 import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
 import { Copy01Icon, LaptopIcon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Tabs } from '@repo/ui/components/tabs';
 import { cn } from '@repo/ui/lib/cn';
 import { useState } from 'react';
-
+import { BrickCodeViewer } from './brick-code-viewer';
 interface BrickPreviewProps {
   id: string;
   name: string;
   description: string;
   children: React.ReactNode;
-  code: string | null;
+  files: BrickSourceFile[] | null;
   installCommand?: string;
 }
 
@@ -30,7 +30,7 @@ export function BrickPreview({
   name,
   description,
   children,
-  code,
+  files,
   installCommand,
 }: BrickPreviewProps) {
   const [viewport, setViewport] = useState<ViewportSize>('desktop');
@@ -120,7 +120,7 @@ export function BrickPreview({
         </div>
 
         <Tabs.Content value="preview" className="mt-0">
-          <div className="border-border bg-background/50 rounded-xl border">
+          <div className="border-border bg-background/50 rounded-lg border">
             <div
               className={cn(
                 'mx-auto flex min-h-[500px] items-center justify-center p-6 transition-all duration-300 sm:p-10',
@@ -133,10 +133,10 @@ export function BrickPreview({
         </Tabs.Content>
 
         <Tabs.Content value="code" className="mt-0">
-          {code ? (
-            <CodeBlock code={code} language="tsx" showLineNumbers className="mt-0 rounded-xl" />
+          {files && files.length > 0 ? (
+            <BrickCodeViewer files={files} />
           ) : (
-            <div className="border-border bg-destructive/10 rounded-xl border p-6">
+            <div className="border-border bg-destructive/10 rounded-lg border p-6">
               <p className="text-destructive text-sm font-medium">
                 ⚠️ Source code not available for brick &ldquo;{name}&rdquo;.
               </p>

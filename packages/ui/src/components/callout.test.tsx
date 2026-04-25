@@ -6,10 +6,8 @@ describe('Callout', () => {
   it('renders the default variant with structured children', () => {
     render(
       <Callout>
-        <Callout.Text>
-          <Callout.Title>Note</Callout.Title>
-          <Callout.Content>This is a callout.</Callout.Content>
-        </Callout.Text>
+        <Callout.Title>Note</Callout.Title>
+        <Callout.Content>This is a callout.</Callout.Content>
       </Callout>,
     );
 
@@ -19,30 +17,22 @@ describe('Callout', () => {
   });
 
   it('renders danger variant as an alert with default icon', () => {
-    render(
+    const { container } = render(
       <Callout variant="danger">
-        <Callout.Icon data-testid="callout-icon" />
-        <Callout.Text>
-          <Callout.Title>Error</Callout.Title>
-          <Callout.Content>Something went wrong.</Callout.Content>
-        </Callout.Text>
+        <Callout.Title>Error</Callout.Title>
+        <Callout.Content>Something went wrong.</Callout.Content>
       </Callout>,
     );
 
     expect(screen.getByRole('alert')).toBeInTheDocument();
-    expect(screen.getByTestId('callout-icon').innerHTML).not.toEqual('');
+    expect(container.querySelector('svg')).not.toBeNull();
   });
 
-  it('allows custom icons through Callout.Icon children', () => {
+  it('allows custom icons through the icon prop', () => {
     render(
-      <Callout>
-        <Callout.Icon>
-          <span data-testid="custom-icon">Icon</span>
-        </Callout.Icon>
-        <Callout.Text>
-          <Callout.Title>Custom</Callout.Title>
-          <Callout.Content>Has a custom icon.</Callout.Content>
-        </Callout.Text>
+      <Callout icon={<span data-testid="custom-icon">Icon</span>}>
+        <Callout.Title>Custom</Callout.Title>
+        <Callout.Content>Has a custom icon.</Callout.Content>
       </Callout>,
     );
 

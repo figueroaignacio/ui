@@ -59,6 +59,63 @@ export const BRICK_CATEGORIES: BrickCategory[] = [
       },
     ],
   },
+  {
+    slug: 'pricing',
+    name: 'Pricing',
+    description: 'Pricing sections and plan comparison layouts.',
+    bricks: [
+      {
+        id: 'pricing-01',
+        name: 'Pricing Tiers',
+        description: 'A 3-tier pricing grid with features and CTA buttons.',
+        component: 'pricing-01',
+      },
+      {
+        id: 'pricing-02',
+        name: 'Plan Comparison',
+        description: 'A comparison table with a monthly/yearly toggle.',
+        component: 'pricing-02',
+      },
+    ],
+  },
+  {
+    slug: 'dashboard',
+    name: 'Dashboard',
+    description: 'Dashboard overview sections, tables, and progress widgets.',
+    bricks: [
+      {
+        id: 'dashboard-01',
+        name: 'Overview + Table',
+        description: 'KPI cards and a recent invoices table.',
+        component: 'dashboard-01',
+      },
+      {
+        id: 'dashboard-02',
+        name: 'Setup Checklist',
+        description: 'A setup checklist with steps and progress.',
+        component: 'dashboard-02',
+      },
+    ],
+  },
+  {
+    slug: 'settings',
+    name: 'Settings',
+    description: 'Account settings, preferences, and notification panels.',
+    bricks: [
+      {
+        id: 'settings-01',
+        name: 'Tabbed Settings',
+        description: 'Profile, security, and billing settings with tabs.',
+        component: 'settings-01',
+      },
+      {
+        id: 'settings-02',
+        name: 'Notification Preferences',
+        description: 'A preferences panel with an advanced drawer.',
+        component: 'settings-02',
+      },
+    ],
+  },
 ];
 
 export function getBrickCategory(slug: string): BrickCategory | undefined {
