@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+
+import { domainMap, locales } from '@/lib/domains';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000/';
-
   return {
     rules: [
       {
@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/private/'],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: locales.map((locale) => `${domainMap[locale]}/sitemap.xml`),
   };
 }

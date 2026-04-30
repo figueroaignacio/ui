@@ -1,56 +1,48 @@
 import { docs, posts } from '@/content';
-import { MetadataRoute } from 'next';
+import { buildAlternates, getDomainForLocale, locales } from '@/lib/domains';
+import type { MetadataRoute } from 'next';
 
-const locales = ['es', 'en'] as const;
+type SitemapEntry = MetadataRoute.Sitemap[number];
+
+function entry(
+  locale: string,
+  path: string,
+  opts: { changeFrequency: SitemapEntry['changeFrequency']; priority: number; lastModified?: Date },
+): SitemapEntry {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return {
+    url: `${getDomainForLocale(locale)}${cleanPath}`,
+    lastModified: opts.lastModified ?? new Date(),
+    changeFrequency: opts.changeFrequency,
+    priority: opts.priority,
+    alternates: {
+      languages: buildAlternates(cleanPath),
+    },
+  };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000/';
-
-  const staticPages: MetadataRoute.Sitemap = [
-    ...locales.map((locale) => ({
-      url: `${baseUrl}/${locale}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1,
-    })),
-    ...locales.map((locale) => ({
-      url: `${baseUrl}/${locale}/docs`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    })),
-    ...locales.map((locale) => ({
-      url: `${baseUrl}/${locale}/docs/components`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    })),
-    ...locales.map((locale) => ({
-      url: `${baseUrl}/${locale}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    })),
-  ];
+  const staticPages: MetadataRoute.Sitemap = locales.flatMap((locale) => [
+    entry(locale, '/', { changeFrequency: 'daily', priority: 1 }),
+    entry(locale, '/docs', { changeFrequency: 'weekly', priority: 0.9 }),
+    entry(locale, '/docs/components', { changeFrequency: 'weekly', priority: 0.9 }),
+    entry(locale, '/blog', { changeFrequency: 'daily', priority: 0.8 }),
+  ]);
 
   const docPages: MetadataRoute.Sitemap = docs
     .filter((doc) => doc.published)
     .flatMap((doc) => {
-      const docsByLocale = docs.filter(
-        (d) => d.slug.replace(`/docs/`, '').split('/')[0] === doc.locale,
-      );
-
       return locales.map((locale) => {
         const localizedDoc = docs.find(
           (d) => d.locale === locale && d.slug === doc.slug.replace(/\/(es|en)\//, `/${locale}/`),
         );
+        const slugPath = localizedDoc?.slugAsParams || doc.slugAsParams || '';
 
-        return {
-          url: `${baseUrl}/${locale}${localizedDoc?.slug || doc.slug}`,
-          lastModified: localizedDoc?.date ? new Date(localizedDoc.date) : new Date(),
-          changeFrequency: 'weekly' as const,
+        return entry(locale, `/docs/${slugPath}`, {
+          changeFrequency: 'weekly',
           priority: 0.8,
-        };
+          lastModified: localizedDoc?.date ? new Date(localizedDoc.date) : undefined,
+        });
       });
     });
 
@@ -61,13 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         const localizedPost = posts.find(
           (p) => p.locale === locale && p.slug === post.slug.replace(/\/(es|en)\//, `/${locale}/`),
         );
+        const slugPath = localizedPost?.slugAsParams || post.slugAsParams || '';
 
-        return {
-          url: `${baseUrl}/${locale}${localizedPost?.slug || post.slug}`,
-          lastModified: localizedPost?.date ? new Date(localizedPost.date) : new Date(),
-          changeFrequency: 'monthly' as const,
+        return entry(locale, `/blog/${slugPath}`, {
+          changeFrequency: 'monthly',
           priority: 0.7,
-        };
+          lastModified: localizedPost?.date ? new Date(localizedPost.date) : undefined,
+        });
       });
     });
 

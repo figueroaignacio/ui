@@ -4,6 +4,7 @@ import { MDXContent } from '@/components/mdx/mdx-content';
 import { posts } from '@/content';
 import { getPostsBySlug } from '@/features/blog/lib/get-posts-by-slug';
 import { formatDateOnly } from '@/lib/format-date';
+import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
 import type { Locale } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -37,17 +38,14 @@ export async function generateMetadata({
     return {};
   }
 
-  const url = `/${locale}/posts/${slugPath}`;
+  const canonicalUrl = getAbsoluteUrl(locale, `/blog/${slugPath}`);
 
   return {
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: url,
-      languages: {
-        es: `/es/blog/${slugPath}`,
-        en: `/en/blog/${slugPath}`,
-      },
+      canonical: canonicalUrl,
+      languages: buildAlternates(`/blog/${slugPath}`),
     },
     robots: {
       index: true,

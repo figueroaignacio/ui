@@ -6,6 +6,7 @@ import { DocsPagination } from '@/features/docs/components/docs-pagination';
 import { MobileToc } from '@/features/docs/components/mobile-toc';
 import { Toc } from '@/features/docs/components/toc';
 import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
+import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -49,7 +50,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
           <p className="text-muted-foreground">{doc.description}</p>
           <DocActions
             page={doc.title}
-            url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://nachui.vercel.app'}/${doc.locale}/docs/${doc.slugAsParams}`}
+            url={getAbsoluteUrl(doc.locale || 'en', `/docs/${doc.slugAsParams}`)}
             filePath={doc.sourceFilePath}
             rawContent={doc.raw}
           />
@@ -84,8 +85,7 @@ export async function generateMetadata({
 
   const metaTitle = doc.title;
   const metaDescription = doc.description;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nachui.vercel.app';
-  const url = `${baseUrl}/${locale}/docs/${slugPath}`;
+  const canonicalUrl = getAbsoluteUrl(locale, `/docs/${slugPath}`);
 
   return {
     title: metaTitle,
@@ -95,11 +95,11 @@ export async function generateMetadata({
       description: metaDescription,
       type: 'article',
       locale: locale,
-      url: url,
+      url: canonicalUrl,
       siteName: 'NachUI',
       images: [
         {
-          url: `${baseUrl}/${locale}/docs/${slugPath}/opengraph-image`,
+          url: getAbsoluteUrl(locale, `/docs/${slugPath}/opengraph-image`),
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -110,14 +110,11 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDescription,
-      images: [`${baseUrl}/${locale}/docs/${slugPath}/opengraph-image`],
+      images: [getAbsoluteUrl(locale, `/docs/${slugPath}/opengraph-image`)],
     },
     alternates: {
-      canonical: url,
-      languages: {
-        es: `${baseUrl}/es/docs/${slugPath}`,
-        en: `${baseUrl}/en/docs/${slugPath}`,
-      },
+      canonical: canonicalUrl,
+      languages: buildAlternates(`/docs/${slugPath}`),
     },
     robots: {
       index: true,
