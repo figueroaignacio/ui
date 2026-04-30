@@ -17,11 +17,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  const frontendUrl = configService.get<string>('FRONTEND_URL');
+  const frontendUrls = configService.get<string>('FRONTEND_URLS', '').split(',');
   const portfolioUrl = configService.get<string>('PORTFOLIO_URL');
 
   app.enableCors({
-    origin: [frontendUrl, portfolioUrl, 'http://localhost:3000'].filter(Boolean) as string[],
+    origin: [...frontendUrls, portfolioUrl, 'http://localhost:3000'].filter(Boolean) as string[],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
