@@ -1,10 +1,5 @@
-import * as runtime from 'react/jsx-runtime';
+import { MDXContent as CCMDXContent } from '@content-collections/mdx/react';
 import { mdxComponents } from './mdx-components';
-
-const useMDXComponent = (code: string) => {
-  const fn = new Function(code);
-  return fn({ ...runtime }).default;
-};
 
 interface MDXProps {
   code: string;
@@ -12,6 +7,5 @@ interface MDXProps {
 }
 
 export const MDXContent = ({ code, components }: MDXProps) => {
-  const Component = useMDXComponent(code);
-  return <Component components={{ ...mdxComponents, ...components }} />;
+  return <CCMDXContent code={code} components={{ ...mdxComponents, ...components }} />;
 };
