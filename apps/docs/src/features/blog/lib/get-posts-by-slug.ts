@@ -1,4 +1,4 @@
-import { posts as rawPosts } from '@/content';
+import { allPosts as rawPosts } from 'content-collections';
 
 export const posts = Array.isArray(rawPosts) ? rawPosts : [];
 

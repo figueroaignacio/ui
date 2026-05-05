@@ -1,4 +1,4 @@
-import { docs, posts } from '@/content';
+import { allDocs as docs, allPosts as posts } from 'content-collections';
 import { buildAlternates, getDomainForLocale, locales } from '@/lib/domains';
 import type { MetadataRoute } from 'next';
 

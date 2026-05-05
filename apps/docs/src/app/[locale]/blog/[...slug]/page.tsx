@@ -1,7 +1,7 @@
 import { BackButton } from '@/components/common/back-button';
 import { DeveloperWatermark } from '@/components/layout/developer-watermark';
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { posts } from '@/content';
+import { allPosts as posts } from 'content-collections';
 import { getPostsBySlug } from '@/features/blog/lib/get-posts-by-slug';
 import { formatDateOnly } from '@/lib/format-date';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';

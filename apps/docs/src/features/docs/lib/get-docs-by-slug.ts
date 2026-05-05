@@ -1,4 +1,4 @@
-import { docs as rawDocs } from '@/content';
+import { allDocs as rawDocs } from 'content-collections';
 
 export const docs = Array.isArray(rawDocs) ? rawDocs : [];
 

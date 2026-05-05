@@ -1,6 +1,6 @@
 'use client';
 
-import type { Posts } from '@/content';
+import type { Post } from 'content-collections';
 import { Link } from '@/i18n/navigation';
 import { formatDateOnly } from '@/lib/format-date';
 import { ArrowUp01 } from '@hugeicons/core-free-icons';
@@ -9,7 +9,7 @@ import { Button } from '@repo/ui/components/button';
 import { Card } from '@repo/ui/components/card';
 import { useLocale, useTranslations } from 'next-intl';
 
-export function PostCard({ title, description, slug, date }: Partial<Posts>) {
+export function PostCard({ title, description, slug, date }: Partial<Post>) {
   const locale = useLocale();
   const t = useTranslations('components.postCard');
 

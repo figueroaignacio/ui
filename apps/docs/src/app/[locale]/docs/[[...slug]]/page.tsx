@@ -1,5 +1,5 @@
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { docs } from '@/content';
+import { allDocs as docs } from 'content-collections';
 import { DocActions } from '@/features/docs/components/doc-actions';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
