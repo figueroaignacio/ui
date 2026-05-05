@@ -1,10 +1,10 @@
 import { getLocale } from 'next-intl/server';
-import { getPosts } from '../lib/get-posts';
+import { ContentRepository } from '@/lib/content-repository';
 import { PostCard } from './post-card';
 
 export async function AllPosts() {
   const locale = await getLocale();
-  const posts = getPosts(locale);
+  const posts = ContentRepository.getPosts(locale);
 
   return (
     <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

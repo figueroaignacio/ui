@@ -1,9 +1,9 @@
-import { getDocs } from '@/features/docs/lib/get-docs';
+import { ContentRepository } from '@/lib/content-repository';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const docs = getDocs();
+    const docs = ContentRepository.getDocs();
 
     return NextResponse.json({
       success: true,

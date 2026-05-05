@@ -5,7 +5,7 @@ import { DocsNavigationButtons } from '@/features/docs/components/docs-navigatio
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
 import { MobileToc } from '@/features/docs/components/mobile-toc';
 import { Toc } from '@/features/docs/components/toc';
-import { getDocBySlug } from '@/features/docs/lib/get-docs-by-slug';
+import { ContentRepository } from '@/lib/content-repository';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -21,7 +21,7 @@ async function getDocFromParams({ params }: { params: Promise<DocPageProps> }) {
   const slug = parameters.slug?.join('/') || '';
   const locale = parameters.locale || 'en';
 
-  return getDocBySlug(slug, locale);
+  return ContentRepository.getDocBySlug(slug, locale);
 }
 
 export default async function DocPage({ params }: { params: Promise<DocPageProps> }) {

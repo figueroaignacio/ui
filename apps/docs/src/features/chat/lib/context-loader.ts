@@ -15,7 +15,6 @@ export interface DocumentationContext {
 
 const WORKSPACE_ROOT = path.resolve(process.cwd(), '../..');
 const COMPONENTS_PATH = path.join(WORKSPACE_ROOT, 'packages/ui/src/components');
-const DOCS_PATH = path.join(process.cwd(), 'src/content/docs/en');
 
 const STOP_WORDS = new Set([
   'modo',
@@ -102,18 +101,14 @@ export async function loadComponents(): Promise<ComponentContext[]> {
 
 export async function loadDocumentation(): Promise<DocumentationContext[]> {
   try {
-    const files = await readFilesRecursively(DOCS_PATH, '.mdx');
-
-    return files.map((file) => {
-      const relativePath = path.relative(DOCS_PATH, file.path);
-      const title = relativePath.replace(/\.mdx$/, '').replace(/\//g, ' > ');
-
-      return {
-        title,
-        content: file.content,
-        path: relativePath,
-      };
-    });
+    const { allDocs } = await import('content-collections');
+    return allDocs
+      .filter((doc) => doc.locale === 'en' && doc.published)
+      .map((doc) => ({
+        title: doc.title,
+        content: doc.raw,
+        path: doc.slugAsParams,
+      }));
   } catch (error) {
     console.error('Error loading documentation:', error);
     return [];
@@ -205,7 +200,7 @@ export function buildEnrichedContext(
     context += '## COMPONENT SOURCE CODE\n\n';
     context += '⚠️ This is the REAL code. Do not assume features you do not see here.\n\n';
 
-    components.forEach((comp, idx) => {
+    components.forEach((comp) => {
       context += `### ${comp.name}\n\n`;
       context += '```tsx\n' + comp.code + '\n```\n\n';
 

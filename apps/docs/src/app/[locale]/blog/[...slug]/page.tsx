@@ -2,7 +2,7 @@ import { BackButton } from '@/components/common/back-button';
 import { DeveloperWatermark } from '@/components/layout/developer-watermark';
 import { MDXContent } from '@/components/mdx/mdx-content';
 import { allPosts as posts } from 'content-collections';
-import { getPostsBySlug } from '@/features/blog/lib/get-posts-by-slug';
+import { ContentRepository } from '@/lib/content-repository';
 import { formatDateOnly } from '@/lib/format-date';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
 import type { Locale } from 'next-intl';
@@ -20,7 +20,7 @@ async function getPostFromParams({ params }: { params: Promise<PostPageProps> })
   const slug = parameters.slug?.join('/') || '';
   const locale = parameters.locale || 'en';
 
-  return getPostsBySlug(slug, locale);
+  return ContentRepository.getPostBySlug(slug, locale);
 }
 
 export async function generateMetadata({
