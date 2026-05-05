@@ -1,8 +1,8 @@
 import {
-  Injectable,
-  Logger,
-  InternalServerErrorException,
   BadGatewayException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { Doc } from './docs.types';
@@ -23,7 +23,9 @@ export class DocsService {
 
   async getDocs(): Promise<Doc[]> {
     try {
-      const res = await fetch(`${this.baseUrl}/api/docs`);
+      const url = `${this.baseUrl}/api/docs`;
+      this.logger.log(`Fetching docs from: ${url}`);
+      const res = await fetch(url);
 
       if (!res.ok) {
         throw new BadGatewayException('Failed to fetch docs');
