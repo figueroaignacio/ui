@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { RegistryController } from './registry.controller';
 import { RegistryRepository } from './registry.repository';
-import { RegistryService } from './registry.service';
 
 @Module({
   controllers: [RegistryController],
-  providers: [RegistryService, RegistryRepository],
-  exports: [RegistryService],
+  providers: [RegistryRepository],
+  exports: [RegistryRepository],
 })
 export class RegistryModule {}

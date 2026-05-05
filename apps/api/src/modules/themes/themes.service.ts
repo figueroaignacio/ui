@@ -1,17 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import fs from 'node:fs';
+import { existsSync } from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 @Injectable()
 export class ThemesService {
-  getThemeConfig(theme: string = 'default') {
+  async getThemeConfig(theme: string = 'default') {
     const themePath = path.resolve(__dirname, 'css', `${theme}.css`);
 
-    if (!fs.existsSync(themePath)) {
+    if (!existsSync(themePath)) {
       throw new NotFoundException(`Theme "${theme}" not found`);
     }
 
-    const css = fs.readFileSync(themePath, 'utf8');
+    const css = await fs.readFile(themePath, 'utf8');
     const utils = `import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -35,9 +36,9 @@ export function cn(...inputs: ClassValue[]) {
     return { css, config, utils };
   }
 
-  getAllThemes() {
+  async getAllThemes() {
     const themePath = path.resolve(__dirname, 'css');
-    const themes = fs.readdirSync(themePath);
+    const themes = await fs.readdir(themePath);
     return themes.map((theme) => theme.replace('.css', ''));
   }
 }
