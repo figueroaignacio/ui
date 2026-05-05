@@ -5,24 +5,27 @@ This guide outlines the essential commands and coding conventions for agents wor
 ## Repository Snapshot
 
 - Monorepo managed by pnpm 9 + Turbo on Node >= 18.
-- apps/docs: Next.js 16 docs app with Velite content pipeline and Groq-powered chatbot.
+- apps/docs: Next.js 16 docs app with @content-collections (MDX pipeline) and Vercel AI SDK.
+- apps/api: Backend API package.
 - packages/ui: React 19 component catalog using Tailwind CSS v4, Vitest, and class-variance-authority.
-- packages/ai: Groq SDK helpers bundled via tsup (cjs + esm + dts).
-- packages/typescript-config: strict base + react-library presets reused across workspaces.
+- packages/ai: AI SDK helpers (Vercel AI SDK + Google Gemini).
+- packages/cli: CLI utilities.
+- packages/db: Database utilities.
+- packages/typescript-config: strict base + react-library presets.
 
 ## Prerequisites
 
 - Install dependencies once with `pnpm install`; lockfile is pnpm-lock.yaml.
 - Use `pnpm --filter <target>` to scope commands instead of `cd`.
-- Velite caches live in `apps/docs/.velite`; delete only when a rebuild is required.
-- Secrets (e.g., Groq tokens) belong in `apps/docs/.env`; never commit populated files.
+- Content collections cache lives in `apps/docs/.content-collections`; delete only when rebuild is required.
+- Secrets (e.g., Google AI keys) belong in `apps/docs/.env`; never commit populated files.
 
 ## Root Scripts
 
 Turbo fan-out commands available at repo root:
 
 ```bash
-pnpm build        # Runs every workspace build (tsup, velite, next, vitest build targets)
+pnpm build        # Runs every workspace build (tsup, content-collections, next, vitest build targets)
 pnpm dev          # Starts docs dev server + package watchers
 pnpm lint         # Dispatches workspace lint tasks
 pnpm start        # Launches production servers after build
@@ -40,9 +43,12 @@ pnpm --filter @repo/ai build
 ## Workspace Commands
 
 - apps/docs:
-  - `pnpm --filter docs dev` runs `velite dev --watch` alongside `next dev`.
-  - `pnpm --filter docs build` executes `velite generate && velite build && next build`.
+  - `pnpm --filter docs dev` runs `next dev`.
+  - `pnpm --filter docs build` executes `next build`.
   - `pnpm --filter docs start` launches production Next.js (requires a prior build).
+- apps/api:
+  - `pnpm --filter api dev` runs the API server.
+  - `pnpm --filter api build` builds the API.
 - packages/ui:
   - `pnpm --filter @repo/ui lint` uses ESLint with `--max-warnings 0`.
   - `pnpm --filter @repo/ui type-check` invokes tsc with the react-library preset.
@@ -128,17 +134,17 @@ export const useChatContext = () => {
 ## Type Usage & Error Handling
 
 - Provide explicit prop and return types; prefer `type` aliases for unions and use `interface` only when extension is needed.
-- Validate user-supplied data (AI prompts, search queries) with Zod before invoking Groq/Velite helpers.
+- Validate user-supplied data (AI prompts, search queries) with Zod before invoking AI helpers.
 - Model async flows with discriminated unions like `{ status: 'idle' | 'loading' | 'error' | 'ready' }`.
 - Re-throw caught errors with contextual detail so downstream UI can surface actionable messages.
 - Never swallow promise rejections; return the promise or handle it inside try/catch.
-- Memoize expensive computations (Velite indexes, chat history) rather than mutating module scope.
+- Memoize expensive computations (content indexes, chat history) rather than mutating module scope.
 
 ## Git & Commit Rules
 
 - Follow Conventional Commits enforced by `commitlint.config.ts` (feat, fix, docs, style, refactor, perf, test, chore).
 - Keep commits tightly scoped; avoid formatting unrelated files just to appease linting.
-- Never commit populated `.env` files or generated Velite output.
+- Never commit populated `.env` files or generated build output.
 
 ## AI Policy References
 
