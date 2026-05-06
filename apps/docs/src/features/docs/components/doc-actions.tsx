@@ -2,7 +2,7 @@
 
 import { GitHubIcon } from '@/components/common/tech-icons';
 import { AiAvatar } from '@/features/chat/components/ai-avatar';
-import { useChatContext } from '@/features/chat/context/chat-context';
+import { useChatStore } from '@/features/chat/store/chat-store';
 import { useCopyToClipboard } from '@/features/docs/hooks/use-copy-to-clipboard';
 import { ArrowDown01Icon, Copy01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -20,7 +20,7 @@ type DocActionsProps = {
 
 export function DocActions({ page, url, filePath, rawContent }: DocActionsProps) {
   const t = useTranslations('components');
-  const { triggerExplanation } = useChatContext();
+  const { triggerExplanation } = useChatStore();
   const { isCopied, copyToClipboard } = useCopyToClipboard(2000);
 
   const handleExplain = useCallback(() => {

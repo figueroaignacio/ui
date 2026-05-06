@@ -1,12 +1,13 @@
 'use client';
 
-import { ChatProvider } from '@/features/chat/context/chat-context';
 import { ThemeProvider } from 'nach-themes';
+import { ChatEngine } from '@/features/chat/store/chat-engine';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <ChatProvider>{children}</ChatProvider>
+      {children}
+      <ChatEngine />
     </ThemeProvider>
   );
 }

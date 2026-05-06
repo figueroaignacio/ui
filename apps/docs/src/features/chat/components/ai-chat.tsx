@@ -3,7 +3,7 @@
 import { useChatInput } from '@/features/chat/hooks/use-chat-input';
 import { useLockBodyScroll } from '@/hooks/use-lock-body-scroll';
 import { useCallback, type RefObject } from 'react';
-import { useChatContext } from '../context/chat-context';
+import { useChatStore } from '../store/chat-store';
 import { ChatToggleButton } from './chat-toggle-button';
 import { ChatWindow } from './chat-window';
 
@@ -19,7 +19,7 @@ export function AiChat() {
     sendMessage,
     handleSuggestionClick,
     resetChat,
-  } = useChatContext();
+  } = useChatStore();
   const { message, setMessage, handleSubmit, handleKeyPress } = useChatInput(sendMessage);
 
   const handleClose = () => setIsOpen(false);
