@@ -1,4 +1,3 @@
-import { AiChat } from '@/features/chat/components/ai-chat';
 import { Searcher } from '@/features/docs/components/searcher';
 import { Link } from '@/i18n/navigation';
 import type { Navigation } from '@/lib/definitions';
@@ -25,8 +24,7 @@ export function Navbar() {
           ))}
         </nav>
       </div>
-      <div className="flex items-center space-x-4">
-        <AiChat />
+      <div className="flex items-center gap-x-3">
         <Searcher />
       </div>
     </div>

@@ -34,7 +34,7 @@ export function AiChat() {
   );
 
   return (
-    <div>
+    <div className="fixed right-6 bottom-6 z-500">
       <ChatToggleButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
       <ChatWindow
         isOpen={isOpen}
@@ -59,7 +59,7 @@ export function AiChat() {
   isLoading:   (-.-)  "thinking..."
   isStreaming: (°ロ°) "I AM BECOM—"
   isDone:      (¬‿¬) "as I was saying,"
-  
+
   isError:     (._.)
                // TODO: handle gracefully
                // current handling: ¯\_(ツ)_/¯

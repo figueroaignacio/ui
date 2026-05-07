@@ -1,6 +1,5 @@
 import { useKbdShortcut } from '@/hooks/use-kbd-shortcut';
 import { Button } from '@repo/ui/components/button';
-import { Kbd, KbdGroup } from '@repo/ui/components/kbd';
 import { Tooltip } from '@repo/ui/components/tooltip';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -32,22 +31,11 @@ export function ChatToggleButton({ isOpen, onClick }: ChatToggleButtonProps) {
   return (
     <Tooltip open={shouldShowTooltip} onOpenChange={setIsHovered} delayDuration={0}>
       <Tooltip.Trigger asChild>
-        <Button
-          onClick={onClick}
-          variant="outline"
-          size="sm"
-          rightIcon={
-            <KbdGroup className="ml-2 hidden sm:flex">
-              <Kbd size="sm">ctrl</Kbd>
-              <span className="text-muted-foreground">+</span>
-              <Kbd size="sm">J</Kbd>
-            </KbdGroup>
-          }
-        >
+        <Button onClick={onClick} variant="outline">
           {t('button.label')}
         </Button>
       </Tooltip.Trigger>
-      <Tooltip.Content side="bottom" sideOffset={10}>
+      <Tooltip.Content side="top" sideOffset={10}>
         {t('messages.tooltip')}
       </Tooltip.Content>
     </Tooltip>
