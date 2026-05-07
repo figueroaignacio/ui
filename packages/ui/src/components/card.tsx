@@ -3,13 +3,13 @@ import React from 'react';
 import { cn } from '../lib/cn';
 
 const cardVariants = cva(
-  'rounded-lg transition-all duration-200 h-full flex flex-col justify-between',
+  'rounded-xl transition-all duration-200 h-full flex flex-col justify-between',
   {
     variants: {
       variant: {
-        default: 'bg-card text-card-foreground border border-border shadow-sm',
-        outline: 'text-card-foreground border border-border shadow-none',
-        ghost: 'bg-transparent text-card-foreground border-0 shadow-none',
+        default: 'bg-card text-card-foreground border border-border',
+        outline: 'text-card-foreground border border-border',
+        ghost: 'bg-transparent text-card-foreground border-0',
       },
       gradient: {
         true: 'bg-gradient-to-br from-card to-card/80',
@@ -25,8 +25,8 @@ const cardVariants = cva(
 const cardHeaderVariants = cva('flex flex-col space-y-1.5', {
   variants: {
     compact: {
-      true: 'p-4',
-      false: 'p-6',
+      true: 'px-4 pt-4',
+      false: 'px-6 pt-6',
     },
   },
   defaultVariants: {

@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib/cn';
 import { AnimatePresence, motion } from 'motion/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface TocEntry {
   items?: TocEntry[];
@@ -14,32 +14,28 @@ export interface TocProps {
   toc: TocEntry[];
 }
 
-export const OBSERVER_OPTIONS: IntersectionObserverInit = { rootMargin: '0% 0% -60% 0%' };
-
-export function useActiveItem(itemIds: (string | undefined)[]) {
+export function useActiveItem(itemIds: string[]) {
   const [activeId, setActiveId] = useState<string>('');
 
-  const handleIntersect = useCallback((entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setActiveId(entry.target.id);
-      }
-    });
-  }, []);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersect, OBSERVER_OPTIONS);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '0% 0% -70% 0%' },
+    );
 
-    itemIds?.forEach((id) => {
-      if (!id) return;
+    itemIds.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [itemIds, handleIntersect]);
+    return () => observer.disconnect();
+  }, [itemIds]);
 
   return activeId;
 }
@@ -61,7 +57,8 @@ export function Tree({ tree, level = 1, activeItem, onItemClick }: TreeProps) {
       })}
     >
       {tree.map((item, index) => {
-        const isActive = item.url === `#${activeItem}`;
+        const id = item.url.split('#')[1];
+        const isActive = activeItem === id;
 
         return (
           <motion.li

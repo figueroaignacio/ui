@@ -389,7 +389,7 @@ const DropdownMenuItem = ({
       tabIndex={disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      whileHover={!disabled ? { backgroundColor: 'var(--accent)', scale: 1 } : {}}
+      whileHover={!disabled ? { backgroundColor: 'var(--muted)', scale: 1 } : {}}
       whileTap={!disabled ? { scale: 0.98 } : {}}
       className={cn(
         'relative flex cursor-pointer items-center rounded-md px-3 py-2 text-sm outline-none select-none',

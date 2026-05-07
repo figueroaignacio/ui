@@ -5,7 +5,7 @@ import { Card } from '../../components/card';
 
 export function Default() {
   return (
-    <Card className="w-full max-w-sm shadow-lg transition-shadow duration-300 hover:shadow-xl">
+    <Card className="w-full max-w-sm">
       <Card.Header>
         <Card.Title>Boost Your Productivity</Card.Title>
         <Card.Description>

@@ -214,7 +214,7 @@ const TooltipContent = ({
           transition={TOOLTIP_TRANSITION}
           style={sideOffsetStyle}
           className={cn(
-            'bg-foreground text-background absolute z-50 rounded-xl px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
+            'bg-foreground text-background absolute z-50 rounded-md px-3 py-1.5 text-xs whitespace-nowrap shadow-md',
             TOOLTIP_POSITION_CLASSES[side],
             className,
           )}

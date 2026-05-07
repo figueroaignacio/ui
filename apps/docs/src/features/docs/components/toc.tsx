@@ -4,7 +4,7 @@ import { useMounted } from '@/hooks/use-mounted';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
-import { TocProps, Tree, useActiveItem } from './toc-tree';
+import { TocEntry, TocProps, Tree, useActiveItem } from './toc-tree';
 
 function SkeletonItem({ width, subitems }: { width: number; subitems?: number[] }) {
   return (
@@ -46,17 +46,21 @@ function TocSkeleton() {
 }
 
 export function Toc({ toc }: TocProps) {
-  const itemIds = useMemo(
-    () =>
-      toc
-        ? toc
-            .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
-            .flat()
-            .filter(Boolean)
-            .map((id) => id?.split('#')[1])
-        : [],
-    [toc],
-  );
+  const itemIds = useMemo(() => {
+    if (!toc) return [];
+    const ids: string[] = [];
+    const extractIds = (items: TocEntry[]) => {
+      items.forEach((item) => {
+        if (item.url) {
+          const id = item.url.split('#')[1];
+          if (id) ids.push(id);
+        }
+        if (item.items) extractIds(item.items);
+      });
+    };
+    extractIds(toc);
+    return ids;
+  }, [toc]);
   const activeHeading = useActiveItem(itemIds);
   const mounted = useMounted();
   const t = useTranslations('components.toc');
