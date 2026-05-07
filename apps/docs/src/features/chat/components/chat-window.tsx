@@ -72,7 +72,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={backdropTransition}
-            className="bg-background/50 fixed inset-0 z-9998 px-12 backdrop-blur-xs"
+            className="bg-background/50 inset-0 z-9998 px-12 backdrop-blur-xs"
             onClick={onClose}
           />
           <motion.div
@@ -83,16 +83,8 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={windowTransition}
-            className="bg-background/95 md:border-border fixed inset-0 z-9999 flex flex-col overflow-hidden rounded-none backdrop-blur-xl md:top-auto md:right-6 md:bottom-6 md:left-auto md:h-[calc(100dvh-3rem)] md:rounded-[24px] md:border md:ring-1 md:ring-white/5 lg:top-6 lg:bottom-auto lg:w-[650px]"
+            className="bg-background border-border fixed inset-y-0 right-0 z-9999 flex w-full flex-col overflow-hidden border-l md:w-[450px] lg:w-[700px]"
           >
-            <div
-              className="pointer-events-none absolute inset-0 z-0 opacity-[0.03] mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
-              }}
-            />
-            <div className="from-primary/5 via-primary/2 pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-linear-to-b to-transparent" />
             <div className="relative z-10 flex h-full flex-col">
               <ChatHeader onClose={onClose} onReset={onReset} />
               <div className="flex-1 overflow-y-auto">

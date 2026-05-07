@@ -16,7 +16,7 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
   if (!onClose) return null;
 
   return (
-    <header className="border-border/40 bg-background/30 mb-2 flex items-center justify-between border-b px-6 py-5 backdrop-blur-md">
+    <header className="border-border bg-background/30 mb-2 flex items-center justify-between border-b px-6 py-[11px] backdrop-blur-md">
       <div className="flex items-center gap-3">
         <div className="border-border/50 bg-secondary/50 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-inner backdrop-blur-md">
           <AiAvatar size="sm" />
