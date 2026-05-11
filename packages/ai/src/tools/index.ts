@@ -1,4 +1,7 @@
-export { getDocsTool, type DocsToolInvocation } from './get-docs-tool.js';
+export {
+  searchKnowledgeBaseTool,
+  type SearchKnowledgeBaseToolInvocation,
+} from './search-knowledge-base-tool.js';
 export {
   getComponentCodeTool,
   type ComponentCodeToolInvocation,
