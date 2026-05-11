@@ -1,8 +1,11 @@
-import { Cancel01Icon, ChatAdd01Icon } from '@hugeicons/core-free-icons';
+'use client';
+
+import { Cancel01Icon, ChatAdd01Icon, Tick02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { Tooltip } from '@repo/ui/components/tooltip';
 import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AiAvatar } from './ai-avatar';
 
 interface ChatHeaderProps {
@@ -12,6 +15,32 @@ interface ChatHeaderProps {
 
 export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
   const t = useTranslations('components.chat.header');
+  const [confirming, setConfirming] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearResetTimeout = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => clearResetTimeout();
+  }, [clearResetTimeout]);
+
+  const handleResetClick = useCallback(() => {
+    if (confirming) {
+      clearResetTimeout();
+      setConfirming(false);
+      onReset?.();
+    } else {
+      setConfirming(true);
+      timeoutRef.current = setTimeout(() => {
+        setConfirming(false);
+      }, 2500);
+    }
+  }, [confirming, clearResetTimeout, onReset]);
 
   if (!onClose) return null;
 
@@ -28,14 +57,19 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
           <Tooltip>
             <Tooltip.Trigger>
               <Button
-                onClick={onReset}
+                onClick={handleResetClick}
                 size="icon"
                 variant="ghost"
-                className="h-8 w-8 rounded-full transition-all"
-                aria-label="Reset chat"
-                title="Reset chat"
+                className={`h-8 w-8 rounded-full transition-all duration-200 ${
+                  confirming ? 'bg-destructive/10 text-destructive hover:bg-destructive/20' : ''
+                }`}
+                aria-label={confirming ? 'Confirm reset' : 'Reset chat'}
               >
-                <HugeiconsIcon icon={ChatAdd01Icon} size={18} />
+                <HugeiconsIcon
+                  icon={confirming ? Tick02Icon : ChatAdd01Icon}
+                  size={18}
+                  className={`transition-transform duration-200 ${confirming ? 'scale-110' : ''}`}
+                />
               </Button>
             </Tooltip.Trigger>
             <Tooltip.Content side="bottom">
