@@ -35,10 +35,12 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "ingest": "tsx --env-file=../../packages/db/.env --env-file=../../apps/docs/.env src/scripts/ingest.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.63",
+    "@repo/db": "workspace:*",
     "ai": "^6.0.160",
     "zod": "^4.3.6"
   },
@@ -48,6 +50,7 @@
     "@vitest/coverage-v8": "^4.1.4",
     "dotenv": "^17.4.2",
     "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "vitest": "^4.1.4"
   }
