@@ -72,7 +72,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={backdropTransition}
-            className="bg-background/50 inset-0 z-9998 px-12 backdrop-blur-xs"
+            className="absolute inset-0 z-9999 px-12 backdrop-blur-xs"
             onClick={onClose}
           />
           <motion.div
