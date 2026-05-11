@@ -1,5 +1,12 @@
-import { tool } from 'ai';
+import { tool, type UIToolInvocation } from 'ai';
 import { z } from 'zod';
+import { getEnv } from '../lib/env.js';
+
+const registryResponseSchema = z.object({
+  slug: z.string(),
+  code: z.string(),
+  dependencies: z.array(z.string()).optional(),
+});
 
 export const getComponentCodeTool = tool({
   description: 'Get NachUI component from registry API',
@@ -8,10 +15,11 @@ export const getComponentCodeTool = tool({
   }),
 
   execute: async ({ componentName }) => {
+    const env = getEnv();
     try {
-      const res = await fetch(`${process.env.API_URL}/api/v1/registry/${componentName}`, {
+      const res = await fetch(`${env.API_URL}/api/v1/registry/${componentName}`, {
         headers: {
-          'x-api-key': process.env.NACHUI_API_KEY!,
+          'x-api-key': env.NACHUI_API_KEY,
         },
       });
 
@@ -24,11 +32,19 @@ export const getComponentCodeTool = tool({
 
       const data = await res.json();
 
+      const parsedData = registryResponseSchema.safeParse(data);
+      if (!parsedData.success) {
+        return {
+          found: false as const,
+          message: `Invalid registry response format for "${componentName}"`,
+        };
+      }
+
       return {
         found: true as const,
-        componentName: data.slug,
-        code: data.code,
-        dependencies: data.dependencies,
+        componentName: parsedData.data.slug,
+        code: parsedData.data.code,
+        dependencies: parsedData.data.dependencies,
       };
     } catch (error) {
       return {
@@ -38,3 +54,5 @@ export const getComponentCodeTool = tool({
     }
   },
 });
+
+export type ComponentCodeToolInvocation = UIToolInvocation<typeof getComponentCodeTool>;

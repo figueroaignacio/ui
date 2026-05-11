@@ -1,6 +1,22 @@
-import { tool } from 'ai';
-import z from 'zod';
+import { tool, type UIToolInvocation } from 'ai';
+import { z } from 'zod';
+import { getEnv } from '../lib/env.js';
 import { getQueryWords } from '../lib/get-query-words.js';
+
+const docsApiResponseSchema = z.object({
+  success: z.boolean(),
+  data: z
+    .array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        raw: z.string().optional().nullable(),
+        slug: z.string(),
+        locale: z.string(),
+      }),
+    )
+    .optional(),
+});
 
 export const getDocsTool = tool({
   description:
@@ -11,11 +27,12 @@ export const getDocsTool = tool({
   }),
   execute: async ({ query, locale }) => {
     const resolvedLocale = locale ?? 'en';
+    const env = getEnv();
 
     try {
-      const res = await fetch(`${process.env.API_URL}/api/v1/docs`, {
+      const res = await fetch(`${env.API_URL}/api/v1/docs`, {
         headers: {
-          'x-api-key': process.env.NACHUI_API_KEY!,
+          'x-api-key': env.NACHUI_API_KEY,
         },
       });
 
@@ -25,17 +42,17 @@ export const getDocsTool = tool({
 
       const data = await res.json();
 
-      if (!data.success) {
-        return { found: false as const, message: 'Docs API error' };
+      const parsedData = docsApiResponseSchema.safeParse(data);
+      if (!parsedData.success) {
+        console.error('[getDocsTool] validation error:', parsedData.error);
+        return { found: false as const, message: 'Docs API returned invalid data format' };
       }
 
-      const allDocs = data.data as Array<{
-        title: string;
-        description: string;
-        raw: string;
-        slug: string;
-        locale: string;
-      }>;
+      if (!parsedData.data.success || !parsedData.data.data) {
+        return { found: false as const, message: 'Docs API error or no data' };
+      }
+
+      const allDocs = parsedData.data.data;
 
       const queryWords = getQueryWords(query);
       if (queryWords.length === 0) {
@@ -84,3 +101,5 @@ export const getDocsTool = tool({
     }
   },
 });
+
+export type DocsToolInvocation = UIToolInvocation<typeof getDocsTool>;

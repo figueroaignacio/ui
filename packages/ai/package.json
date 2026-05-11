@@ -25,10 +25,16 @@
       "types": "./dist/agent.d.ts",
       "import": "./dist/agent.js",
       "require": "./dist/agent.cjs"
+    },
+    "./tools": {
+      "types": "./dist/tools/index.d.ts",
+      "import": "./dist/tools/index.js",
+      "require": "./dist/tools/index.cjs"
     }
   },
   "scripts": {
     "build": "tsup",
+    "dev": "tsup --watch",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
