@@ -7,6 +7,7 @@ export const google = createGoogleGenerativeAI({
 export const GOOGLE_MODELS = {
   gemini25Flash: 'gemini-2.5-flash',
   gemini25Pro: 'gemini-2.5-pro',
+  geminiEmbedding: 'gemini-embedding-001',
 } as const;
 
 export type GoogleModel = (typeof GOOGLE_MODELS)[keyof typeof GOOGLE_MODELS];
