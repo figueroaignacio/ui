@@ -1,7 +1,19 @@
 import { tool, type UIToolInvocation } from 'ai';
 import { z } from 'zod';
-import { asc, db, docChunks, sql, cosineDistance } from '@repo/db';
-import { embedQuery } from '../lib/embeddings.js';
+import { getEnv } from '../lib/env.js';
+
+const searchResponseSchema = z.object({
+  found: z.boolean(),
+  results: z.array(
+    z.object({
+      title: z.string(),
+      slug: z.string(),
+      content: z.string(),
+      section: z.string().optional(),
+      similarity: z.number(),
+    }),
+  ),
+});
 
 export const searchKnowledgeBaseTool = tool({
   description:
@@ -12,25 +24,35 @@ export const searchKnowledgeBaseTool = tool({
     topK: z.number().optional().default(5),
   }),
   execute: async ({ query, locale, topK }) => {
+    const env = getEnv();
     try {
-      const queryEmbedding = await embedQuery(query);
+      const res = await fetch(`${env.API_URL}/api/v1/rag/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': env.NACHUI_API_KEY,
+        },
+        body: JSON.stringify({ query, locale, topK }),
+      });
 
-      const similarity = sql<number>`1 - (${cosineDistance(docChunks.embedding, queryEmbedding)})`;
+      if (!res.ok) {
+        return {
+          found: false as const,
+          message: `RAG search failed: ${res.status}`,
+        };
+      }
 
-      const results = await db
-        .select({
-          docSlug: docChunks.docSlug,
-          docTitle: docChunks.docTitle,
-          content: docChunks.content,
-          section: docChunks.metadata,
-          similarity,
-        })
-        .from(docChunks)
-        .where(sql`${docChunks.locale} = ${locale}`)
-        .orderBy(asc(cosineDistance(docChunks.embedding, queryEmbedding)))
-        .limit(topK);
+      const data = await res.json();
+      const parsed = searchResponseSchema.safeParse(data);
 
-      if (results.length === 0) {
+      if (!parsed.success) {
+        return {
+          found: false as const,
+          message: 'Invalid RAG response format',
+        };
+      }
+
+      if (!parsed.data.found || parsed.data.results.length === 0) {
         return {
           found: false as const,
           message: `No relevant docs found for "${query}"`,
@@ -39,13 +61,7 @@ export const searchKnowledgeBaseTool = tool({
 
       return {
         found: true as const,
-        results: results.map((r) => ({
-          title: r.docTitle,
-          slug: r.docSlug,
-          content: r.content,
-          section: (r.section as { section?: string })?.section,
-          similarity: r.similarity,
-        })),
+        results: parsed.data.results,
       };
     } catch (error) {
       console.error('[searchKnowledgeBase] error:', error);
