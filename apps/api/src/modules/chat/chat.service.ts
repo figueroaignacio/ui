@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { nachUIAgent } from '@repo/ai';
-import { Agent, pipeAgentUIStreamToResponse } from 'ai';
+import { pipeAgentUIStreamToResponse } from 'ai';
 import type { Response } from 'express';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ChatService {
   async streamChat(messages: unknown[], res: Response, abortSignal?: AbortSignal): Promise<void> {
     await pipeAgentUIStreamToResponse({
       response: res,
-      agent: nachUIAgent as unknown as Agent<undefined, any, never>,
+      agent: nachUIAgent,
       uiMessages: messages,
       abortSignal,
       onStepFinish: ({ usage, toolCalls }) => {
