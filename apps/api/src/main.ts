@@ -2,6 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { Request, Response } from 'express';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
@@ -27,6 +28,7 @@ async function bootstrap() {
   });
 
   app.setGlobalPrefix('api/v1');
+  app.getHttpAdapter().get('/', (req: Request, res: Response) => res.redirect('/api/v1'));
 
   const port = configService.get<number>('PORT') || 3001;
   await app.listen(port);
