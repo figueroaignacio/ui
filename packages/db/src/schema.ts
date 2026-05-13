@@ -25,6 +25,7 @@ export const docChunks = pgTable(
     chunkIndex: integer('chunk_index').notNull(),
     content: text('content').notNull(),
     embedding: vector('embedding', { dimensions: 768 }).notNull(),
+    contentHash: text('content_hash'),
     metadata: jsonb('metadata')
       .$type<{
         section?: string;
