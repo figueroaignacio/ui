@@ -48,7 +48,7 @@ export function ChatMessages({
   onSuggestionClick,
 }: ChatMessagesProps) {
   const shouldReduceMotion = useReducedMotion();
-  const showSuggestions = messages.length === 1 && messages[0].role === 'assistant';
+  const showSuggestions = messages.length === 0;
 
   const lastMsg = messages[messages.length - 1];
   const lastContent = lastMsg?.content ?? '';
@@ -63,7 +63,7 @@ export function ChatMessages({
   }, [lastContent, lastRole, isLoading, messages.length, isStreaming, shouldReduceMotion, endRef]);
 
   return (
-    <div className="flex-1 space-y-6 overflow-x-hidden overflow-y-auto px-6 py-2">
+    <div className={cn("flex-1 space-y-6 overflow-x-hidden overflow-y-auto px-6 py-2", messages.length === 0 && "flex flex-col justify-center")}>
       <AnimatePresence initial={false}>
         {messages.map((msg, idx) => {
           const isLastAssistant = idx === messages.length - 1 && msg.role === 'assistant';
@@ -80,14 +80,6 @@ export function ChatMessages({
               transition={messageRowTransition}
               className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
             >
-              <span
-                className={cn(
-                  'text-foreground/50 mb-1.5 flex items-center gap-1.5 text-[10px] font-bold tracking-[0.15em]',
-                  msg.role === 'user' ? 'mr-2' : 'ml-1',
-                )}
-              >
-                {msg.role === 'assistant' ? null : 'You'}
-              </span>
               <ChatMessage message={msg} isStreaming={isActiveStream} />
             </motion.div>
           );

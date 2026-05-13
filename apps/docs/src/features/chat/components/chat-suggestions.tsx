@@ -1,5 +1,6 @@
 import { BulbIcon, CodeIcon, Comment01Icon, SparklesIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 interface ChatSuggestionsProps {
@@ -29,33 +30,32 @@ export function ChatSuggestions({ onSuggestionClick }: ChatSuggestionsProps) {
   ];
 
   return (
-    <div className="flex flex-col space-y-6 py-8">
+    <div className="flex min-h-[500px] flex-col items-center justify-center space-y-5 py-6 text-center">
       <div>
-        <h3 className="text-foreground mb-2 font-semibold">{t('title')}</h3>
-        <p className="text-muted-foreground text-sm">{t('subtitle')}</p>
+        <h3 className="text-foreground mb-1.5 text-sm font-semibold">{t('title')}</h3>
+        <p className="text-muted-foreground text-xs">{t('subtitle')}</p>
       </div>
-      <div className="flex flex-wrap gap-3">
-        {suggestions.map((suggestion, index) => {
-          return (
-            <button
-              type="button"
-              key={index}
-              onClick={() => onSuggestionClick(suggestion.text)}
-              className="transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <div className="group bg-secondary/30 border-border/50 hover:border-border/80 relative flex cursor-pointer items-center gap-2.5 overflow-hidden rounded-[18px] border px-4 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-colors">
-                <div className={``}>
-                  <HugeiconsIcon icon={suggestion.icon} size={14} className="text-white" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-foreground/80 group-hover:text-foreground text-left text-[14px] leading-snug font-medium wrap-break-word transition-colors">
-                    {suggestion.text}
-                  </p>
-                </div>
-              </div>
-            </button>
-          );
-        })}
+      <div className="flex flex-wrap justify-center gap-2.5">
+        {suggestions.map((suggestion, index) => (
+          <motion.button
+            type="button"
+            key={index}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.06, duration: 0.25 }}
+            onClick={() => onSuggestionClick(suggestion.text)}
+            className="group border-border/50 bg-secondary/20 hover:border-border hover:bg-secondary/40 flex cursor-pointer items-center gap-2.5 rounded-full border px-4 py-2 transition-colors"
+          >
+            <HugeiconsIcon
+              icon={suggestion.icon}
+              size={14}
+              className="text-muted-foreground group-hover:text-foreground transition-colors"
+            />
+            <p className="text-foreground/70 group-hover:text-foreground text-left text-[13px] leading-snug font-medium transition-colors">
+              {suggestion.text}
+            </p>
+          </motion.button>
+        ))}
       </div>
     </div>
   );

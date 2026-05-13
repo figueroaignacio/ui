@@ -14,7 +14,7 @@ interface ChatWindowProps {
   message: string;
   onMessageChange: (value: string) => void;
   onSubmit: (e?: React.FormEvent) => void;
-  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onClose: () => void;
   onReset: () => void;
   onSuggestionClick: (text: string) => void;
@@ -54,7 +54,7 @@ export function ChatWindow(props: ChatWindowProps) {
     message,
     onMessageChange,
     onSubmit,
-    onKeyPress,
+    onKeyDown,
     onClose,
     onReset,
     onSuggestionClick,
@@ -72,7 +72,7 @@ export function ChatWindow(props: ChatWindowProps) {
             animate="animate"
             exit="exit"
             transition={backdropTransition}
-            className="absolute inset-0 z-9999 px-12 backdrop-blur-xs"
+            className="bg-background/50 fixed inset-0 z-9999"
             onClick={onClose}
           />
           <motion.div
@@ -102,7 +102,7 @@ export function ChatWindow(props: ChatWindowProps) {
                 isLoading={isLoading || isStreaming}
                 onMessageChange={onMessageChange}
                 onSubmit={onSubmit}
-                onKeyPress={onKeyPress}
+                onKeyDown={onKeyDown}
               />
             </div>
           </motion.div>

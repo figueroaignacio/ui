@@ -19,6 +19,7 @@ export function useChat() {
         id: 'initial',
         role: 'assistant',
         parts: [{ type: 'text', text: t('initial') }],
+        timestamp: Date.now(),
       }) as UIMessage,
     [t],
   );
@@ -48,7 +49,8 @@ export function useChat() {
         try {
           const parsed = JSON.parse(item) as UIMessage[];
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setMessages(parsed);
+            const filtered = parsed.filter((m) => m.id !== 'initial');
+            setMessages(filtered);
           }
         } catch (e) {
           console.error('Failed to parse stored messages', e);

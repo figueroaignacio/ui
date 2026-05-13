@@ -46,7 +46,7 @@ export function AiChat() {
         message={message}
         onMessageChange={setMessage}
         onSubmit={handleSubmit}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         onClose={handleClose}
         onReset={resetChat}
         onSuggestionClick={handleSuggestionClickWrapper}

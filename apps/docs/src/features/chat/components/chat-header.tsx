@@ -4,6 +4,7 @@ import { Cancel01Icon, ChatAdd01Icon, Tick02Icon } from '@hugeicons/core-free-ic
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Button } from '@repo/ui/components/button';
 import { Tooltip } from '@repo/ui/components/tooltip';
+import { cn } from '@repo/ui/lib/cn';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AiAvatar } from './ai-avatar';
@@ -45,12 +46,10 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
   if (!onClose) return null;
 
   return (
-    <header className="border-border bg-background/30 mb-2 flex items-center justify-between border-b px-6 py-3.5 backdrop-blur-md">
+    <header className="border-border bg-background/80 flex items-center justify-between border-b px-6 py-3.5 backdrop-blur-md">
       <div className="flex items-center gap-3">
         <AiAvatar size="sm" />
-        <h2 className="from-foreground to-foreground/60 bg-linear-to-br bg-clip-text text-[15px] font-semibold tracking-tight text-transparent">
-          Mate
-        </h2>
+        <h2 className="text-foreground text-[15px] font-semibold tracking-tight">Mate</h2>
       </div>
       <div className="flex items-center gap-2">
         {onReset && (
@@ -60,15 +59,16 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
                 onClick={handleResetClick}
                 size="icon"
                 variant="ghost"
-                className={`h-8 w-8 rounded-full transition-all duration-200 ${
-                  confirming ? 'bg-destructive/10 text-destructive hover:bg-destructive/20' : ''
-                }`}
+                className={cn(
+                  'h-8 w-8 rounded-full transition-all duration-200',
+                  confirming && 'bg-destructive/10 text-destructive hover:bg-destructive/20',
+                )}
                 aria-label={confirming ? 'Confirm reset' : 'Reset chat'}
               >
                 <HugeiconsIcon
                   icon={confirming ? Tick02Icon : ChatAdd01Icon}
                   size={18}
-                  className={`transition-transform duration-200 ${confirming ? 'scale-110' : ''}`}
+                  className={cn('transition-transform duration-200', confirming && 'scale-110')}
                 />
               </Button>
             </Tooltip.Trigger>

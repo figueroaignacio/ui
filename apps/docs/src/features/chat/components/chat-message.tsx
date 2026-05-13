@@ -30,7 +30,7 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
             transition={userMessageTransition}
             className="mb-8 flex justify-end"
           >
-            <p className="from-foreground to-foreground/90 text-background max-w-[85%] rounded-[24px] rounded-tr-[4px] bg-linear-to-tr px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word shadow-[0_8px_30px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.2)] ring-1 ring-black/5 dark:ring-white/10">
+            <p className="bg-foreground text-background max-w-[85%] rounded-[24px] rounded-tr-[4px] px-6 py-3.5 text-[15px] leading-relaxed font-medium wrap-break-word shadow-sm ring-1 ring-black/5 dark:ring-white/10">
               {message.content}
             </p>
           </motion.div>
@@ -41,7 +41,7 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
               <motion.span
                 aria-hidden
                 style={cursorStyle}
-                className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-white align-middle"
+                className="ml-0.5 inline-block h-[1em] w-[2px] rounded-sm bg-foreground align-middle"
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
               />
