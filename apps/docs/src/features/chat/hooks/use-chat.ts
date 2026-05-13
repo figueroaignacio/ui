@@ -1,77 +1,34 @@
 'use client';
 
 import type { Message } from '@/lib/definitions';
-import { useChat as useAIChat, type UIMessage } from '@ai-sdk/react';
-import { useLocalStorage } from '@repo/ui/hooks/use-local-storage';
+import { useChat as useAIChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
-import { useTranslations } from 'next-intl';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+const transport = new DefaultChatTransport({
+  api: `${API_URL}/api/v1/chat`,
+});
+
 export function useChat() {
-  const t = useTranslations('components.chat.messages');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const initialMessage = useMemo(
-    () =>
-      ({
-        id: 'initial',
-        role: 'assistant',
-        parts: [{ type: 'text', text: t('initial') }],
-        timestamp: Date.now(),
-      }) as UIMessage,
-    [t],
-  );
-
-  const [storedMessages, setStoredMessages, removeStoredMessages, isMounted] = useLocalStorage<
-    UIMessage[]
-  >('nachui-chat', [initialMessage]);
-
   const {
-    messages: aiMessages,
+    messages: uiMessages,
     setMessages,
     status,
     sendMessage: sendAIMessage,
     stop,
     error,
-  } = useAIChat({
-    transport: new DefaultChatTransport({
-      api: `${API_URL}/api/v1/chat`,
-    }),
-    messages: [initialMessage],
-  });
-
-  useEffect(() => {
-    if (isMounted) {
-      const item = window.localStorage.getItem('nachui-chat');
-      if (item) {
-        try {
-          const parsed = JSON.parse(item) as UIMessage[];
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            const filtered = parsed.filter((m) => m.id !== 'initial');
-            setMessages(filtered);
-          }
-        } catch (e) {
-          console.error('Failed to parse stored messages', e);
-        }
-      }
-    }
-  }, [isMounted, setMessages]);
-
-  useEffect(() => {
-    if (isMounted && aiMessages.length > 0) {
-      setStoredMessages(aiMessages);
-    }
-  }, [aiMessages, isMounted, setStoredMessages]);
+  } = useAIChat({ transport });
 
   const resetChat = useCallback(() => {
-    removeStoredMessages();
-    setMessages([initialMessage]);
-  }, [removeStoredMessages, setMessages, initialMessage]);
+    setMessages([]);
+  }, [setMessages]);
 
   const messages: Message[] = useMemo(() => {
-    return aiMessages.map((m) => {
+    return uiMessages.map((m) => {
       const content = m.parts
         .filter((p) => p.type === 'text')
         .map((p) => p.text ?? '')
@@ -83,7 +40,7 @@ export function useChat() {
         content,
       };
     });
-  }, [aiMessages]);
+  }, [uiMessages]);
 
   const isLoading = status === 'submitted' || status === 'streaming';
   const isStreaming = status === 'streaming';
