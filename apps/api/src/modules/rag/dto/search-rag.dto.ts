@@ -2,7 +2,7 @@ import { IsIn, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator'
 
 export class SearchRagDto {
   @IsString()
-  query: string;
+  query!: string;
 
   @IsOptional()
   @IsIn(['en', 'es'])
