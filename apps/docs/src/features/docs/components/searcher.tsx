@@ -75,7 +75,7 @@ export function Searcher() {
           </div>
         </button>
       </Dialog.Trigger>
-      <Dialog.Content className="bg-secondary/60 border-secondary-foreground/10 max-w-xl rounded-sm border backdrop-blur-sm">
+      <Dialog.Content className="max-w-xl rounded-xl border">
         <Dialog.Header>
           <SearchInput
             value={query}
