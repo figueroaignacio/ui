@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
         <NextIntlClientProvider>
           <Providers>
             <Header />
-            <main id="main-content" className="container mx-auto px-4">
+            <main id="main-content" className="container">
               {children}
             </main>
             <Footer />

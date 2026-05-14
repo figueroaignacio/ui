@@ -198,8 +198,12 @@
   display: none;
 }
 
-.gradient-text {
-  @apply from-foreground to-foreground/30 bg-linear-to-br bg-clip-text leading-tight font-extrabold tracking-tight text-balance text-transparent;
+.container {
+  @apply mx-auto max-w-full px-4 md:px-6 lg:px-8;
+}
+
+.doc-container {
+  @apply mx-auto min-h-0 max-w-3xl;
 }
 
 @keyframes blink {

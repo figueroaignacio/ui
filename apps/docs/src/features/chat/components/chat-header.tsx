@@ -46,7 +46,7 @@ export function ChatHeader({ onClose, onReset }: ChatHeaderProps) {
   if (!onClose) return null;
 
   return (
-    <header className="border-border bg-background/80 flex items-center justify-between border-b px-6 py-3.5 backdrop-blur-md">
+    <header className="bg-background/80 flex items-center justify-between px-6 py-3.5 backdrop-blur-md">
       <div className="flex items-center gap-3">
         <AiAvatar size="sm" />
         <h2 className="text-foreground text-[15px] font-semibold tracking-tight">Mate</h2>

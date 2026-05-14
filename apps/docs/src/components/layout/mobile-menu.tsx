@@ -45,9 +45,11 @@ export function MobileMenu() {
       </div>
       <nav
         className={cn(
-          'bg-background fixed z-50 flex flex-col overflow-hidden rounded-lg border shadow-2xl transition-all duration-300',
-          'inset-2 h-[calc(100svh-1rem)] sm:right-auto sm:w-[380px]',
-          isMenuOpen ? 'translate-x-0' : 'translate-x-[calc(-90%-2rem)] opacity-0',
+          'bg-background fixed z-50 flex flex-col overflow-hidden shadow-2xl transition-all duration-300',
+          'inset-0 h-[100svh] w-full sm:inset-2 sm:h-[calc(100svh-1rem)] sm:w-[380px] sm:rounded-lg sm:border',
+          isMenuOpen
+            ? 'translate-x-0'
+            : '-translate-x-full opacity-0 sm:translate-x-[calc(-90%-2rem)]',
         )}
       >
         <div className="flex items-center justify-between px-6 py-4">

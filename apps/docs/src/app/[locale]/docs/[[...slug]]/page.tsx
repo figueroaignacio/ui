@@ -1,5 +1,4 @@
 import { MDXContent } from '@/components/mdx/mdx-content';
-import { allDocs as docs } from 'content-collections';
 import { DocActions } from '@/features/docs/components/doc-actions';
 import { DocsNavigationButtons } from '@/features/docs/components/docs-navigation-button';
 import { DocsPagination } from '@/features/docs/components/docs-pagination';
@@ -7,6 +6,7 @@ import { MobileToc } from '@/features/docs/components/mobile-toc';
 import { Toc } from '@/features/docs/components/toc';
 import { ContentRepository } from '@/lib/content-repository';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
+import { allDocs as docs } from 'content-collections';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -36,7 +36,7 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
 
   return (
     <>
-      <article className="flex w-full min-w-0 flex-col lg:px-26">
+      <article className="doc-container flex w-full min-w-0 flex-col">
         <div className="my-6 flex flex-col gap-6">
           <div className="bg-background sticky top-0 z-10 block lg:hidden">
             <MobileToc toc={tocContent} />
