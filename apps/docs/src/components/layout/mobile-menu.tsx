@@ -86,9 +86,10 @@ export function MobileMenu() {
                   const isActive = pathname === item.href;
 
                   return (
-                    <li key={item.href} onClick={toggleMenu}>
+                    <li key={item.href}>
                       <Link
                         href={item.href}
+                        onClick={toggleMenu}
                         className={cn(
                           'hover:bg-muted hover:text-primary flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium transition-colors',
                           isActive && 'text-foreground bg-muted',
@@ -117,9 +118,10 @@ export function MobileMenu() {
                   const isActive = pathname === item.href;
 
                   return (
-                    <li key={itemIndex} onClick={toggleMenu}>
+                    <li key={itemIndex}>
                       <Link
                         href={item.href}
+                        onClick={toggleMenu}
                         className={cn(
                           'text-muted-foreground hover:bg-muted hover:text-primary flex items-center justify-between rounded-md px-2 py-1.5 text-xs transition-colors',
                           isActive && 'bg-muted text-foreground font-medium',
