@@ -65,8 +65,9 @@ export function Searcher() {
         <button
           className="border-border/50 bg-secondary/50 text-muted-foreground hover:bg-secondary/80 hover:text-foreground flex h-9 w-full items-center gap-2 rounded-full border px-4 text-sm transition-colors sm:w-44"
           title={t('label')}
+          aria-label={t('label')}
         >
-          <HugeiconsIcon icon={Search02Icon} size={18} />
+          <HugeiconsIcon icon={Search02Icon} size={18} aria-hidden="true" />
           <span>{t('placeholder')}</span>
           <div className="ml-auto hidden items-center gap-1 text-[10px] sm:flex">
             <Kbd size="sm">ctrl</Kbd>
@@ -103,7 +104,7 @@ export function Searcher() {
           </div>
           <div className="flex items-center gap-2">
             <Kbd size="sm" variant="outline" className="text-[10px]">
-              <HugeiconsIcon icon={ArrowMoveDownLeftIcon} size={10} />
+              <HugeiconsIcon icon={ArrowMoveDownLeftIcon} size={10} aria-hidden="true" />
             </Kbd>
             <span className="text-muted-foreground text-xs">{t('select')}</span>
           </div>

@@ -37,6 +37,7 @@ export function ThemeColorSwitcher() {
           key={c.name}
           onClick={() => setColor(c.name)}
           aria-label={`Switch to ${c.name} theme`}
+          aria-pressed={color === c.name}
           className={cn(
             'focus-visible:ring-offset-background h-5 w-5 rounded-full transition-transform hover:scale-125 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
             color === c.name

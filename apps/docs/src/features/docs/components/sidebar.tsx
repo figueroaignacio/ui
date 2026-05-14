@@ -43,6 +43,7 @@ export function Sidebar() {
             <div key={section.title} className="space-y-3">
               <button
                 onClick={() => toggleSection(section.title)}
+                aria-expanded={isOpen}
                 className="hover:text-foreground text-muted-foreground flex w-full items-center justify-between text-xs font-semibold transition-colors"
               >
                 <div className="flex items-center gap-2">
@@ -56,6 +57,7 @@ export function Sidebar() {
                     'h-4 w-4 transition-transform duration-200',
                     isOpen && 'rotate-180',
                   )}
+                  aria-hidden="true"
                 />
               </button>
               <AnimatePresence initial={false}>

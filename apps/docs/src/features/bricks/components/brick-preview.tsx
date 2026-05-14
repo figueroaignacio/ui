@@ -70,7 +70,7 @@ export function BrickPreview({
                 aria-label="Desktop viewport"
                 aria-pressed={viewport === 'desktop'}
               >
-                <HugeiconsIcon icon={LaptopIcon} size={14} />
+                <HugeiconsIcon icon={LaptopIcon} size={14} aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -106,13 +106,14 @@ export function BrickPreview({
               <button
                 type="button"
                 onClick={() => copyToClipboard(installCommand)}
+                aria-label={isCopied ? 'Install command copied' : `Copy install command: ${installCommand}`}
                 className={cn(
                   'border-border bg-muted/30 text-muted-foreground hover:text-foreground flex items-center gap-2 rounded-md border px-3 py-1.5 font-mono text-xs transition-colors',
                   isCopied && 'text-success',
                 )}
                 title={isCopied ? 'Copied!' : `Copy: ${installCommand}`}
               >
-                <HugeiconsIcon icon={isCopied ? Tick02Icon : Copy01Icon} size={12} />
+                <HugeiconsIcon icon={isCopied ? Tick02Icon : Copy01Icon} size={12} aria-hidden="true" />
                 <span className="hidden sm:inline">{installCommand}</span>
               </button>
             )}

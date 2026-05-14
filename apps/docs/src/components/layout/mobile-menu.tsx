@@ -32,23 +32,17 @@ export function MobileMenu() {
       <button
         className="flex items-center gap-x-2 text-sm font-medium"
         onClick={toggleMenu}
-        title="menu"
-        aria-label="menu"
+        title="Open menu"
+        aria-label="Open menu"
+        aria-expanded={isMenuOpen}
         type="button"
       >
-        <HugeiconsIcon icon={PanelLeftIcon} />
+        <HugeiconsIcon icon={PanelLeftIcon} aria-hidden="true" />
       </button>
       <div className="flex items-center gap-x-3">
         <AiChat />
         <Searcher />
       </div>
-      <div
-        className={cn(
-          'bg-background/20 fixed inset-0 z-40 backdrop-blur-sm transition-opacity duration-300',
-          isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
-        )}
-        onClick={toggleMenu}
-      />
       <nav
         className={cn(
           'bg-background fixed z-50 flex flex-col overflow-hidden rounded-lg border shadow-2xl transition-all duration-300',
@@ -56,11 +50,11 @@ export function MobileMenu() {
           isMenuOpen ? 'translate-x-0' : 'translate-x-[calc(-90%-2rem)] opacity-0',
         )}
       >
-        <div className="flex items-center justify-between border-b px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <button
             onClick={toggleMenu}
-            title="logo"
-            aria-label="logo"
+            title="Go to home page"
+            aria-label="Go to home page"
             type="button"
             className="flex items-center gap-x-2 text-sm font-medium"
           >
@@ -71,12 +65,13 @@ export function MobileMenu() {
             <LocaleSwitcher />
             <button
               onClick={toggleMenu}
-              title="close menu"
-              aria-label="close menu"
+              title="Close menu"
+              aria-label="Close menu"
+              aria-expanded={isMenuOpen}
               type="button"
               className="hover:bg-muted rounded-md p-2 transition-colors"
             >
-              <HugeiconsIcon icon={Cancel01Icon} size={20} />
+              <HugeiconsIcon icon={Cancel01Icon} size={20} aria-hidden="true" />
             </button>
           </div>
         </div>

@@ -32,20 +32,22 @@ export function ChatInput(props: ChatInputProps) {
           onChange={(e) => onMessageChange(e.target.value)}
           onKeyDown={onKeyDown}
           placeholder={t('input.placeholder')}
+          aria-label={t('input.placeholder')}
           className="placeholder:text-muted-foreground/70 flex-1 bg-transparent px-5 py-3 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         <motion.button
           type="submit"
           disabled={disabled}
+          aria-label="Send message"
           whileHover={{ scale: hoverScale }}
           whileTap={{ scale: tapScale }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           className="bg-foreground text-background hover:bg-foreground/90 flex h-10 w-10 items-center justify-center rounded-full shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (
-            <HugeiconsIcon icon={Loading03Icon} size={18} className="animate-spin" />
+            <HugeiconsIcon icon={Loading03Icon} size={18} className="animate-spin" aria-hidden="true" />
           ) : (
-            <HugeiconsIcon icon={SentIcon} size={18} />
+            <HugeiconsIcon icon={SentIcon} size={18} aria-hidden="true" />
           )}
         </motion.button>
       </div>

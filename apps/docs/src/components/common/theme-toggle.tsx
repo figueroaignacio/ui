@@ -28,6 +28,7 @@ export function ThemeToggle() {
               isActive ? 'text-foreground' : 'text-muted-foreground'
             }`}
             aria-label={`Switch to ${t.label} theme`}
+            aria-pressed={isActive}
             title={t.label}
           >
             {isActive && (
@@ -37,7 +38,7 @@ export function ThemeToggle() {
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
-            <HugeiconsIcon icon={t.icon} size={14} />
+            <HugeiconsIcon icon={t.icon} size={14} aria-hidden="true" />
           </button>
         );
       })}
