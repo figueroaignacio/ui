@@ -40,7 +40,9 @@
       "tooltip": "¿Puedo ayudarte?",
       "thinking": "Pensando",
       "copy": "Copiar",
-      "copied": "Copiado"
+      "copied": "Copiado",
+      "explainRequest": "Explicar {component}",
+      "promptSent": "Prompt enviado"
     },
     "suggestions": {
       "title": "Prueba con:",
