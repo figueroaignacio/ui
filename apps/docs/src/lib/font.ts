@@ -1,6 +1,6 @@
-import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google';
+import { Geist, JetBrains_Mono, Outfit } from 'next/font/google';
 
-export const fontHeading = Geist_Mono({
+export const fontHeading = Outfit({
   subsets: ['latin'],
   variable: '--font-heading',
 });
