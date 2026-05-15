@@ -1,6 +1,5 @@
 import type { Message } from '@/lib/definitions';
 import { cn } from '@repo/ui/lib/cn';
-import { motion, useReducedMotion } from 'motion/react';
 import { ChatExplanationRequest } from './chat-explanation-request';
 import { ChatMarkdownContent } from './chat-markdown-content';
 
@@ -9,17 +8,8 @@ interface ChatMessageProps {
   isStreaming?: boolean;
 }
 
-const userMessageTransition = {
-  type: 'spring' as const,
-  stiffness: 320,
-  damping: 26,
-};
-
-const cursorStyle = { willChange: 'opacity' } as const;
-
 export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
   const isUser = message.role === 'user';
-  const shouldReduceMotion = useReducedMotion();
 
   const explainMatch = message.content.match(
     /^(?:Explain the content of this page:|Explícame el contenido de esta página:) ([^.]+)\./,
@@ -33,15 +23,10 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
   const componentName = explainMatch ? explainMatch[1] : '';
 
   return (
-    <motion.div layout="position" className={cn('flex w-full max-w-full gap-3', !isUser && 'mt-2')}>
+    <div className={cn('flex w-full max-w-full gap-3', !isUser && 'mt-2')}>
       <div className="min-w-0 flex-1">
         {isUser ? (
-          <motion.div
-            initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={userMessageTransition}
-            className="mb-8 flex justify-end"
-          >
+          <div className="mb-8 flex justify-end">
             {isExplanation ? (
               <ChatExplanationRequest componentName={componentName} />
             ) : (
@@ -49,22 +34,19 @@ export function ChatMessage({ message, isStreaming }: ChatMessageProps) {
                 {message.content}
               </p>
             )}
-          </motion.div>
+          </div>
         ) : (
           <div className="group text-foreground/90 relative mb-8 w-full min-w-0 pl-1 text-[15px] leading-relaxed">
             <ChatMarkdownContent content={message.content} />
-            {isStreaming && !shouldReduceMotion && (
-              <motion.span
+            {isStreaming && (
+              <span
                 aria-hidden
-                style={cursorStyle}
-                className="bg-foreground ml-0.5 inline-block h-[1em] w-[2px] rounded-sm align-middle"
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
+                className="bg-foreground ml-0.5 inline-block h-[1em] w-[2px] animate-pulse rounded-sm align-middle"
               />
             )}
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }

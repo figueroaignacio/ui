@@ -1,6 +1,5 @@
 import type { Message } from '@/lib/definitions';
 import { cn } from '@repo/ui/lib/cn';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
 import { ChatError } from './chat-error';
@@ -17,28 +16,6 @@ interface ChatMessagesProps {
   onSuggestionClick: (text: string) => void;
 }
 
-const messageRowVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-} as const;
-
-const messageRowTransition = {
-  type: 'spring' as const,
-  stiffness: 300,
-  damping: 28,
-  duration: 0.3,
-};
-
-const messageRowStyle = { willChange: 'opacity, transform' } as const;
-
-const loadingVariants = {
-  initial: { opacity: 0, y: 8 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -4 },
-} as const;
-
-const loadingTransition = { duration: 0.2 };
-
 export function ChatMessages({
   messages,
   isLoading,
@@ -47,7 +24,6 @@ export function ChatMessages({
   endRef,
   onSuggestionClick,
 }: ChatMessagesProps) {
-  const shouldReduceMotion = useReducedMotion();
   const showSuggestions = messages.length === 0;
 
   const lastMsg = messages[messages.length - 1];
@@ -57,68 +33,47 @@ export function ChatMessages({
   useEffect(() => {
     if (!endRef.current) return;
     endRef.current.scrollIntoView({
-      behavior: shouldReduceMotion || isStreaming ? 'instant' : 'smooth',
+      behavior: isStreaming ? 'instant' : 'smooth',
       block: 'end',
     });
-  }, [lastContent, lastRole, isLoading, messages.length, isStreaming, shouldReduceMotion, endRef]);
+  }, [lastContent, lastRole, isLoading, messages.length, isStreaming, endRef]);
 
   return (
-    <div className={cn("flex-1 space-y-6 overflow-x-hidden overflow-y-auto px-6 py-2", messages.length === 0 && "flex flex-col justify-center")}>
-      <AnimatePresence initial={false}>
-        {messages.map((msg, idx) => {
-          const isLastAssistant = idx === messages.length - 1 && msg.role === 'assistant';
-          const isActiveStream = isLastAssistant && isStreaming;
+    <div
+      className={cn(
+        'flex-1 space-y-6 overflow-x-hidden overflow-y-auto px-6 py-2',
+        messages.length === 0 && 'flex flex-col justify-center',
+      )}
+    >
+      {messages.map((msg, idx) => {
+        const isLastAssistant = idx === messages.length - 1 && msg.role === 'assistant';
+        const isActiveStream = isLastAssistant && isStreaming;
 
-          return (
-            <motion.div
-              key={idx}
-              layout="position"
-              style={messageRowStyle}
-              variants={messageRowVariants}
-              initial="initial"
-              animate="animate"
-              transition={messageRowTransition}
-              className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
-            >
-              <ChatMessage message={msg} isStreaming={isActiveStream} />
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
+        return (
+          <div
+            key={idx}
+            className={cn('flex flex-col', msg.role === 'user' ? 'items-end' : 'items-start')}
+          >
+            <ChatMessage message={msg} isStreaming={isActiveStream} />
+          </div>
+        );
+      })}
 
       {error && !isLoading && !isStreaming && (
-        <motion.div
-          key="error"
-          style={messageRowStyle}
-          variants={loadingVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={loadingTransition}
-        >
+        <div>
           <ChatError />
-        </motion.div>
+        </div>
       )}
 
       {showSuggestions && !isLoading && !isStreaming && (
         <ChatSuggestions onSuggestionClick={onSuggestionClick} />
       )}
 
-      <AnimatePresence>
-        {isLoading && !isStreaming && (
-          <motion.div
-            key="loading"
-            style={messageRowStyle}
-            variants={loadingVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={loadingTransition}
-          >
-            <ChatLoading />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isLoading && !isStreaming && (
+        <div>
+          <ChatLoading />
+        </div>
+      )}
 
       <div ref={endRef} />
     </div>

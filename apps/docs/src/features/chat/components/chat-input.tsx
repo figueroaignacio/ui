@@ -1,6 +1,5 @@
 import { Loading03Icon, SentIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 interface ChatInputProps {
@@ -14,11 +13,8 @@ interface ChatInputProps {
 export function ChatInput(props: ChatInputProps) {
   const { message, isLoading, onMessageChange, onSubmit, onKeyDown } = props;
   const t = useTranslations('components.chat');
-  const shouldReduceMotion = useReducedMotion();
 
   const disabled = isLoading || !message.trim();
-  const hoverScale = shouldReduceMotion || disabled ? 1 : 1.05;
-  const tapScale = shouldReduceMotion || disabled ? 1 : 0.95;
 
   return (
     <form
@@ -35,13 +31,10 @@ export function ChatInput(props: ChatInputProps) {
           aria-label={t('input.placeholder')}
           className="placeholder:text-muted-foreground/70 flex-1 bg-transparent px-5 py-3 text-[15px] outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
-        <motion.button
+        <button
           type="submit"
           disabled={disabled}
           aria-label="Send message"
-          whileHover={{ scale: hoverScale }}
-          whileTap={{ scale: tapScale }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           className="bg-foreground text-background hover:bg-foreground/90 flex h-10 w-10 items-center justify-center rounded-full shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isLoading ? (
@@ -54,7 +47,7 @@ export function ChatInput(props: ChatInputProps) {
           ) : (
             <HugeiconsIcon icon={SentIcon} size={18} aria-hidden="true" />
           )}
-        </motion.button>
+        </button>
       </div>
       <p className="text-muted-foreground mt-2 hidden px-1 text-xs lg:block">
         {t('messages.helperText')}
