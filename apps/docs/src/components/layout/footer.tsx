@@ -92,9 +92,22 @@ export function Footer() {
         </div>
         <div className="py-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-muted-foreground text-sm">
-              © {currentYear} NachUI. {t('footer.copyright')}
-            </p>
+            <div className="flex flex-col gap-1 text-center md:text-left">
+              <p className="text-muted-foreground text-sm">
+                © {currentYear} NachUI. {t('footer.copyright')}
+              </p>
+              <p className="text-muted-foreground text-sm">
+                {t('footer.developedBy')}
+                <a
+                  href="https://ignaciofigueroa.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground font-medium underline transition-colors"
+                >
+                  ignaciofigueroa.dev
+                </a>
+              </p>
+            </div>
             <div className="flex items-center gap-6">
               <Link
                 href="/sitemap.xml"
