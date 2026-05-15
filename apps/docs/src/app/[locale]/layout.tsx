@@ -1,3 +1,4 @@
+import { SkipLink } from '@/components/common/skip-link';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
@@ -41,12 +42,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
         <ThemeInitScript />
       </head>
       <body className={`relative ${fontSans.variable} ${fontHeading.variable}`}>
-        <a
-          href="#main-content"
-          className="focus:bg-background focus:ring-ring sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:shadow-lg focus:ring-2 focus:outline-none"
-        >
-          Skip to main content
-        </a>
+        <SkipLink />
         <NextIntlClientProvider>
           <Providers>
             <Header />

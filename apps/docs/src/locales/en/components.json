@@ -82,5 +82,8 @@
     "dependencies": "Install the following dependencies:",
     "copyCode": "Copy and paste the following code into your project.",
     "updatePaths": "Update the import paths to match your project structure."
+  },
+  "skipLink": {
+    "label": "Skip to main content"
   }
 }
