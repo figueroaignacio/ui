@@ -8,84 +8,38 @@ date: 2024-03-14
 locale: 'es'
 ---
 
-<Callout variant="info">
-  <Callout.Title>Info</Callout.Title>
-  <Callout.Content>
-    NachUI no es solo un conjunto de componentes. Es tu propio sistema de diseño, abierto,
-    transparente y completamente bajo tu control.
-  </Callout.Content>
-</Callout>
+## Creá UIs. Mantené el Control.
 
-## Un Proyecto Indie, Construido desde Cero
+Las librerías estándar funcionan hasta que necesitás comportamiento a medida. Ahí aparecen los wrappers, overrides de estilos y hacks.
 
-NachUI es un **proyecto independiente** desarrollado desde cero por **Ignacio "Nacho" Figueroa**. No está respaldado por una gran empresa o equipo—es un esfuerzo personal impulsado por la pasión de crear sistemas de diseño accesibles, hermosos y verdaderamente abiertos.
+NachUI soluciona esto. Te entregamos **el código fuente real**. Sos dueño de los componentes, tokens y patrones. Extendelos sin límites.
 
-**Inspirado por los mejores:**
+- **Propiedad Total**: El código vive en tu proyecto. Nada oculto.
+- **Open Code**: Cada línea transparente, editable, auditable.
+- **Diseño Unificado**: Componentes siguen reglas visuales estrictas.
+- **Compound Components**: API semántica con dot-notation (`<Card.Header>`). Máxima flexibilidad.
+- **Distribución CLI**: Instalá componentes con un comando. El código se copia directo a tu repo.
+- **Nativo para IA**: Patrones estandarizados construidos para generación de código con IA.
 
-NachUI se inspira en proyectos excepcionales del ecosistema:
+## ¿Por qué Open Source?
 
-- **[shadcn/ui](https://ui.shadcn.com/)** — Por ser pionero en la filosofía de "componentes copy-paste" y demostrar que los desarrolladores quieren ser dueños de su código
-- **[Base UI](https://base-ui.com/)** — Por demostrar cómo los primitivos accesibles y sin estilos pueden empoderar a los desarrolladores
-- **[Hero UI](https://heroui.com/)** — Por mostrar cómo los sistemas de diseño modernos pueden ser hermosos y funcionales a la vez
+Agregar un componente NachUI significa que el código fuente pasa a ser tuyo.
 
-Aunque inspirado en estos proyectos, NachUI está construido **completamente desde cero** con su propia visión: un sistema de diseño que no solo es open source, sino verdaderamente **open code**—donde cada componente, token y patrón es tuyo para poseer, modificar y extender sin límites.
+- Inspeccioná, auditá, modificá todo.
+- Cambiá APIs o estructuras internas sin restricciones.
+- Sin dependencias de terceros. Sin esperar PRs externos.
 
-## Por Qué Existe NachUI
+Trabajá directo con el código que necesitás.
 
-Las librerías convencionales funcionan… hasta que necesitás algo diferente. Ahí aparecen los wrappers, los overrides de estilos y los hacks que rompen la consistencia.
+## Compound Components
 
-NachUI elimina ese problema entregándote **el código real**, junto con **design tokens** y patrones de diseño que podés extender sin límites.
-
-El Design System se sostiene sobre estos principios fundamentales:
-
-- **Propiedad Total**: El código, los tokens y los patrones viven en tu proyecto. Nada está oculto.
-- **Open Source — Open Code**: Cada línea es transparente, modificable y auditable.
-- **Lenguaje de Diseño Unificado**: Todos los componentes siguen las mismas reglas visuales y de composición.
-- **Distribución Simple**: Un CLI y un sistema de esquemas facilitan agregar o crear componentes.
-- **Patrón 'Compound Components'**: API de diseño intuitiva que te da control semántico de cada pieza de un componente (ej. `<Card.Header>`).
-- **Listo para Producción**: Valores modernos, accesibles y coherentes desde el primer día.
-- **Nativo para IA**: Patrones claros, código estandarizado y documentación estructurada para herramientas de IA.
-
-## Propiedad Total
-
-Cuando agregás un componente de NachUI, el código fuente pasa a ser parte de tu proyecto.
-
-Esto significa:
-
-- **Transparencia Absoluta**: Podés ver, auditar y modificar todo.
-- **Libertad Total de Modificación**: Cambiá APIs, estilos o estructuras sin restricciones.
-- **Integración con IA**: Al ser Open Code, tus modelos pueden entender, optimizar o extender los componentes sin bloqueos.
-
-En lugar de adaptarte a los límites de otra biblioteca, trabajás directamente con el código que necesitás.
-
-## Lenguaje de Diseño Unificado
-
-NachUI define una base sólida de **design tokens**, patrones de composición y reglas visuales que se aplican a todo el sistema.
-
-Esto garantiza:
-
-- APIs coherentes
-- estilos consistentes
-- accesibilidad uniforme
-- comportamientos previsibles
-
-Incluso las integraciones externas se adaptan al mismo lenguaje visual, garantizando cohesión en toda tu interfaz.
-
-Tu equipo aprende un solo sistema.  
-Tu IA aprende un solo patrón.  
-Todo funciona en conjunto.
-
-## El Patrón 'Compound Components'
-
-NachUI adopta el patrón de **Compound Components** (Componentes Compuestos) para proporcionar la máxima flexibilidad y APIs altamente legibles e intuitivas.
-
-En lugar de configurar los componentes pasando infinitos flags booleanos u objetos a un solo componente monolítico, construyes tu interfaz componiendo elementos semánticos interconectados debajó de un componente principal a través de la notación de punto (`dot-notation`).
+Evitá componentes monolíticos con infinitos flags booleanos. Componé tu UI usando elementos semánticos interconectados.
 
 ```tsx
-// ❌ Enfoque monolítico (rígido, difícil de sobreescribir partes específicas)
+// ❌ Monolítico (rígido, difícil de extender)
 <Card title="Hola" description="Mundo" content="Este es el contenido" />
 
-// ✅ Enfoque Compound Component (altamente flexible y legible)
+// ✅ Compound (flexible, legible)
 <Card>
   <Card.Header>
     <Card.Title>Hola</Card.Title>
@@ -97,40 +51,19 @@ En lugar de configurar los componentes pasando infinitos flags booleanos u objet
 </Card>
 ```
 
-**¿Por qué Compound Components?**
+**Beneficios:**
 
-- **Personalización sin intrusión**: Podés agregar wrappers, cambiar el orden o añadir elementos personalizados directamente en la estructura sin necesitar anulaciones complejas (como `renderProps`).
-- **Estructura de código clara**: Tu JSX representa visualmente la estructura exacta y la jerarquía que tendrá el DOM del componente.
-- **Tipado enfocado**: Cada sub-componente tiene sus propias props específicas, lo que mantiene el autocompletado de TypeScript limpio y localmente relevante.
-- **Estado compartido sin perforación de props (Prop Drilling)**: El componente principal comparte implícitamente estado y contexto con sus hijos, permitiéndote enfocarte en la diagramación en vez de en enlazar estados.
+- **Cero Intrusiones**: Inyectá wrappers o elementos custom sin `renderProps`.
+- **Jerarquía Clara**: El JSX coincide exacto con la estructura del DOM.
+- **Tipado Enfocado**: Sub-componentes tienen props específicas. Autocompletado limpio en TypeScript.
+- **Estado Implícito**: El padre comparte contexto con los hijos automáticamente.
 
-## Distribución Simple
+## Construido para IA
 
-NachUI incluye un sistema pensado para escalar junto a tus proyectos:
+NachUI acelera el desarrollo asistido por IA.
 
-- **Esquema de Componentes**: Define dependencias, tokens y estructura interna.
-- **CLI Inteligente**: Instalá componentes con un comando. El código se copia a tu proyecto.
-- **Extensible**: Creá tus propias colecciones y mantené tu propio ecosistema visual.
+- Código abierto y legible.
+- Patrones repetibles. La IA los sigue sin ambigüedad.
+- La IA extiende tu Design System sin romper la coherencia.
 
-Ya sea con flujos manuales o asistidos por IA, todo encaja naturalmente en tu Design System.
-
-## Listo para Producción
-
-Los componentes vienen listos para usar desde el primer día:
-
-- **Estética Profesional**: Diseño minimalista, moderno y adaptable.
-- **Consistencia Visual Real**: Todo está diseñado como un sistema, no como piezas aisladas.
-- **Personalización Sencilla**: Personalizá tokens, estilos o props sin pelearte con la biblioteca.
-
-Obtenés una base sólida sin empezar de cero, pero con el control total que solo un proyecto Open Source puede darte.
-
-## Nativo para IA
-
-NachUI está preparado para la era del desarrollo asistido:
-
-- Código abierto, legible y estandarizado
-- Patrones repetibles que la IA puede seguir sin ambigüedad
-- Documentación pensada tanto para humanos como para modelos
-- Flujo natural para generar nuevos componentes basados en tu estilo
-
-Al ser Open Code, la IA puede extender tu Design System sin romper su coherencia.
+Construí más rápido. Mantené el control.

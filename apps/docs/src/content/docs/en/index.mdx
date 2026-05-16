@@ -8,84 +8,38 @@ date: 2024-03-14
 locale: 'en'
 ---
 
-<Callout variant="info" className="mb-4">
-  <Callout.Title>Info</Callout.Title>
-  <Callout.Content>
-    NachUI is not just a set of components. It is your own Design System—open, transparent, and
-    fully under your control.
-  </Callout.Content>
-</Callout>
+## Build UIs. Keep Control.
 
-## An Indie Project, Built from Scratch
+Standard component libraries work until you need custom behavior. Then come wrappers, style overrides, and broken consistency.
 
-NachUI is an **independent project** developed from the ground up by **Ignacio "Nacho" Figueroa**. It's not backed by a large company or team—it's a personal endeavor driven by a passion for creating accessible, beautiful, and truly open design systems.
+NachUI solves this. We give you **the actual source code**. You own the components, design tokens, and patterns. Extend them without limits.
 
-**Inspired by the best:**
+- **Full Ownership**: Code lives in your project. Nothing hidden.
+- **Open Code**: Every line transparent, editable, auditable.
+- **Unified Design**: Components follow strict visual rules.
+- **Compound Components**: Semantic API via dot-notation (`<Card.Header>`). Maximum flexibility.
+- **CLI Distribution**: Install components via single command. Code copies direct to your repo.
+- **AI-Native**: Standardized patterns built for AI code generation.
 
-NachUI draws inspiration from exceptional projects in the ecosystem:
+## Why Open Source?
 
-- **[shadcn/ui](https://ui.shadcn.com/)** — For pioneering the "copy-paste components" philosophy and proving that developers want ownership over their code
-- **[Base UI](https://base-ui.com/)** — For demonstrating how unstyled, accessible primitives can empower developers
-- **[Hero UI](https://heroui.com/)** — For showing how modern design systems can be both beautiful and functional
+Adding a NachUI component means the source code becomes yours.
 
-While inspired by these projects, NachUI is built **entirely from scratch** with its own vision: a design system that's not just open source, but truly **open code**—where every component, token, and pattern is yours to own, modify, and extend without limits.
+- Inspect, audit, modify everything.
+- Change APIs or internal structures without restrictions.
+- No vendor lock-in. No waiting for upstream PRs.
 
-## Why NachUI Exists
+Work directly with the code you need.
 
-Conventional libraries work… until you need something different. Then come the wrappers, style overrides, and hacks that break consistency.
+## Compound Components
 
-NachUI removes that pain by giving you **the actual source code**, along with **design tokens** and design patterns you can extend without limits.
-
-The Design System is built on these fundamental principles:
-
-- **Full Ownership**: The code, tokens, and patterns live inside your project. Nothing is hidden.
-- **Open Source — Open Code**: Every line is transparent, editable, and auditable.
-- **Unified Design Language**: All components follow the same visual and compositional rules.
-- **Simple Distribution**: A CLI and a structured schema system make adding or creating components effortless.
-- **Compound Components**: Intuitive API design that gives you semantic control over every piece of a component via dot-notation (e.g., `<Card.Header>`).
-- **Production-Ready**: Modern, accessible, and cohesive values from day one.
-- **AI-Native**: Clear patterns, standardized code, and structured documentation built for AI tools.
-
-## Full Ownership
-
-When you add a component from NachUI, the source code becomes part of your project.
-
-This means:
-
-- **Absolute Transparency**: You can inspect, audit, and modify everything.
-- **Total Freedom to Modify**: Change APIs, styles, or internal structures without restrictions.
-- **AI Integration**: Since it’s Open Code, your models can understand, optimize, or extend components without barriers.
-
-Instead of adapting to another library’s limitations, you work directly with the code you actually need.
-
-## Unified Design Language
-
-NachUI defines a solid foundation of **design tokens**, composition patterns, and visual rules that apply across the system.
-
-This ensures:
-
-- coherent APIs
-- consistent styles
-- uniform accessibility
-- predictable behavior
-
-Even external integrations follow the same design language, ensuring true cohesion across your interface.
-
-Your team learns one system.  
-Your AI learns one pattern.  
-Everything works together.
-
-## Compound Components Pattern
-
-NachUI embraces the **Compound Component** pattern to provide maximum flexibility and highly readable, intuitive APIs.
-
-Instead of configuring components by passing endless boolean flags or objects into a single monolithic component, you compose your UI using semantic, interconnected elements nested beneath a parent component.
+Avoid monolithic components with endless boolean flags. Compose UI using semantic, interconnected elements.
 
 ```tsx
-// ❌ Monolithic approach (rigid, hard to override specific parts)
+// ❌ Monolithic (rigid, hard to override)
 <Card title="Hello" description="World" content="This is content" />
 
-// ✅ Compound Component approach (highly flexible and readable)
+// ✅ Compound (flexible, readable)
 <Card>
   <Card.Header>
     <Card.Title>Hello</Card.Title>
@@ -97,40 +51,19 @@ Instead of configuring components by passing endless boolean flags or objects in
 </Card>
 ```
 
-**Why Compound Components?**
+**Benefits:**
 
-- **Intrusive-free Customization**: You can inject wrappers, adjust ordering, or add custom elements directly into the structure without needing complex `renderProp` overrides.
-- **Clear Code Structure**: Your JSX visually represents the exact DOM structure and hierarchy of the rendered component.
-- **Focused Typings**: Each sub-component has its own specific props, keeping your TypeScript autocomplete clean and relevant locally.
-- **Shared State without Prop Drilling**: The parent component implicitly shares state and context with its children, letting you focus on layout rather than state wiring.
+- **Zero Intrusions**: Inject wrappers or custom elements without `renderProps`.
+- **Clear Hierarchy**: JSX matches exact DOM structure.
+- **Focused Typings**: Sub-components have specific props. Clean TypeScript autocomplete.
+- **Implicit State**: Parent shares context with children automatically.
 
-## Simple Distribution
+## Built for AI
 
-NachUI includes a system designed to scale with your projects:
+NachUI accelerates AI-assisted development.
 
-- **Component Schema**: Defines dependencies, tokens, and internal structure.
-- **Smart CLI**: Install components with a single command. The code is copied directly into your project.
-- **Extensible**: Create your own collections and maintain your own visual ecosystem.
+- Open, readable code.
+- Repeatable patterns. AI follows without ambiguity.
+- AI extends your Design System without breaking coherence.
 
-Whether using manual workflows or AI-assisted flows, everything naturally fits your Design System.
-
-## Production-Ready
-
-Components come ready to use from day one:
-
-- **Professional Aesthetic**: Minimal, modern, and highly adaptable.
-- **True Visual Consistency**: Everything is designed as a system—not as isolated pieces.
-- **Easy Customization**: Modify tokens, styles, or props without fighting the library.
-
-You get a solid foundation without starting from scratch, but with the full control only an Open Source project can offer.
-
-## AI-Native
-
-NachUI is built for the era of assisted development:
-
-- Open, readable, standardized code
-- Repeatable patterns that AI can follow with zero ambiguity
-- Documentation tailored for both humans and models
-- Natural workflow to generate new components based on your style
-
-By being Open Code, AI can extend your Design System without breaking its coherence.
+Build faster. Keep ownership.
