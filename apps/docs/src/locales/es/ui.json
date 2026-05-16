@@ -11,6 +11,10 @@
     {
       "title": "Bricks",
       "href": "/bricks/login"
+    },
+    {
+      "title": "Faq",
+      "href": "/docs#todo-lo-que-necesitas-saber"
     }
   ]
 }
