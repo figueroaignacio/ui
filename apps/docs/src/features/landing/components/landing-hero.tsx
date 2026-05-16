@@ -46,10 +46,10 @@ export function LandingHero() {
         className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-3"
       >
         <motion.div variants={itemVariants} className="space-y-2 text-center">
-          <h1 className="text-foreground text-5xl font-extrabold tracking-tight lg:text-7xl">
+          <h1 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
             {t('subheading1')}
           </h1>
-          <h1 className="text-muted-foreground text-5xl font-extrabold tracking-tight lg:text-7xl">
+          <h1 className="text-muted-foreground text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
             {t('subheading2')}
           </h1>
         </motion.div>

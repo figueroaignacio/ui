@@ -23,10 +23,10 @@ export function BricksHero({ activeSlug }: BricksHeroProps) {
     <div className="bg-background relative flex flex-col items-center justify-start overflow-hidden pt-24 pb-8">
       <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-3">
         <div className="space-y-2 text-center">
-          <h1 className="text-foreground text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <h1 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
             {t('title')}
           </h1>
-          <p className="text-muted-foreground text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <p className="text-muted-foreground text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
             {t('subtitle')}
           </p>
         </div>
