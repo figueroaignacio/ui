@@ -84,7 +84,7 @@ export function LandingHero() {
             <span className="text-muted-foreground mr-1 text-sm font-medium">Theme</span>
             <ThemeColorSwitcher />
           </div>
-          <div className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-2 text-sm transition-all hover:scale-105">
+          <div className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-x-3 text-xs hover:underline">
             <GitHubIcon />
             <a
               href="https://github.com/figueroaignacio/ui"

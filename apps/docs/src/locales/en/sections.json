@@ -44,6 +44,45 @@
           "description": "Fluid animations that enhance the user experience"
         }
       ]
+    },
+    "features": {
+      "title": "Everything you need.",
+      "subtitle": "Nothing you don't.",
+      "description": "A meticulously crafted system designed to accelerate your workflow without compromising on quality or control.",
+      "items": [
+        {
+          "title": "AI Agent Assistant",
+          "description": "An integrated intelligent agent ready to answer developer questions."
+        },
+        {
+          "title": "Smart CLI",
+          "description": "Add components, tokens, and templates automatically with a single command."
+        },
+        {
+          "title": "Developer-First Docs",
+          "description": "Copy-paste ready. No guesswork. Pure productivity."
+        },
+        {
+          "title": "Open Source",
+          "description": "Full ownership. Inspect, modify, and extend every single line without restrictions."
+        },
+        {
+          "title": "Hyper-Optimized",
+          "description": "Zero bloat. Built for speed and maximum performance."
+        },
+        {
+          "title": "Fluid Motion",
+          "description": "Staggered reveals. Polished micro-interactions built right in."
+        },
+        {
+          "title": "Refined Minimalism",
+          "description": "Unopinionated aesthetics. High signal, absolute zero noise."
+        },
+        {
+          "title": "Universal Access",
+          "description": "WCAG 2.2 compliant out of the box. Fully keyboard-ready."
+        }
+      ]
     }
   },
   "blog": {

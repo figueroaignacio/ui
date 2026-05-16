@@ -1,3 +1,4 @@
+import { LandingFeatures } from '@/features/landing/components/landing-features';
 import { LandingHero } from '@/features/landing/components/landing-hero';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
 import type { Metadata } from 'next';
@@ -14,6 +15,7 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <div className="flex flex-col items-center">
       <LandingHero />
+      <LandingFeatures />
     </div>
   );
 }

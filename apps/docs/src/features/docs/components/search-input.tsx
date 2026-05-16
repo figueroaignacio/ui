@@ -20,7 +20,11 @@ export function SearchInput({
 }: SearchInputProps) {
   return (
     <div className="border-border/50 flex items-center border-b px-3">
-      <HugeiconsIcon icon={Search02Icon} className="text-muted-foreground h-5 w-5 shrink-0" aria-hidden="true" />
+      <HugeiconsIcon
+        icon={Search02Icon}
+        className="text-muted-foreground h-5 w-5 shrink-0"
+        aria-hidden="true"
+      />
       <input
         ref={inputRef}
         type="text"

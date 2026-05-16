@@ -22,8 +22,8 @@ export function Navbar() {
             return (
               <Link
                 className={cn(
-                  'transition-colors rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-                  isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/80'
+                  'focus-visible:ring-foreground focus-visible:ring-offset-background rounded-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+                  isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/80',
                 )}
                 href={item.href}
                 key={item.href}

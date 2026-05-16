@@ -44,6 +44,45 @@
           "description": "Animaciones fluidas que mejoran la experiencia del usuario"
         }
       ]
+    },
+    "features": {
+      "title": "Todo lo que necesitas.",
+      "subtitle": "Nada que no.",
+      "description": "Un sistema meticulosamente diseñado para acelerar tu flujo de trabajo sin comprometer la calidad ni el control.",
+      "items": [
+        {
+          "title": "Asistente de IA",
+          "description": "Un agente inteligente integrado listo para responder preguntas de desarrolladores."
+        },
+        {
+          "title": "CLI Inteligente",
+          "description": "Agrega componentes, tokens y plantillas automáticamente con un solo comando."
+        },
+        {
+          "title": "Documentación Elite",
+          "description": "Listo para copiar y pegar. Sin adivinanzas. Productividad pura."
+        },
+        {
+          "title": "Código Abierto",
+          "description": "Propiedad total. Inspecciona, modifica y extiende cada línea sin restricciones."
+        },
+        {
+          "title": "Hiper-Optimizado",
+          "description": "Sin exceso. Construido para la velocidad y el máximo rendimiento."
+        },
+        {
+          "title": "Movimiento Fluido",
+          "description": "Revelaciones escalonadas. Micro-interacciones pulidas integradas."
+        },
+        {
+          "title": "Minimalismo Refinado",
+          "description": "Estética sin opiniones. Alta señal, cero ruido absoluto."
+        },
+        {
+          "title": "Acceso Universal",
+          "description": "Cumple con WCAG 2.2 de fábrica. Totalmente listo para teclado."
+        }
+      ]
     }
   },
   "blog": {

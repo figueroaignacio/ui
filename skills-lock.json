@@ -79,6 +79,12 @@
       "sourceType": "github",
       "computedHash": "f835d8226c28abf012cc013928e2627c8a7a046de61127ef229be1711bd1f255"
     },
+    "next-intl-app-router": {
+      "source": "liuchiawei/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend/next-intl-app-router/SKILL.md",
+      "computedHash": "77c01d0a058c9560a949ed039d5c400ab1767d327322049ec8f9c956ca778078"
+    },
     "next-upgrade": {
       "source": "vercel-labs/next-skills",
       "sourceType": "github",

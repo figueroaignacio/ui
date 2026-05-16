@@ -19,7 +19,10 @@ export function CopyButton({ value, className }: CopyButtonProps) {
       disabled={isCopied}
       title={isCopied ? 'Copied!' : 'Copy code'}
       aria-label={isCopied ? 'Copied!' : 'Copy code'}
-      className={cn("text-white transition-transform duration-100 hover:scale-[1.05] hover:cursor-pointer active:scale-[0.90]", className)}
+      className={cn(
+        'text-white transition-transform duration-100 hover:scale-[1.05] hover:cursor-pointer active:scale-[0.90]',
+        className,
+      )}
     >
       {isCopied ? (
         <HugeiconsIcon icon={Tick02Icon} className="h-4 w-4" aria-hidden="true" />
