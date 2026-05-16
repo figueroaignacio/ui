@@ -114,17 +114,18 @@ const DrawerTrigger = ({
   className,
   variant,
   size,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: ButtonProps['variant'];
-  size?: ButtonProps['size'];
-  icon?: boolean;
-}) => {
+  ...props
+}: ButtonProps & { icon?: boolean }) => {
   const { setOpen } = useDrawerContext();
 
   return (
-    <Button className={cn(className)} onClick={() => setOpen(true)} variant={variant} size={size}>
+    <Button
+      className={cn(className)}
+      onClick={() => setOpen(true)}
+      variant={variant}
+      size={size}
+      {...props}
+    >
       {children}
     </Button>
   );

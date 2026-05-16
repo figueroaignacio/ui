@@ -33,12 +33,14 @@ export function MobileToc({ toc }: TocProps) {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <div className="flex items-center gap-2">
-        <HugeiconsIcon icon={LayoutAlignBottomIcon} size={12} />
-        <Drawer.Trigger variant="link" className="text-foreground p-0" size="sm">
-          {t('label')}
-        </Drawer.Trigger>
-      </div>
+      <Drawer.Trigger
+        variant="default"
+        size="icon"
+        className="fixed right-6 bottom-6 z-50 h-14 w-14 rounded-full shadow-2xl lg:hidden"
+        aria-label={t('label')}
+      >
+        <HugeiconsIcon icon={LayoutAlignBottomIcon} size={24} />
+      </Drawer.Trigger>
       <Drawer.Content side="bottom" className="max-h-[80vh]">
         <Drawer.Header>
           <Drawer.Title className="text-sm font-semibold">{t('label')}</Drawer.Title>
