@@ -87,5 +87,12 @@
   },
   "skipLink": {
     "label": "Saltar al contenido principal"
+  },
+  "githubStar": {
+    "heroLabel": "Dame una estrella en GitHub",
+    "starAction": "Star",
+    "tocTitle": "¿Te gusta NachUI?",
+    "tocSubtitle": "Una estrella en GitHub me ayuda mucho",
+    "ariaLabel": "Dar estrella a NachUI en GitHub"
   }
 }

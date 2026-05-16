@@ -1,6 +1,6 @@
 'use client';
 
-import { GitHubIcon } from '@/components/common/tech-icons';
+import { GitHubStarHeroCta } from '@/components/common/github-star-cta';
 import { ThemeColorSwitcher } from '@/features/theme/components/theme-color-switcher';
 import { Link } from '@/i18n/navigation';
 import { ArrowRight02Icon, SourceCodeIcon } from '@hugeicons/core-free-icons';
@@ -84,17 +84,7 @@ export function LandingHero() {
             <span className="text-muted-foreground mr-1 text-sm font-medium">Theme</span>
             <ThemeColorSwitcher />
           </div>
-          <div className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center gap-x-3 text-xs hover:underline">
-            <GitHubIcon />
-            <a
-              href="https://github.com/figueroaignacio/ui"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium hover:underline"
-            >
-              {t('github')}
-            </a>
-          </div>
+          <GitHubStarHeroCta />
         </motion.div>
         <motion.div variants={itemVariants} className="relative mt-12 w-full">
           <HeroComponentPreview />

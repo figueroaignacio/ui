@@ -1,5 +1,6 @@
 'use client';
 
+import { GitHubStarTocCta } from '@/components/common/github-star-cta';
 import { useMounted } from '@/hooks/use-mounted';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
@@ -85,6 +86,8 @@ export function Toc({ toc }: TocProps) {
       </p>
 
       <Tree tree={toc} activeItem={activeHeading} />
+
+      <GitHubStarTocCta />
     </motion.div>
   );
 }
