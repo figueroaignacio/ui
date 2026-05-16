@@ -1,3 +1,4 @@
+import { DocsFaq } from '@/features/docs/components/docs-faq';
 import { Alert02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Callout } from '@repo/ui/components/callout';
@@ -219,4 +220,5 @@ export const mdxComponents = {
   Folder: MdxFolder,
   File: MdxFile,
   Steps,
+  DocsFaq,
 };

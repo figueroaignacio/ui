@@ -139,39 +139,35 @@
     "sitemap": "Mapa del sitio"
   },
   "faq": {
-    "title": "Todo lo que necesitas saber",
+    "title": "Propiedad, Control y Cero 'AI Slop'",
     "items": [
       {
-        "question": "¿NachUI es una librería npm?",
-        "answer": "No. NachUI no es un paquete npm tradicional. Es un sistema de diseño 'copy-paste'. Tienes el control total del código sin dependencias externas que te limiten."
+        "question": "¿Por qué no es un paquete npm?",
+        "answer": "Porque no deberías depender de las decisiones de terceros. Al copiar el código, te pertenece para siempre. Sin dependencias externas, sin sorpresas de seguridad y sin código innecesario que ralentice tu app."
       },
       {
-        "question": "¿Qué hace diferente a NachUI de otras librerías de componentes?",
-        "answer": "A diferencia de librerías como MUI o Ant Design (cajas negras), NachUI te entrega el código fuente completo. Sin abstracciones ocultas: ves y modificas todo. Sin breaking changes: tú decides cuándo actualizar. Sin limitaciones: no dependes de decisiones ajenas. Un sistema completo con tokens, patrones y guías."
+        "question": "¿Qué diferencia a NachUI de otras librerías?",
+        "answer": "Sin cajas negras. A diferencia de las librerías tradicionales que ocultan lógica tras abstracciones, NachUI te entrega el código fuente real. Es un Sistema de Diseño completo que puedes auditar, modificar y extender a tu medida."
       },
       {
-        "question": "¿Puedo usar NachUI en proyectos comerciales?",
-        "answer": "Sí, absolutamente. NachUI es gratuito y de código abierto. Úsalo en proyectos personales o comerciales sin restricciones. El código es tuyo una vez copiado."
+        "question": "¿Puedo usarlo en proyectos comerciales?",
+        "answer": "Sí. Construye lo que quieras, lánzalo donde quieras. NachUI es gratuito y de código abierto. Sin regalías ni restricciones: una vez que el código está en tu proyecto, es tuyo."
       },
       {
-        "question": "¿Cómo actualizo los componentes si hay nuevas versiones?",
-        "answer": "Al vivir el código en tu proyecto, tú controlas las actualizaciones. Copia mejoras selectivamente, mantén tu versión personalizada o usa el CLI para comparar cambios. Sin actualizaciones forzadas de npm que rompan tu app."
+        "question": "¿Cómo se manejan las actualizaciones?",
+        "answer": "Tú tienes el control. Copia las mejoras cuando las necesites o mantén tu versión personalizada. Olvida las actualizaciones forzadas de npm que rompen tu entorno de producción."
       },
       {
-        "question": "¿Necesito conocimientos de diseño para usar NachUI?",
-        "answer": "No. NachUI incluye un sistema de diseño completo y coherente. Tokens, colores, espaciado y componentes diseñados profesionalmente. Úsalos tal cual o personalízalos."
-      },
-      {
-        "question": "¿NachUI funciona con Next.js, Remix, Vite?",
-        "answer": "Sí. Construido con React, funciona con cualquier framework moderno: Next.js (App y Pages Router), Remix, Vite, Astro, etc. Solo necesitas React 18+ y Tailwind CSS."
+        "question": "¿Funciona con frameworks como Next.js o Vite?",
+        "answer": "Perfectamente. Construido con React y Tailwind CSS, es compatible con cualquier entorno moderno: Next.js (App y Pages Router), Remix, Vite, Astro y más."
       },
       {
         "question": "¿Cómo funciona con herramientas de IA como Cursor o Claude?",
-        "answer": "NachUI es nativo para la IA. Al ser código abierto y visible en tu proyecto, la IA puede leerlo, entenderlo y modificarlo directamente. Sugiere cambios basados en tus patrones, genera componentes y evita las 'cajas negras'. Colaboración humano-IA sin fricción."
+        "answer": "NachUI es nativo para la IA. Al ser código abierto y visible en tu repositorio, los asistentes de IA pueden leerlo, entenderlo y modificarlo directamente, facilitando una colaboración sin fricciones."
       },
       {
-        "question": "¿Los componentes son accesibles?",
-        "answer": "Sí. Todos los componentes siguen las pautas WCAG y WAI-ARIA: navegación por teclado, atributos ARIA, soporte para lectores de pantalla, contraste adecuado y foco visible. La accesibilidad es fundamental, no opcional."
+        "question": "¿Es accesible?",
+        "answer": "Siempre. Todos los componentes cumplen con los estándares WCAG 2.2 y WAI-ARIA de fábrica. Navegación por teclado y soporte para lectores de pantalla son pilares fundamentales, no opcionales."
       }
     ]
   }

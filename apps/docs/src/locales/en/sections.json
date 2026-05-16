@@ -139,39 +139,35 @@
     "sitemap": "Sitemap"
   },
   "faq": {
-    "title": "Everything you need to know",
+    "title": "Ownership, Control, and No 'AI Slop'",
     "items": [
       {
-        "question": "Is NachUI an npm library?",
-        "answer": "No. NachUI is not a traditional npm package. It is a copy-paste design system. This gives you full control over the code without external dependencies that can become outdated or limit you."
+        "question": "Why isn't this an npm package?",
+        "answer": "Because you shouldn't be held hostage by a package maintainer. Copy-pasting means the code is yours. Forever. No external dependencies, no security surprises, and zero bloat from code you don't use."
       },
       {
-        "question": "What makes NachUI different from other component libraries?",
-        "answer": "Unlike libraries like MUI or Ant Design that work as black boxes, NachUI provides the complete source code. No hidden abstractions—you see and modify everything. No breaking changes—you decide when to update. No limitations—you're not tied to others' design decisions. A complete Design System with tokens, patterns, and guides, not just components."
+        "question": "What makes NachUI different from other libraries?",
+        "answer": "No black boxes. Unlike traditional libraries that hide logic behind abstractions, NachUI gives you the raw source code. It's a complete Design System—tokens, patterns, and guides—that you can audit, modify, and extend as your project evolves."
       },
       {
         "question": "Can I use NachUI in commercial projects?",
-        "answer": "Yes, absolutely. NachUI is free and open source. Use it in personal or commercial projects without restrictions. The code is yours once you copy it."
+        "answer": "Yes. Build anything, ship anywhere. NachUI is free and open-source. No royalties, no attribution required, and no restrictions on how you use the code once it's in your project."
       },
       {
-        "question": "How do I update components if there are new versions?",
-        "answer": "Since the code lives in your project, you control updates. Selectively copy improvements, keep your customized version, or use the CLI to compare and merge changes. No forced npm updates breaking your app."
+        "question": "How do I handle updates?",
+        "answer": "You own the schedule. Copy improvements when you want them, or stick with your customized version. No forced npm updates breaking your production build or introducing unwanted changes."
       },
       {
-        "question": "Do I need design knowledge to use NachUI?",
-        "answer": "No. NachUI includes a complete, coherent design system ready to use. Design tokens, colors, spacing, and components are professionally crafted. Use them as-is or customize to your needs."
-      },
-      {
-        "question": "Does NachUI work with Next.js, Remix, Vite?",
-        "answer": "Yes. Built with React, it works with any modern framework: Next.js (App & Pages Router), Remix, Vite, Astro, and more. You just need React 18+ and Tailwind CSS."
+        "question": "Does it work with frameworks like Next.js or Vite?",
+        "answer": "Perfectly. Built with React and Tailwind CSS, it's compatible with any modern environment including Next.js (App & Pages Router), Remix, Vite, Astro, and more."
       },
       {
         "question": "How does it work with AI tools like Cursor or Claude?",
-        "answer": "NachUI is AI-native. Since the code is open and visible in your project, AI tools can read, understand, and modify it directly. They can suggest edits based on your patterns, generate new components, and work without 'black box' confusion. It enables seamless human-AI collaboration."
+        "answer": "NachUI is AI-native. Since the source code is visible in your repository, AI assistants can read, understand, and modify it directly. It enables seamless collaboration without 'black box' confusion."
       },
       {
-        "question": "Are the components accessible?",
-        "answer": "Yes. All components follow WCAG and WAI-ARIA guidelines: full keyboard navigation, proper ARIA attributes, screen reader support, color contrast, and visible focus states. Accessibility is fundamental, not optional."
+        "question": "Is it accessible?",
+        "answer": "Always. All components follow WCAG 2.2 and WAI-ARIA standards out of the box. Keyboard navigation, screen reader support, and proper focus states are fundamental, not optional."
       }
     ]
   }
