@@ -1,3 +1,4 @@
+import { GitHubStarTocCta } from '@/components/common/github-star-cta';
 import { LandingFeatures } from '@/features/landing/components/landing-features';
 import { LandingHero } from '@/features/landing/components/landing-hero';
 import { buildAlternates, getAbsoluteUrl } from '@/lib/domains';
@@ -16,6 +17,7 @@ export default async function HomePage({ params }: PageProps) {
     <div className="flex flex-col items-center">
       <LandingHero />
       <LandingFeatures />
+      <GitHubStarTocCta />
     </div>
   );
 }
