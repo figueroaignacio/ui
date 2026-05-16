@@ -14,7 +14,7 @@ export function GitHubStarHeroCta() {
       href={GITHUB_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="group border-border/60 bg-card hover:border-primary/30 hover:bg-accent/50 relative inline-flex items-center gap-3 overflow-hidden rounded-full border px-5 py-2.5 shadow-sm transition-colors duration-300"
+      className="group bg-card hover:border-primary/30 hover:bg-accent/50 relative inline-flex items-center gap-3 overflow-hidden rounded-full border px-2 py-1 transition-colors duration-300"
       aria-label={t('ariaLabel')}
     >
       <div
@@ -33,7 +33,11 @@ export function GitHubStarHeroCta() {
 
       <span className="bg-primary/10 text-primary group-hover:bg-primary/20 relative flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-colors duration-200">
         <span className="flex items-center">
-          <HugeiconsIcon icon={StarIcon} size={14} />
+          <HugeiconsIcon
+            icon={StarIcon}
+            size={14}
+            className="-rotate-12 fill-amber-500 text-amber-500 transition-all duration-300 group-hover:scale-125"
+          />
         </span>
         <span className="text-xs font-semibold">{t('starAction')}</span>
       </span>
@@ -75,7 +79,7 @@ export function GitHubStarTocCta() {
             <HugeiconsIcon
               icon={StarIcon}
               size={11}
-              className="text-muted-foreground transition-all duration-300 group-hover:scale-125 group-hover:-rotate-12 group-hover:fill-amber-500 group-hover:text-amber-500"
+              className="-rotate-12 fill-amber-500 text-amber-500 transition-all duration-300 group-hover:scale-125"
             />
             <span className="text-muted-foreground group-hover:text-foreground text-[10px] font-medium transition-colors duration-200">
               Star

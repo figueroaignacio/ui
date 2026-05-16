@@ -45,7 +45,8 @@ export function LandingHero() {
         animate="visible"
         className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-3"
       >
-        <motion.div variants={itemVariants} className="space-y-2 text-center">
+        <motion.div variants={itemVariants} className="space-y-4 text-center">
+          <GitHubStarHeroCta />
           <h1 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
             {t('subheading1')}
           </h1>
@@ -59,10 +60,7 @@ export function LandingHero() {
         >
           {t('description')}
         </motion.p>
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col items-center gap-4 pt-4 sm:flex-row"
-        >
+        <motion.div variants={itemVariants} className="flex flex-row items-center gap-4 pt-4">
           <Button size="sm" rightIcon={<HugeiconsIcon icon={ArrowRight02Icon} size={18} />} asChild>
             <Link href="/docs">{actions[0]?.label || 'Get started'}</Link>
           </Button>
@@ -84,7 +82,6 @@ export function LandingHero() {
             <span className="text-muted-foreground mr-1 text-sm font-medium">Theme</span>
             <ThemeColorSwitcher />
           </div>
-          <GitHubStarHeroCta />
         </motion.div>
         <motion.div variants={itemVariants} className="relative mt-12 w-full">
           <HeroComponentPreview />
