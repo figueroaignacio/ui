@@ -47,7 +47,7 @@ export function DocsNavigationButtons({ currentPath }: DocsNavigationButtonsProp
   const { prev, next } = useDocsNavigation(currentPath);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="hidden items-center gap-1 md:flex">
       <NavIconButton
         href={prev?.href}
         label={prev ? `Previous: ${prev.title}` : 'No previous page'}

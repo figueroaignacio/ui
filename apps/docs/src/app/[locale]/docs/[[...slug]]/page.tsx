@@ -37,21 +37,27 @@ export default async function DocPage({ params }: { params: Promise<DocPageProps
   return (
     <>
       <article className="doc-container flex w-full min-w-0 flex-col">
-        <div className="my-6 flex flex-col gap-6">
+        <div className="mt-8 mb-10 flex flex-col gap-1 sm:mt-10 sm:mb-12">
           <MobileToc toc={tocContent} />
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <h1 className="text-2xl font-bold lg:text-4xl">{doc.title}</h1>
-            <div className="flex items-center gap-2">
-              <DocsNavigationButtons currentPath={currentPath} />
-            </div>
+          <div className="flex flex-col gap-3">
+            <h1 className="font-heading text-foreground text-3xl font-bold tracking-tighter sm:text-4xl lg:text-5xl">
+              {doc.title}
+            </h1>
+            {doc.description && (
+              <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
+                {doc.description}
+              </p>
+            )}
           </div>
-          <p className="text-muted-foreground">{doc.description}</p>
-          <DocActions
-            page={doc.title}
-            url={getAbsoluteUrl(doc.locale || 'en', `/docs/${doc.slugAsParams}`)}
-            filePath={doc.sourceFilePath}
-            rawContent={doc.raw}
-          />
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pb-5">
+            <DocActions
+              page={doc.title}
+              url={getAbsoluteUrl(doc.locale || 'en', `/docs/${doc.slugAsParams}`)}
+              filePath={doc.sourceFilePath}
+              rawContent={doc.raw}
+            />
+            <DocsNavigationButtons currentPath={currentPath} />
+          </div>
         </div>
         <div className="min-w-0 flex-1">
           {doc.body ? <MDXContent code={doc.body} /> : <div>Error</div>}
